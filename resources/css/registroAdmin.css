@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.left-container, .right-container{
+    padding:20px;
+}
+.left-container {
+    flex: 1;
+    padding-right: 10px;
+    background-color: white;
+}
+ 
+.left-container img{
+    width: 100%;
+    height: auto;
+}
+.right-container {
+    flex: 1;
+    padding-left: 10px;
+    background-color: #e0e0e0;
+}
+#login-form {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control{
+    border-radius: 20px;
+}
+
+
+.btn{
+    border-radius: 7px;
+}

@@ -5,93 +5,49 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link type="image/png" rel="icon" href="../../resources/img/pull&zara.png">
+    <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../controllers/public/admin/registro.css">
+    <link rel="stylesheet" href="../../resources/css/registroAdmin.css">
     <title>Registro</title>
 </head>
 
 <body>
     <main>
-        <header>
-            <nav class="navbar bg-body-tertiary oscuro fixed-top    ">
-                <div class="container-fluid  text-center mx-auto d-block">
-                    <img src="../../resources/img/pull&zara.png" alt="" width="200px">
-                </div>
-            </nav>
-        </header>
+        <div id="navbar">
+            <header>
+                <nav class="navbar bg-body-tertiary oscuro fixed-top">
+                    <div class="container-fluid text-center mx-auto d-block">
+                        <img src="../../resources/img/pull&zara.png" alt="" width="350px">
 
-        <div container="imagen">
-            <img src="../../resources/img/image 44.png" alt="" width="750" height="750" aling="left">
+                    </div>
+                </nav>
+            </header>
         </div>
-    
-        <!-- formulario-->
-        <div container="formulario">
-            <form class="row g-3" id="signupForm">
-                <!-- Campo oculto para asignar el token del reCAPTCHA -->
-                <input type="hidden" id="gRecaptchaResponse" name="gRecaptchaResponse">
-                <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-2">
-                    <label for="nombreCliente" class="form-label">Nombre</label>
-                    <input type="text" id="nombreCliente" name="nombreCliente" class="form-control" required>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 left-container">
+                    <img src="../../resources/img/admin.png" alt="Imagen" width="750px" height="800px">
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <label for="apellidoCliente" class="form-label">Apellido</label>
-                    <input type="text" id="apellidoCliente" name="apellidoCliente" class="form-control" required>
+                <div class="col-md-6">
+                    <!-- formulario con labels flotantes-->
+                    <div class="form-floating mb-3" style="margin-top: 280px;">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Correo Electrónico</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                        <label for="floatingPassword">Contraseña</label>
+                    </div>
+                    <div class="text-center mt-3"><!-- margen de espacio -->
+                        <button type="button" class="btn btn-outline-dark">Ingresar</button>
+                    </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-2">
-                    <label for="correoCliente" class="form-label">Correo electrónico</label>
-                    <input type="email" id="correoCliente" name="correoCliente" maxlength="100" class="form-control"
-                        required>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <label for="duiCliente" class="form-label">DUI</label>
-                    <input type="text" id="duiCliente" name="duiCliente" placeholder="00000000-0" class="form-control"
-                        required>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-2">
-                    <label for="telefonoCliente" class="form-label">Teléfono</label>
-                    <input type="text" id="telefonoCliente" name="telefonoCliente" placeholder="0000-0000"
-                        class="form-control" required>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <label for="nacimientoCliente" class="form-label">Nacimiento</label>
-                    <input type="date" id="nacimientoCliente" name="nacimientoCliente" class="form-control" required>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-4 offset-lg-2">
-                    <label for="claveCliente" class="form-label">Contraseña</label>
-                    <input type="password" id="claveCliente" name="claveCliente" class="form-control" required>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <label for="confirmarClave" class="form-label">Confirmar contraseña</label>
-                    <input type="password" id="confirmarClave" name="confirmarClave" class="form-control" required>
-                </div>
-                <div class="col-sm-12 col-lg-8 offset-lg-2">
-                    <label for="direccionCliente" class="form-label">Dirección</label>
-                    <input type="text" id="direccionCliente" name="direccionCliente" maxlength="250" class="form-control"
-                        required>
-                </div>
-                <div class="form-check d-flex justify-content-center">
-                    <input type="checkbox" class="form-check-input" id="condicion" name="condicion" required>
-                    <label class="form-check-label" for="condicion">Acepto términos y condiciones</label>
-                </div>
-                <div class="text-center">
-                    <button type="reset" class="btn btn-secondary"><i class="bi bi-x-square-fill"></i> Cancelar</button>
-                    <button type="submit" class="btn btn-primary"><i class="bi bi-person-fill"></i> Registrar</button>
-                </div>
-            </form>
+            </div>
         </div>
-    
-    
+
     </main>
-
-
-    
-
-
-
-
 
 
 
