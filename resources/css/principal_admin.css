@@ -1,0 +1,23 @@
+.btn-margen {
+    margin: 60px;
+}
+
+/* Clases de colores de borde personalizadas */
+.btn-border-red {
+    border-color: red;
+}
+.btn-border-green {
+    border-color: green;
+}
+.btn-border-blue {
+    border-color: blue;
+}
+.btn-border-yellow {
+    border-color: pink
+}
+.btn-border-orange {
+    border-color: orange;
+}
+.btn-border-purple {
+    border-color: purple;
+}
