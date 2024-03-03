@@ -1,96 +1,158 @@
 <!DOCTYPE html>
-<!-- Declaración del idioma para el documento -->
-<html lang="es">
+<html lang="en">
 
 <head>
     <!-- Título del documento -->
-    <title>PULL&ZARA</title>
+    <title>PULL&ZARA - Administracion</title>
     <!-- Metadatos de la página web -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Carlos Quintanilla">
     <meta name="author" content="Daniela Alexandra">
     <meta name="author" content="Jhonny">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- IMPORTACIÓN DE RECURSOS EXTERNOS -->
-    <!-- Llamada al icono de la página web -->
-    <!-- <link type="image/png" rel="icon" href="../../resources/img/icon.png">-->
-    <!-- Llamada a las hojas de estilos del framework e iconos -->
-    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
-    <div id="navbar-placeholder"></div>
+    <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
+    <title>Inicio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../resources/css/principal_admin.css">
 </head>
 
 <body>
-    <!-- Contenido principal del documento -->
     <main>
-        
-        <!-- Título del contenido principal -->
-        <h3 id="mainTitle"></h3>
-        <img src="../../resources/img/user.png" class="mx-auto d-block" width="200">
-        <!-- Formulario para iniciar sesión -->
-        <form class="d-none" id="loginForm">
-            <div class="row g-3">
-                <div class="col-sm-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-                    <label for="alias" class="form-label">Alias</label>
-                    <input id="alias" type="text" name="alias" class="form-control" required>
+        <div id="navbar">
+            <nav class="navbar navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="C:\Users\FRAN\Desktop\P-Z-2\views\admin\principal.html">
+                        <img src="../../resources/img/pull&zara (5).png" alt="" width="100" height="100">
+                    </a>
                 </div>
-                <div class="col-sm-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-                    <label for="clave" class="form-label">Contraseña</label>
-                    <input id="clave" type="password" name="clave" class="form-control" required>
+            </nav>
+        </div>
+        <!-- contenedor con texto  -->
+        <div id="textos" class="container-fluid mb-6 text-center mb-4">
+            <div class="row justify-content-center">
+                <h2>¡Bienvenido ---! </h2>
+                <h5>¿Que deseas hacer hoy?</h5>
+            </div>
+        </div>
+        <!-- contenedor de botones acciones a realizar -->
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- Primer conjunto de botones -->
+                <div class="col-4">
+                    <a href="../admin/admin_usuarios.html">
+                        <button type="button" class="btn btn-block btn-margen btn-border-red">
+                            <img src="../../resources/img/asignar.png" alt="Imagen"
+                                style="max-width: 100%; height: auto;">
+                            Administrar Usuarios
+                        </button>
+                    </a>
                 </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Enviar</button>
+                <div class="col-4">
+                    <a href="../admin/admin_categorias.html">
+                        <button type="button" class="btn btn-block btn-margen btn-border-green">
+                            <img src="../../resources/img/elegir.png" alt="Imagen"
+                                style="max-width: 100%; height: auto;">
+                            Administrar Categorías</button>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="../admin/admin_talla.html">
+                        <button type="button" class="btn btn-block btn-margen btn-border-blue">
+                            <img src="../../resources/img/camiseta.png" alt="Imagen"
+                                style="max-width: 100%; height: auto;">
+                            Administrar Tallas </button>
+                    </a>
+                </div>
+                <!-- Segundo conjunto de botones -->
+                <div class="col-4">
+                    <a href="../admin/admin_reseñas.html">
+                        <button type="button" class="btn btn-block btn-margen btn-border-yellow">
+                            <img src="../../resources/img/revision-de-comentarios.png" alt="Imagen"
+                                style="max-width: 100%; height: auto;">
+                            Administrar Reseñas</button>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="../admin/admin_productos.html">
+                        <button type="button" class="btn btn-block btn-margen btn-border-orange">
+                            <img src="../../resources/img/corporativo.png" alt="Imagen"
+                                style="max-width: 100%; height: auto;">
+                            Administrar Productos</button>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="../admin/admin_pedidos.html">
+                        <button type="button" class="btn btn-block btn-margen btn-border-purple">
+                            <img src="../../resources/img/caja-abierta.png" alt="Imagen"
+                                style="max-width: 100%; height: auto;">
+                            Administrar Pedidos
+                        </button>
+                    </a>
                 </div>
             </div>
-        </form>
-        <!-- Formulario para crear el primer administrador -->
-        <form class="d-none" id="signupForm">
-            <div class="row g-3">
-                <div class="col-sm-12 col-md-6">
-                    <label for="nombreAdministrador" class="form-label">Nombre</label>
-                    <input id="nombreAdministrador" type="text" name="nombreAdministrador" class="form-control"
-                        required>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <label for="apellidoAdministrador" class="form-label">Apellido</label>
-                    <input id="apellidoAdministrador" type="text" name="apellidoAdministrador" class="form-control"
-                        required>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <label for="correoAdministrador" class="form-label">Correo</label>
-                    <input id="correoAdministrador" type="email" name="correoAdministrador" class="form-control"
-                        required>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <label for="aliasAdministrador" class="form-label">Alias</label>
-                    <input id="aliasAdministrador" type="text" name="aliasAdministrador" class="form-control" required>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <label for="claveAdministrador" class="form-label">Contraseña</label>
-                    <input id="claveAdministrador" type="password" name="claveAdministrador" class="form-control"
-                        required>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <label for="confirmarClave" class="form-label">Confirmar contraseña</label>
-                    <input id="confirmarClave" type="password" name="confirmarClave" class="form-control" required>
-                </div>
-                <div class="text-center">
-                    <button type="reset" class="btn btn-secondary"><i class="bi bi-x-square"></i> Cancelar</button>
-                    <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar</button>
-                </div>
-            </div>
-        </form>
+        </div>
+
     </main>
-    <!-- IMPORTACIÓN DE ARCHIVOS JAVASCRIPT -->
-    <!-- Llamada al framework y librería de mensajes -->
-    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
-    <!-- Llamada al controlador general de la aplicación -->
-    <script type="text/javascript" src="../../controllers/utils/components.js"></script>
-    <!-- Llamada al controlador del sitio privado -->
-    <script type="text/javascript" src="../../controllers/utils/admin.js"></script>
-    <!-- Llamada al controlador de la página web -->
-    <script type="text/javascript" src="../../controllers/admin/index.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>
