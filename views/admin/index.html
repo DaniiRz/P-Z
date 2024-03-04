@@ -13,6 +13,7 @@
     <meta name="author" content="Jhonny">
     <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
     <title>Inicio</title>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -20,21 +21,44 @@
 </head>
 
 <body>
+
     <main>
+
         <div id="navbar">
             <nav class="navbar navbar-light bg-light">
-                <div class="container">
+                <div class="container - fluid">
                     <a class="navbar-brand" href="../admin/index.html">
-                        <img src="../../resources/img/pull&zara (5).png" alt="" width="100" height="100">
+                        <img src="../../resources/img/pull&zara (5).png" alt="" width="130" height="110">
                     </a>
+                    <ul class="navbar-nav d-flex flex-row me-1">
+                        <div class="iconHome">
+                            <li class="nav-item me-3 me-lg-0">
+                                <a class="nav-link text-white" href="../admin/index.html">
+                                    <img src="../../resources/img/casa 1.png" alt="" width="30" height="30">
+                                </a>
+                            </li>
+                        </div>
+                        <div class="iconProfile">
+                            <li class="nav-item me-lg-0"> <!-- Cambiamos la clase de margen aquí -->
+                                <a class="nav-link text-white" href="../admin/index.html">
+                                    <img src="../../resources/img/usuario.png" alt="" width="30" height="30">
+                                </a>
+                            </li>
+                        </div>
+                    </ul>
                 </div>
             </nav>
         </div>
+
+
         <!-- contenedor con texto  -->
         <div id="textos" class="container-fluid mb-6 text-center mb-4">
             <div class="row justify-content-center">
-                <h2>¡Bienvenido ---! </h2>
-                <h5>¿Que deseas hacer hoy?</h5>
+                <div class="textT">
+                    <h2>¡Bienvenido ---! </h2>
+                    <h5>¿Que deseas hacer hoy?</h5>
+                </div>
+
             </div>
         </div>
         <!-- contenedor de botones acciones a realizar -->
@@ -97,30 +121,33 @@
 
     </main>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <footer class="bg-dark">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="../../resources/img/pull&zara (5).png" alt="pull&zara logo" class="logo mb-1" width="100px"
+                        height="100px">
+                    <p class="text-white">Design amazing digital experiences that create more happy in the world</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="text-muted small">© 2024 PULL & ZARA. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end align-items-baseline">
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com" target="_blank"><img src="../../resources/img/facebook.png"
+                                alt="Facebook"></a>
+                        <a href="https://www.instagram.com" target="_blank"><img src="../../resources/img/instagram.png"
+                                alt="Instagram"></a>
+                        <a href="https://twitter.com" target="_blank"><img src="../../resources/img/x.png" alt="X"></a>
+                        <a href="https://www.tiktok.com/" target="_blank"><img src="../../resources/img/tik-tok.png"
+                                alt="Tik Tok"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -129,30 +156,22 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
+    <!--<script src="../../controllers/utils/admin.js"></script>
+
+    <script>
+        // Aquí cargamos la plantilla después de que el DOM esté completamente cargado
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadTemplate(); // Llamamos a la función para cargar la plantilla
+        });
+    </script>-->
+
+
+
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 

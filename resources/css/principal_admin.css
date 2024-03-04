@@ -1,7 +1,19 @@
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
 .btn-margen {
     margin: 70px;
 }
 
+
+.footer{
+    margin-bottom:0; 
+    width: 100%;
+} 
 /* Clases de colores de borde personalizadas */
 .btn-border-red {
     border-color: red;
@@ -20,4 +32,28 @@
 }
 .btn-border-purple {
     border-color: purple;
+}
+.textT{
+    padding-top: 2%;
+}
+.iconHome{
+    padding-right: 10px;
+}
+
+
+footer {
+    padding: 0%;
+}
+
+.footer-content {
+    color: #232020;
+}
+
+.logo {
+    max-width: 150px;
+}
+
+.social-icons img {
+    width: 20px;
+    margin-left: 7px;
 }
