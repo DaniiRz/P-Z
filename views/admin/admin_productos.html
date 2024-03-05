@@ -16,35 +16,15 @@
     <link rel="stylesheet" href="../../resources/css/admin_producto.css">
     <link rel="stylesheet" href="../../resources/css/index.css">
     <link rel="stylesheet" href="../../resources/css/principal_admin.css">
+
+    <script src="../../controllers/utils/admin.js" defer></script>
 </head>
 
 <body>
+    <header>
+        <div id="menuContent"></div>
+    </header>
     <main>
-        <div id="navbar fixed-top">
-            <nav class="navbar navbar-light bg-light">
-                <div class="container - fluid">
-                    <a class="navbar-brand" href="../admin/index.html">
-                        <img src="../../resources/img/pull&zara (5).png" alt="" width="130" height="110">
-                    </a>
-                    <ul class="navbar-nav d-flex flex-row me-1">
-                        <div class="iconHome">
-                            <li class="nav-item me-3 me-lg-0">
-                                <a class="nav-link text-white" href="../admin/index.html">
-                                    <img src="../../resources/img/casa 1.png" alt="" width="30" height="30">
-                                </a>
-                            </li>
-                        </div>
-                        <div class="iconProfile">
-                            <li class="nav-item me-lg-0"> <!-- Cambiamos la clase de margen aquí -->
-                                <a class="nav-link text-white" href="../admin/perfil_admin.html">
-                                    <img src="../../resources/img/usuario.png" alt="" width="30" height="30">
-                                </a>
-                            </li>
-                        </div>
-                    </ul>
-                </div>
-            </nav>
-        </div>
         <!-- texto principal en negrita-->
         <div id="textos" class="container-fluid mb-6 text-center mb-4 mt-3">
             <div class="row justify-content-center">
@@ -111,7 +91,7 @@
                     </div>
                 </div>
                 <!--parte de formulario y agregar -->
-                <div class="col-md-3" >
+                <div class="col-md-3">
                     <!-- Lado izquierdo: Formulario -->
                     <form id="formulario" class="form">
                         <p class="title">Agregar Productos</p>
@@ -166,41 +146,40 @@
                     </form>
                 </div>
                 <!--lado con formulario restante-->
-                    <div class="col-md-3 mt-5">
-                        <!-- Lado derecho: Formulario -->
-                        <form id="formulario" class="form" id="">
-                            <!-- Campo para ingresar la descripción del producto -->
-                            <div class="form-group">
-                                <label for="descripcion">Descripción del Producto</label>
-                                <input type="text" class="form-control" id="descripcion" required>
-                            </div>
+                <div class="col-md-3 mt-5">
+                    <!-- Lado derecho: Formulario -->
+                    <form id="formulario" class="form" id="">
+                        <!-- Campo para ingresar la descripción del producto -->
+                        <div class="form-group">
+                            <label for="descripcion">Descripción del Producto</label>
+                            <input type="text" class="form-control" id="descripcion" required>
+                        </div>
 
-                            <!-- Campo para seleccionar la subcategoría del producto -->
-                            <div class="form-group">
-                                <label for="subcategoria">Subcategoría</label>
-                                <select class="form-select" id="subcategoria">
-                                    <option selected>Seleccionar subcategoría</option>
-                                    <!-- Aquí puedes agregar las opciones de subcategorías -->
-                                    <option value="camisas">Camisas</option>
-                                    <option value="pantalones">Pantalones</option>
-                                    <option value="zapatos">Zapatos</option>
-                                </select>
-                            </div>
+                        <!-- Campo para seleccionar la subcategoría del producto -->
+                        <div class="form-group">
+                            <label for="subcategoria">Subcategoría</label>
+                            <select class="form-select" id="subcategoria">
+                                <option selected>Seleccionar subcategoría</option>
+                                <!-- Aquí puedes agregar las opciones de subcategorías -->
+                                <option value="camisas">Camisas</option>
+                                <option value="pantalones">Pantalones</option>
+                                <option value="zapatos">Zapatos</option>
+                            </select>
+                        </div>
 
-                            <!-- Campo para seleccionar la fecha de registro del producto -->
-                            <div class="form-group">
-                                <label for="fecha_registro">Fecha de Registro</label>
-                                <input type="date" class="form-control" id="fecha_registro">
-                            </div>
+                        <!-- Campo para seleccionar la fecha de registro del producto -->
+                        <div class="form-group">
+                            <label for="fecha_registro">Fecha de Registro</label>
+                            <input type="date" class="form-control" id="fecha_registro">
+                        </div>
 
-                            <!-- Campo para ingresar el precio del producto -->
-                            <div class="form-group">
-                                <label for="precio">Precio del Producto</label>
-                                <input type="text" class="form-control" id="precio" required
-                                    pattern="\d{1,5}(\.\d{1,2})?$">
-                            </div>
-                        </form>
-                    </div>
+                        <!-- Campo para ingresar el precio del producto -->
+                        <div class="form-group">
+                            <label for="precio">Precio del Producto</label>
+                            <input type="text" class="form-control" id="precio" required pattern="\d{1,5}(\.\d{1,2})?$">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </main>
@@ -235,9 +214,11 @@
     </footer>
 
 </body>
+
+
 <script src="../../controllers/utils/admin_productos.js"></script>
 
-
+<script src="../../controllers/utils/cargarMenu.js"></script>
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->

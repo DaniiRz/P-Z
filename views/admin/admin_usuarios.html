@@ -19,81 +19,61 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../../resources/css/principal_admin.css">
+    <script src="../../controllers/utils/admin.js" defer></script>
 </head>
 
 <body>
+    <header>
+        <div id="menuContent"></div>
+    </header>
     <main>
-        <div id="navbar fixed-top">
-            <nav class="navbar navbar-light bg-light">
-                <div class="container">
-                    <a class="navbar-brand" href="../admin/index.html">
-                        <img src="../../resources/img/pull&zara (5).png" alt="" width="130" height="110">
-                    </a>
-                    <ul class="navbar-nav d-flex flex-row me-1">
-                        <div class="iconHome">
-                            <li class="nav-item me-3 me-lg-0">
-                                <a class="nav-link text-white" href="../admin/index.html">
-                                    <img src="../../resources/img/casa 1.png" alt="" width="30" height="30">
-                                </a>
-                            </li>
-                        </div>
-                        <div class="iconProfile">
-                            <li class="nav-item me-lg-0"> <!-- Cambiamos la clase de margen aquí -->
-                                <a class="nav-link text-white" href="../admin/perfil_admin.html">
-                                    <img src="../../resources/img/usuario.png" alt="" width="30" height="30">
-                                </a>
-                            </li>
-                        </div>
-                    </ul>
-                </div>
-            </nav>
-
-
-            <div class="container table-container mt-3">
-                <h2 class="text-center mb-4">Usuarios Registrados</h2>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Usuarios</th>
-                            <th scope="col">Correo</th>
-                            <th scope="col">Dirección</th>
-                            <th scope="col">Conexión</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Usuario 1</td>
-                            <td>usuario1@example.com</td>
-                            <td>Dirección 1</td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="switch1" onchange="toggleSwitchColor(this)">
-                                    <label class="form-check-label" for="switch1"></label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Usuario 2</td>
-                            <td>usuario2@example.com</td>
-                            <td>Dirección 2</td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="switch2" onchange="toggleSwitchColor(this)">
-                                    <label class="form-check-label" for="switch2"></label>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- Agrega más filas según sea necesario -->
-                    </tbody>
-                </table>
-            </div>
+        <div class="container table-container mt-3">
+            <h2 class="text-center mb-4">Usuarios Registrados</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Usuarios</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Conexión</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Usuario 1</td>
+                        <td>usuario1@example.com</td>
+                        <td>Dirección 1</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="switch1"
+                                    onchange="toggleSwitchColor(this)">
+                                <label class="form-check-label" for="switch1"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Usuario 2</td>
+                        <td>usuario2@example.com</td>
+                        <td>Dirección 2</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="switch2"
+                                    onchange="toggleSwitchColor(this)">
+                                <label class="form-check-label" for="switch2"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Agrega más filas según sea necesario -->
+                </tbody>
+            </table>
+        </div>
     </main>
     <footer class="bg-dark fixed-bottom">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <img src="../../resources/img/pull&zarablanco.png" alt="pull&zara logo" class="logo mb-1"
-                    width="60px" height="60px">
+                        width="60px" height="60px">
                     <p class="text-white">Design amazing digital experiences that create more happy in the world</p>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end align-items-center">
@@ -118,6 +98,7 @@
 </body>
 
 <script src="../../controllers/utils/admin_usuarios.js"></script>
+<script src="../../controllers/utils/cargarMenu.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
