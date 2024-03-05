@@ -7,3 +7,13 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 }) 
+
+document.addEventListener('DOMContentLoaded', function(){
+
+    const contenedorFooter = document.getElementById("footerContent");
+    const footerHTML = generarFooterIndex();
+
+    contenedorFooter.innerHTML = footerHTML;
+
+
+}) 
