@@ -1,0 +1,8 @@
+/* Agregar estilos personalizados para los switches */
+.switch-green .form-check-input:checked {
+    background-color: #198754; /* Verde */
+}
+
+.switch-red .form-check-input:checked {
+    background-color: #dc3545; /* Rojo */
+}
