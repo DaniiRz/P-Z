@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
     <link rel="stylesheet" href="../../resources/css/productos.css">
@@ -46,7 +46,7 @@
             </nav>
         </div>
         <!-- texto principal en negrita-->
-        <div id="textos" class="container-fluid mb-6 text-center mb-4">
+        <div id="textos" class="container-fluid mb-6 text-center mb-4 mt-3">
             <div class="row justify-content-center">
                 <h3>Administrar Productos</h3>
             </div>
@@ -110,24 +110,24 @@
                         </div>
                     </div>
                 </div>
-
+               
                 <div class="col-md-6">
-                    <!-- Lado derecho: Formulario -->
+                    <!-- Lado izquierdo: Formulario -->
                     <form id="formulario" class="form">
                         <p class="title">Agregar Productos</p>
-                
+
                         <!-- Campo para ingresar el nombre del producto -->
-                        <div class="form-group">
+                        <div class="form-group" id="contenedor-derecho">
                             <label for="nombre">Nombre del Producto</label>
                             <input type="text" class="form-control" id="nombre" required>
                         </div>
-                
+
                         <!-- Campo para adjuntar la imagen del producto -->
                         <div class="form-group">
                             <label for="imagen">Adjuntar Imagen del Producto</label>
                             <input type="file" class="form-control" id="imagen" accept="image/*">
                         </div>
-                
+
                         <!-- Campo para seleccionar la categoría del producto -->
                         <div class="form-group">
                             <label for="categoria">Categoría</label>
@@ -139,7 +139,7 @@
                                 <option value="accesorios">Accesorios</option>
                             </select>
                         </div>
-                
+
                         <!-- Campo para seleccionar la talla del producto -->
                         <div class="form-group">
                             <label for="talla">Talla</label>
@@ -151,51 +151,57 @@
                                 <option value="l">L</option>
                             </select>
                         </div>
-                
+
                         <div class="row">
                             <div class="col">
                                 <div class="d-flex justify-content-start">
                                     <!-- Botón para limpiar campos -->
                                     <button id="btnLimpiar" type="reset" class="btn btn-secondary mx-2">Limpiar</button>
                                     <!-- Botón para agregar producto -->
-                                    <button id="btnAgregar" type="submit" class="btn btn-primary">Agregar Producto</button>
+                                    <button id="btnAgregar" type="submit" class="btn btn-primary">Agregar
+                                        Producto</button>
                                 </div>
                             </div>
                         </div>
                     </form>
-                
-                    <!-- Lado derecho: Formulario -->
-                    <form id="formulario" class="form">
-                        <!-- Campo para ingresar la descripción del producto -->
-                        <div class="form-group">
-                            <label for="descripcion">Descripción del Producto</label>
-                            <input type="text" class="form-control" id="descripcion" required>
-                        </div>
-                
-                        <!-- Campo para seleccionar la subcategoría del producto -->
-                        <div class="form-group">
-                            <label for="subcategoria">Subcategoría</label>
-                            <select class="form-select" id="subcategoria">
-                                <option selected>Seleccionar subcategoría</option>
-                                <!-- Aquí puedes agregar las opciones de subcategorías -->
-                                <option value="camisas">Camisas</option>
-                                <option value="pantalones">Pantalones</option>
-                                <option value="zapatos">Zapatos</option>
-                            </select>
-                        </div>
-                
-                        <!-- Campo para seleccionar la fecha de registro del producto -->
-                        <div class="form-group">
-                            <label for="fecha_registro">Fecha de Registro</label>
-                            <input type="date" class="form-control" id="fecha_registro">
-                        </div>
-                
-                        <!-- Campo para ingresar el precio del producto -->
-                        <div class="form-group">
-                            <label for="precio">Precio del Producto</label>
-                            <input type="text" class="form-control" id="precio" required pattern="\d{1,5}(\.\d{1,2})?$">
-                        </div>
-                    </form>
+
+                    <div class="col-md-6">
+                        <!-- Lado derecho: Formulario -->
+                        <form id="formulario" class="form" id="">
+                            <!-- Campo para ingresar la descripción del producto -->
+                            <div class="form-group">
+                                <label for="descripcion">Descripción del Producto</label>
+                                <input type="text" class="form-control" id="descripcion" required>
+                            </div>
+
+                            <!-- Campo para seleccionar la subcategoría del producto -->
+                            <div class="form-group">
+                                <label for="subcategoria">Subcategoría</label>
+                                <select class="form-select" id="subcategoria">
+                                    <option selected>Seleccionar subcategoría</option>
+                                    <!-- Aquí puedes agregar las opciones de subcategorías -->
+                                    <option value="camisas">Camisas</option>
+                                    <option value="pantalones">Pantalones</option>
+                                    <option value="zapatos">Zapatos</option>
+                                </select>
+                            </div>
+
+                            <!-- Campo para seleccionar la fecha de registro del producto -->
+                            <div class="form-group">
+                                <label for="fecha_registro">Fecha de Registro</label>
+                                <input type="date" class="form-control" id="fecha_registro">
+                            </div>
+
+                            <!-- Campo para ingresar el precio del producto -->
+                            <div class="form-group">
+                                <label for="precio">Precio del Producto</label>
+                                <input type="text" class="form-control" id="precio" required
+                                    pattern="\d{1,5}(\.\d{1,2})?$">
+                            </div>
+                        </form>
+
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -207,7 +213,7 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <img src="../../resources/img/pull&zarablanco.png" alt="pull&zara logo" class="logo mb-1"
-                    width="60px" height="60px">
+                        width="60px" height="60px">
                     <p class="text-white">Design amazing digital experiences that create more happy in the world</p>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end align-items-center">
