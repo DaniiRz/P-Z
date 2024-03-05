@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-        <!-- Título del documento -->
-        <title>PULL&ZARA - Administracion</title>
-        <!-- Metadatos de la página web -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Carlos Quintanilla">
-        <meta name="author" content="Daniela Alexandra">
-        <meta name="author" content="Jhonny">
-        <link rel="stylesheet" href="../../resources/css/index.css">
-        <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
-        <title>Pedidos</title>
-    
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="../../resources/css/principal_admin.css">
+    <!-- Título del documento -->
+    <title>PULL&ZARA - Administracion</title>
+    <!-- Metadatos de la página web -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Carlos Quintanilla">
+    <meta name="author" content="Daniela Alexandra">
+    <meta name="author" content="Jhonny">
+    <link rel="stylesheet" href="../../resources/css/index.css">
+    <link rel="stylesheet" href="../../resources/css/admin_usuarios.css">
+    <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
+    <title>Inicio</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../resources/css/principal_admin.css">
 </head>
+
 <body>
     <main>
         <div id="navbar fixed-top">
@@ -45,36 +48,78 @@
                 </div>
             </nav>
 
-    </main>
-    
-</body>
-<footer class="bg-dark fixed-bottom">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <img src="../../resources/img/pull&zarablanco.png" alt="pull&zara logo" class="logo mb-1" width="60px" height="60px">
-                <p class="text-white">Design amazing digital experiences that create more happy in the world</p>
+
+            <div class="container table-container">
+                <h2 class="text-center mb-4">Administrar Pedidos</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Usuarios</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Usuario 1</td>
+                            <td>usuario1@example.com</td>
+                            <td>Dirección 1</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="switch1" onchange="toggleSwitchColorStatus(this)">
+                                    <label class="form-check-label" for="switch1"></label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Usuario 2</td>
+                            <td>usuario2@example.com</td>
+                            <td>Dirección 2</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="switch2" onchange="toggleSwitchColorStatus(this)">
+                                    <label class="form-check-label" for="switch2"></label>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Agrega más filas según sea necesario -->
+                    </tbody>
+                </table>
             </div>
-            <div class="col-md-6 d-flex justify-content-end align-items-center">
-                <div class="social-icons align-self-start">
-                    <a href="https://www.facebook.com" target="_blank"><img src="../../resources/img/facebook.png" alt="Facebook"></a>
-                    <a href="https://www.instagram.com" target="_blank"><img src="../../resources/img/instagram.png" alt="Instagram"></a>
-                    <a href="https://twitter.com" target="_blank"><img src="../../resources/img/x.png" alt="X"></a>
-                    <a href="https://www.tiktok.com/" target="_blank"><img src="../../resources/img/tik-tok.png" alt="Tik Tok"></a>
+    </main>
+    <footer class="bg-dark fixed-bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="../../resources/img/pull&zarablanco.png" alt="pull&zara logo" class="logo mb-1"
+                    width="60px" height="60px">
+                    <p class="text-white">Design amazing digital experiences that create more happy in the world</p>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end align-items-center">
+                    <div class="social-icons align-self-start">
+                        <a href="https://www.facebook.com" target="_blank"><img src="../../resources/img/facebook.png"
+                                alt="Facebook"></a>
+                        <a href="https://www.instagram.com" target="_blank"><img src="../../resources/img/instagram.png"
+                                alt="Instagram"></a>
+                        <a href="https://twitter.com" target="_blank"><img src="../../resources/img/x.png" alt="X"></a>
+                        <a href="https://www.tiktok.com/" target="_blank"><img src="../../resources/img/tik-tok.png"
+                                alt="Tik Tok"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="text-muted small">© 2024 PULL & ZARA. Todos los derechos reservados.</p>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <p class="text-muted small">© 2024 PULL & ZARA. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
+</body>
 
+<script src="../../controllers/utils/administrar_pedidos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
-
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
 
 </html>
