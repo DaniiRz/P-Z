@@ -42,9 +42,9 @@ footer {
     left: 0;
     right: 0;
     width: 100%;
-    padding: 20px 0;
-    padding-top: 20px; /* Opcional: agrega un espacio adicional arriba del footer */
-    padding-bottom: 20px; /* Opcional: agrega un espacio adicional abajo del footer */
+    padding: 0px;
+    padding-top: 0px; /* Opcional: agrega un espacio adicional arriba del footer */
+    padding-bottom:0; /* Opcional: agrega un espacio adicional abajo del footer */
 }
 
   /* Estilo personalizado para los botones */
