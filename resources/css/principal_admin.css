@@ -9,11 +9,6 @@
     margin: 50px;
 }
 
-
-.footer{
-    margin-bottom:0; 
-    width: 100%;
-} 
 /* Clases de colores de borde personalizadas */
 .btn-border-red {
     border-color: red;
@@ -40,11 +35,30 @@
     padding-right: 10px;
 }
 
-
 footer {
     padding: 0%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 20px 0;
+    padding-top: 20px; /* Opcional: agrega un espacio adicional arriba del footer */
+    padding-bottom: 20px; /* Opcional: agrega un espacio adicional abajo del footer */
 }
 
+  /* Estilo personalizado para los botones */
+  .submit {
+    margin-right: 10px; /* Agrega un margen derecho para separar los botones */
+    background-color: #D9F6A9; /* Color de fondo para el primer botón */
+    border-color: #D9F6A9; /* Color del borde para el primer botón */
+}
+
+/* Estilo para el segundo botón */
+.submit:last-child {
+    background-color: #F57F7F; /* Color de fondo para el segundo botón */
+    border-color: #F57F7F; /* Color del borde para el segundo botón */
+}
 .footer-content {
     color: #232020;
 }
