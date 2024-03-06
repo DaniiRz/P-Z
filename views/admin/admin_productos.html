@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -107,94 +107,78 @@
                         </div>
                     </div>
                 </div>
-                <!--parte de formulario y agregar -->
-                <div class="col-md-3 mt-5">
-                    <!-- Lado izquierdo: Formulario -->
+
+                <!--parte de formulario y botones -->
+                <div class="container d-flex col-md-4">
                     <form id="formulario" class="form">
-                        <!-- Campo para ingresar el nombre del producto -->
+                        <!--Input nombre producto -->
                         <div class="form-group" id="contenedor-derecho">
                             <label for="nombre">Nombre del Producto</label>
                             <input type="text" class="form-control" id="nombre" required>
                         </div>
 
-                        <!-- Campo para adjuntar la imagen del producto -->
+                        <!--Input imagen producto -->
                         <div class="form-group">
                             <label for="imagen">Adjuntar Imagen del Producto</label>
-                            <input type="file" class="form-control" id="imagen" accept="image/*">
+                            <input type="file" class="form-control" id="imagen" accept="image/*" required>
                         </div>
-
-                        <!-- Campo para seleccionar la categoría del producto -->
+                
+                        <!--Input categoria producto -->
                         <div class="form-group">
                             <label for="categoria">Categoría</label>
-                            <select class="form-select" id="categoria">
-                                <option selected>Seleccionar categoría</option>
-                                <!-- Aquí puedes agregar las opciones de categorías -->
+                            <select class="form-select" id="categoria" required>
+                                <option selected></option>
                                 <option value="ropa">Ropa</option>
                                 <option value="calzado">Calzado</option>
                                 <option value="accesorios">Accesorios</option>
                             </select>
                         </div>
-
-                        <!-- Campo para seleccionar la talla del producto -->
+                        
+                        <!--Input talla producto -->
                         <div class="form-group">
                             <label for="talla">Talla</label>
-                            <select class="form-select" id="talla">
-                                <option selected>Seleccionar talla</option>
-                                <!-- Aquí puedes agregar las opciones de tallas -->
+                            <select class="form-select" id="talla" required>
+                                <option selected></option>
                                 <option value="s">S</option>
                                 <option value="m">M</option>
                                 <option value="l">L</option>
                             </select>
                         </div>
-
-                        <div class="row mt-3">
-                            <div class="col">
-                                <div class="d-flex justify-content-start">
-                                    <!-- Botón para limpiar campos -->
-                                    <button id="btnLimpiar" type="reset" class="btn btn-secondary mx-2">Limpiar</button>
-                                    <!-- Botón para agregar producto -->
-                                    <button id="btnAgregar" type="submit" class="btn btn-primary">Agregar
-                                        Producto</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <!--lado con formulario restante-->
-                <div class="col-md-3 mt-5">
-                    <!-- Lado derecho: Formulario -->
-                    <form id="formulario" class="form" id="">
-                        <!-- Campo para ingresar la descripción del producto -->
+                        
+                        <!--Input descripcion producto -->
                         <div class="form-group">
                             <label for="descripcion">Descripción del Producto</label>
                             <input type="text" class="form-control" id="descripcion" required>
                         </div>
 
-                        <!-- Campo para seleccionar la subcategoría del producto -->
+                        <!--Input subcategoria producto -->
                         <div class="form-group">
                             <label for="subcategoria">Subcategoría</label>
-                            <select class="form-select" id="subcategoria">
-                                <option selected>Seleccionar subcategoría</option>
-                                <!-- Aquí puedes agregar las opciones de subcategorías -->
+                            <select class="form-select" id="subcategoria" required>
+                                <option selected></option>
                                 <option value="camisas">Camisas</option>
                                 <option value="pantalones">Pantalones</option>
                                 <option value="zapatos">Zapatos</option>
                             </select>
                         </div>
-
-                        <!-- Campo para seleccionar la fecha de registro del producto -->
-                        <div class="form-group">
-                            <label for="fecha_registro">Fecha de Registro</label>
-                            <input type="date" class="form-control" id="fecha_registro">
-                        </div>
-
+                
                         <!-- Campo para ingresar el precio del producto -->
                         <div class="form-group">
                             <label for="precio">Precio del Producto</label>
-                            <input type="text" class="form-control" id="precio" required pattern="\d{1,5}(\.\d{1,2})?$">
+                            <input type="text" class="form-control" id="precio" required pattern="\d{1,5}(\.\d{1,2})?">
+                        </div>
+
+                        <!-- botones -->
+                        <div class="row mt-3">
+                            <div class="col">
+                                <div class="d-flex justify-content-start">
+                                    <button id="btnLimpiar" type="reset" class="btn btn-secondary mx-2">Limpiar</button>
+                                    <button id="btnAgregar" type="submit" class="btn btn-primary">Agregar Producto</button>
+                                </div>
+                            </div>
                         </div>
                     </form>
-                </div>
+                </div>                
             </div>
         </div>
     </main>
