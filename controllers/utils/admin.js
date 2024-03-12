@@ -51,7 +51,7 @@ function generarFooterIndex() {
 
     const footerIndex = `
     
-    <div class="container">
+<div class="container">
     <div class="row align-items-center">
             <div class="col-md-6">
                 <img src="../../resources/img/pull&zarablanco.png" alt="pull&zara logo" class="logo mb-1"
@@ -68,9 +68,10 @@ function generarFooterIndex() {
                     alt="X"></a>
                 <a href="https://www.tiktok.com/" target="_blank"><img src="../../resources/img/tik-tok.png"
                     alt="Tik Tok"></a>
-            </div>
+                </div>
         </div>
     </div>
+</div>
 
     <div class="row">
         <div class="col">
