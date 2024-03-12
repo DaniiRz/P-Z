@@ -68,7 +68,7 @@ function generarFooterIndex() {
                     alt="X"></a>
                 <a href="https://www.tiktok.com/" target="_blank"><img src="../../resources/img/tik-tok.png"
                     alt="Tik Tok"></a>
-            /div>
+            </div>
         </div>
     </div>
 
