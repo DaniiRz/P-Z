@@ -18,7 +18,9 @@ MAIN_TITLE.classList.add('text-center', 'py-3');
 
 function generarMenuIndex() {
 
-    const menuIndex = `<div id="navbar fixed-top">
+    const menuContent = `
+    
+    <div id="navbar fixed-top">
 <nav class="navbar navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="../admin/index.html">
@@ -43,7 +45,7 @@ function generarMenuIndex() {
     </div>
 </nav>
 </div>`;
-    return menuIndex;
+    return menuContent;
 
 }
 
@@ -69,14 +71,15 @@ function generarFooterIndex() {
                     alt="Tik Tok"></a>
             </div>
         </div>
-    </div>
 </div>
 
     <div class="row">
         <div class="col">
             <p class="text-muted small">© 2024 PULL & ZARA. Todos los derechos reservados.</p>
         </div>
-    </div>`;
+    </div>`
+    
+    ;
     return footerIndex;
 
 }
