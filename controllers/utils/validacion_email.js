@@ -1,4 +1,4 @@
-function validarInicio() {
+function validarInicios() {
     var correo = document.getElementById('floatingInput').value;
     var contraseña = document.getElementById('floatingPassword').value;
     var expresionCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -12,6 +12,6 @@ function validarInicio() {
         return false;
     }
     // Aquí puedes redirigir a la siguiente página
-    window.location.href = '../admin/index.html';
+    window.location.href = 'C:\Users\Estudiante\Downloads\P-Z-2\views\admin\index.html';
     return true; // Permitir el inicio de sesión
 }
