@@ -3,29 +3,46 @@
 function generarMenuIndex() {
 
     const menuIndex = `<div id="navbar fixed-top">
-<nav class="navbar navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="../admin/index.html">
-            <img src="../../resources/img/pull&zara (5).png" alt="" width="130" height="110">
-        </a>
-        <ul class="navbar-nav d-flex flex-row me-1">
-            <div class="iconHome">
-                <li class="nav-item me-3 me-lg-0">
-                    <a class="nav-link text-white" href="../admin/index.html">
-                        <img src="../../resources/img/casa 1.png" alt="" width="30" height="30">
-                    </a>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="../admin/index.html">
+                <img src="../../resources/img/pull&zara (5).png" alt="" width="120" height="100">
+            </a>
+           
+            <ul class="navbar-nav d-flex flex-row justify-content-center me-5">
+                <li class="nav-item me-5 pe-5">
+                    <a class="nav-link active" aria-current="page" href="#"> Blusas </a>
                 </li>
-            </div>
-            <div class="iconProfile">
-                <li class="nav-item me-lg-0"> <!-- Cambiamos la clase de margen aquí -->
-                    <a class="nav-link text-white" href="../admin/perfil_admin.html">
-                        <img src="../../resources/img/usuario.png" alt="" width="30" height="30">
-                    </a>
+                <li class="nav-item me-5 pe-5">
+                    <a class="nav-link active" aria-current="page" href="#"> Jeans </a>
                 </li>
-            </div>
-        </ul>
-    </div>
-</nav>
+                <li class="nav-item me-5 pe-5">
+                    <a class="nav-link active" aria-current="page" href="#"> Shorts </a>
+                </li>
+                <li class="nav-item me-5 pe-5">
+                    <a class="nav-link active" aria-current="page" href="#"> Abrigos </a>
+                </li>
+                <li class="nav-item me-5 pe-5">
+                    <a class="nav-link active" aria-current="page" href="#"> Vestidos </a>
+                </li>
+                <div class="iconHome ms-5 ps-5">
+                    <li class="nav-item me-3 me-lg-0">
+                        <a class="nav-link text-white" href="../admin/index.html">
+                            <img src="../../resources/img/casa 1.png" alt="" width="30" height="30">
+                        </a>
+                    </li>
+                </div>
+ 
+                <div class="iconProfile">
+                    <li class="nav-item me-lg-0"> <!-- Cambiamos la clase de margen aquí -->
+                        <a class="nav-link text-white" href="../admin/perfil_admin.html">
+                            <img src="../../resources/img/usuario.png" alt="" width="30" height="30">
+                        </a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </nav>
 </div>`;
     return menuIndex;
 
