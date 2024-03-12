@@ -27,7 +27,7 @@ function generarMenuIndex() {
         <ul class="navbar-nav d-flex flex-row me-1">
             <div class="iconHome">
                 <li class="nav-item me-3 me-lg-0">
-                    <a class="nav-link text-white" href="../admin/index.html">
+                    <a class="nav-link text-white" href="../admin/pagina_principal.html">
                         <img src="../../resources/img/casa 1.png" alt="" width="30" height="30">
                     </a>
                 </li>
