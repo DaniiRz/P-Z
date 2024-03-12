@@ -50,7 +50,6 @@ function generarMenuIndex() {
 function generarFooterIndex() {
 
     const footerIndex = `
-    
 <div class="container">
     <div class="row align-items-center">
             <div class="col-md-6">
@@ -68,7 +67,7 @@ function generarFooterIndex() {
                     alt="X"></a>
                 <a href="https://www.tiktok.com/" target="_blank"><img src="../../resources/img/tik-tok.png"
                     alt="Tik Tok"></a>
-                </div>
+            </div>
         </div>
     </div>
 </div>
