@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(){
     const contenedorMenu = document.getElementById("menuIndexPublic");
-    contenedorMenu.innerHTML = generarMenuIndexPublic();
+    contenedorMenu.innerHTML = generarMenuPublic();
 
-    const contenedorFooter = document.getElementById("footerIndex");
-    contenedorFooter.innerHTML = generarFooterIndex();
+    const contenedorFooter = document.getElementById("footerIndexPublic");
+    contenedorFooter.innerHTML = generarFooterPublic();
 });
