@@ -24,25 +24,27 @@
 <body>
 
     <header>
-        <div id="menuContent"></div>
+        <div id="menuContent"></div> 
+
+
     </header>
-    
+
     <main>
         <!-- contenedor con texto  -->
-        <div id="textos" class="container-fluid mb-6 text-center mb-4">
-            <div class="row justify-content-center">
-                <div class="textT">
-                    <h2>¡Bienvenido ---! </h2>
-                    <h5>¿Que deseas hacer hoy?</h5>
-                </div>
-
+        <div id="textos" class="container-fluid text-center py-5 mt-5" style="z-index: 999;">
+            <div class="textT">
+                <h2 class="py-5">¡Bienvenido ---! </h2>
+                <h5>¿Qué deseas hacer hoy?</h5>
             </div>
         </div>
+        
         <!-- contenedor de botones acciones a realizar -->
-        <div class="container">
+        <div class="container mb-4">
+
+            
+            <!-- Primer conjunto de botones -->
             <div class="row justify-content-center">
-                <!-- Primer conjunto de botones -->
-                <div class="col-4">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                     <a href="../admin/admin_usuarios.html">
                         <button type="button" class="btn btn-block btn-margen btn-border-red">
                             <img src="../../resources/img/asignar.png" alt="Imagen"
@@ -51,40 +53,45 @@
                         </button>
                     </a>
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                     <a href="../admin/admin_categorias.html">
                         <button type="button" class="btn btn-block btn-margen btn-border-green">
                             <img src="../../resources/img/elegir.png" alt="Imagen"
                                 style="max-width: 100%; height: auto;">
-                            Administrar Categorías</button>
+                            Administrar Categorías
+                        </button>
                     </a>
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                     <a href="../admin/admin_talla.html">
                         <button type="button" class="btn btn-block btn-margen btn-border-blue">
                             <img src="../../resources/img/camiseta.png" alt="Imagen"
                                 style="max-width: 100%; height: auto;">
-                            Administrar Tallas </button>
+                            Administrar Tallas
+                        </button>
                     </a>
                 </div>
+
                 <!-- Segundo conjunto de botones -->
-                <div class="col-4">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-3">
                     <a href="../admin/admin_reseñas.html">
-                        <button type="button" class="btn btn-block btn-margen btn-border-yellow">
+                        <button type="button" class="btn btn-block btn-margen btn-border-yellow justify-content-center">
                             <img src="../../resources/img/revision-de-comentarios.png" alt="Imagen"
                                 style="max-width: 100%; height: auto;">
-                            Administrar Reseñas</button>
+                            Administrar Reseñas
+                        </button>
                     </a>
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-3">
                     <a href="../admin/admin_productos.html">
                         <button type="button" class="btn btn-block btn-margen btn-border-orange">
                             <img src="../../resources/img/corporativo.png" alt="Imagen"
                                 style="max-width: 100%; height: auto;">
-                            Administrar Productos</button>
+                            Administrar Productos
+                        </button>
                     </a>
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-3">
                     <a href="../admin/admin_pedidos.html">
                         <button type="button" class="btn btn-block btn-margen btn-border-purple">
                             <img src="../../resources/img/caja-abierta.png" alt="Imagen"
@@ -93,12 +100,21 @@
                         </button>
                     </a>
                 </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-3">
+                    <a href="../admin/admin_pedidos.html">
+                        <button type="button" class="btn btn-block btn-margen btn-border-purple">
+                            <img src="../../resources/img/usuario.png" alt="Imagen"
+                                style="max-width: 10%; height: auto;">
+                            Administrar Administradores
+                        </button>
+                    </a>
+                </div>
             </div>
         </div>
     </main>
 
     <div class="footerF">
-        <footer class="bg-dark fixed-bottom">
+        <footer class="bg-dark">
             <div id="footerIndex"></div>
         </footer>
     </div>
@@ -110,6 +126,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 0) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+    </script>
 </body>
 
 </html>

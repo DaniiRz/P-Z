@@ -16,39 +16,39 @@
 
 <body>
     <main>
-
-        <div id="navbar">
             <header>
-                <nav class="navbar bg-body-tertiary oscuro fixed-top">
+                <div id="navbar">
+                <nav class="navbar fixed-top" style="z-index: 999;">
                     <div class="container-fluid text-center mx-auto d-block">
-                        <img src="../../resources/img/pull&zara.png" alt="" width="260px">
+                        <img src="../../resources/img/pull&zara.png" alt="" width="250px">
                     </div>
                 </nav>
+            </div>
             </header>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 left-container">
-                    <img src="../../resources/img/admin.png" alt="Imagen" width="750px" height="800px">
-                </div>
-                <div class="col-md-6">
-                    <!-- formulario con labels flotantes-->
-                    <div class="form-floating mb-3" style="margin-top: 280px;">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput">Correo Electrónico</label>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="py-4 left-container">
+                        <img src="../../resources/img/admin.png">
                     </div>
-                    <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                        <label for="floatingPassword">Contraseña</label>
+                    <div class="col-md-6 py-5 mt-5" style="z-index: 999;">
+                        <!-- formulario con labels flotantes -->
+                        <div class="form-floating mt-3">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Correo Electrónico</label>
+                        </div>
+                        <div class="form-floating mt-3">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">Contraseña</label>
+                        </div>
+                        <div class="text-center mt-3"><!-- margen de espacio -->
+                            <button type="button" class="btn btn-outline-dark" id="btnInicio" onclick="validarInicios()">Ingresar</button>
+                        </div>
                     </div>
-                    <div class="text-center mt-3"><!-- margen de espacio -->
-                        <button type="button" class="btn btn-outline-dark" id="btnInicio"
-                            onclick="validarInicios()">Ingresar</button>
-                    </div>
+                    
                 </div>
             </div>
-        </div>
+            
+            
     </main>
 
 
