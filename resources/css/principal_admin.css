@@ -45,15 +45,13 @@ main {
     margin-bottom: 0%; /* Ajusta este valor según sea necesario para evitar que el footer se superponga al contenido */
 }
 footer {
-
     position: absolute;
     width: 100%;
     height: auto; 
-    bottom: 0;
     left: 0;
     right: 0;
     padding: 0;
-    margin-top: 0; /* Opcional: agrega un espacio adicional arriba del footer */
+    margin-top: 0;
     padding-bottom: 0; /* Opcional: agrega un espacio adicional abajo del footer */
 }
 
