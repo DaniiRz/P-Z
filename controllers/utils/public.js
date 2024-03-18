@@ -6,7 +6,7 @@ function generarMenuPublic() {
     <div id="navbar fixed-top">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="../admin/index.html">
+                <a class="navbar-brand" href="../public/index.html">
                     <img src="../../resources/img/pull&zara (5).png" alt="" width="120" height="100">
                 </a>
            
@@ -15,27 +15,27 @@ function generarMenuPublic() {
                 </button>
             
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item ms-5">
-                            <a class="nav-link active" aria-current="page" href="#"> Blusas </a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <a class="nav-link active" aria-current="page" href="#"> Jeans </a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <a class="nav-link active" aria-current="page" href="#"> Shorts </a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <a class="nav-link active" aria-current="page" href="#"> Abrigos </a>
-                        </li>
-                        <li class="nav-item ms-5 pe-5">
-                            <a class="nav-link active" aria-current="page" href="#"> Vestidos </a>
-                        </li>
-                    </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item ms-5">
+                <a class="nav-link active" aria-current="page" href="../../views/public/catalogo_blusas.html"> Blusas </a>
+            </li>
+            <li class="nav-item ms-5">
+                <a class="nav-link active" aria-current="page" href="../../views/public/catalogo_jeans.html"> Jeans </a>
+            </li>
+            <li class="nav-item ms-5">
+                <a class="nav-link active" aria-current="page" href="../../views/public/catalogo_shorts.html"> Shorts </a>
+            </li>
+            <li class="nav-item ms-5">
+                <a class="nav-link active" aria-current="page" href="../public/catalogo_abrigos.html"> Abrigos </a>
+            </li>
+            <li class="nav-item ms-5 pe-5">
+                <a class="nav-link active" aria-current="page" href="../public/catalogo_vestidos.html"> Vestidos </a>
+            </li>
+        </ul>
                 
                     <ul class="navbar-nav d-flex flex-row justify-content-auto">
                         <li class="nav-item ms-5">
-                            <a class="nav-link text-white" href="../admin/index.html">
+                            <a class="nav-link text-white" href="../public/index.html">
                                 <img class="navbar-image" src="../../resources/img/casa 1.png" alt="" width="30" height="30">
                             </a>
                         </li>

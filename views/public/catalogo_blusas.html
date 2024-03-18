@@ -13,45 +13,23 @@
     <link rel="stylesheet" href="../../resources/css/principal_admin.css">
     <!-- Logo -->
     <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
-    <title>Catálogo</title>
+    <title>Catálogo Blusas</title>
 </head>
 
 <body>
     <header>
         <div id="menuIndexPublic"></div>
     </header>
-<main>
-    <div class="col-md-6 mt-5">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="card" style="width: 18rem;">
-                    <img src="../../resources/img/image 41.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-</main>
+    <main>
+        <div id="catalogoProductos"></div>
+    </main>
 
-
-    <div class="footerF">
-        <footer class="bg-dark fixed-bottom">
+    <div class="footerF mt-5">
+        <footer class="bg-dark">
             <div id="footerIndex"></div>
         </footer>
     </div>
-
-
-
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"> </script>
 
     <!-- Js de navbar y footer -->
     <script src="../../controllers/utils/public.js" defer></script>
@@ -59,7 +37,15 @@
 
     <!-- script de datos navbar y footer -->
     <script src="../../controllers/utils/cargar_menu.js"></script>
-    
+    <!-- script catalogo productos-->
+    <script src="../../controllers/utils/catalogo.js"></script>
+    <script src="../../controllers/utils/cargar_catalogos.js"></script>
+
+    <!-- Enlace a Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
