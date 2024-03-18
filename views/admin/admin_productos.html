@@ -16,198 +16,132 @@
     <link rel="stylesheet" href="../../resources/css/index.css">
     <link rel="stylesheet" href="../../resources/css/principal_admin.css">
 
-    <script src="../../controllers/utils/admin.js" defer></script>
 </head>
 
 <body>
-    <header>
+    <header class="mb-5">
         <div id="menuContent"></div>
     </header>
-    <main>
-        <!-- texto principal en negrita-->
-        <div id="textos" class="container-fluid mb-6 text-center mb-4 mt-3">
+
+    <main class="py-5">
+        <!-- Espacio estético entre el botón y el título -->
+        <div class="container mt-3">
+            <h3 class="text-center mb-4">Administrar y Agregar Productos</h3>
+        </div>
+        <div class="container mt-3">
+            <!-- Botón para agregar subcategoría -->
+            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Agregar Producto</button>
+        </div>
+
+        <!-- contenedor con tabla de productos -->
+        <div class="container mt-5">
             <div class="row justify-content-center">
-                <h3>Administrar y Agregar Productos</h3>
+                <div class="col-md-10">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Nombre Producto</th>
+                                <th class="text-center">Categoría</th>
+                                <th class="text-center">Sub-Categoría</th>
+                                <th class="text-center">Existencias</th>
+                                <th class="text-center">Detalles Producto</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">Producto 1</td>
+                                <td class="text-center">Categoría 1</td>
+                                <td class="text-center">Sub-Categoría 1</td>
+                                <td class="text-center">10</td>
+                                <td class="text-center">
+                                    <button class="btn btn-primary">Detalles</button>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-success">Editar</button>
+                                    <button class="btn btn-danger">Eliminar</button>
+                                </td>
+                            </tr>
+                            <!-- Agrega más filas según sea necesario -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <!-- contenedor con información sobre los productos-->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="row justify-content-center p-2 mt-3">
-                        <div class="card">
-                            <div class="card-body d-flex align-items-center justify-content-between">
-                                <!-- Utilizando flexbox para alinear elementos (botones y texto) -->
-                                <h6 class="m-0">Producto</h6> <!-- clase m-0 elimina espacios -->
-                                <div class="d-flex">
-                                    <button type="button" class="btn btn-primary btn-margen btn-border-red">
-                                        <!-- Utilizando la clase "mr-2" para agregar margen a la derecha -->
-                                        <img src="../../resources/img/lapiz.png" alt="">
-                                    </button>
-                                    <div class="ml-5"></div> <!-- Agregar un espacio entre botones -->
-                                    <button type="button" class="btn btn-danger btn-margen btn-border-red">
-                                        <img src="../../resources/img/papelera-xmark.png" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+
+        <!-- Modal para detalles de producto -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detalles del Producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="row justify-content-center p-2 mt-3">
-                        <div class="card">
-                            <div class="card-body d-flex align-items-center justify-content-between">
-                                <!-- Utilizando flexbox para alinear elementos (botones y texto) -->
-                                <h6 class="m-0">Categoría 2</h6> <!-- clase m-0 elimina espacios -->
-                                <div class="d-flex">
-                                    <button type="button" class="btn btn-primary btn-margen btn-border-red">
-                                        <!-- Utilizando la clase "mr-2" para agregar margen a la derecha -->
-                                        <img src="../../resources/img/lapiz.png" alt="">
-                                    </button>
-                                    <div class="ml-5"></div> <!-- Agregar un espacio entre botones -->
-                                    <button type="button" class="btn btn-danger btn-margen btn-border-red">
-                                        <img src="../../resources/img/papelera-xmark.png" alt="">
-                                    </button>
-                                </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="nombreProducto" class="form-label">Nombre del Producto</label>
+                                <input type="text" class="form-control" id="nombreProducto">
                             </div>
-                        </div>
+                            <div class="mb-3">
+                                <label for="categoria" class="form-label">Categoría</label>
+                                <select class="form-select" id="categoria">
+                                    <option selected>Elija una categoría</option>
+                                    <option value="categoria1">Categoría 1</option>
+                                    <option value="categoria2">Categoría 2</option>
+                                    <option value="categoria3">Categoría 3</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subcategoria" class="form-label">Sub-Categoría</label>
+                                <select class="form-select" id="subcategoria">
+                                    <option selected>Elija una sub-categoría</option>
+                                    <option value="subcategoria1">Sub-Categoría 1</option>
+                                    <option value="subcategoria2">Sub-Categoría 2</option>
+                                    <option value="subcategoria3">Sub-Categoría 3</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="existencias" class="form-label">Existencias</label>
+                                <input type="number" class="form-control" id="existencias">
+                            </div>
+                            <div class="mb-3">
+                                <label for="descripcion" class="form-label">Descripción del Producto</label>
+                                <textarea class="form-control" id="descripcion" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="imagen" class="form-label">Adjuntar Imagen del Producto</label>
+                                <input type="file" class="form-control" id="imagen">
+                            </div>
+                        </form>
                     </div>
-                    <div class="row justify-content-center p-2 mt-3">
-                        <div class="card">
-                            <div class="card-body d-flex align-items-center justify-content-between">
-                                <!-- Utilizando flexbox para alinear elementos (botones y texto) -->
-                                <h6 class="m-0">Categoría 3</h6> <!-- clase m-0 elimina espacios -->
-                                <div class="d-flex">
-                                    <button type="button" class="btn btn-primary btn-margen btn-border-red">
-                                        <!-- Utilizando la clase "mr-2" para agregar margen a la derecha -->
-                                        <img src="../../resources/img/lapiz.png" alt="">
-                                    </button>
-                                    <div class="ml-5"></div> <!-- Agregar un espacio entre botones -->
-                                    <button type="button" class="btn btn-danger btn-margen btn-border-red">
-                                        <img src="../../resources/img/papelera-xmark.png" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center p-2 mt-3">
-                        <div class="card">
-                            <div class="card-body d-flex align-items-center justify-content-between">
-                                <!-- Utilizando flexbox para alinear elementos (botones y texto) -->
-                                <h6 class="m-0">Categoría 4</h6> <!-- clase m-0 elimina espacios -->
-                                <div class="d-flex">
-                                    <button type="button" class="btn btn-primary btn-margen btn-border-red">
-                                        <!-- Utilizando la clase "mr-2" para agregar margen a la derecha -->
-                                        <img src="../../resources/img/lapiz.png" alt="">
-                                    </button>
-                                    <div class="ml-5"></div> <!-- Agregar un espacio entre botones -->
-                                    <button type="button" class="btn btn-danger btn-margen btn-border-red">
-                                        <img src="../../resources/img/papelera-xmark.png" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar Cambios</button>
                     </div>
                 </div>
-
-                <!--parte de formulario y botones -->
-                <div class="container d-flex col-md-4">
-                    <form id="formulario" class="form">
-                        <!--Input nombre producto -->
-                        <div class="form-group" id="contenedor-derecho">
-                            <label for="nombre">Nombre del Producto</label>
-                            <input type="text" class="form-control" id="nombre" required>
-                        </div>
-
-                        <!--Input imagen producto -->
-                        <div class="form-group">
-                            <label for="imagen">Adjuntar Imagen del Producto</label>
-                            <input type="file" class="form-control" id="imagen" accept="image/*" required>
-                        </div>
-                
-                        <!--Input categoria producto -->
-                        <div class="form-group">
-                            <label for="categoria">Categoría</label>
-                            <select class="form-select" id="categoria" required>
-                                <option selected></option>
-                                <option value="ropa">Ropa</option>
-                                <option value="calzado">Calzado</option>
-                                <option value="accesorios">Accesorios</option>
-                            </select>
-                        </div>
-                        
-                        <!--Input talla producto -->
-                        <div class="form-group">
-                            <label for="talla">Talla</label>
-                            <select class="form-select" id="talla" required>
-                                <option selected></option>
-                                <option value="s">S</option>
-                                <option value="m">M</option>
-                                <option value="l">L</option>
-                            </select>
-                        </div>
-                        
-                        <!--Input descripcion producto -->
-                        <div class="form-group">
-                            <label for="descripcion">Descripción del Producto</label>
-                            <input type="text" class="form-control" id="descripcion" required>
-                        </div>
-
-                        <!--Input subcategoria producto -->
-                        <div class="form-group">
-                            <label for="subcategoria">Subcategoría</label>
-                            <select class="form-select" id="subcategoria" required>
-                                <option selected></option>
-                                <option value="camisas">Camisas</option>
-                                <option value="pantalones">Pantalones</option>
-                                <option value="zapatos">Zapatos</option>
-                            </select>
-                        </div>
-                
-                        <!-- Campo para ingresar el precio del producto -->
-                        <div class="form-group">
-                            <label for="precio">Precio del Producto</label>
-                            <input type="text" class="form-control" id="precio" required pattern="\d{1,5}(\.\d{1,2})?">
-                        </div>
-
-                        <!-- botones -->
-                        <div class="row mt-3">
-                            <div class="col">
-                                <div class="d-flex justify-content-start">
-                                    <button id="btnLimpiar" type="reset" class="btn btn-secondary mx-2">Limpiar</button>
-                                    <button id="btnAgregar" type="submit" class="btn btn-primary">Agregar Producto</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>                
             </div>
         </div>
     </main>
 
-
     <div class="bg-dark mt-3">
         <footer class="bg-dark">
-
             <div id="footerIndex"></div>
-
         </footer>
     </div>
+    <script src="../../controllers/utils/admin_usuarios.js"></script>
+    <script src="../../controllers/utils/admin.js"></script>
+    <script src="../../controllers/utils/cargar_menu.js"></script>
+    
 
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Move Bootstrap JavaScript bundle before any other JS libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
-
-
-<script src="../../controllers/utils/admin_productos.js"></script>
-
-<script src="../../controllers/utils/cargar_menu.js"></script>
-<!-- Optional JavaScript; choose one of the two! -->
-
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-<!-- Option 2: Separate Popper and Bootstrap JS -->
-<!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
 
 </html>
