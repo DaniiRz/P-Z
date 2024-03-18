@@ -41,6 +41,6 @@ document.getElementById('btnRegistrarme').addEventListener('click', function(eve
     }
 
     // Si todas las validaciones pasan, enviar los datos
-    
+
     document.getElementById('formulario1', 'formulario2').submit();
 });
