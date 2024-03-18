@@ -2,68 +2,31 @@
 <html lang="en">
 
 <head>
+    <!-- Título del documento -->
+    <title>PULL&ZARA - Administracion</title>
+    <!-- Metadatos de la página web -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Título de la Página</title>
+    <meta name="author" content="Carlos Quintanilla">
+    <meta name="author" content="Daniela Alexandra">
+    <meta name="author" content="Jhonny">
+    <link rel="stylesheet" href="../../resources/css/index.css">
+    <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
+    <title>Sub-Categoría</title>
+
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../../resources/css/principal_admin.css">
-    <!-- CSS personalizado -->
 
 </head>
 
 <body>
-    <!-- Navbar -->
-    <div id="navbar" class="fixed-top">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-on-scroll">
-            <div class="container">
-                <a class="navbar-brand" href="../admin/principal_admin.html">
-                    <img src="../../resources/img/pull&zara (5).png" alt="" width="120" height="100">
-                </a>
+    <header>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <div id="menuContent"></div>
+    </header>
 
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item ms-5">
-                            <a class="nav-link active" aria-current="page" href="../admin/admin_usuarios.html">Usuarios</a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <a class="nav-link active" aria-current="page" href="../admin/admin_categorias.html">Categorias</a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <a class="nav-link active" aria-current="page" href="../admin/admin_talla.html">Tallas</a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <a class="nav-link active" aria-current="page" href="../admin/admin_reseñas.html">Reseñas</a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <a class="nav-link active" aria-current="page" href="../admin/admin_productos.html">Productos</a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <a class="nav-link active" aria-current="page" href="../admin/admin_pedidos.html">Pedidos</a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <a class="nav-link active" aria-current="page" href="../admin/admin_administradores.html">Administradores</a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <a class="nav-link text-white" href="../admin/principal_admin.html">
-                                <img class="navbar-image" src="../../resources/img/casa 1.png" alt="" width="30" height="30">
-                            </a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <a class="nav-link text-white" href="../admin/perfil_admin.html">
-                                <img class="navbar-image" src="../../resources/img/usuario.png" alt="" width="30" height="30">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
 
     <!-- Contenido principal -->
     <main class="pt-5">
@@ -91,15 +54,19 @@
                         <tr>
                             <td>Subcategoría 1</td>
                             <td>
-                                <button class="btn btn-primary btn-sm"><img src="ruta/al/ícono/editar.png" alt="Editar"></button>
-                                <button class="btn btn-danger btn-sm"><img src="ruta/al/ícono/eliminar.png" alt="Eliminar"></button>
+                                <button class="btn btn-primary btn-sm"><img src="ruta/al/ícono/editar.png"
+                                        alt="Editar"></button>
+                                <button class="btn btn-danger btn-sm"><img src="ruta/al/ícono/eliminar.png"
+                                        alt="Eliminar"></button>
                             </td>
                         </tr>
                         <tr>
                             <td>Subcategoría 2</td>
                             <td>
-                                <button class="btn btn-primary btn-sm"><img src="ruta/al/ícono/editar.png" alt="Editar"></button>
-                                <button class="btn btn-danger btn-sm"><img src="ruta/al/ícono/eliminar.png" alt="Eliminar"></button>
+                                <button class="btn btn-primary btn-sm"><img src="ruta/al/ícono/editar.png"
+                                        alt="Editar"></button>
+                                <button class="btn btn-danger btn-sm"><img src="ruta/al/ícono/eliminar.png"
+                                        alt="Eliminar"></button>
                             </td>
                         </tr>
                     </tbody>
@@ -109,37 +76,16 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <img src="../../resources/img/pull&zarablanco.png" alt="pull&zara logo" class="logo mb-1"
-                        width="60px" height="60px">
-                    <p class="text-white">Design amazing digital experiences that create more happy in the world</p>
-                </div>
-                <div class="col-md-6 d-flex justify-content-end align-items-center">
-                    <div class="social-icons align-self-start">
-                        <a href="https://www.facebook.com" target="_blank"><img
-                                src="../../resources/img/facebook.png" alt="Facebook"></a>
-                        <a href="https://www.instagram.com" target="_blank"><img
-                                src="../../resources/img/instagram.png" alt="Instagram"></a>
-                        <a href="https://twitter.com" target="_blank"><img src="../../resources/img/x.png"
-                                alt="X"></a>
-                        <a href="https://www.tiktok.com/" target="_blank"><img src="../../resources/img/tik-tok.png"
-                                alt="Tik Tok"></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col">
-                    <p class="text-muted small">© 2024 PULL & ZARA. Todos los derechos reservados.</p>
-                </div>
-            </div>
-        </div>
+    <footer class="my-5">
+        <div id="footerIndex"></div>
     </footer>
+
+
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../controllers/utils/admin.js" defer></script>
+    <script src="../../controllers/utils/cargar_menu.js"></script>
 </body>
 
 </html>

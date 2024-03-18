@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Título del documento -->
+    <title>PULL&ZARA - Administracion</title>
+    <!-- Metadatos de la página web -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Carlos Quintanilla">
+    <meta name="author" content="Daniela Alexandra">
+    <meta name="author" content="Jhonny">
+    <link rel="stylesheet" href="../../resources/css/index.css">
+    <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../resources/css/principal_admin.css">
+    <link rel="stylesheet" href="../../resources/css/admin_categoria.css">
+    <link rel="stylesheet" href="../../resources/css/principal_admin.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <header>
+        <div id="menuContent"></div>
+    </header>
+
+    <main class="py-5">
+
+        <div id="textos" class="container-fluid py-5 text-center">
+            <div class="row justify-content-center py-5">
+                <h3>Gestión de Administradores</h3> <!-- Cambio de texto -->
+                <h6>Haz clic en un administrador para editar</h6> <!-- Cambio de texto -->
+            </div>
+        </div>
+        <div class="container mb-3 justify-content-center">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+                <img src="../../resources/img/agregar.png" alt="">
+                Agregar Administrador <!-- Cambio de texto -->
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModal1Label">Agregar Administrador</h5> <!-- Cambio de texto -->
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="nombre">Nombre:</label> <!-- Cambio de texto -->
+                                    <input type="text" class="form-control" id="nombre"
+                                        placeholder="Ingrese el nombre del administrador"> <!-- Cambio de texto -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono">Teléfono:</label> <!-- Cambio de texto -->
+                                    <input type="text" class="form-control" id="telefono"
+                                        placeholder="Ingrese el teléfono del administrador"> <!-- Cambio de texto -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="correo">Correo:</label> <!-- Cambio de texto -->
+                                    <input type="email" class="form-control" id="correo"
+                                        placeholder="Ingrese el correo del administrador"> <!-- Cambio de texto -->
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- Modal -->
+         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+         <div class="modal-dialog" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel">Editar Administrador</h5> <!-- Cambio de texto -->
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>
+                 <div class="modal-body">
+                     <form>
+                         <div class="form-group">
+                             <label for="nombre">Nombre:</label> <!-- Cambio de texto -->
+                             <input type="text" class="form-control" id="nombre"
+                                 placeholder="Ingrese el nombre del administrador"> <!-- Cambio de texto -->
+                         </div>
+                         <div class="form-group">
+                             <label for="telefono">Teléfono:</label> <!-- Cambio de texto -->
+                             <input type="text" class="form-control" id="telefono"
+                                 placeholder="Ingrese el teléfono del administrador"> <!-- Cambio de texto -->
+                         </div>
+                         <div class="form-group">
+                             <label for="correo">Correo:</label> <!-- Cambio de texto -->
+                             <input type="email" class="form-control" id="correo"
+                                 placeholder="Ingrese el correo del administrador"> <!-- Cambio de texto -->
+                         </div>
+                     </form>
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                     <button type="button" class="btn btn-primary">Actualizar</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+
+        <div class="container-fluid justify-content-center mt-5">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th> <!-- Cambio de texto -->
+                            <th>Teléfono</th> <!-- Cambio de texto -->
+                            <th>Correo</th> <!-- Cambio de texto -->
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Administrador 1</td>
+                            <td>123456789</td>
+                            <td>admin1@example.com</td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-sm"><img src="../../resources/img/papelera-xmark.png" alt="Icono de eliminar"></button>
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"><img src="../../resources/img/lapiz.png" alt="Icono de editar"></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Administrador 2</td>
+                            <td>987654321</td>
+                            <td>admin2@example.com</td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-sm"><img src="../../resources/img/papelera-xmark.png" alt="Icono de eliminar"></button>
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"><img src="../../resources/img/lapiz.png" alt="Icono de editar"></button>
+                            </td>
+                        </tr>
+                        <!-- Agrega más filas según sea necesario -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+
+
+    <footer class="bg-dark text-white py-3">
+        <div id="footerIndex"></div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="../../controllers/utils/cargar_menu.js"></script>
+    <script src="../../controllers/utils/admin.js" defer></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

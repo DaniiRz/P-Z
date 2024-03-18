@@ -43,8 +43,7 @@ function generarMenuIndex() {
                             href="../admin/admin_categorias.html">Categorias</a>
                     </li>
                     <li class="nav-item ms-5">
-                        <a class="nav-link active" aria-current="page"
-                            href="../admin/admin_talla.html">Tallas</a>
+                        <a class="nav-link active" aria-current="page" href="../admin/admin_talla.html">Tallas</a>
                     </li>
                     <li class="nav-item ms-5">
                         <a class="nav-link active" aria-current="page"
@@ -88,39 +87,37 @@ function generarFooterIndex() {
 
     const footerIndex = `
     <footer class="bg-dark text-white">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <img src="../../resources/img/pull&zarablanco.png" alt="pull&zara logo" class="logo mb-1"
-                     width="60px" height="60px">
-                <p class="text-white">Design amazing digital experiences that create more happy in the world</p>
-            </div>
-            <div class="col-md-6 d-flex justify-content-end align-items-center">
-                <div class="social-icons align-self-start">
-                    <a href="https://www.facebook.com" target="_blank"><img
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="../../resources/img/pull&zarablanco.png" alt="pull&zara logo" class="logo mb-1"
+                        width="60px" height="60px">
+                    <p class="text-white">Design amazing digital experiences that create more happy in the world</p>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end align-items-center">
+                    <div class="social-icons align-self-start">
+                        <a href="https://www.facebook.com" target="_blank"><img
                                 src="../../resources/img/facebook.png" alt="Facebook"></a>
-                    <a href="https://www.instagram.com" target="_blank"><img
+                        <a href="https://www.instagram.com" target="_blank"><img
                                 src="../../resources/img/instagram.png" alt="Instagram"></a>
-                    <a href="https://twitter.com" target="_blank"><img src="../../resources/img/x.png"
-                                                                         alt="X"></a>
-                    <a href="https://www.tiktok.com/" target="_blank"><img src="../../resources/img/tik-tok.png"
-                                                                             alt="Tik Tok"></a>
+                        <a href="https://twitter.com" target="_blank"><img src="../../resources/img/x.png"
+                                alt="X"></a>
+                        <a href="https://www.tiktok.com/" target="_blank"><img src="../../resources/img/tik-tok.png"
+                                alt="Tik Tok"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <p class="text-muted small">© 2024 PULL & ZARA. Todos los derechos reservados.</p>
                 </div>
             </div>
         </div>
-        <div class="row mt-4">
-            <div class="col">
-                <p class="text-muted small">© 2024 PULL & ZARA. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
 `;
     return footerIndex;
 
 }
-
-//* diseño nav//
 
 
 
