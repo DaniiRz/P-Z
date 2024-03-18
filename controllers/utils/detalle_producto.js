@@ -4,7 +4,7 @@ function detalleProducto() {
 
     const detallesProducto = `
 
-    <div class="container mt-5">
+    <div class="container mt-4">
     <div class="row">
         <!-- Imagen del Producto (Lado Derecho) -->
         <div class="col-md-6">
@@ -32,8 +32,8 @@ function detalleProducto() {
             <div class="col-md-6 offset-md-3 mt-5">
                 <form>
                     <div class="form-group">
-                        <label for="comment">Deja tu comentario:</label>
-                        <textarea class="form-control" id="comment" rows="4"
+                        <label for="comment">Agrega un comentario:</label>
+                        <textarea class="form-control mt-2" id="comment" rows="4"
                             placeholder="Escribe tu comentario aquí"></textarea>
                     </div>
                     <button class="button mt-3">
@@ -48,7 +48,7 @@ function detalleProducto() {
                 <div class="comment">
                     <div class="comment-user">
                         <img src="../../resources/img/user.png" alt="User Avatar" class="avatar">
-                        <span class="username">Carlos Quintanilla</span>
+                        <span class="username"> Karla Quintanilla</span>
                     </div>
                     <p class="comment-text mt-2">El producto cumplió con todas mis expectativas. Muy satisfecha con
                         mi compra.</p>
