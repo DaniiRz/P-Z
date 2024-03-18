@@ -4,7 +4,7 @@
 function plantillaCatalogo() {
 
 const catalogoProductos = `
-<div class="container" id="Contenedor1">
+<div class="container mt-5 pt-5" id="Contenedor1">
 <div class="row">
 
     <!-- Carta 1 -->

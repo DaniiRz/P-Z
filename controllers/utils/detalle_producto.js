@@ -4,7 +4,7 @@ function detalleProducto() {
 
     const detallesProducto = `
 
-    <div class="container mt-4">
+    <div class="container mt-5 pt-5">
     <div class="row">
         <!-- Imagen del Producto (Lado Derecho) -->
         <div class="col-md-6">

@@ -3,7 +3,7 @@
 function generarMenuPublic() {
 
     const menuIndexPublic = `
-    <div id="navbar fixed-top">
+    <div id="navbar" class="fixed-top">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="../public/index.html">
