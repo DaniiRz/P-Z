@@ -1,7 +1,6 @@
-
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -20,7 +19,7 @@
     border-color: blue;
 }
 .btn-border-yellow {
-    border-color: pink
+    border-color: pink;
 }
 .btn-border-orange {
     border-color: orange;
@@ -28,27 +27,35 @@
 .btn-border-purple {
     border-color: purple;
 }
-.textT{
+
+.textT {
     padding-top: 2%;
 }
-.iconHome{
+.iconHome {
     padding-right: 10px;
 }
 
+body{
+    margin: 0;
+    position: relative;
+    padding-bottom: 0;
+    min-height: 100vh;
+}
+main {
+    margin-bottom: 0%; /* Ajusta este valor según sea necesario para evitar que el footer se superponga al contenido */
+}
 footer {
-    padding: 0%;
-    position: fixed-bottom;
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
-    padding: 0px;
-    padding-top: 0px; /* Opcional: agrega un espacio adicional arriba del footer */
-    padding-bottom:0; /* Opcional: agrega un espacio adicional abajo del footer */
+    padding: 0;
+    padding-top: 0; /* Opcional: agrega un espacio adicional arriba del footer */
+    padding-bottom: 0; /* Opcional: agrega un espacio adicional abajo del footer */
 }
 
-  /* Estilo personalizado para los botones */
-  .submit {
+/* Estilo personalizado para los botones */
+.submit {
     margin-right: 10px; /* Agrega un margen derecho para separar los botones */
     background-color: #D9F6A9; /* Color de fondo para el primer botón */
     border-color: #D9F6A9; /* Color del borde para el primer botón */
@@ -59,6 +66,7 @@ footer {
     background-color: #F57F7F; /* Color de fondo para el segundo botón */
     border-color: #F57F7F; /* Color del borde para el segundo botón */
 }
+
 .footer-content {
     color: #232020;
 }

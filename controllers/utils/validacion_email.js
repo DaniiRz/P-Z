@@ -12,6 +12,6 @@ function validarInicios() {
         return false;
     }
     // Aquí puedes redirigir a la siguiente página
-    window.location.href = 'C:\Users\Estudiante\Downloads\P-Z-2\views\admin\index.html';
+    window.location.href = '../admin/principal_admin.html';
     return true; // Permitir el inicio de sesión
 }

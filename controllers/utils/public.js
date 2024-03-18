@@ -39,8 +39,8 @@ function generarMenuPublic() {
                                 <img class="navbar-image" src="../../resources/img/casa 1.png" alt="" width="30" height="30">
                             </a>
                         </li>
-                        <li class="nav-item ms-3">
-                            <a class="nav-link text-white" href="../admin/perfil_admin.html">
+                        <li class="navbar-nav d-flex flex-row justify-content-auto">
+                            <a class="nav-link text-white" href="../public/perfil_usuario.html">
                                 <img class="navbar-image" src="../../resources/img/usuario.png" alt="" width="30" height="30">
                             </a>
                         </li>

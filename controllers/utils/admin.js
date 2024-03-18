@@ -9,7 +9,7 @@ MAIN.classList.add('container');
 document.querySelector('title').textContent = 'PULL & ZARA - Administración';
 // Constante para establecer el elemento del título principal.
 const MAIN_TITLE = document.getElementById('mainTitle');
-MAIN_TITLE.classList.add('text-center', 'py-3');
+//MAIN_TITLE.classList.add('text-center', 'py-3');
 
 /*  Función asíncrona para cargar el encabezado y pie del documento.
 *   Parámetros: ninguno.
@@ -60,7 +60,7 @@ function generarMenuIndex() {
                     </li>
                     <li class="nav-item ms-5">
                         <a class="nav-link active" aria-current="page"
-                            href="../admin/perfil_admin.html">Administracion</a>
+                            href="../admin/admin_administradores.html">Administradores</a>
                     </li>
                     <li class="nav-item ms-5">
                         <a class="nav-link text-white" href="../admin/principal_admin.html">
