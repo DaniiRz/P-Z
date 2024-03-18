@@ -4,15 +4,11 @@ function toggleSwitchColorStatus(checkbox) {
     if (checkbox.checked) {
         checkbox.parentElement.classList.remove('switch-red');
         checkbox.parentElement.classList.add('switch-green');
-        checkbox.nextElementSibling.textContent = 'Habilitado';
+        checkbox.nextElementSibling.textContent = 'Deshabilitar';
     } else {
         checkbox.parentElement.classList.remove('switch-green');
         checkbox.parentElement.classList.add('switch-red');
-        checkbox.nextElementSibling.textContent = 'Deshabilitado';
+        checkbox.nextElementSibling.textContent = 'Habilitar';
     }
 }
 // Obtener el switch inicial y llamar a la función para establecer su estado y estilos
-document.addEventListener('DOMContentLoaded', function() {
-    var switchInicial = document.getElementById('switchInicial');
-    toggleSwitchColorStatus(switchInicial);
-});

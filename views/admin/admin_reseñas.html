@@ -27,50 +27,59 @@
     <header>
         <div id="menuContent"></div>
     </header>
-    <main>
-        <div class="container table-container mt-3">
-            <h2 class="text-center mb-4">Administrar Reseñas</h2>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Usuarios</th>
-                        <th scope="col">Correo</th>
-                        <th scope="col">Comentario</th>
-                        <th scope="col">Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Usuario 1</td>
-                        <td>usuario1@example.com</td>
-                        <td>No me gusto</td>
-                        <td>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="switchInicial" checked
-                                    onchange="toggleSwitchColorStatus(this)">
-                                <label class="form-check-label" for="switchInicial"></label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Usuario 2</td>
-                        <td>usuario2@example.com</td>
-                        <td>La entrega se paso de la fecha</td>
-                        <td>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="switchInicial" checked
-                                    onchange="toggleSwitchColorStatus(this)">
-                                <label class="form-check-label" for="switchInicial"></label>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </main>
-    <footer class="bg-dark fixed-bottom">
 
-        <div id="footerIndex"></div>
+    <main class="py-5">
+        
+        <div id="textos" class="container-fluid py-5 text-center">
+            <div class="row justify-content-center py-5">
+                <h3>Administra Reseñas</h3>
+            </div>
+            <div class="container table-container mt-3">
+
+                <div class="container table-container mb-2">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Usuarios</th>
+                                    <th scope="col">Correo</th>
+                                    <th scope="col">Comentario</th>
+                                    <th scope="col">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Usuario 1</td>
+                                    <td>usuario1@example.com</td>
+                                    <td>No me gusto</td>
+                                    <td>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="switchInicial" checked
+                                                onchange="toggleSwitchColorStatus(this)">
+                                            <label class="form-check-label" for="switchInicial"></label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Usuario 2</td>
+                                    <td>usuario2@example.com</td>
+                                    <td>La entrega se paso de la fecha</td>
+                                    <td>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="switchInicial" checked
+                                                onchange="toggleSwitchColorStatus(this)">
+                                            <label class="form-check-label" for="switchInicial"></label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <footer id="footerIndex" class="pt-3">
+
 
     </footer>
 </body>

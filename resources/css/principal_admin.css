@@ -12,18 +12,23 @@
 .btn-border-red {
     border-color: red;
 }
+
 .btn-border-green {
     border-color: green;
 }
+
 .btn-border-blue {
     border-color: blue;
 }
+
 .btn-border-yellow {
     border-color: pink;
 }
+
 .btn-border-orange {
     border-color: orange;
 }
+
 .btn-border-purple {
     border-color: purple;
 }
@@ -31,43 +36,50 @@
 .textT {
     padding-top: 2%;
 }
+
 .iconHome {
     padding-right: 10px;
 }
 
-body{
+body {
     margin: 0;
     position: relative;
     padding-bottom: 0;
     min-height: 120vh;
 }
-main {
-    margin-bottom: 0%; /* Ajusta este valor según sea necesario para evitar que el footer se superponga al contenido */
-}
-footer {
 
-    position: absolute;
-    width: 100%;
-    height: auto; 
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0;
-    margin-top: 0; /* Opcional: agrega un espacio adicional arriba del footer */
-    padding-bottom: 0; /* Opcional: agrega un espacio adicional abajo del footer */
+main {
+    padding-bottom: 100%;
+    /* Ajusta este valor según sea necesario para evitar que el footer se superponga al contenido */
 }
+
+
+#footerIndex {
+    height: 10%;
+    width: 100%;
+    margin-top: 100%;
+    bottom: 0;
+    padding: 0;
+}
+
+
 
 /* Estilo personalizado para los botones */
 .submit {
-    margin-right: 10px; /* Agrega un margen derecho para separar los botones */
-    background-color: #D9F6A9; /* Color de fondo para el primer botón */
-    border-color: #D9F6A9; /* Color del borde para el primer botón */
+    margin-right: 10px;
+    /* Agrega un margen derecho para separar los botones */
+    background-color: #D9F6A9;
+    /* Color de fondo para el primer botón */
+    border-color: #D9F6A9;
+    /* Color del borde para el primer botón */
 }
 
 /* Estilo para el segundo botón */
 .submit:last-child {
-    background-color: #F57F7F; /* Color de fondo para el segundo botón */
-    border-color: #F57F7F; /* Color del borde para el segundo botón */
+    background-color: #F57F7F;
+    /* Color de fondo para el segundo botón */
+    border-color: #F57F7F;
+    /* Color del borde para el segundo botón */
 }
 
 .footer-content {

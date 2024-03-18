@@ -14,7 +14,7 @@ document.getElementById('btnRegistrarme').addEventListener('click', function(eve
     if (nombre.trim() === '' || apellido.trim() === '' || dui.trim() === '' || direccion.trim() === '' || correo.trim() === '' || contrasena.trim() === '') {
         // Mostrar mensaje de error o realizar alguna acción
         alert('Por favor completa todos los campos.');
-        return;
+        return false;
     }
 
     // Validar formato de DUI
@@ -22,7 +22,7 @@ document.getElementById('btnRegistrarme').addEventListener('click', function(eve
     if (!duiPattern.test(dui)) {
         // Mostrar mensaje de error o realizar alguna acción
         alert('Por favor ingresa un DUI válido (########-#).');
-        return;
+        return false;
     }
 
     // Validar formato de correo electrónico
@@ -30,16 +30,16 @@ document.getElementById('btnRegistrarme').addEventListener('click', function(eve
     if (!emailPattern.test(correo)) {
         // Mostrar mensaje de error o realizar alguna acción
         alert('Por favor ingresa un correo electrónico válido.');
-        return;
+        return false;
     }
 
     // Validar longitud mínima de contraseña
     if (contrasena.length < 8) {
         // Mostrar mensaje de error o realizar alguna acción
         alert('La contraseña debe tener al menos 8 caracteres.');
-        return;
+        return false;
     }
-
-    // Si todas las validaciones pasan, enviar los datos
-    document.getElementById('formulario1', 'formulario2').submit();
+    // Aquí puedes redirigir a la siguiente página
+    window.location.href = '../public/index.html';
+    return true; // Permitir el inicio de sesión
 });

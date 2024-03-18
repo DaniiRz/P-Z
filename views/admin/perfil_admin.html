@@ -35,7 +35,7 @@
                     <p class="fs-5 justify-content-center">Nombre administrador:</p>
                     <p class="fs-5 justify-content-center">Correo administrador:</p>
                     <div class="row">
-                            <p class="fs-5 ">Telefono: ####-####</p>
+                        <p class="fs-5 ">Telefono: ####-####</p>
                         <div class="col">
                             <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal1"><img src="../../resources/img/lapiz.png">
@@ -43,14 +43,15 @@
                         </div>
                     </div>
                 </div>
-                    <div class="container">
+                <div class="container">
 
                     <div class="d-flex flex-column">
                         <button type="button" class="btn btn-outline-dark mt-3" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">Cambiar contraseña</button>
-                        <button type="button" class="btn btn-outline-dark mt-3">
-                            Cerrar Sesión
-                        </button>
+                       
+                            <button type="button" class="btn btn-outline-dark mt-3" id="cerrar-sesion">
+                                Cerrar Sesión
+                            </button>
                     </div>
                 </div>
             </div>
@@ -86,7 +87,7 @@
                 </div>
             </div>
         </div>
-    <!-- Modal telefono-->
+        <!-- Modal telefono-->
         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -114,11 +115,11 @@
         </div>
     </main>
 
-        <footer >
+    <footer>
 
-            <div id="footerIndex"></div>
+        <div id="footerIndex"></div>
 
-        </footer>
+    </footer>
 
 
     <script src="../../controllers/utils/admin.js" defer></script>
