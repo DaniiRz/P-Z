@@ -23,7 +23,7 @@ const menuContent = `
 <div id="navbar" class="fixed-top">
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-on-scroll">
         <div class="container">
-            <a class="navbar-brand" href="../admin/principal_admin.html">
+            <a class="navbar-brand" href="../admin/inicio_admin.html">
                 <img src="../../resources/img/pull&zara (5).png" alt="" width="120" height="100">
             </a>
 
@@ -59,7 +59,7 @@ const menuContent = `
                             href="../admin/admin_administradores.html">Administradores</a>
                     </li>
                     <li class="nav-item ms-5">
-                        <a class="nav-link text-white" href="../admin/principal_admin.html">
+                        <a class="nav-link text-white" href="../admin/inicio_admin.html">
                             <img class="navbar-image" src="../../resources/img/casa 1.png" alt="" width="30"
                                 height="30">
                         </a>
