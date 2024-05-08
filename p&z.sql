@@ -178,7 +178,7 @@ CREATE TABLE tb_valoracion (
 
 
 ----------------------
----Procedimiento almacenado 
+---Procedimiento almacenado para actualizar precio de producto 
 ----------------------
 
 
