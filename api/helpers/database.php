@@ -32,4 +32,39 @@ class Database
             return false;
         }
     }
+
+
+    /*
+     *   Método para establecer un mensaje de error personalizado al ocurrir una excepción.
+     *   Parámetros: $code (código del error) y $message (mensaje original del error).
+     *   Retorno: ninguno.
+     */
+    private static function setException($code, $message)
+    {
+        // Se asigna el mensaje del error original por si se necesita.
+        self::$error = $message . PHP_EOL;
+        // Se compara el código del error para establecer un error personalizado.
+        switch ($code) {
+            case '2002':
+                self::$error = 'Servidor desconocido';
+                break;
+            case '1049':
+                self::$error = 'Base de datos desconocida';
+                break;
+            case '1045':
+                self::$error = 'Acceso denegado';
+                break;
+            case '42S02':
+                self::$error = 'Tabla no encontrada';
+                break;
+            case '42S22':
+                self::$error = 'Columna no encontrada';
+                break;
+            case '23000':
+                self::$error = 'Violación de restricción de integridad';
+                break;
+            default:
+                self::$error = 'Ocurrió un problema en la base de datos';
+        }
+    }
 }
