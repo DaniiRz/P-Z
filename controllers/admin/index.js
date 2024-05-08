@@ -48,6 +48,6 @@ function validarInicios() {
 
     // Redireccionar a otra página después de 2 segundos
     setTimeout(function() {
-        window.location.href = "../admin/principal_admin.html";
+        window.location.href = "../admin/inicio_admin.html";
     }, 1000);
 }
