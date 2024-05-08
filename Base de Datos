@@ -1,0 +1,153 @@
+DROP DATABASE IF EXISTS pull_and_zara;
+CREATE DATABASE pull_and_zara;
+USE pull_and_zara;
+
+ 
+
+CREATE TABLE tb_admins (
+    id_admin INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_admin VARCHAR(255) NOT NULL,
+    apellido_admin VARCHAR(255) NOT NULL,
+    correo_admin VARCHAR(255) NOT NULL,
+    clave_admin VARCHAR(255) NOT NULL,
+   CONSTRAINT rest_correo_unico UNIQUE (correo_admin)
+);
+
+ 
+
+CREATE TABLE tb_categorias (
+    id_categoria INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_categoria VARCHAR(255) NOT NULL
+);
+
+ 
+
+CREATE TABLE tb_estado_pedidos (
+    id_estado_pedido INT PRIMARY KEY AUTO_INCREMENT,
+    estado_pedido VARCHAR(50) NOT NULL
+);
+
+ 
+
+CREATE TABLE tb_estado_valo (
+    id_estado_valo INT PRIMARY KEY AUTO_INCREMENT,
+    estado_valo VARCHAR(50) NOT NULL
+);
+
+ 
+
+CREATE TABLE tb_clientes (
+    id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_cliente VARCHAR(255) NOT NULL,
+    apellido_cliente VARCHAR(255) NOT NULL,
+    dui_client VARCHAR(255) NOT NULL UNIQUE,
+    telf_cliente VARCHAR(12) NOT NULL UNIQUE,
+    correo_cliente VARCHAR(255) NOT NULL UNIQUE,
+    clave_cliente VARCHAR(255) NOT NULL,
+    CONSTRAINT rest_dui_cliente_unico UNIQUE (dui_client),
+    CONSTRAINT rest_telf_cliente_unico UNIQUE (telf_cliente),
+    CONSTRAINT rest_correo_cliente_unico UNIQUE (correo_cliente)
+);
+
+ 
+
+CREATE TABLE tb_direccion_clientes (
+    id_direccion_c INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_direccion VARCHAR (255) NOT NULL,
+    id_cliente INT,
+    CONSTRAINT fk_id_cliente_direccion_cliente FOREIGN KEY(id_cliente) REFERENCES tb_clientes(id_cliente)
+);
+
+ 
+
+CREATE TABLE tb_pedidos (
+    id_pedido INT PRIMARY KEY AUTO_INCREMENT,
+    fecha_pedido DATETIME,
+    id_estado_pedido INT,
+    id_direccion_c INT,
+    id_cliente INT,
+    CONSTRAINT fk_id_estado_pedido_id_pedido FOREIGN KEY(id_estado_pedido) REFERENCES tb_estado_pedidos(id_estado_pedido),
+    CONSTRAINT fk_id_cliente_id_pedido FOREIGN KEY(id_cliente) REFERENCES tb_clientes(id_cliente),
+    CONSTRAINT fk_id_direccion_c_id_pedido FOREIGN KEY(id_direccion_c) REFERENCES tb_direccion_clientes(id_direccion_c)
+);
+
+ 
+
+CREATE TABLE tb_sub_categorias (
+    id_sub_categoria INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_sub_categoria VARCHAR(255),
+    id_categoria INT,
+    CONSTRAINT fk_id_categoria_id_sub_categorias FOREIGN KEY (id_categoria) REFERENCES tb_categorias(id_categoria)
+);
+
+ 
+
+CREATE TABLE tb_colores (
+    id_color INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_color VARCHAR(255),
+    id_sub_categoria INT,
+    CONSTRAINT fk_id_color_id_sub_categorias FOREIGN KEY (id_sub_categoria) REFERENCES tb_sub_categorias(id_sub_categoria)
+);
+
+ 
+
+CREATE TABLE tb_tallas (
+    id_talla INT PRIMARY KEY AUTO_INCREMENT,
+    numero_talla VARCHAR(255),
+    id_sub_categoria INT,
+    CONSTRAINT fk_id_talla_id_sub_categorias FOREIGN KEY (id_sub_categoria) REFERENCES tb_sub_categorias(id_sub_categoria)
+);
+
+ 
+
+CREATE TABLE tb_productos (
+    id_producto INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_producto VARCHAR(255) NOT NULL,
+    desc_producto VARCHAR(255) NOT NULL,
+    cant_producto INT NOT NULL CHECK(cant_producto >= 0),
+    precio_producto NUMERIC(5,2) NOT NULL,
+    fecha_registro_produc DATETIME,
+    id_sub_categoria INT,
+    CONSTRAINT fk_id_producto_id_sub_categorias FOREIGN KEY (id_sub_categoria) REFERENCES tb_sub_categorias(id_sub_categoria),
+    CONSTRAINT rest_check_cant_producto CHECK (cant_producto)
+);
+
+ 
+
+CREATE TABLE tb_detalle_productos (
+    id_detalle_producto INT PRIMARY KEY AUTO_INCREMENT,
+    existencias INT NOT NULL CHECK (existencias >= 0),
+    img_producto VARCHAR(255) NOT NULL,
+    id_color INT,
+    id_talla INT,
+    id_producto INT,
+    CONSTRAINT fk_id_color_id_detalle FOREIGN KEY (id_color) REFERENCES tb_colores(id_color),
+    CONSTRAINT fk_id_talla_id_detalle FOREIGN KEY (id_talla) REFERENCES tb_tallas(id_talla),
+    CONSTRAINT fk_id_producto_id_detalle FOREIGN KEY (id_producto) REFERENCES tb_productos(id_producto),
+    CONSTRAINT rest_check_existencias CHECK (existencias)
+);
+
+ 
+
+CREATE TABLE tb_detalle_pedido (
+    id_detalle INT PRIMARY KEY AUTO_INCREMENT,
+    cantidad_producto INT NOT NULL CHECK (cantidad_producto >= 0),
+    precio_producto NUMERIC(5,2),
+    id_pedido INT,
+    id_detalle_producto INT,
+    CONSTRAINT fk_id_pedido_id_detalle_pedido FOREIGN KEY (id_pedido) REFERENCES tb_pedidos(id_pedido),
+    CONSTRAINT fk_id_detalle_producto_id_detalle_pedido FOREIGN KEY (id_detalle_producto) REFERENCES tb_detalle_productos(id_detalle_producto),
+    CONSTRAINT rest_check_cantidad_producto CHECK (cantidad_producto)
+);
+
+ 
+
+CREATE TABLE tb_valoracion (
+    id_valoracion INT PRIMARY KEY AUTO_INCREMENT,
+    comentario_cliente VARCHAR(255) NOT NULL,
+    fecha_valoracion DATETIME,
+    id_detalle_p INT,
+    id_estado_valo INT,
+    CONSTRAINT fk_id_detalle_p_id_valo FOREIGN KEY(id_detalle_p) REFERENCES tb_detalle_pedido(id_detalle),
+    CONSTRAINT fk_id_estado_valo_id_valoracion FOREIGN KEY (id_estado_valo) REFERENCES tb_estado_valo(id_estado_valo)
+);
