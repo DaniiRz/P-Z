@@ -50,6 +50,24 @@ class validator
         return $fields;
     }
 
+    // Metodo para validar una busqueda
+    public static function validateSearch($value)
+    {
+        if (trim($value) == '') {
+            self::$search_error = 'Ingrese un valor para buscar';
+            return false;
+        } elseif(str_word_count($value) > 3) {
+            self::$search_error = 'La búsqueda contiene más de 3 palabras';
+            return false;
+        } elseif (self::validateString($value)) {
+            self::$search_value = $value;
+            return true;
+        } else {
+            self::$search_error = 'La búsqueda contiene caracteres prohibidos';
+            return false;
+        }
+    }
+
     // Metodo para validar un numero natural 
     public static function validateNaturalNumber($value)
     {
