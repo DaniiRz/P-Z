@@ -67,20 +67,6 @@ class AdministradorData extends AdministradorHandler
         }
     }
 
-    public function setAlias($value, $min = 6, $max = 25)
-    {
-        if (!Validator::validateAlphanumeric($value)) {
-            $this->data_error = 'El alias debe ser un valor alfanumérico';
-            return false;
-        } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->alias = $value;
-            return true;
-        } else {
-            $this->data_error = 'El alias debe tener una longitud entre ' . $min . ' y ' . $max;
-            return false;
-        }
-    }
-
     public function setClave($value)
     {
         if (Validator::validatePassword($value)) {
