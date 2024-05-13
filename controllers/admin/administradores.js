@@ -140,10 +140,10 @@ const openUpdate = async (id) => {
         CONFIRMAR_CLAVE.disabled = true;
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
-        ID_ADMINISTRADOR.value = ROW.id_administrador;
-        NOMBRE_ADMINISTRADOR.value = ROW.nombre_administrador;
-        APELLIDO_ADMINISTRADOR.value = ROW.apellido_administrador;
-        CORREO_ADMINISTRADOR.value = ROW.correo_administrador;
+        ID_ADMINISTRADOR.value = ROW.id_admin;
+        NOMBRE_ADMINISTRADOR.value = ROW.nombre_admin;
+        APELLIDO_ADMINISTRADOR.value = ROW.apellido_admin;
+        CORREO_ADMINISTRADOR.value = ROW.correo_admin;
     } else {
         sweetAlert(2, DATA.error, false);
     }

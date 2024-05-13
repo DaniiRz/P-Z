@@ -16,6 +16,53 @@ require_once('../../api/helpers/database.php');
     protected $clave = null;
 
 
+     /*
+     *  Métodos para gestionar la cuenta del administrador.
+     */
+
+    public function checkPassword($password)
+    {
+        $sql = 'SELECT clave_administrador
+                FROM administrador
+                WHERE id_administrador = ?';
+        $params = array($_SESSION['idAdministrador']);
+        $data = Database::getRow($sql, $params);
+        // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
+        if (password_verify($password, $data['clave_administrador'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    
+    public function changePassword()
+    {
+        $sql = 'UPDATE administrador
+                SET clave_administrador = ?
+                WHERE id_administrador = ?';
+        $params = array($this->clave, $_SESSION['idadministrador']);
+        return Database::executeRow($sql, $params);
+    }
+    
+    public function checkUser($username, $password)
+    {
+        $sql = 'SELECT id_administrador, alias_administrador, clave_administrador
+                FROM administrador
+                WHERE alias_administrador = ?';
+        $params = array($username);
+        if (!($data = Database::getRow($sql, $params))) {
+            return false;
+        } elseif (password_verify($password, $data['clave_administrador'])) {
+            $_SESSION['idAdministrador'] = $data['id_administrador'];
+            $_SESSION['aliasAdministrador'] = $data['alias_administrador'];
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     /*
      *  Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
      */
@@ -28,6 +75,24 @@ require_once('../../api/helpers/database.php');
                 ORDER BY apellido_admin';
         $params = array($value, $value);
         return Database::getRows($sql, $params);
+    }
+
+    public function readProfile()
+    {
+        $sql = 'SELECT id_administrador, nombre_administrador, apellido_administrador, correo_administrador, alias_administrador
+                FROM administrador
+                WHERE id_administrador = ?';
+        $params = array($_SESSION['idAdministrador']);
+        return Database::getRow($sql, $params);
+    }
+
+    public function editProfile()
+    {
+        $sql = 'UPDATE administrador
+                SET nombre_administrador = ?, apellido_administrador = ?, correo_administrador = ?, alias_administrador = ?
+                WHERE id_administrador = ?';
+        $params = array($this->nombre, $this->apellido, $this->correo, $_SESSION['idAdministrador']);
+        return Database::executeRow($sql, $params);
     }
 
     public function createRow()
