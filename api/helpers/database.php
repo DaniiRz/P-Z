@@ -77,16 +77,6 @@ class Database
             return false;
         }
     }
-    public static function getRow($query, $values = null)
-    {
-        if (self::executeRow($query, $values)) {
-            return self::$statement->fetch(PDO::FETCH_ASSOC);
-        } 
-        
-        else {
-            return false;
-        }
-    }
 
     /*
      *   Método para establecer un mensaje de error personalizado al ocurrir una excepción.
