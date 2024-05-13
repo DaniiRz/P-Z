@@ -26,23 +26,25 @@
 
         <div id="textos" class="container-fluid mt-5 text-center">
             <div class="row justify-content-center">
-                <h3>Gestión de Administradores</h3> <!-- Cambio de texto -->
-                <h6>Haz clic en un administrador para editar</h6> <!-- Cambio de texto -->
+                <h3>Gestión de Administradores</h3>
+                <h6>Haz clic en un administrador para editar</h6>
             </div>
         </div>
-        <div class="container mb-3 justify-content-center">
+
+        <div class="col-sm-12 col-md-6">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
                 <img src="../../resources/img/agregar.png" alt="">
-                Agregar Administrador <!-- Cambio de texto -->
+                Agregar Administrador
             </button>
 
-            <!-- Modal -->
+            <!-- Modal para agregar un administrador -->
             <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModal1Label">Agregar Administrador</h5> <!-- Cambio de texto -->
+                            <h5 class="modal-title" id="exampleModal1Label">Agregar Administrador</h5>
+
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -50,19 +52,29 @@
                         <div class="modal-body">
                             <form>
                                 <div class="form-group">
-                                    <label for="nombre">Nombre:</label> <!-- Cambio de texto -->
-                                    <input type="text" class="form-control" id="nombre"
-                                        placeholder="Ingrese el nombre del administrador"> <!-- Cambio de texto -->
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" class="form-control" id="nombreAdministrador"
+                                        placeholder="Nombre del administrador">
                                 </div>
-                                <div class="form-group">
-                                    <label for="telefono">Teléfono:</label> <!-- Cambio de texto -->
-                                    <input type="text" class="form-control" id="telefono"
-                                        placeholder="Ingrese el teléfono del administrador"> <!-- Cambio de texto -->
+                                <div class="form-group mt-2">
+                                    <label for="apellido">Apellido:</label>
+                                    <input type="text" class="form-control" id="apellidoAdministrador"
+                                        placeholder="Apellido del administrador">
                                 </div>
-                                <div class="form-group">
-                                    <label for="correo">Correo:</label> <!-- Cambio de texto -->
-                                    <input type="email" class="form-control" id="correo"
-                                        placeholder="Ingrese el correo del administrador"> <!-- Cambio de texto -->
+                                <div class="form-group mt-2">
+                                    <label for="telefono">Teléfono:</label>
+                                    <input type="text" class="form-control" id="telefonoAdministrador"
+                                        placeholder="Teléfono del administrador">
+                                </div>
+                                <div class="form-group mt2">
+                                    <label for="correo">Correo:</label>
+                                    <input type="email" class="form-control" id="correoAdministrador"
+                                        placeholder="Correo del administrador">
+                                </div>
+                                <div class="form-group mt-2">
+                                    <label for="claveAdministrador" class="form-label">Contraseña: </label>
+                                    <input id="claveAdministrador" type="password" name="claveAdministrador"
+                                        class="form-control" required>
                                 </div>
                             </form>
                         </div>
@@ -75,43 +87,55 @@
             </div>
         </div>
 
-         <!-- Modal -->
-         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-         <div class="modal-dialog" role="document">
-             <div class="modal-content">
-                 <div class="modal-header">
-                     <h5 class="modal-title" id="exampleModalLabel">Editar Administrador</h5> <!-- Cambio de texto -->
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                         <span aria-hidden="true">&times;</span>
-                     </button>
-                 </div>
-                 <div class="modal-body">
-                     <form>
-                         <div class="form-group">
-                             <label for="nombre">Nombre:</label> <!-- Cambio de texto -->
-                             <input type="text" class="form-control" id="nombre"
-                                 placeholder="Ingrese el nombre del administrador"> <!-- Cambio de texto -->
-                         </div>
-                         <div class="form-group">
-                             <label for="telefono">Teléfono:</label> <!-- Cambio de texto -->
-                             <input type="text" class="form-control" id="telefono"
-                                 placeholder="Ingrese el teléfono del administrador"> <!-- Cambio de texto -->
-                         </div>
-                         <div class="form-group">
-                             <label for="correo">Correo:</label> <!-- Cambio de texto -->
-                             <input type="email" class="form-control" id="correo"
-                                 placeholder="Ingrese el correo del administrador"> <!-- Cambio de texto -->
-                         </div>
-                     </form>
-                 </div>
-                 <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                     <button type="button" class="btn btn-primary">Actualizar</button>
-                 </div>
-             </div>
-         </div>
-     </div>
+
+        <!-- Modal para editar el administrador  -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitle">Editar Administrador</h5>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="saveForm">
+                            <div class="form-group">
+                                <label for="nombre">Nombre:</label>
+                                <input type="text" class="form-control" id="nombreAdministrador"
+                                    placeholder="Nombre del administrador">
+                            </div>
+                            <div class="form-group mt-2">
+                                <label for="apellido">Apellido:</label>
+                                <input type="text" class="form-control" id="apellidoAdministrador"
+                                    placeholder="Apellido del administrador">
+                            </div>
+                            <div class="form-group mt-2">
+                                <label for="telefono">Teléfono:</label>
+                                <input type="text" class="form-control" id="telefonoAdministrador"
+                                    placeholder="Teléfono del administrador">
+                            </div>
+                            <div class="form-group mt2">
+                                <label for="correo">Correo:</label>
+                                <input type="email" class="form-control" id="correoAdministrador"
+                                    placeholder="Correo del administrador">
+                            </div>
+                            <div class="form-group mt-2">
+                                <label for="claveAdministrador" class="form-label">Contraseña: </label>
+                                <input id="claveAdministrador" type="password" name="claveAdministrador"
+                                    class="form-control" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Actualizar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <div class="container-fluid justify-content-center mt-5">
@@ -119,39 +143,55 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Nombre</th> <!-- Cambio de texto -->
-                            <th>Teléfono</th> <!-- Cambio de texto -->
-                            <th>Correo</th> <!-- Cambio de texto -->
-                            <th>Acciones</th>
+                        <tr>
+                            <td colspan="6" id="rowsFound"></td>
+                        </tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tableBody">
                         <tr>
                             <td>Administrador 1</td>
-                            <td>123456789</td>
+                            <td></td>
+                            <td>12345678</td>
                             <td>admin1@example.com</td>
                             <td>
-                                <button type="button" class="btn btn-danger btn-sm"><img src="../../resources/img/papelera-xmark.png" alt="Icono de eliminar"></button>
-                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"><img src="../../resources/img/lapiz.png" alt="Icono de editar"></button>
+                                <button type="button" class="btn btn-danger btn-sm"><img
+                                        src="../../resources/img/papelera-xmark.png" alt="Icono de eliminar"></button>
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                    data-target="#exampleModal"><img src="../../resources/img/lapiz.png"
+                                        alt="Icono de editar"></button>
                             </td>
                         </tr>
                         <tr>
                             <td>Administrador 2</td>
-                            <td>987654321</td>
+                            <td></td>
+                            <td>12345678</td>
                             <td>admin2@example.com</td>
                             <td>
-                                <button type="button" class="btn btn-danger btn-sm"><img src="../../resources/img/papelera-xmark.png" alt="Icono de eliminar"></button>
-                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"><img src="../../resources/img/lapiz.png" alt="Icono de editar"></button>
+                                <button type="button" class="btn btn-danger btn-sm"><img
+                                        src="../../resources/img/papelera-xmark.png" alt="Icono de eliminar"></button>
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                    data-target="#exampleModal"><img src="../../resources/img/lapiz.png"
+                                        alt="Icono de editar"></button>
                             </td>
                         </tr>
                         <!-- Agrega más filas según sea necesario -->
                         <tr>
-                            <td>Administrador 1</td>
-                            <td>123456789</td>
-                            <td>admin1@example.com</td>
+                            <td>Administrador 3</td>
+                            <td></td>
+                            <td>12345678</td>
+                            <td>admin3@example.com</td>
                             <td>
-                                <button type="button" class="btn btn-danger btn-sm"><img src="../../resources/img/papelera-xmark.png" alt="Icono de eliminar"></button>
-                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"><img src="../../resources/img/lapiz.png" alt="Icono de editar"></button>
+                                <button type="button" class="btn btn-danger btn-sm"><img
+                                        src="../../resources/img/papelera-xmark.png" alt="Icono de eliminar"></button>
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                    data-target="#exampleModal"><img src="../../resources/img/lapiz.png"
+                                        alt="Icono de editar"></button>
                             </td>
                         </tr>
                     </tbody>
@@ -177,6 +217,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../../controllers/admin/administradores.js"></script>
 
 </body>
 
