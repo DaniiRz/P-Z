@@ -26,13 +26,25 @@ class Database
             self::$statement = self::$connection->prepare($query);
             // Se ejecuta la sentencia preparada y se retorna el resultado.
             return self::$statement->execute($values);
-        } catch (PDOException $error) {
+        } 
+        
+        catch (PDOException $error) {
             // Se obtiene el código y el mensaje de la excepción para establecer un error personalizado.
             self::setException($error->getCode(), $error->getMessage());
             return false;
         }
     }
 
+    public static function getRow($query, $values = null)
+    {
+        if (self::executeRow($query, $values)) {
+            return self::$statement->fetch(PDO::FETCH_ASSOC);
+        } 
+        
+        else {
+            return false;
+        }
+    }
 
     /*
      *   Método para establecer un mensaje de error personalizado al ocurrir una excepción.
