@@ -22,9 +22,9 @@ require_once('../../api/helpers/database.php');
 
     public function checkPassword($password)
     {
-        $sql = 'SELECT clave_administrador
-                FROM administrador
-                WHERE id_administrador = ?';
+        $sql = 'SELECT clave_admin
+                FROM tb_admins
+                WHERE id_admin = ?';
         $params = array($_SESSION['idAdministrador']);
         $data = Database::getRow($sql, $params);
         // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
@@ -38,18 +38,18 @@ require_once('../../api/helpers/database.php');
     
     public function changePassword()
     {
-        $sql = 'UPDATE administrador
-                SET clave_administrador = ?
-                WHERE id_administrador = ?';
+        $sql = 'UPDATE tb_admins
+                SET clave_admin = ?
+                WHERE id_admin = ?';
         $params = array($this->clave, $_SESSION['idadministrador']);
         return Database::executeRow($sql, $params);
     }
     
     public function checkUser($username, $password)
     {
-        $sql = 'SELECT id_administrador, alias_administrador, clave_administrador
-                FROM administrador
-                WHERE alias_administrador = ?';
+        $sql = 'SELECT id_admin, nombre_admin, clave_admin
+                FROM tb_admins
+                WHERE nombre_admin = ?';
         $params = array($username);
         if (!($data = Database::getRow($sql, $params))) {
             return false;
@@ -79,18 +79,18 @@ require_once('../../api/helpers/database.php');
 
     public function readProfile()
     {
-        $sql = 'SELECT id_administrador, nombre_administrador, apellido_administrador, correo_administrador, alias_administrador
-                FROM administrador
-                WHERE id_administrador = ?';
+        $sql = 'SELECT id_admin, nombre_admin, apellido_admin, correo_admin
+                FROM tb_admins
+                WHERE id_admin = ?';
         $params = array($_SESSION['idAdministrador']);
         return Database::getRow($sql, $params);
     }
 
     public function editProfile()
     {
-        $sql = 'UPDATE administrador
-                SET nombre_administrador = ?, apellido_administrador = ?, correo_administrador = ?, alias_administrador = ?
-                WHERE id_administrador = ?';
+        $sql = 'UPDATE tb_admins
+                SET nombre_admin = ?, apellido_admin = ?, correo_admin = ?
+                WHERE id_admin = ?';
         $params = array($this->nombre, $this->apellido, $this->correo, $_SESSION['idAdministrador']);
         return Database::executeRow($sql, $params);
     }
