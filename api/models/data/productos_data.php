@@ -1,8 +1,8 @@
 <?php
 
 // Se incluyen las clases
-//require_once('../../helpers/validator.php');
-require_once('../../models/handler/productos.handler.php');
+require_once('../../helpers/validator.php');
+require_once('../../models/handler/productos_handler.php');
 
 // Clase para manejar el encapsulamiento de datos
 class ProductoData extends ProductoHandler
@@ -12,7 +12,7 @@ class ProductoData extends ProductoHandler
     private $data_error = null;
 
     // Metodos para validar y establecer los datos
-    public function setId($value){
+    public function setIdProducto($value){
         if (Validator::validateNaturalNumber($value)) {
             $this->id = $value;
             return true;
@@ -31,12 +31,12 @@ class ProductoData extends ProductoHandler
         } 
         
         else {
-            $this->data_error = 'El identificador del producto es incorrecto';
+            $this->data_error = 'El identificador de la Subcategoria es incorrecto';
             return false;
         }
     }
 
-    public function setNombreproducto($value){
+    public function setNombreproducto($value, $min = 2, $max= 255){
         if (!Validator::validateAlphanumeric($value)) {
             $this->data_error = 'El nombre debe ser un valor alfanumérico';
             return false;
@@ -53,7 +53,7 @@ class ProductoData extends ProductoHandler
         }
     }
 
-    public function setDescproducto($value){
+    public function setDescproducto($value, $min = 2, $max= 255){
         if (!Validator::validateString($value)) {
             $this->data_error = 'La descripción contiene caracteres prohibidos';
             return false;
@@ -89,7 +89,7 @@ class ProductoData extends ProductoHandler
         } 
         
         else {
-            $this->data_error = 'La fecha de nacimiento es incorrecta';
+            $this->data_error = 'La fecha de registro es incorrecta';
             return false;
         }
     }
