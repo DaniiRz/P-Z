@@ -1,7 +1,7 @@
 <?php
 
 // Se incluye la clase del modelo.
-require_once ('../../models/data/productos_data.php');
+require_once ('../../models/data/subcategoria_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -10,7 +10,7 @@ if (isset($_GET['action'])) {
     session_start();
 
     // Se instancia la clase correspondiente.
-    $producto = new ProductoData;
+    $Subcategoria = new SubcategoriaData;
 
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
@@ -23,86 +23,79 @@ if (isset($_GET['action'])) {
             case 'createRows':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$producto->setNombreproducto($_POST['nombreProducto']) or
-                    !$producto->setDescproducto($_POST['DescProducto']) or
-                    !$producto->setPrecioproducto($_POST['precioProducto']) or
-                    !$producto->setFecharegistro($_POST['fechaRegistro'])
+                    !$Subcategoria->setNombreSubCategoria($_POST['nombreSubCategoria'])
                 ) {
-                    $result['error'] = $producto->getDataError();
+                    $result['error'] = $Subcategoria->getDataError();
                 } 
                 
-                elseif ($producto->createRows()) {
+                elseif ($Subcategoria->createRows()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Producto creado correctamente';
+                    $result['message'] = 'Subcategoria creado correctamente';
                 } 
                 
                 else {
-                    $result['error'] = 'Ocurrió un problema al crear el producto';
+                    $result['error'] = 'Ocurrió un problema al crear la Subcategoria';
                 }
                 break;
 
             case 'readAll':
-                if ($result['dataset'] = $producto->readAll()) {
+                if ($result['dataset'] = $Subcategoria->readAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } 
                 
                 else {
-                    $result['error'] = 'No existen productos registrados';
+                    $result['error'] = 'No existen Subcategorias registradas';
                 }
                 break;
 
             case 'readOne':
-                if (!$producto->setIdProducto($_POST['idProducto'])) {
-                    $result['error'] = $producto->getDataError();
+                if (!$Subcategoria->setIdSubCategoria($_POST['idSubCategoria'])) {
+                    $result['error'] = $Subcategoria->getDataError();
                 } 
                 
-                elseif ($result['dataset'] = $producto->readOne()) {
+                elseif ($result['dataset'] = $Subcategoria->readOne()) {
                     $result['status'] = 1;
                 } 
                 
                 else {
-                    $result['error'] = 'Producto inexistente';
+                    $result['error'] = 'Subcategoria inexistente';
                 }
                 break;
 
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$producto->setIdProducto($_POST['idProducto']) or
-                    !$producto->setNombreproducto($_POST['nombreProducto']) or
-                    !$producto->setDescproducto($_POST['descripcionProducto']) or
-                    !$producto->setPrecioproducto($_POST['precioProducto']) or
-                    !$producto->setFecharegistro($_POST['categoriaProducto'])
+                    !$Subcategoria->setIdSubCategoria($_POST['idSubCategoria'])
                 ) {
-                    $result['error'] = $producto->getDataError();
+                    $result['error'] = $Subcategoria->getDataError();
                 } 
                 
-                elseif ($producto->updateRows()) {
+                elseif ($produSubcategoriacto->updateRows()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Producto modificado correctamente';
+                    $result['message'] = 'Subcategoria modificado correctamente';
                     // Se asigna el estado del archivo después de actualizar.
                 } 
                 
                 else {
-                    $result['error'] = 'Ocurrió un problema al modificar el producto';
+                    $result['error'] = 'Ocurrió un problema al modificar la Subcategoria';
                 }
                 break;
 
             case 'deleteRow':
                 if (
-                    !$producto->setIdProducto($_POST['idProducto'])
+                    !$Subcategoria->setIdSubCategoria($_POST['idSubCategoria'])
                 ) {
-                    $result['error'] = $producto->getDataError();
+                    $result['error'] = $Subcategoria->getDataError();
                 } 
                 
-                elseif ($producto->deleteRows()) {
+                elseif ($Subcategoria->deleteRows()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Producto eliminado correctamente';
+                    $result['message'] = 'Subcategoria eliminada correctamente';
                 } 
                 
                 else {
-                    $result['error'] = 'Ocurrió un problema al eliminar el producto';
+                    $result['error'] = 'Ocurrió un problema al eliminar la Subcategoria';
                 }
                 break;
             default:
