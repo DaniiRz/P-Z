@@ -77,34 +77,73 @@
                             <tr>
                                 <td>Talla S</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#miModal">
+                                    <!-- Botón para abrir el modal -->
+                                    <button type="button" class="btn btn-outline-secondary" data-toggle="modal"
+                                        data-target="#exampleModal">
                                         Agregar Color
-                                        </button>
-                                        <!-- Modal -->
-                                        <div class="modal" id="miModal" tabindex="-1" role="dialog">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Seleccionar Color</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Tabla con Color y
+                                                        Elemento</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <!-- Tabla derecha -->
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Número</th>
+                                                                        <th>Código Color</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>#FF0000</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td>#00FF00</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>3</td>
+                                                                        <td>#0000FF</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <!-- Contenedor izquierdo -->
+                                                            <div class="form-group">
+                                                                <form>
+                                                                    <input type="color"
+                                                                        class="form-control form-control-color"
+                                                                        id="myColor" value="#0d6e78"
+                                                                        title="Choose a color">
+                                                                </form>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <form>
-                                                            <input type="color" class="form-control form-control-color"
-                                                                id="myColor" value="#B52121" title="Choose a color">
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Agregar</button>
-                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Cerrar</button>
+                                                    <button type="button" class="btn btn-primary">Guardar</button>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                 </td>
                                 <td>
                                     <button class="btn btn-danger btn-sm"><a href=""><img
@@ -117,7 +156,74 @@
                             <tr>
                                 <td>Talla M</td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-dark btn-sm">Agregar Color</button>
+                                    <!-- Botón para abrir el modal -->
+                                    <button type="button" class="btn btn-outline-secondary" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                        Agregar Color
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Tabla con Color y
+                                                        Elemento</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <!-- Tabla derecha -->
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Número</th>
+                                                                        <th>Código Color</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>#FF0000</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td>#00FF00</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>3</td>
+                                                                        <td>#0000FF</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <!-- Contenedor izquierdo -->
+                                                            <div class="form-group">
+                                                                <form>
+                                                                    <input type="color"
+                                                                        class="form-control form-control-color"
+                                                                        id="myColor" value="#0d6e78"
+                                                                        title="Choose a color">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Cerrar</button>
+                                                    <button type="button" class="btn btn-primary">Guardar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </td>
                                 <td>
                                     <button class="btn btn-danger btn-sm"><a href=""><img
@@ -130,7 +236,74 @@
                             <tr>
                                 <td>Talla L</td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-dark btn-sm">Agregar Color</button>
+                                    <!-- Botón para abrir el modal -->
+                                    <button type="button" class="btn btn-outline-secondary" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                        Agregar Color
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Tabla con Color y
+                                                        Elemento</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <!-- Tabla derecha -->
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Número</th>
+                                                                        <th>Código Color</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>#FF0000</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td>#00FF00</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>3</td>
+                                                                        <td>#0000FF</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <!-- Contenedor izquierdo -->
+                                                            <div class="form-group">
+                                                                <form>
+                                                                    <input type="color"
+                                                                        class="form-control form-control-color"
+                                                                        id="myColor" value="#0d6e78"
+                                                                        title="Choose a color">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Cerrar</button>
+                                                    <button type="button" class="btn btn-primary">Guardar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </td>
                                 <td>
                                     <button class="btn btn-danger btn-sm"><a href=""><img
