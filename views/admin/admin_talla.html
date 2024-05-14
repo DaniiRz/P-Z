@@ -26,23 +26,23 @@
             <div id="textos" class="container-fluid py-5 text-center">
                 <div class="row justify-content-center py-5">
                     <h3>Administra Tallas</h3>
-                    
+
                 </div>
             </div>
             <div class="container mb-3 justify-content-center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalColor">
                     <img src="../../resources/img/agregar.png" alt="">
                     Agregar Talla
                 </button>
-    
+
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="modalColor" tabindex="-1" role="dialog" aria-labelledby="modalColorLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Agregar Talla</h5>
+                                <h5 class="modal-title" id="modalColorLabel">Agregar Talla</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -73,8 +73,8 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Nombre de la talla</th>
-                                <th scope="col">Agregar color</th>
+                                <th scope="col">Nombre Talla</th>
+                                <th scope="col">Color</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -82,7 +82,36 @@
                             <tr>
                                 <td>Talla S</td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-dark btn-sm">Agregar Color</button>
+                                    <<button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#miModal">
+                                        Abrir Modal
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal" id="miModal" tabindex="-1" role="dialog">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Seleccionar Color</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <label for="myColor" class="form-label">Color picker</label>
+                                                            <input type="color" class="form-control form-control-color"
+                                                                id="myColor" value="#CCCCCC" title="Choose a color">
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Cerrar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </td>
                                 <td>
                                     <button class="btn btn-danger btn-sm"><a href=""><img
