@@ -5,8 +5,6 @@
 // Constante para establecer el elemento del contenido principal.
 const MAIN = document.querySelector('main');
 MAIN.classList.add('container');
-// Se establece el título de la página web.
-document.querySelector('title').textContent = 'PULL & ZARA - Administración';
 // Constante para establecer el elemento del título principal.
 const MAIN_TITLE = document.getElementById('mainTitle');
 //MAIN_TITLE.classList.add('text-center', 'py-3');
