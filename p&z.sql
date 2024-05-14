@@ -1,6 +1,3 @@
---base de datos: pull&zara 
-
--------
 DROP DATABASE IF EXISTS pull_and_zara;
 CREATE DATABASE pull_and_zara;
 USE pull_and_zara;
@@ -8,7 +5,7 @@ USE pull_and_zara;
  
 
 
-----tabla administrador 
+
 
 CREATE TABLE tb_admins (
     id_admin INT PRIMARY KEY AUTO_INCREMENT,
@@ -20,17 +17,13 @@ CREATE TABLE tb_admins (
 );
 
  
- --tabla categorias 
- -----
+
 
 CREATE TABLE tb_categorias (
     id_categoria INT PRIMARY KEY AUTO_INCREMENT,
     nombre_categoria VARCHAR(255) NOT NULL
 );
 
- 
---tabla estado de pedido 
--------
 
 CREATE TABLE tb_estado_pedidos (
     id_estado_pedido INT PRIMARY KEY AUTO_INCREMENT,
@@ -38,8 +31,7 @@ CREATE TABLE tb_estado_pedidos (
 );
 
  
---tabla estado de valoacion
-------
+
 
 CREATE TABLE tb_estado_valo (
     id_estado_valo INT PRIMARY KEY AUTO_INCREMENT,
@@ -47,8 +39,7 @@ CREATE TABLE tb_estado_valo (
 );
 
  
---tabla estado de clientes
-------
+
 CREATE TABLE tb_clientes (
     id_cliente INT PRIMARY KEY AUTO_INCREMENT,
     nombre_cliente VARCHAR(255) NOT NULL,
@@ -62,9 +53,6 @@ CREATE TABLE tb_clientes (
     CONSTRAINT rest_correo_cliente_unico UNIQUE (correo_cliente)
 );
 
- 
---tabla estado de direccion-clientes
-------
 CREATE TABLE tb_direccion_clientes (
     id_direccion_c INT PRIMARY KEY AUTO_INCREMENT,
     nombre_direccion VARCHAR (255) NOT NULL,
@@ -72,9 +60,7 @@ CREATE TABLE tb_direccion_clientes (
     CONSTRAINT fk_id_cliente_direccion_cliente FOREIGN KEY(id_cliente) REFERENCES tb_clientes(id_cliente)
 );
 
- 
---tabla estado de pedidos 
-------
+
 CREATE TABLE tb_pedidos (
     id_pedido INT PRIMARY KEY AUTO_INCREMENT,
     fecha_pedido DATETIME,
@@ -86,9 +72,7 @@ CREATE TABLE tb_pedidos (
     CONSTRAINT fk_id_direccion_c_id_pedido FOREIGN KEY(id_direccion_c) REFERENCES tb_direccion_clientes(id_direccion_c)
 );
 
- 
---tabla estado de sub-categorias 
-------
+
 CREATE TABLE tb_sub_categorias (
     id_sub_categoria INT PRIMARY KEY AUTO_INCREMENT,
     nombre_sub_categoria VARCHAR(255),
@@ -96,9 +80,6 @@ CREATE TABLE tb_sub_categorias (
     CONSTRAINT fk_id_categoria_id_sub_categorias FOREIGN KEY (id_categoria) REFERENCES tb_categorias(id_categoria)
 );
 
- 
---tabla estado de colores prendas 
-------
 CREATE TABLE tb_colores (
     id_color INT PRIMARY KEY AUTO_INCREMENT,
     nombre_color VARCHAR(255),
@@ -106,9 +87,7 @@ CREATE TABLE tb_colores (
     CONSTRAINT fk_id_color_id_sub_categorias FOREIGN KEY (id_sub_categoria) REFERENCES tb_sub_categorias(id_sub_categoria)
 );
 
- 
---tabla estado de tallas
-------
+
 CREATE TABLE tb_tallas (
     id_talla INT PRIMARY KEY AUTO_INCREMENT,
     numero_talla VARCHAR(255),
@@ -116,9 +95,6 @@ CREATE TABLE tb_tallas (
     CONSTRAINT fk_id_talla_id_sub_categorias FOREIGN KEY (id_sub_categoria) REFERENCES tb_sub_categorias(id_sub_categoria)
 );
 
- 
---tabla estado de productos 
-------
 CREATE TABLE tb_productos (
     id_producto INT PRIMARY KEY AUTO_INCREMENT,
     nombre_producto VARCHAR(255) NOT NULL,
@@ -131,9 +107,6 @@ CREATE TABLE tb_productos (
     CONSTRAINT rest_check_cant_producto CHECK (cant_producto)
 );
 
- 
---tabla estado de detalle-productos
-------
 CREATE TABLE tb_detalle_productos (
     id_detalle_producto INT PRIMARY KEY AUTO_INCREMENT,
     existencias INT NOT NULL CHECK (existencias >= 0),
@@ -148,8 +121,7 @@ CREATE TABLE tb_detalle_productos (
 );
 
  
---tabla estado de detalle-pedidos
-------
+
 CREATE TABLE tb_detalle_pedido (
     id_detalle INT PRIMARY KEY AUTO_INCREMENT,
     cantidad_producto INT NOT NULL CHECK (cantidad_producto >= 0),
@@ -161,9 +133,7 @@ CREATE TABLE tb_detalle_pedido (
     CONSTRAINT rest_check_cantidad_producto CHECK (cantidad_producto)
 );
 
- 
---tabla estado de valoracion
-------
+
 CREATE TABLE tb_valoracion (
     id_valoracion INT PRIMARY KEY AUTO_INCREMENT,
     comentario_cliente VARCHAR(255) NOT NULL,
@@ -173,13 +143,6 @@ CREATE TABLE tb_valoracion (
     CONSTRAINT fk_id_detalle_p_id_valo FOREIGN KEY(id_detalle_p) REFERENCES tb_detalle_pedido(id_detalle),
     CONSTRAINT fk_id_estado_valo_id_valoracion FOREIGN KEY (id_estado_valo) REFERENCES tb_estado_valo(id_estado_valo)
 );
-
-
-
-
-----------------------
----Procedimiento almacenado para actualizar precio de producto 
-----------------------
 
 
 DELIMITER //
