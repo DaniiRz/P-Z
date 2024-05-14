@@ -18,46 +18,61 @@ class ProductoHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto, nombre_categoria, estado_producto
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
+        $sql = 'SELECT idProducto, nombreProducto, NombreCategoria, nombreSubCategoria, existencias
+                FROM tbProductos
+                INNER JOIN Subcategoria USING(idSubCategoria)
                 WHERE nombre_producto LIKE ? OR descripcion_producto LIKE ?
                 ORDER BY nombre_producto';
         $params = array($value, $value);
-        //return Database::getRows($sql, $params);
+        return Database::getRows($sql, $params);
     }
 
     public function createRows()
     {
-        $sql = 'INSERT INTO producto(nombre_producto, descripcion_producto, precio_producto, existencias_producto, imagen_producto, estado_producto, id_categoria, id_administrador)
-        VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
-        //$params = array($this->nombre, $this->descripcion, $this->precio, $this->existencias, $this->imagen, $this->estado, $this->categoria, $_SESSION['idAdministrador']);
-        //return Database::executeRow($sql, $params);
+        $sql = 'CALL InsertarDatos(nombreCategoria, nombreSubCategoria, nombreProducto, DescProducto);
+        VALUES (?, ?, ?, ?)';
+        $params = array($this->nombre, $this->idsubcategoria, $this->nombreproducto, $this->descproducto);
+        return Database::executeRow($sql, $params);
     }
 
     public function updateRows()
     {
-        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto, nombre_categoria, estado_producto
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                ORDER BY nombre_producto';
-        //return Database::getRows($sql);
+        $sql = 'UPDATE P.idProducto, P.nombreProducto, D.existencias, SC.nombreSubCategoria, C.nombreCategoria
+                FROM tbProductos AS P 
+                JOIN tbDetalleProducto AS D ON P.idProducto = D.idProducto
+                JOIN tbSubCategoria AS SC ON P.idSubCategoria = SC.idSubCategoria
+                JOIN tbCategoria AS C ON SC.idCategoria = C.idCategoria';
+        return Database::getRows($sql);
     }
 
     public function deleteRows()
     {
-        $sql = 'DELETE FROM producto
-                WHERE id_producto = ?';
+        $sql = 'DELETE FROM tbDetalleProducto D
+                INNER JOIN tbProductos P
+                ON D.idProducto = P.idProducto
+                WHERE P.idProducto = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
 
     public function readAll()
     {
-        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto, nombre_categoria, estado_producto
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                ORDER BY nombre_producto';
-        //return Database::getRows($sql);
+        $sql = 'SELECT P.idProducto, P.nombreProducto, D.existencias, SC.nombreSubCategoria, C.nombreCategoria
+                FROM tbProductos AS P 
+                JOIN tbDetalleProducto AS D ON P.idProducto = D.idProducto
+                JOIN tbSubCategoria AS SC ON P.idSubCategoria = SC.idSubCategoria
+                JOIN tbCategoria AS C ON SC.idCategoria = C.idCategoria';
+        return Database::getRows($sql);
+    }
+
+    public function readOne()
+    {
+        $sql = 'SELECT P.nombreProducto, P.DescProducto, D.existencias, D.imgProducto C.nombreColor, T.nombreTalla
+                FROM tbDetalleProducto AS D 
+                JOIN tbProducto AS P ON D.idProducto = P.idProducto
+                JOIN tbColor AS C ON D.idColor = C.idColor
+                JOIN tbTalla AS T ON D.idTalla = T.idCategoria
+                WHERE idProducto = ? ';
+        return Database::getRow($sql);
     }
 }

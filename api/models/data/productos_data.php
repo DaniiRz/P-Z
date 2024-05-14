@@ -42,7 +42,7 @@ class ProductoData extends ProductoHandler
             return false;
         } 
         
-        /*elseif (Validator::validateLength($value, $min, $max)) {
+        elseif (Validator::validateLength($value, $min, $max)) {
             $this->nombre = $value;
             return true;
         } 
@@ -50,7 +50,7 @@ class ProductoData extends ProductoHandler
         else {
             $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
             return false;
-        }*/
+        }
     }
 
     public function setDescproducto($value){
@@ -59,7 +59,7 @@ class ProductoData extends ProductoHandler
             return false;
         } 
         
-        /*elseif (Validator::validateLength($value, $min, $max)) {
+        elseif (Validator::validateLength($value, $min, $max)) {
             $this->descripcion = $value;
             return true;
         } 
@@ -67,7 +67,7 @@ class ProductoData extends ProductoHandler
         else {
             $this->data_error = 'La descripción debe tener una longitud entre ' . $min . ' y ' . $max;
             return false;
-        }*/
+        }
     }
 
     public function setPrecioproducto($value){
