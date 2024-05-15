@@ -19,6 +19,17 @@ function detalleProducto() {
             <p><strong>Colores Disponibles:</strong> Azul, Rojo, Verde</p>
             <p><strong>Tallas Disponibles:</strong> S, M, L, XL</p>
             <p><strong>Precio:</strong> $5.50</p>
+            <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary btn-sm" type="button"
+                            onclick="cambiarCantidad(-1)">-</button>
+                    </div>
+                    <input type="text" id="cantidad" class="form-control-sm text-center" value="1">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary btn-sm" type="button"
+                            onclick="cambiarCantidad(1)">+</button>
+                    </div>
+                </div>
             <button type="button" class="btn btn-outline-info" data-toggle="modal"
                 data-target="#formularioModal">Agregar al carrito</button>
         </div>
