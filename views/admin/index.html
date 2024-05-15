@@ -14,42 +14,75 @@
 </head>
 
 <body>
-    <form>
-        <header>
-            <div id="navbar">
-                <nav class="navbar fixed-top" style="z-index: 999;">
-                    <div class="container-fluid text-center mx-auto d-block">
-                        <img src="../../resources/img/pull&zara.png" alt="" width="350px">
-                    </div>
-                </nav>
-            </div>
-        </header>
-        <!--imagen de index-->
-        <div class="container pt-5">
-            <div class="row justify-content-center">
-                <div class="py-4 left-container">
-                    <img src="../../resources/img/admin.png">
+    <header>
+        <div id="navbar">
+            <nav class="navbar fixed-top" style="z-index: 999;">
+                <div class="container-fluid text-center mx-auto d-block">
+                    <img src="../../resources/img/pull&zara.png" alt="" width="350px">
                 </div>
-                <div class="col-md-6 py-5 mt-5" style="z-index: 999;">
-                    <!-- formulario con labels flotantes -->
-                    <div class="form-floating mt-5">
-                        <input type="email" class="form-control" id="correo" placeholder="name@example.com">
-                        <label for="correo">Correo Electrónico</label>
-                    </div>
-                    <div class="form-floating mt-3">
-                        <input type="password" class="form-control" id="contrasena" placeholder="Password">
-                        <label for="contrasena">Contraseña</label>
-                    </div>
-                    <div class="text-center mt-3">
-                        <button type="button" class="btn btn-outline-dark" id="btnInicio"
-                            onclick="validarInicios()">Ingresar</button>
-                    </div>
-                </div>
-            </div>
+            </nav>
         </div>
-    </form>
+    </header>
+    <main>
+        <!-- Título del contenido principal -->
+        <h3 id="mainTitle"></h3>
+        <!-- Formulario para iniciar sesión -->
+        <form class="py-4" id="loginForm">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <!-- formulario con labels flotantes -->
+                        <div class="form-floating mt-5">
+                            <input type="email" class="form-control" id="correo" placeholder="name@example.com">
+                            <label for="correo">Correo Electrónico</label>
+                        </div>
+                        <div class="form-floating mt-3">
+                            <input type="password" class="form-control" id="contrasena" placeholder="Password">
+                            <label for="contrasena">Contraseña</label>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button type="button" class="btn btn-outline-dark" id="btnInicio"
+                                onclick="validarInicios()">Ingresar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- Formulario para crear el primer administrador -->
+        <form class="d-none" id="signupForm">
+            <div class="row g-3">
+                <div class="col-sm-12 col-md-6">
+                    <label for="nombreAdministrador" class="form-label">Nombre</label>
+                    <input id="nombreAdministrador" type="text" name="nombreAdministrador" class="form-control"
+                        required>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label for="apellidoAdministrador" class="form-label">Apellido</label>
+                    <input id="apellidoAdministrador" type="text" name="apellidoAdministrador" class="form-control"
+                        required>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label for="correoAdministrador" class="form-label">Correo</label>
+                    <input id="correoAdministrador" type="email" name="correoAdministrador" class="form-control"
+                        required>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label for="claveAdministrador" class="form-label">Contraseña</label>
+                    <input id="claveAdministrador" type="password" name="claveAdministrador" class="form-control"
+                        required>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label for="confirmarClave" class="form-label">Confirmar contraseña</label>
+                    <input id="confirmarClave" type="password" name="confirmarClave" class="form-control" required>
+                </div>
+                <div class="text-center">
+                    <button type="reset" class="btn btn-secondary"><i class="bi bi-x-square"></i> Cancelar</button>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar</button>
+                </div>
+            </div>
+        </form>
 
-
+    </main>
 
 
 
