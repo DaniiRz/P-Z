@@ -1,4 +1,4 @@
-body{
+body {
     background-color: white;
 }
 
@@ -8,24 +8,7 @@ body{
     align-items: center;
     height: 100vh;
 }
-.left-container, .right-container{
-    padding:20px;
-}
-.left-container {
-    flex: 1;
-    padding-right: 10px;
-    background-color: white;
-}
- 
-.left-container img{
-    width: 100%;
-    height: auto;
-}
-.right-container {
-    flex: 1;
-    padding-left: 10px;
-    background-color: #e0e0e0;
-}
+
 #login-form {
     padding: 20px;
     background-color: #fff;
@@ -33,11 +16,33 @@ body{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.form-control{
+.navbar {
+    background-color: white; /* O el color que prefieras para tu navbar */
+}
+
+.navbar img {
+    max-height: 250px;
+    width: auto;
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+    display: block;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
     border-radius: 20px;
 }
 
+.form-floating label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-.btn{
+.btn {
     border-radius: 7px;
 }
