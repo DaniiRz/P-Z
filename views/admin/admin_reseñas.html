@@ -13,13 +13,30 @@
     <link rel="stylesheet" href="../../resources/css/index.css">
     <link rel="stylesheet" href="../../resources/css/admin_usuarios.css">
     <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
-
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../../resources/css/principal_admin.css">
     <script src="../../controllers/utils/admin.js" defer></script>
 
+    <style>
+        body {
+            overflow-y: hidden; /* Deshabilita el desplazamiento vertical */
+        }
+
+        .form-inline input[type="search"] {
+            width: 150px; /* Ajusta el ancho de la barra de búsqueda */
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Establece la altura mínima de la sección principal */
+        }
+    </style>
 </head>
 
 <body>
@@ -28,121 +45,107 @@
     </header>
 
     <main class="py-5">
-        <div id="textos" class="container-fluid py-5 text-center">
-            <div class="row justify-content-center py-5">
-                <h3>Administrar Reseñas</h3>
-            </div>
-            <div class="col-sm-12 col-md-6 text-end">
-                <!-- Botón para abrir una caja de diálogo al momento de crear un nuevo registro -->
-                <button type="button" class="btn btn-primary" onclick="openCreate()">
-                    <i class="bi bi-plus-square-fill"></i>
-                </button>
-            </div>
-            <div>
-                <div class="dropdown">
-                    <button class="btn btn-outline-success dropdown-toggle" type="button" id="dropdownMenu2"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Categoría
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <li><button class="dropdown-item" type="button">Action</button></li>
-                        <li><button class="dropdown-item" type="button">Another action</button></li>
-                        <li><button class="dropdown-item" type="button">Something else here</button></li>
-                    </ul>
+        <div class="container mt-5">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <form class="form-inline" id="searchForm">
+                        <input type="search" class="form-control form-control-sm mr-2" placeholder="Buscar...">
+                        <a href="#" class="btn btn-primary" id="openModalButton">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </form>
                 </div>
-
             </div>
-            <div class="container table-container mt-5">
-                <div class="container table-container mb-2">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped" id="tablaReseñas">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Producto</th>
-                                    <th scope="col">Usuario</th>
-                                    <th scope="col">Correo</th>
-                                    <th scope="col">Comentario</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Estado</th>
-                                    <th scope="col">Acción</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td> </td>
-                                    <td>Usuario 1</td>
-                                    <td>usuario1@example.com</td>
-                                    <td>No me gusto</td>
-                                    <td>12-03-2023</td>
-                                    <td>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="switchInicial" checked
-                                                onchange="toggleSwitchColorStatus(this)">
-                                            <label class="form-check-label" for="switchInicial"></label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger btn-sm"><a href=""><img
-                                                    src="../../resources/img/papelera-xmark.png"
-                                                    alt="Icono de eliminar"></a></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td> </td>
-                                    <td>Usuario 2</td>
-                                    <td>usuario2@example.com</td>
-                                    <td>La entrega se paso de la fecha</td>
-                                    <td>12-03-2023</td>
-                                    <td>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="switchInicial" checked
-                                                onchange="toggleSwitchColorStatus(this)">
-                                            <label class="form-check-label" for="switchInicial"></label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger btn-sm"><a href=""><img
-                                                    src="../../resources/img/papelera-xmark.png"
-                                                    alt="Icono de eliminar"></a></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td> </td>
-                                    <td>Karla Quintanilla</td>
-                                    <td>karla@example.com</td>
-                                    <td>El producto cumplió con todas mis expectativas. Muy satisfecha con mi compra.
-                                    </td>
-                                    <td>12-03-2023</td>
-                                    <td>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="switchInicial" checked
-                                                onchange="toggleSwitchColorStatus(this)">
-                                            <label class="form-check-label" for="switchInicial"></label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger btn-sm"><a href=""><img
-                                                    src="../../resources/img/papelera-xmark.png"
-                                                    alt="Icono de eliminar"></a></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+            <div class="table-responsive-md">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Usuario</th>
+                            <th>Correo</th>
+                            <th>Comentario</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="https://via.placeholder.com/50" alt="Imagen" class="img-fluid"></td>
+                            <td>Usuario1</td>
+                            <td>usuario1@example.com</td>
+                            <td>Comentario de ejemplo 1</td>
+                            <td><button class="btn btn-warning btn-disable"><i class="fas fa-ban"></i> Deshabilitar</button></td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://via.placeholder.com/50" alt="Imagen" class="img-fluid"></td>
+                            <td>Usuario2</td>
+                            <td>usuario2@example.com</td>
+                            <td>Comentario de ejemplo 2</td>
+                            <td><button class="btn btn-warning btn-disable"><i class="fas fa-ban"></i> Deshabilitar</button></td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://via.placeholder.com/50" alt="Imagen" class="img-fluid"></td>
+                            <td>Usuario3</td>
+                            <td>usuario3@example.com</td>
+                            <td>Comentario de ejemplo 3</td>
+                            <td><button class="btn btn-warning btn-disable"><i class="fas fa-ban"></i> Deshabilitar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reviewModalLabel">Crear nueva reseña</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="usuario">Usuario</label>
+                                <input type="text" class="form-control" id="usuario" placeholder="Ingresa el usuario">
+                            </div>
+                            <div class="form-group">
+                                <label for="correo">Correo</label>
+                                <input type="email" class="form-control" id="correo" placeholder="Ingresa el correo">
+                            </div>
+                            <div class="form-group">
+                                <label for="comentario">Comentario</label>
+                                <textarea class="form-control" id="comentario" rows="3"
+                                    placeholder="Ingresa el comentario"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="imagen">Adjuntar imagen</label>
+                                <input type="file" class="form-control-file" id="imagen">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar reseña</button>
                     </div>
                 </div>
             </div>
+        </div>
     </main>
-    <footer id="footerIndex" class="pt-3">
+
+   
 
 
-    </footer>
+    <footer id="footerIndex" class="pt-3"></footer>
+
+    <script src="../../controllers/utils/cargar_menu.js"></script>
+    <script src="../../controllers/admin/reseñas.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
-
-<script src="../../controllers/utils/cargar_menu.js"></script>
-<script src="../../controllers/utils/administrar_valoraciones.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
 
 </html>
