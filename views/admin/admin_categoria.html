@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Título del documento -->
+    <title>PULL&ZARA - Categorias</title>
+    <!-- Metadatos de la página web -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Carlos Quintanilla">
+    <meta name="author" content="Daniela Alexandra">
+    <meta name="author" content="Jhonny">
+    <link rel="stylesheet" href="../../resources/css/index.css">
+    <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../resources/css/principal_admin.css">
+
+</head>
+
+<body>
+    <header>
+
+        <div id="menuContent"></div>
+    </header>
+
+
+    <!-- Contenido principal -->
+    <main class="pt-5">
+        <div id="textos" class="container-fluid py-5 text-center">
+            <div class="row justify-content-center py-5">
+                <h3> Administra Categorías </h3>
+            </div>
+        </div>
+        <div class="container mb-3 justify-content-center">
+            <div class="container mb-3 justify-content-center">
+
+                <!-- Modal Agregar -->
+                <div class="modal fade" id="ModalAgregar" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Agregar Categoría</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="nombre">Categoría:</label>
+                                        <input type="text" class="form-control" id="NombreCategoria" placeholder="Agrega una categoria">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                    aria-label="Close">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Editar -->
+                <div class="modal fade" id="ModalEditar" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar Categoría</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="nombre">Categoría:</label>
+                                        <input type="text" class="form-control" id="NombreCategoria" placeholder="">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                    aria-label="Close">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Editar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de Categorías -->
+            <div class="container-fluid mt-3">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <span class="align-self-center">Sub-Categoria 1</span>
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                            data-bs-target="#ModalAgregar">
+                                            <img src="../../resources/img/agregar.png" alt="" width="20px">
+                                        </button>
+                                    </div>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <span class="align-self-center">Sub-Categoria 2</span>
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                            data-bs-target="#ModalAgregar">
+                                            <img src="../../resources/img/agregar.png" alt="" width="20px">
+                                        </button>
+                                    </div>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <span class="align-self-center">Sub-Categoria 3</span>
+                                        <button type="button" class="btn btn-light" data-bs-toggle="modal"
+                                            data-bs-target="#ModalAgregar">
+                                            <img src="../../resources/img/agregar.png" alt="" width="20px">
+                                        </button>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="align-middle">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <span class="align-self-start">Categoría 1</span>
+                                        <div>
+                                            <button class="btn btn-outline-primary btn-sm"><img
+                                                    src="../../resources/img/lapiz.png" alt="Editar" data-bs-toggle="modal" data-bs-target="#ModalEditar"
+                                                    width="24px"></button>
+                                            <button class="btn btn-outline-danger btn-sm"><img
+                                                    src="../../resources/img/basura.png" alt="Eliminar"
+                                                    width="24px"></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <span class="align-self-start">Categoría 2</span>
+                                        <div>
+                                            <button class="btn btn-outline-primary btn-sm"><img
+                                                    src="../../resources/img/lapiz.png" alt="Editar" data-bs-toggle="modal" data-bs-target="#ModalEditar"
+                                                    width="24px"></button>
+                                            <button class="btn btn-outline-danger btn-sm"><img
+                                                    src="../../resources/img/basura.png" alt="Eliminar"
+                                                    width="24px"></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <span class="align-self-start">Categoría 3</span>
+                                        <div>
+                                            <button class="btn btn-outline-primary btn-sm"><img
+                                                    src="../../resources/img/lapiz.png" alt="Editar" data-bs-toggle="modal" data-bs-target="#ModalEditar"
+                                                    width="24px"></button>
+                                            <button class="btn btn-outline-danger btn-sm"><img
+                                                    src="../../resources/img/basura.png" alt="Eliminar"
+                                                    width="24px"></button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <span class="align-self-start">Categoría 1</span>
+                                        <div>
+                                            <button class="btn btn-outline-primary btn-sm"><img
+                                                    src="../../resources/img/lapiz.png" alt="Editar" data-bs-toggle="modal" data-bs-target="#ModalEditar"
+                                                    width="24px"></button>
+                                            <button class="btn btn-outline-danger btn-sm"><img
+                                                    src="../../resources/img/basura.png" alt="Eliminar"
+                                                    width="24px"></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <span class="align-self-start">Categoría 2</span>
+                                        <div>
+                                            <button class="btn btn-outline-primary btn-sm"><img
+                                                    src="../../resources/img/lapiz.png" alt="Editar" data-bs-toggle="modal" data-bs-target="#ModalEditar"
+                                                    width="24px"></button>
+                                            <button class="btn btn-outline-danger btn-sm"><img
+                                                    src="../../resources/img/basura.png" alt="Eliminar"
+                                                    width="24px"></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <span class="align-self-start">Categoría 3</span>
+                                        <div>
+                                            <button class="btn btn-outline-primary btn-sm"><img
+                                                    src="../../resources/img/lapiz.png" alt="Editar" data-bs-toggle="modal" data-bs-target="#ModalEditar"
+                                                    width="24px"></button>
+                                            <button class="btn btn-outline-danger btn-sm"><img
+                                                    src="../../resources/img/basura.png" alt="Eliminar"
+                                                    width="24px"></button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="my-5">
+        <div id="footerIndex"></div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../controllers/utils/admin.js" defer></script>
+    <script src="../../controllers/utils/cargar_menu.js"></script>
+</body>
+
+</html>

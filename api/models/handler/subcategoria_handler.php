@@ -3,7 +3,7 @@
 // Se incluye la clase
 require_once ('../../helpers/database.php');
 
-class CategoriaHandler
+class SubCategoriaHandler
 {
 
     // Declaracion de atributos
@@ -21,17 +21,35 @@ class CategoriaHandler
 
     public function deleteRows()
     {
-        $sql = 'DELETE FROM tb_sub_categorias
-                WHERE id_sub_categoria = ?';
+        $sqlIf = 'SELECT c.id_categoria
+                FROM tb_categorias c
+                INNER JOIN tb_sub_categorias s ON c.id_categoria = s.id_categoria
+                WHERE s.id_sub_categoria = ?',
         $params = array($this->id);
-        return Database::executeRow($sql, $params);
+        return Database::executeRow($sqlIF, $params);
+
+        // Verificar si existen datos relacionados
+        if ($result->num_rows > 0) {
+
+            // Si hay datos relacionados, mostrar un mensaje de error o realizar alguna acción adicional
+            echo "No se puede eliminar la subcategoría porque existen datos relacionados en la tabla 'categoria'.";
+        }
+        
+        else {
+
+            // Si no hay datos relacionados, proceder con la eliminación de la subcategoría
+            $sql = 'DELETE nombre_sub_categoria
+                    FROM tb_sub_categorias
+                    WHERE id_sub_categoria = ?';
+            return Database::executeRow($sql, $params);
+        }
     }
 
     public function updateRows()
     {
-        $sql = 'UPDATE nombre_sub_categoria
-                FROM tb_sub_categorias
-                WHERE P.id_producto = ?';
+        $sql = 'UPDATE tb_sub_categorias 
+                SET nombre_sub_categoria = ? 
+                WHERE id_producto = ?';
         $params = array($this->nombresubcategoria, $this->id);
         return Database::executeRow($sql, $params);
     }
