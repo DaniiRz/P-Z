@@ -51,7 +51,7 @@
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tableBody">
                             <tr>
                                 <td class="text-center">Producto 1</td>
                                 <td class="text-center">Categoría 1</td>
@@ -108,11 +108,11 @@
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+                        <h5 class="modal-title">Agregar Producto</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="saveForm">
                             <div class="row col-12">
                                 <div class="col-6">
                                     <div class="mb-3">
@@ -136,7 +136,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="subcategoria" class="form-label">Sub-Categoría</label>
-                                        <select class="form-select" id="subcategoria">
+                                        <select class="form-select" id="subcategoriaProducto">
                                             <option selected>Elija una sub-categoría</option>
                                             <option value="subcategoria1">Sub-Categoría 1</option>
                                             <option value="subcategoria2">Sub-Categoría 2</option>
@@ -147,7 +147,7 @@
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label for="categoria" class="form-label">Categoría</label>
-                                        <select class="form-select" id="categoria">
+                                        <select class="form-select" id="categoriaProducto">
                                             <option selected>Elija una categoría</option>
                                             <option value="categoria1">Categoría 1</option>
                                             <option value="categoria2">Categoría 2</option>
@@ -156,31 +156,31 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="descripcion" class="form-label">Descripción del Producto</label>
-                                        <textarea class="form-control" id="descripcion" rows="1"></textarea>
+                                        <textarea class="form-control" id="descProducto" rows="1"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="categoria" class="form-label">Imagen del producto</label>
                                         <div class="input-group mb-3">
-                                            <input type="file" class="form-control" id="inputGroupFile01">
+                                            <input type="file" class="form-control" id="imageProducto">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="categoria" class="form-label">Color</label>
                                         <div class="input-group mb-3">
-                                            <select class="form-select" id="inputGroupSelect02">
+                                            <select class="form-select" id="colorProducto">
                                                 <option selected>...</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
                                             </select>
-                                            <input type="color" class="form-control form-control-color" id="myColor"
+                                            <input type="color" class="form-control form-control-color"
                                                 value="#FFFFFF" title="Choose a color">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="categoria" class="form-label">Talla</label>
                                         <div class="input-group mb-3">
-                                            <select class="form-select" id="inputGroupSelect02">
+                                            <select class="form-select" id="tallaProducto">
                                                 <option selected>...</option>
                                                 <option value="1">S</option>
                                                 <option value="2">M</option>
@@ -194,7 +194,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary ps-5 pe-5" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-outline-primary ps-5 pe-5">Agregar</button>
+                        <button type="submit" class="btn btn-outline-primary ps-5 pe-5">Agregar</button>
                     </div>
                 </div>
             </div>
@@ -205,11 +205,11 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="btnEditarLabel">Editar Producto</h5>
+                        <h5 class="modal-title">Editar Producto</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="editForm">
                             <div class="row col-12">
                                 <div class="col-6">
                                     <div class="mb-3">
@@ -233,7 +233,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="subcategoria" class="form-label">Sub-Categoría</label>
-                                        <select class="form-select" id="subcategoria">
+                                        <select class="form-select" id="subcategoriaProducto">
                                             <option selected>Elija una sub-categoría</option>
                                             <option value="subcategoria1">Sub-Categoría 1</option>
                                             <option value="subcategoria2">Sub-Categoría 2</option>
@@ -244,7 +244,7 @@
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label for="categoria" class="form-label">Categoría</label>
-                                        <select class="form-select" id="categoria">
+                                        <select class="form-select" id="categoriaProducto">
                                             <option selected>Elija una categoría</option>
                                             <option value="categoria1">Categoría 1</option>
                                             <option value="categoria2">Categoría 2</option>
@@ -253,31 +253,31 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="descripcion" class="form-label">Descripción del Producto</label>
-                                        <textarea class="form-control" id="descripcion" rows="1"></textarea>
+                                        <textarea class="form-control" id="descProducto" rows="1"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="categoria" class="form-label">Imagen del producto</label>
                                         <div class="input-group mb-3">
-                                            <input type="file" class="form-control" id="inputGroupFile01">
+                                            <input type="file" class="form-control" id="imageProducto">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="categoria" class="form-label">Color</label>
                                         <div class="input-group mb-3">
-                                            <select class="form-select" id="inputGroupSelect02">
+                                            <select class="form-select" id="colorProducto">
                                                 <option selected>...</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
                                             </select>
-                                            <input type="color" class="form-control form-control-color" id="myColor"
+                                            <input type="color" class="form-control form-control-color"
                                                 value="#FFFFFF" title="Choose a color">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="categoria" class="form-label">Talla</label>
                                         <div class="input-group mb-3">
-                                            <select class="form-select" id="inputGroupSelect02">
+                                            <select class="form-select" id="tallaProducto">
                                                 <option selected>...</option>
                                                 <option value="1">S</option>
                                                 <option value="2">M</option>
@@ -291,7 +291,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary ps-5 pe-5" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-outline-primary ps-5 pe-5">Editar</button>
+                        <button type="submit" class="btn btn-outline-primary ps-5 pe-5">Editar</button>
                     </div>
                 </div>
             </div>
@@ -302,11 +302,11 @@
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="btnDetallesLabel">Detalles del Producto</h5>
+                        <h5 class="modal-title">Detalles del Producto</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="viewForm">
                             <div class="row col-12">
                                 <div class="col">
                                     <div class="mb-3">
@@ -330,7 +330,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="subcategoria" class="form-label">Sub-Categoría</label>
-                                        <select class="form-select" id="subcategoria">
+                                        <select class="form-select" id="subcategoriaProducto">
                                             <option selected>Elija una sub-categoría</option>
                                             <option value="subcategoria1">Sub-Categoría 1</option>
                                             <option value="subcategoria2">Sub-Categoría 2</option>
@@ -341,7 +341,7 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <label for="categoria" class="form-label">Categoría</label>
-                                        <select class="form-select" id="categoria">
+                                        <select class="form-select" id="categoriaProducto">
                                             <option selected>Elija una categoría</option>
                                             <option value="categoria1">Categoría 1</option>
                                             <option value="categoria2">Categoría 2</option>
@@ -350,25 +350,25 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="descripcion" class="form-label">Descripción del Producto</label>
-                                        <textarea class="form-control" id="descripcion" rows="8"></textarea>
+                                        <textarea class="form-control" id="descProducto" rows="8"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="categoria" class="form-label">Color</label>
                                         <div class="input-group mb-3">
-                                            <select class="form-select" id="inputGroupSelect02">
+                                            <select class="form-select" id="colorProducto">
                                                 <option selected>...</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
                                             </select>
-                                            <input type="color" class="form-control form-control-color" id="myColor"
+                                            <input type="color" class="form-control form-control-color"
                                                 value="#FFFFFF" title="Choose a color">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="categoria" class="form-label">Talla</label>
                                         <div class="input-group mb-3">
-                                            <select class="form-select" id="inputGroupSelect02">
+                                            <select class="form-select" id="tallaProducto">
                                                 <option selected>...</option>
                                                 <option value="1">S</option>
                                                 <option value="2">M</option>
@@ -380,7 +380,7 @@
                                 <div class="col text-center">
                                     <div class="mb-3">
                                         <label for="categoria" class="form-label">Imagen del producto</label>
-                                        <img src="../../resources/img/jeans2.png" alt="" height="400px">
+                                        <img src="../../resources/img/jeans2.png" alt="" height="400px" id="imageProducto">
                                     </div>
                                 </div>
                             </div>
