@@ -19,6 +19,11 @@
     align-items: center;
     padding-left: 30px;
   }
+
+  #descripcion {
+    height: auto;
+    max-height: 123px;
+  }
   
   .message, .signin {
     color: rgba(88, 87, 87, 0.822);

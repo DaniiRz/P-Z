@@ -31,12 +31,12 @@
         <div class="container mt-3">
             <!-- Botón para agregar subcategoría -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <img src="../../resources/img/agregar.png" alt="">
+                <img src="../../resources/img/agregar.png" alt="" class="me-2">
                 Agregar Producto
             </button>
         </div>
 
-        <!-- contenedor con tabla de productos -->
+        <!-- Contenedor con tabla de productos -->
         <div class="container mt-5">
             <div class="container table-container mb-2">
                 <div class="table-responsive">
@@ -105,97 +105,193 @@
 
         <!-- Modal para agregar producto -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Detalles del Producto</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="mb-3">
-                                <label for="nombreProducto" class="form-label">Nombre del Producto</label>
-                                <input type="text" class="form-control" id="nombreProducto">
-                            </div>
-                            <div class="mb-3">
-                                <label for="categoria" class="form-label">Categoría</label>
-                                <select class="form-select" id="categoria">
-                                    <option selected>Elija una categoría</option>
-                                    <option value="categoria1">Categoría 1</option>
-                                    <option value="categoria2">Categoría 2</option>
-                                    <option value="categoria3">Categoría 3</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="subcategoria" class="form-label">Sub-Categoría</label>
-                                <select class="form-select" id="subcategoria">
-                                    <option selected>Elija una sub-categoría</option>
-                                    <option value="subcategoria1">Sub-Categoría 1</option>
-                                    <option value="subcategoria2">Sub-Categoría 2</option>
-                                    <option value="subcategoria3">Sub-Categoría 3</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="descripcion" class="form-label">Descripción del Producto</label>
-                                <textarea class="form-control" id="descripcion" rows="3"></textarea>
+                            <div class="row col-12">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="nombreProducto" class="form-label">Nombre del Producto</label>
+                                        <input type="text" class="form-control" id="nombreProducto">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nombreProducto" class="form-label">Cantidad</label>
+                                        <input type="number" class="form-control" id="cantidadProducto">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nombreProducto" class="form-label">Precio</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="precioProducto">
+                                            <span class="input-group-text">$</span>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nombreProducto" class="form-label">Existencias</label>
+                                        <input type="number" class="form-control" id="existenciasProducto">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="subcategoria" class="form-label">Sub-Categoría</label>
+                                        <select class="form-select" id="subcategoria">
+                                            <option selected>Elija una sub-categoría</option>
+                                            <option value="subcategoria1">Sub-Categoría 1</option>
+                                            <option value="subcategoria2">Sub-Categoría 2</option>
+                                            <option value="subcategoria3">Sub-Categoría 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="categoria" class="form-label">Categoría</label>
+                                        <select class="form-select" id="categoria">
+                                            <option selected>Elija una categoría</option>
+                                            <option value="categoria1">Categoría 1</option>
+                                            <option value="categoria2">Categoría 2</option>
+                                            <option value="categoria3">Categoría 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="descripcion" class="form-label">Descripción del Producto</label>
+                                        <textarea class="form-control" id="descripcion" rows="1"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="categoria" class="form-label">Imagen del producto</label>
+                                        <div class="input-group mb-3">
+                                            <input type="file" class="form-control" id="inputGroupFile01">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="categoria" class="form-label">Color</label>
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="inputGroupSelect02">
+                                                <option selected>...</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                            <input type="color" class="form-control form-control-color" id="myColor"
+                                                value="#FFFFFF" title="Choose a color">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="categoria" class="form-label">Talla</label>
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="inputGroupSelect02">
+                                                <option selected>...</option>
+                                                <option value="1">S</option>
+                                                <option value="2">M</option>
+                                                <option value="3">L</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-outline-primary">Guardar Cambios</button>
+                        <button type="button" class="btn btn-outline-secondary ps-5 pe-5" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-outline-primary ps-5 pe-5">Agregar</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Modal para editar detalles de producto -->
+        <!-- Modal para editar producto -->
         <div class="modal fade" id="btnEditar" tabindex="-1" aria-labelledby="btnEditarlLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="btnEditarLabel">Detalles del Producto</h5>
+                        <h5 class="modal-title" id="btnEditarLabel">Editar Producto</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-
                         <form>
-                            <div class="mb-3">
-                                <label for="categoria" class="form-label">Color</label>
-                                <select class="form-select" id="categoria">
-                                    <option selected>Elija una categoría</option>
-                                    <option value="categoria1">Categoría 1</option>
-                                    <option value="categoria2">Categoría 2</option>
-                                    <option value="categoria3">Categoría 3</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="subcategoria" class="form-label">Talla</label>
-                                <select class="form-select" id="subcategoria">
-                                    <option selected>Elija una sub-categoría</option>
-                                    <option value="subcategoria1">Sub-Categoría 1</option>
-                                    <option value="subcategoria2">Sub-Categoría 2</option>
-                                    <option value="subcategoria3">Sub-Categoría 3</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="existencias" class="form-label">Existencias</label>
-                                <input type="number" class="form-control" id="existencias">
-                            </div>
-                            <div class="mb-3">
-                                <label for="descripcion" class="form-label">Descripción del Producto</label>
-                                <textarea class="form-control" id="descripcion" rows="3"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="imagen" class="form-label">Adjuntar Imagen del Producto</label>
-                                <input type="file" class="form-control" id="imagen">
+                            <div class="row col-12">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="nombreProducto" class="form-label">Nombre del Producto</label>
+                                        <input type="text" class="form-control" id="nombreProducto">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nombreProducto" class="form-label">Cantidad</label>
+                                        <input type="number" class="form-control" id="cantidadProducto">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nombreProducto" class="form-label">Precio</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="precioProducto">
+                                            <span class="input-group-text">$</span>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nombreProducto" class="form-label">Existencias</label>
+                                        <input type="number" class="form-control" id="existenciasProducto">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="subcategoria" class="form-label">Sub-Categoría</label>
+                                        <select class="form-select" id="subcategoria">
+                                            <option selected>Elija una sub-categoría</option>
+                                            <option value="subcategoria1">Sub-Categoría 1</option>
+                                            <option value="subcategoria2">Sub-Categoría 2</option>
+                                            <option value="subcategoria3">Sub-Categoría 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="categoria" class="form-label">Categoría</label>
+                                        <select class="form-select" id="categoria">
+                                            <option selected>Elija una categoría</option>
+                                            <option value="categoria1">Categoría 1</option>
+                                            <option value="categoria2">Categoría 2</option>
+                                            <option value="categoria3">Categoría 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="descripcion" class="form-label">Descripción del Producto</label>
+                                        <textarea class="form-control" id="descripcion" rows="1"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="categoria" class="form-label">Imagen del producto</label>
+                                        <div class="input-group mb-3">
+                                            <input type="file" class="form-control" id="inputGroupFile01">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="categoria" class="form-label">Color</label>
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="inputGroupSelect02">
+                                                <option selected>...</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                            <input type="color" class="form-control form-control-color" id="myColor"
+                                                value="#FFFFFF" title="Choose a color">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="categoria" class="form-label">Talla</label>
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="inputGroupSelect02">
+                                                <option selected>...</option>
+                                                <option value="1">S</option>
+                                                <option value="2">M</option>
+                                                <option value="3">L</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
-
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-outline-primary">Guardar Cambios</button>
+                        <button type="button" class="btn btn-outline-secondary ps-5 pe-5" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-outline-primary ps-5 pe-5">Editar</button>
                     </div>
                 </div>
             </div>
@@ -203,54 +299,95 @@
 
         <!-- Modal para detalles de producto -->
         <div class="modal fade" id="btnDetalles" tabindex="-1" aria-labelledby="btnDetalleslLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="btnDetallesLabel">Detalles del Producto</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4">
+                        <form>
+                            <div class="row col-12">
+                                <div class="col">
                                     <div class="mb-3">
-                                        <p class="fs-4">Color</p>
-                                        <select class="form-select" id="categoria">
-                                            <option selected> Azul claro </option>
-                                        </select>
+                                        <label for="nombreProducto" class="form-label">Nombre del Producto</label>
+                                        <input type="text" class="form-control" id="nombreProducto">
                                     </div>
                                     <div class="mb-3">
-                                        <p class="fs-4">Talla</p>
-                                        <select class="form-select" id="categoria">
-                                            <option selected> S </option>
-                                        </select>
+                                        <label for="nombreProducto" class="form-label">Cantidad</label>
+                                        <input type="number" class="form-control" id="cantidadProducto">
                                     </div>
                                     <div class="mb-3">
-                                        <p class="fs-4">Existencias</p>
-                                        <select class="form-select" id="categoria">
-                                            <option selected> 16 </option>
+                                        <label for="nombreProducto" class="form-label">Precio</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="precioProducto">
+                                            <span class="input-group-text">$</span>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nombreProducto" class="form-label">Existencias</label>
+                                        <input type="number" class="form-control" id="existenciasProducto">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="subcategoria" class="form-label">Sub-Categoría</label>
+                                        <select class="form-select" id="subcategoria">
+                                            <option selected>Elija una sub-categoría</option>
+                                            <option value="subcategoria1">Sub-Categoría 1</option>
+                                            <option value="subcategoria2">Sub-Categoría 2</option>
+                                            <option value="subcategoria3">Sub-Categoría 3</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col">
                                     <div class="mb-3">
-                                        <p class="fs-4"> Producto </p>
-                                        <img src="../../resources/img/image 29.png" alt="">
+                                        <label for="categoria" class="form-label">Categoría</label>
+                                        <select class="form-select" id="categoria">
+                                            <option selected>Elija una categoría</option>
+                                            <option value="categoria1">Categoría 1</option>
+                                            <option value="categoria2">Categoría 2</option>
+                                            <option value="categoria3">Categoría 3</option>
+                                        </select>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
                                     <div class="mb-3">
-                                        <p class="fs-4"> Descripción </p>
-                                        <div class="mb-3">
-                                            <textarea class="form-control" id="descripcion" rows="11"></textarea>
+                                        <label for="descripcion" class="form-label">Descripción del Producto</label>
+                                        <textarea class="form-control" id="descripcion" rows="8"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="categoria" class="form-label">Color</label>
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="inputGroupSelect02">
+                                                <option selected>...</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                            <input type="color" class="form-control form-control-color" id="myColor"
+                                                value="#FFFFFF" title="Choose a color">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="categoria" class="form-label">Talla</label>
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="inputGroupSelect02">
+                                                <option selected>...</option>
+                                                <option value="1">S</option>
+                                                <option value="2">M</option>
+                                                <option value="3">L</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col text-center">
+                                    <div class="mb-3">
+                                        <label for="categoria" class="form-label">Imagen del producto</label>
+                                        <img src="../../resources/img/jeans2.png" alt="" height="400px">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-outline-secondary ps-5 pe-5" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -266,7 +403,6 @@
     <script src="../../controllers/utils/admin_usuarios.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
     <script src="../../controllers/utils/cargar_menu.js"></script>
-
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

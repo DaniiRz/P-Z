@@ -10,7 +10,7 @@ class ProductoData extends ProductoHandler
 
     // Artributo adicional
     private $data_error = null;
-
+    
     // Metodos para validar y establecer los datos
     public function setIdProducto($value){
         if (Validator::validateNaturalNumber($value)) {
@@ -23,8 +23,32 @@ class ProductoData extends ProductoHandler
             return false;
         }
     }
+    
+    public function setIdcolor($value){
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id = $value;
+            return true;
+        } 
+        
+        else {
+            $this->data_error = 'El identificador del producto es incorrecto';
+            return false;
+        }
+    }
 
-    public function setIdsubcategoria($value){
+    public function setIdtalla($value){
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id = $value;
+            return true;
+        } 
+        
+        else {
+            $this->data_error = 'El identificador del producto es incorrecto';
+            return false;
+        }
+    }
+
+    public function setsubcategoria($value){
         if (Validator::validateNaturalNumber($value)) {
             $this->id = $value;
             return true;
@@ -49,6 +73,29 @@ class ProductoData extends ProductoHandler
         
         else {
             $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        }
+    }
+
+    public function setExistencias($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->existencias = $value;
+            return true;
+        } else {
+            $this->data_error = 'Las existencias debe ser un número entero positivo';
+            return false;
+        }
+    }
+
+    public function setCantidadproducto($value, $min = 2, $max= 255){
+        if (Validator::validateNaturalNumber($value)) {
+            $this->existencias = $value;
+            return true;
+        } 
+        
+        else {
+            $this->data_error = 'La cantidad debe ser un número entero positivo';
             return false;
         }
     }
@@ -91,6 +138,29 @@ class ProductoData extends ProductoHandler
         else {
             $this->data_error = 'La fecha de registro es incorrecta';
             return false;
+        }
+    }
+
+    public function setImagen($file, $filename = null)
+    {
+        if (Validator::validateImageFile($file, 1000)) {
+            $this->imagen = Validator::getFileName();
+            return true;
+        } 
+        
+        elseif (Validator::getFileError()) {
+            $this->data_error = Validator::getFileError();
+            return false;
+        } 
+        
+        elseif ($filename) {
+            $this->imagen = $filename;
+            return true;
+        } 
+        
+        else {
+            $this->imagen = 'default.png';
+            return true;
         }
     }
 

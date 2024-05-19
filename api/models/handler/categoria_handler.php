@@ -13,8 +13,10 @@ class CategoriaHandler
 
     public function createRows()
     {
-        $sql = 'INSERT INTO tb_categorias(nombre_categoria, id_sub_categoria)
-                VALUES (?, ?)';
+        $sql = 'INSERT INTO tb_categorias (nombre_categoria)
+                SELECT nombre_sub_categoria
+                FROM tb_sub_categorias
+                WHERE id_sub_categoria = ?';
         $params = array($this->nombrecategoria, $this->idsubcategoria);
         return Database::executeRow($sql, $params);
     }
@@ -31,9 +33,9 @@ class CategoriaHandler
     public function updateRows()
     {
         $sql = 'UPDATE tb_categorias 
-                SET nombre_sub_categoria = ? 
-                WHERE id_producto = ?';
-        $params = array($this->nombresubcategoria, $this->id);
+                SET nombre_categoria = ? 
+                WHERE id_categoria = ?';
+        $params = array($this->nombrecategoria, $this->id);
         return Database::executeRow($sql, $params);
     }
 
@@ -46,8 +48,8 @@ class CategoriaHandler
 
     public function readOne()
     {
-        $sql = 'SELECT nombre_sub_categoria
-                FROM tb_sub_categorias
+        $sql = 'SELECT nombre_categoria
+                FROM tb_categorias
                 WHERE id_sub_categoria = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);

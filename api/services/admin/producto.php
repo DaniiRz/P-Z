@@ -29,11 +29,14 @@ if (isset($_GET['action'])) {
                 if (
                     !$producto->setNombre($_POST['nombreProducto']) or
                     !$producto->setDescripcion($_POST['descripcionProducto']) or
+                    !$producto->setCantidadproducto($_POST['cantidadProducto']) or
                     !$producto->setPrecio($_POST['precioProducto']) or
+                    !$producto->setFecharegistro($_POST['fechaProducto']) or
+                    !$producto->setsubcategoria($_POST['subcategoriaProducto']) or
                     !$producto->setExistencias($_POST['existenciasProducto']) or
-                    !$producto->setCategoria($_POST['categoriaProducto']) or
-                    !$producto->setEstado(isset($_POST['estadoProducto']) ? 1 : 0) or
-                    !$producto->setImagen($_FILES['imagenProducto'])
+                    !$producto->setImagen($_FILES['imagenProducto']), $producto->getFilename())
+                    !$producto->setIdcolor($_POST['colorProducto']) or
+                    !$producto->setIdtalla($_POST['tallaProducto']
                 ) {
                     $result['error'] = $producto->getDataError();
                 } elseif ($producto->createRow()) {
@@ -65,14 +68,16 @@ if (isset($_GET['action'])) {
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$producto->setId($_POST['idProducto']) or
-                    !$producto->setFilename() or
                     !$producto->setNombre($_POST['nombreProducto']) or
                     !$producto->setDescripcion($_POST['descripcionProducto']) or
+                    !$producto->setCantidadproducto($_POST['cantidadProducto']) or
                     !$producto->setPrecio($_POST['precioProducto']) or
-                    !$producto->setCategoria($_POST['categoriaProducto']) or
-                    !$producto->setEstado(isset($_POST['estadoProducto']) ? 1 : 0) or
-                    !$producto->setImagen($_FILES['imagenProducto'], $producto->getFilename())
+                    !$producto->setFecharegistro($_POST['fechaProducto']) or
+                    !$producto->setsubcategoria($_POST['subcategoriaProducto']) or
+                    !$producto->setExistencias($_POST['existenciasProducto']) or
+                    !$producto->setImagen($_FILES['imagenProducto']), $producto->getFilename())
+                    !$producto->setIdcolor($_POST['colorProducto']) or
+                    !$producto->setIdtalla($_POST['tallaProducto']
                 ) {
                     $result['error'] = $producto->getDataError();
                 } elseif ($producto->updateRow()) {
