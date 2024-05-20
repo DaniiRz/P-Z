@@ -1,5 +1,7 @@
 // Constante para completar la ruta de la API.
 const PRODUCTO_API = '../../api/services/admin/producto.php';
+const CATEGORIA_API = '../../api/services/admin/categorias.php';
+const SUBCATEGORIA_API = '../../api/services/admin/subcategoria.php';
 // Constantes para establecer los elementos de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
@@ -8,7 +10,7 @@ const SAVE_MODAL = new bootstrap.Modal('#btnAgregar'),
     MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
-    ID_PRODUCTO = document.getElementById('idProducto')
+    ID_PRODUCTO = document.getElementById('idProducto'),
     NOMBRE_PRODUCTO = document.getElementById('nombreProducto'),
     CANTIDAD_PRODUCTO = document.getElementById('cantidadProducto'),
     PRECIO_PRODUCTO = document.getElementById('precioProducto'),
@@ -99,6 +101,9 @@ const openCreate = () => {
     MODAL_TITLE.textContent = 'Agregar producto';
     // Se prepara el formulario.
     SAVE_FORM.reset();
+    EXISTENCIAS_PRODUCTO.disabled = false;
+    fillSelect(CATEGORIA_API, 'readAll', 'categoriaProducto');
+    fillSelect(SUBCATEGORIA_API, 'readAll', 'subcategoriaProducto');
 }
 
 const openUpdate = async (id) => {
@@ -114,6 +119,7 @@ const openUpdate = async (id) => {
         MODAL_TITLE.textContent = 'Editar Producto';
         // Se prepara el formulario.
         SAVE_FORM.reset();
+        EXISTENCIAS_PRODUCTO.disabled = true;
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
         ID_PRODUCTO.value = ROW.id_producto;
@@ -121,12 +127,12 @@ const openUpdate = async (id) => {
         CANTIDAD_PRODUCTO.value = ROW.cantidad_producto;
         PRECIO_PRODUCTO.value = ROW.precio_producto;
         EXISTENCIAS_PRODUCTO.value = ROW.existencias;
-        SUBCATEGORIA_PRODUCTO.value = ROW.id_subcategoria;
-        CATEGORIA_PRODUCTO.value = ROW.id_categoria;
         DESC_PRODUCTO.value = ROW.desc_producto;
         IMAGEN_PRODUCTO.value = ROW.img_producto;
         COLOR_PRODUCTO.value = ROW.id_color;
         TALLA_PRODUCTO.value = ROW.id_talla;
+        fillSelect(CATEGORIA_API, 'readAll', 'categoriaProducto', ROW.id_categoria);
+        fillSelect(SUBCATEGORIA_API, 'readAll', 'subcategoriaProducto', ROW.id_sub_categoria);
     } else {
         sweetAlert(2, DATA.error, false);
     }
