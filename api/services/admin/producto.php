@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase del modelo.
-require_once('../../models/data/producto_data.php');
+require_once('../../models/data/productos_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -34,9 +34,9 @@ if (isset($_GET['action'])) {
                     !$producto->setFecharegistro($_POST['fechaProducto']) or
                     !$producto->setsubcategoria($_POST['subcategoriaProducto']) or
                     !$producto->setExistencias($_POST['existenciasProducto']) or
-                    !$producto->setImagen($_FILES['imagenProducto']), $producto->getFilename())
+                    !$producto->setImagen($_FILES['imagenProducto']) or
                     !$producto->setIdcolor($_POST['colorProducto']) or
-                    !$producto->setIdtalla($_POST['tallaProducto']
+                    !$producto->setIdtalla($_POST['tallaProducto'])
                 ) {
                     $result['error'] = $producto->getDataError();
                 } elseif ($producto->createRow()) {
@@ -75,9 +75,9 @@ if (isset($_GET['action'])) {
                     !$producto->setFecharegistro($_POST['fechaProducto']) or
                     !$producto->setsubcategoria($_POST['subcategoriaProducto']) or
                     !$producto->setExistencias($_POST['existenciasProducto']) or
-                    !$producto->setImagen($_FILES['imagenProducto']), $producto->getFilename())
+                    !$producto->setImagen($_FILES['imagenProducto']) or
                     !$producto->setIdcolor($_POST['colorProducto']) or
-                    !$producto->setIdtalla($_POST['tallaProducto']
+                    !$producto->setIdtalla($_POST['tallaProducto'])
                 ) {
                     $result['error'] = $producto->getDataError();
                 } elseif ($producto->updateRow()) {

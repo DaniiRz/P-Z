@@ -24,9 +24,9 @@ class SubCategoriaHandler
         $sqlIf = 'SELECT c.id_categoria
                 FROM tb_categorias c
                 INNER JOIN tb_sub_categorias s ON c.id_categoria = s.id_categoria
-                WHERE s.id_sub_categoria = ?',
+                WHERE s.id_sub_categoria = ?';
         $params = array($this->id);
-        return Database::executeRow($sqlIF, $params);
+        return Database::executeRow($sqlIf, $params);
 
         // Verificar si existen datos relacionados
         if ($result->num_rows > 0) {

@@ -25,7 +25,7 @@ class CategoriaHandler
     {
         $sql = 'DELETE nombre_categoria
                 FROM tb_categorias
-                WHERE id_categoria = ?',
+                WHERE id_categoria = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
