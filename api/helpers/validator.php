@@ -268,4 +268,4 @@ class validator
         } else {
             return false;
         }
-}
+} }
