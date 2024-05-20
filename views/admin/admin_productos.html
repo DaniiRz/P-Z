@@ -30,7 +30,7 @@
         <div class="container mt-3">
             <!-- Botón para agregar subcategoría -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#btnAgregar">
-                <img src="../../resources/img/agregar (1).png" alt="" class="me-2">
+                <img src="../../resources/img/agregar.png" alt="" class="me-2">
                 Agregar Producto
             </button>
         </div>
@@ -42,15 +42,15 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
+                                <td colspan="6" id="rowsFound"></td>
+                            </tr>
+                            <tr>
                                 <th class="text-center">Nombre Producto</th>
                                 <th class="text-center">Categoría</th>
                                 <th class="text-center">Sub-Categoría</th>
                                 <th class="text-center">Existencias</th>
                                 <th class="text-center">Detalles Producto</th>
                                 <th class="text-center">Acciones</th>
-                            </tr>
-                            <tr>
-                                <td colspan="6" id="rowsFound"></td>
                             </tr>
                         </thead>
                         <tbody id="tableBody">
@@ -358,6 +358,7 @@
         </footer>
     </div>
 
+    <script src="../../controllers/utils/components.js"></script>
     <script src="../../controllers/utils/admin_usuarios.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
     <script src="../../controllers/utils/cargar_menu.js"></script>

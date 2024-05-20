@@ -169,4 +169,9 @@ class ProductoData extends ProductoHandler
     {
         return $this->data_error;
     }
+
+    public function getFilename()
+    {
+        return $this->filename;
+    }
 }

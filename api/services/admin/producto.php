@@ -68,6 +68,8 @@ if (isset($_GET['action'])) {
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
+                    !$producto->setId($_POST['idProducto']) or
+                    !$producto->setFilename() or
                     !$producto->setNombre($_POST['nombreProducto']) or
                     !$producto->setDescripcion($_POST['descripcionProducto']) or
                     !$producto->setCantidadproducto($_POST['cantidadProducto']) or
@@ -102,20 +104,6 @@ if (isset($_GET['action'])) {
                     $result['fileStatus'] = Validator::deleteFile($producto::RUTA_IMAGEN, $producto->getFilename());
                 } else {
                     $result['error'] = 'Ocurrió un problema al eliminar el producto';
-                }
-                break;
-            case 'cantidadProductosCategoria':
-                if ($result['dataset'] = $producto->cantidadProductosCategoria()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['error'] = 'No hay datos disponibles';
-                }
-                break;
-            case 'porcentajeProductosCategoria':
-                if ($result['dataset'] = $producto->porcentajeProductosCategoria()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['error'] = 'No hay datos disponibles';
                 }
                 break;
             default:
