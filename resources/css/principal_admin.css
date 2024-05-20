@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -101,4 +102,10 @@ main {
 
 .shadow-on-scroll.navbar-scrolled {
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.088), 4px 4px 4px rgba(0, 0, 0, 0.082);
+}
+
+
+.form-inline input[type="search"] {
+    width: 150px;
+    /* Ajusta el ancho de la barra de búsqueda */
 }

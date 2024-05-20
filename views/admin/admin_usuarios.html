@@ -27,9 +27,12 @@
 
     <main class="py-5">
         <div class="container-fluid text-center mb-4 mt-5">
-            <h2 class="text-center mb-4">Usuarios Registrados</h2>
+            <h3 class="text-center mb-4">Usuarios Registrados</h3>
         </div>
-
+        <button type="button" class="btn btn-primary mt-5">
+            <img src="../../resources/img/agregar (1).png" alt="" class="me-2">
+            Crear Usuario
+        </button>
         <div class="container-fluid justify-content-center mt-3">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
@@ -55,7 +58,11 @@
                                 </div>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger" onclick="eliminarUsuario(1)">Eliminar</button> <!-- Botón para eliminar usuario -->
+                                <button class="btn btn-outline-primary btn-sm"><img src="../../resources/img/lapiz.png"
+                                    alt="Editar" data-bs-toggle="modal" data-bs-target="#ModalEditar"
+                                    width="24px"></button>
+                                <button class="btn btn-outline-danger btn-sm"><img src="../../resources/img/basura.png"
+                                        alt="Eliminar" width="24px"></button>
                             </td>
                         </tr>
                         <tr>
@@ -70,7 +77,11 @@
                                 </div>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger" >Eliminar</button> <!-- Botón para eliminar usuario -->
+                                <button class="btn btn-outline-primary btn-sm"><img src="../../resources/img/lapiz.png"
+                                        alt="Editar" data-bs-toggle="modal" data-bs-target="#ModalEditar"
+                                        width="24px"></button>
+                                <button class="btn btn-outline-danger btn-sm"><img src="../../resources/img/basura.png"
+                                        alt="Eliminar" width="24px"></button>
                             </td>
                         </tr>
                         <tr>
@@ -85,10 +96,14 @@
                                 </div>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger" >Eliminar</button> <!-- Botón para eliminar usuario -->
+                                <button class="btn btn-outline-primary btn-sm"><img src="../../resources/img/lapiz.png"
+                                        alt="Editar" data-bs-toggle="modal" data-bs-target="#ModalEditar"
+                                        width="24px"></button>
+                                <button class="btn btn-outline-danger btn-sm"><img src="../../resources/img/basura.png"
+                                        alt="Eliminar" width="24px"></button>
                             </td>
                         </tr>
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -98,11 +113,11 @@
 
 
 
-        <footer >
+    <footer>
 
-            <div id="footerIndex"></div>
+        <div id="footerIndex"></div>
 
-        </footer>
+    </footer>
 
 
 

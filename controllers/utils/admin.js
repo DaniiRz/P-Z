@@ -36,7 +36,7 @@ const menuContent = `
                         <a class="nav-link active" aria-current="page" href="../admin/admin_usuarios.html">Usuarios</a>
                     </li>
                     <li class="nav-item ms-5">
-                        <a class="nav-link active" aria-current="page" href="../admin/admin_subcategorias.html">Categorias</a>
+                        <a class="nav-link active" aria-current="page" href="../admin/admin_categoria.html">Categorias</a>
                     </li>
                     <li class="nav-item ms-5">
                         <a class="nav-link active" aria-current="page" href="../admin/admin_talla.html">Tallas</a>
