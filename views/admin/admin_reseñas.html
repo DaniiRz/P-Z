@@ -28,7 +28,8 @@
         <div class="container-fluid text-center mb-4 mt-5">
             <h3 class="text-center mb-4">Administrar Reseñas</h3>
         </div>
-         <!-- Formulario de búsqueda -->
+        <div class="container mb-3 justify-content-center">
+            <!-- Formulario de búsqueda -->
             <form class="col-sm-12 col-md-6" id="searchForm">
                 <div class="row">
                     <div class="col-6">
@@ -41,28 +42,35 @@
                         <button type="reset" class="btn btn-secondary" onclick="fillTable()">
                             <i class="fas fa-times-circle"></i>
                         </button>
-                        
+                        <a href="../admin/admin_subcategorias.html" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                        </a>
                     </div>
                 </div>
             </form>
-        <div class="container-fluid justify-content-center mt-3">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <td colspan="6" id="rowsFound"></td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Usuarios</th>
-                            <th scope="col">Correo</th>
-                            <th scope="col">Comentario</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Acciones</th> <!-- Botones con accion-->
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody"> </tbody>
-                </table>
+        </div>
+
+        <div class="container mb-3 justify-content-center">
+            <div class="container-fluid mt-3">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <td colspan="6" id="rowsFound"></td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Usuarios</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Comentario</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Acciones</th> <!-- Botones con accion-->
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody"> </tbody>
+                    </table>
+                </div>
             </div>
+
         </div>
     </main>
 
