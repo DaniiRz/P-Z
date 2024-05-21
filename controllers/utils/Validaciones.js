@@ -13,7 +13,6 @@ function formatPhoneNumber(input) {
 
         // Mostrar mensaje de error
         input.classList.add("is-invalid");
-
     }
 
     // En caso de pasar el test del formato
