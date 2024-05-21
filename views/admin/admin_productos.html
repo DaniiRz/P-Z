@@ -23,330 +23,104 @@
     </header>
 
     <main class="py-5">
-        <!-- Espacio estético entre el botón y el título -->
-        <div class="container mt-3">
-            <h3 class="text-center py-5">Administrar y Agregar Productos</h3>
+        <div class="container-fluid text-center mb-4 mt-5">
+            <h3 class="text-center mb-4">Administrar Reseñas</h3>
         </div>
-        <div class="container mt-3">
-            <!-- Botón para agregar subcategoría -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#btnAgregar">
-                <img src="../../resources/img/agregar.png" alt="" class="me-2">
-                Agregar Producto
-            </button>
-        </div>
-
-        <!-- Contenedor con tabla de productos -->
-        <div class="container mt-5">
-            <div class="container table-container mb-2">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <td colspan="6" id="rowsFound"></td>
-                            </tr>
-                            <tr>
-                                <th class="text-center">Nombre Producto</th>
-                                <th class="text-center">Categoría</th>
-                                <th class="text-center">Sub-Categoría</th>
-                                <th class="text-center">Existencias</th>
-                                <th class="text-center">Detalles Producto</th>
-                                <th class="text-center">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody">
-                            
-                        </tbody>
-                    </table>
+        <!-- Formulario de búsqueda -->
+        <form class="col-sm-12 col-md-6" id="searchForm">
+            <div class="row">
+                <div class="col-6">
+                    <input type="search" class="form-control" name="search" placeholder="Buscar" required>
                 </div>
+                <div class="col-6">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                        <i class="fas fa-times-circle"></i>
+                    </button>
+
+                </div>
+            </div>
+        </form>
+        <div class="container-fluid justify-content-center mt-3">
+            <div class="table-responsive">
+                <!-- Tabla para mostrar los registros existentes -->
+                <table class="table table-hover">
+                    <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                    <thead>
+                        <tr>
+                            <td colspan="6" id="rowsFound"></td>
+                        </tr>
+                        <tr>
+                            <th>IMAGEN</th>
+                            <th>NOMBRE</th>
+                            <th>PRECIO (US$)</th>
+                            <th>CATEGORÍA</th>
+                            <th>ESTADO</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                    <tbody id="tableBody"></tbody>
+                </table>
             </div>
         </div>
 
-        <!-- Modal para agregar producto -->
-        <div class="modal fade" id="btnAgregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
+        <!-- Componente Modal para guardar un registro -->
+        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalTitle">Agregar Producto</h5>
+                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <form id="saveForm">
-                            <div class="row col-12">
-                                <div class="col-6">
-                                    <div class="mb-3">
-                                        <label for="nombreProducto" class="form-label">Nombre del Producto</label>
-                                        <input type="text" class="form-control" id="nombreProducto" name="nombreProducto">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="nombreProducto" class="form-label">Cantidad</label>
-                                        <input type="number" class="form-control" id="cantidadProducto" name="cantidadProducto">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="nombreProducto" class="form-label">Precio</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="precioProducto" name="precioProducto">
-                                            <span class="input-group-text">$</span>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="nombreProducto" class="form-label">Existencias</label>
-                                        <input type="number" class="form-control" id="existenciasProducto" name="existenciasProducto">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="subcategoria" class="form-label">Sub-Categoría</label>
-                                        <select class="form-select" id="subcategoriaProducto">
-                                            <option selected>Elija una sub-categoría</option>
-                                            <option value="subcategoria1">Sub-Categoría 1</option>
-                                            <option value="subcategoria2">Sub-Categoría 2</option>
-                                            <option value="subcategoria3">Sub-Categoría 3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="mb-3">
-                                        <label for="categoria" class="form-label">Categoría</label>
-                                        <select class="form-select" id="categoriaProducto" name="categoriaProducto">
-                                            <option selected>Elija una categoría</option>
-                                            <option value="categoria1">Categoría 1</option>
-                                            <option value="categoria2">Categoría 2</option>
-                                            <option value="categoria3">Categoría 3</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="descripcion" class="form-label">Descripción del Producto</label>
-                                        <textarea class="form-control" id="descProducto" name="descProducto" rows="1"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoria" class="form-label">Imagen del producto</label>
-                                        <div class="input-group mb-3">
-                                            <input type="file" class="form-control" id="imagenProducto" name="imagenProducto">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoria" class="form-label">Color</label>
-                                        <div class="input-group mb-3">
-                                            <select class="form-select" id="colorProducto" name="colorProducto">
-                                                <option selected>...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            <input type="color" class="form-control form-control-color"
-                                                value="#FFFFFF" title="Choose a color">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoria" class="form-label">Talla</label>
-                                        <div class="input-group mb-3">
-                                            <select class="form-select" id="tallaProducto" name="tallaProducto">
-                                                <option selected>...</option>
-                                                <option value="1">S</option>
-                                                <option value="2">M</option>
-                                                <option value="3">L</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                    <!-- Formulario para crear o actualizar un registro -->
+                    <form id="saveForm">
+                        <div class="modal-body row g-3">
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                            <input type="number" class="d-none" id="idProducto" name="idProducto">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="nombreProducto" class="form-label">Nombre</label>
+                                <input id="nombreProducto" type="text" name="nombreProducto" class="form-control"
+                                    required>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary ps-5 pe-5" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-outline-primary ps-5 pe-5">Agregar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal para editar producto -->
-        <div class="modal fade" id="btnEditar" tabindex="-1" aria-labelledby="btnEditarlLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Editar Producto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="editForm">
-                            <div class="row col-12">
-                                <div class="col-6">
-                                    <div class="mb-3">
-                                        <label for="nombreProducto" class="form-label">Nombre del Producto</label>
-                                        <input type="text" class="form-control" id="nombreProducto" name="nombreProducto">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="nombreProducto" class="form-label">Cantidad</label>
-                                        <input type="number" class="form-control" id="cantidadProducto" name="cantidadProducto">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="nombreProducto" class="form-label">Precio</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="precioProducto" name="precioProducto">
-                                            <span class="input-group-text">$</span>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="nombreProducto" class="form-label">Existencias</label>
-                                        <input type="number" class="form-control" id="existenciasProducto" name="existenciasProducto">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="subcategoria" class="form-label">Sub-Categoría</label>
-                                        <select class="form-select" id="subcategoriaProducto" name="subcategoriaProducto">
-                                            <option selected>Elija una sub-categoría</option>
-                                            <option value="subcategoria1">Sub-Categoría 1</option>
-                                            <option value="subcategoria2">Sub-Categoría 2</option>
-                                            <option value="subcategoria3">Sub-Categoría 3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="mb-3">
-                                        <label for="categoria" class="form-label">Categoría</label>
-                                        <select class="form-select" id="categoriaProducto" name="categoriaProducto">
-                                            <option selected>Elija una categoría</option>
-                                            <option value="categoria1">Categoría 1</option>
-                                            <option value="categoria2">Categoría 2</option>
-                                            <option value="categoria3">Categoría 3</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="descripcion" class="form-label">Descripción del Producto</label>
-                                        <textarea class="form-control" id="descProducto" name="descProducto" rows="1"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoria" class="form-label">Imagen del producto</label>
-                                        <div class="input-group mb-3">
-                                            <input type="file" class="form-control" id="imagenProducto" name="imagenProducto">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoria" class="form-label">Color</label>
-                                        <div class="input-group mb-3">
-                                            <select class="form-select" id="colorProducto" name="colorProducto">
-                                                <option selected>...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            <input type="color" class="form-control form-control-color"
-                                                value="#FFFFFF" title="Choose a color">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoria" class="form-label">Talla</label>
-                                        <div class="input-group mb-3">
-                                            <select class="form-select" id="tallaProducto" name="tallaProducto">
-                                                <option selected>...</option>
-                                                <option value="1">S</option>
-                                                <option value="2">M</option>
-                                                <option value="3">L</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="descripcionProducto" class="form-label">Descripción</label>
+                                <input id="descripcionProducto" type="text" name="descripcionProducto"
+                                    class="form-control" required>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary ps-5 pe-5" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-outline-primary ps-5 pe-5">Editar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal para detalles de producto -->
-        <div class="modal fade" id="btnDetalles" tabindex="-1" aria-labelledby="btnDetalleslLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Detalles del Producto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="viewForm">
-                            <div class="row col-12">
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label for="nombreProducto" class="form-label">Nombre del Producto</label>
-                                        <input type="text" class="form-control" id="nombreProducto" name="nombreProducto">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="nombreProducto" class="form-label">Cantidad</label>
-                                        <input type="number" class="form-control" id="cantidadProducto" name="cantidadProducto">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="nombreProducto" class="form-label">Precio</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="precioProducto" name="precioProducto">
-                                            <span class="input-group-text">$</span>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="nombreProducto" class="form-label">Existencias</label>
-                                        <input type="number" class="form-control" id="existenciasProducto" name="existenciasProducto">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="subcategoria" class="form-label">Sub-Categoría</label>
-                                        <select class="form-select" id="subcategoriaProducto" name="subcategoriaProducto">
-                                            <option selected>Elija una sub-categoría</option>
-                                            <option value="subcategoria1">Sub-Categoría 1</option>
-                                            <option value="subcategoria2">Sub-Categoría 2</option>
-                                            <option value="subcategoria3">Sub-Categoría 3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="mb-3">
-                                        <label for="categoria" class="form-label">Categoría</label>
-                                        <select class="form-select" id="categoriaProducto" name="categoriaProducto">
-                                            <option selected>Elija una categoría</option>
-                                            <option value="categoria1">Categoría 1</option>
-                                            <option value="categoria2">Categoría 2</option>
-                                            <option value="categoria3">Categoría 3</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="descripcion" class="form-label">Descripción del Producto</label>
-                                        <textarea class="form-control" id="descProducto" name="descProducto" rows="8"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoria" class="form-label">Color</label>
-                                        <div class="input-group mb-3">
-                                            <select class="form-select" id="colorProducto" name="colorProducto">
-                                                <option selected>...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                            <input type="color" class="form-control form-control-color"
-                                                value="#FFFFFF" title="Choose a color">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="categoria" class="form-label">Talla</label>
-                                        <div class="input-group mb-3">
-                                            <select class="form-select" id="tallaProducto" name="tallaProducto">
-                                                <option selected>...</option>
-                                                <option value="1">S</option>
-                                                <option value="2">M</option>
-                                                <option value="3">L</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col text-center">
-                                    <div class="mb-3">
-                                        <label for="categoria" class="form-label">Imagen del producto</label>
-                                        <img src="../../resources/img/jeans2.png" alt="" height="400px" id="imagenProducto" name="imagenProducto">
-                                    </div>
-                                </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="precioProducto" class="form-label">Precio (US$)</label>
+                                <input id="precioProducto" type="number" name="precioProducto" min="0.01" step="0.01"
+                                    class="form-control" required>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary ps-5 pe-5" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="existenciasProducto" class="form-label">Existencias</label>
+                                <input id="existenciasProducto" type="number" name="existenciasProducto" min="1"
+                                    step="1" class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="categoriaProducto" class="form-label">Categoría</label>
+                                <select id="categoriaProducto" name="categoriaProducto" class="form-select" required>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="imagenProducto" class="form-label">Imagen</label>
+                                <input id="imagenProducto" type="file" name="imagenProducto" class="form-control"
+                                    accept=".png, .jpg">
+                            </div>
+                            <div class="form-check form-switch form-check-reverse">
+                                <input class="form-check-input" type="checkbox" id="estadoProducto"
+                                    name="estadoProducto" checked>
+                                <label class="form-check-label" for="estadoProducto">Estado</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
