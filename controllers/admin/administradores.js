@@ -15,14 +15,13 @@ const SAVE_FORM = document.getElementById('saveForm'),
     APELLIDO_ADMINISTRADOR = document.getElementById('apellidoAdministrador'),
     TELEFONO_ADMINISTRADOR = document.getElementById('telefonoAdministrador')
 CORREO_ADMINISTRADOR = document.getElementById('correoAdministrador'),
-    ALIAS_ADMINISTRADOR = document.getElementById('aliasAdministrador'),
     CLAVE_ADMINISTRADOR = document.getElementById('claveAdministrador'),
     CONFIRMAR_CLAVE = document.getElementById('confirmarClave');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
-    loadTemplate();
+    cargarPlantillas();
     // Se establece el título del contenido principal.
     MAIN_TITLE.textContent = 'Gestionar administradores';
     // Llamada a la función para llenar la tabla con los registros existentes.
