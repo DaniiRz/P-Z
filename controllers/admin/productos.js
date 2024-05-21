@@ -12,22 +12,17 @@ const SAVE_MODAL = new bootstrap.Modal('#btnAgregar'),
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_PRODUCTO = document.getElementById('idProducto'),
     NOMBRE_PRODUCTO = document.getElementById('nombreProducto'),
-    CANTIDAD_PRODUCTO = document.getElementById('cantidadProducto'),
+    DESCRIPCION_PRODUCTO = document.getElementById('descripcionProducto'),
     PRECIO_PRODUCTO = document.getElementById('precioProducto'),
     EXISTENCIAS_PRODUCTO = document.getElementById('existenciasProducto'),
     SUBCATEGORIA_PRODUCTO = document.getElementById('subcategoriaProducto'),
-    CATEGORIA_PRODUCTO = document.getElementById('categoriaProducto'),
-    DESC_PRODUCTO = document.getElementById('descProducto'),
-    IMAGEN_PRODUCTO = document.getElementById('imageNProducto'),
-    COLOR_PRODUCTO = document.getElementById('colorProducto'),
-    TALLA_PRODUCTO = document.getElementById('tallaProducto');
+    CATEGORIA_PRODUCTO = document.getElementById('categoriaProducto');
 
-    // Método del evento para cuando el documento ha cargado.
-    document.addEventListener('DOMContentLoaded', () => {
+
+// Método del evento para cuando el documento ha cargado.
+document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
-    // Se establece el título del contenido principal.
-    MAIN_TITLE.textContent = 'Gestionar productos';
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
@@ -70,22 +65,21 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
-                <tr>
-                    <td>${row.NOMBRE_PRODUCTO}</td>
-                    <td>${row.CATEGORIA_PRODUCTO}</td>
-                    <td>${row.SUBCATEGORIA_PRODUCTO}</td>
-                    <td>${row.NOMBRE_PRODUCTO}</td>
-                    <td>${row.EXISTENCIAS_PRODUCTO}</td>
-                    <td class="text-center">
-                    <button class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#btnDetalles">Detalles</button>
-                    </td>
-                    <td class="text-center">
-                    <button class="btn btn-success" data-bs-toggle="modal"
-                        data-bs-target="#btnEditar">Editar</button>
-                    <button class="btn btn-danger">Eliminar</button>
-                </td>
-                </tr>
+            <tr>
+            <td><img src="${SERVER_URL}images/productos/${row.imagen_producto}" height="50"></td>
+            <td>${row.nombre_producto}</td>
+            <td>${row.precio_producto}</td>
+            <td>${row.nombre_categoria}</td>
+            <td><i class="${icon}"></i></td>
+            <td>
+                <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_producto})">
+                    <i class="bi bi-pencil-fill"></i>
+                </button>
+                <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_producto})">
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+            </td>
+        </tr>
             `;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
@@ -124,13 +118,10 @@ const openUpdate = async (id) => {
         const ROW = DATA.dataset;
         ID_PRODUCTO.value = ROW.id_producto;
         NOMBRE_PRODUCTO.value = ROW.nombre_producto;
-        CANTIDAD_PRODUCTO.value = ROW.cantidad_producto;
+        DESCRIPCION_PRODUCTO.value = ROW.desc_producto; 
         PRECIO_PRODUCTO.value = ROW.precio_producto;
         EXISTENCIAS_PRODUCTO.value = ROW.existencias;
-        DESC_PRODUCTO.value = ROW.desc_producto;
         IMAGEN_PRODUCTO.value = ROW.img_producto;
-        COLOR_PRODUCTO.value = ROW.id_color;
-        TALLA_PRODUCTO.value = ROW.id_talla;
         fillSelect(CATEGORIA_API, 'readAll', 'categoriaProducto', ROW.id_categoria);
         fillSelect(SUBCATEGORIA_API, 'readAll', 'subcategoriaProducto', ROW.id_sub_categoria);
     } else {
