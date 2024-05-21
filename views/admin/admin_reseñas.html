@@ -7,9 +7,6 @@
     <!-- Metadatos de la página web -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Carlos Quintanilla">
-    <meta name="author" content="Daniela Alexandra">
-    <meta name="author" content="Jhonny">
     <link rel="stylesheet" href="../../resources/css/index.css">
     <link rel="stylesheet" href="../../resources/css/admin_usuarios.css">
     <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
@@ -31,14 +28,30 @@
         <div class="container-fluid text-center mb-4 mt-5">
             <h3 class="text-center mb-4">Administrar Reseñas</h3>
         </div>
-        <button type="button" class="btn btn-primary mt-5">
-            <img src="../../resources/img/agregar (1).png" alt="" class="me-2">
-            Crear Reseña
-        </button>
+         <!-- Formulario de búsqueda -->
+            <form class="col-sm-12 col-md-6" id="searchForm">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="search" class="form-control" name="search" placeholder="Buscar" required>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                            <i class="fas fa-times-circle"></i>
+                        </button>
+                        
+                    </div>
+                </div>
+            </form>
         <div class="container-fluid justify-content-center mt-3">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>
+                        <tr>
+                            <td colspan="6" id="rowsFound"></td>
+                        </tr>
                         <tr>
                             <th scope="col">Usuarios</th>
                             <th scope="col">Correo</th>
@@ -47,47 +60,7 @@
                             <th scope="col">Acciones</th> <!-- Botones con accion-->
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Usuario 1</td>
-                            <td>usuario1@example.com</td>
-                            <td>No me gusto</td>
-                            <td>28/02/2024</td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="switch1"
-                                        onchange="toggleSwitchColor(this)">
-                                    <label class="form-check-label" for="switch1"></label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Usuario 1</td>
-                            <td>usuario1@example.com</td>
-                            <td>No me gusto</td>
-                            <td>28/02/2024</td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="switch1"
-                                        onchange="toggleSwitchColor(this)">
-                                    <label class="form-check-label" for="switch1"></label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Usuario 1</td>
-                            <td>usuario1@example.com</td>
-                            <td>No me gusto</td>
-                            <td>28/02/2024</td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="switch1"
-                                        onchange="toggleSwitchColor(this)">
-                                    <label class="form-check-label" for="switch1"></label>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="tableBody"> </tbody>
                 </table>
             </div>
         </div>
