@@ -12,6 +12,7 @@ function formatPhoneNumber(input) {
     if (!regex.test(phoneNumber)) {
 
         // Mostrar mensaje de error
+        input.classList.add("is-invalid");
     }
 
     // En caso de pasar el test del formato
@@ -50,6 +51,7 @@ function formatEmail(input) {
     if (!emailPattern.test(Email)) {
 
         // Mostrar mensaje de error
+        input.classList.add("is-invalid");
     }
 
     // En caso de pasar el test del formato
@@ -72,6 +74,7 @@ function formatPassword(input) {
     if (Contraseña.length < 8) {
 
         // Mostrar mensaje de error
+        input.classList.add("is-invalid");
     }
 
     // En caso de pasar el test del formato
@@ -90,25 +93,23 @@ function formatDui(input) {
     // Obtener el valor actual del campo de entrada
     let Dui = input.value;
 
-    // Eliminar cualquier guion existente
-    Dui = Dui.replace(/-/g, '');
+    // Agregar el guion después del cuarto dígito si no se ha agregado anteriormente
+    if (Dui.length >= 9 && Dui.charAt(8) !== '-') {
+        Dui = Dui.slice(0, 8) + '-' + Dui.slice(8);
+    }
 
     // Establecer el formato de tipo Dui
     let duiPattern = /^\d{8}-\d$/;
     if (!duiPattern.test(Dui)) {
 
         // Mostrar mensaje de error
+        input.classList.add("is-invalid");
     }
 
     // En caso de pasar el test del formato
     else {
         input.setCustomValidity("");
         input.classList.remove("is-invalid");
-    }
-
-    // Agregar el guion después del cuarto dígito si no se ha agregado anteriormente
-    if (Dui.length >= 9 && Dui.charAt(8) !== '-') {
-        Dui = Dui.slice(0, 8) + '-' + Dui.slice(8);
     }
 
     // Establecer el valor formateado en el campo de entrada
@@ -126,16 +127,17 @@ function formatDui(input) {
 }
 
 // Codigo de validacion de campo alfabetico
-function formatAlphabetic(input){
-    
+function formatAlphabetic(input) {
+
     // Obtener el valor actual del campo de entrada
     let Text = input.value
 
     // Establecer el formato del texto
     let TextPattern = /^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]+$/;
-    if (!TextPattern.test(Text)){
+    if (!TextPattern.test(Text)) {
 
         // Mostrar mensaje de error
+        input.classList.add("is-invalid");
     }
 
     // En caso de pasar el test del formato
@@ -168,7 +170,7 @@ function formatAlphabetic(input){
         form.addEventListener('input', () => {
 
             // Obtener todos los campos de entrada dentro del formulario actual
-            const inputs = form.querySelector('button[type="submit"]');
+            const inputs = form.querySelectorAll('input');
 
             // Variable para controlar si todos los campos están llenos y en un formato correcto
             let allFieldsValid = true;
@@ -190,7 +192,7 @@ function formatAlphabetic(input){
             event.preventDefault();
 
             // Obtener todos los campos de entrada dentro del formulario actual
-            const inputs = form.querySelector('button[type="submit"]');
+            const inputs = form.querySelectorAll('input');
 
             // Iterar sobre cada campo de entrada y realizar la validación
             inputs.forEach(input => {
@@ -210,21 +212,25 @@ function formatAlphabetic(input){
                     formatDui(input);
                 }
 
-                else if (input.id === 'apellido') {
+                else if (input.id === 'nombre') {
                     formatAlphabetic(input);
                 }
 
-                else if (input.id === 'nombre') {
+                else if (input.id === 'apellido') {
                     formatAlphabetic(input);
                 }
 
                 else if (input.id === 'direccion') {
                     formatAlphabetic(input);
                 }
-            });
 
-            // Agregar la clase 'was-validated' al formulario
-            form.classList.add('was-validated');
+                else {
+
+                    // Agregar la clase 'was-validated' al formulario
+                    form.classList.add('was-validated');
+                    form.submit();
+                }
+            });
         });
     });
 })();

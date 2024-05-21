@@ -34,7 +34,7 @@
 
             <div class="col-md-6 mt-5">
                 <div class="container">
-                    <form class="form needs-validation" novalidate>
+                    <form class="needs-validation" novalidate>
                         <div class="row">
                             <p class="fs-3 text-center fw-bold mt-5 pt-5"> ¡Registrate! </p>
                             <div class="col-md-6 mt-3">
@@ -42,21 +42,21 @@
                                 <div class="form-group">
                                     <label for="nombre">Nombre(s):</label>
                                     <input type="text" minlength="2" class="form-control" id="nombre" required
-                                        onblur="formatAlphabetic(this)">
+                                        oninput="formatAlphabetic(this)">
                                 </div>
 
                                 <!--Input apellido -->
                                 <div class="form-group mt-3">
                                     <label for="apellido">Apellido(s):</label>
-                                    <input type="text" class="form-control" id="apellido" required
-                                        onblur="formatAlphabetic(this)">
+                                    <input type="text" minlength="2" class="form-control" id="apellido" required
+                                        oninput="formatAlphabetic(this)">
                                 </div>
 
                                 <!--Input dui -->
                                 <div class="form-group mt-3">
                                     <label for="dui">Dui:</label>
                                     <input type="text" class="form-control" id="dui" required 
-                                        onblur="formatDui(this)" placeholder="########-#">
+                                        onkeypress="formatDui(this)" placeholder="########-#">
                                 </div>
                             </div>
                             <div class="col-md-6 mt-3">
@@ -64,21 +64,21 @@
                                 <div class="form-group">
                                     <label for="direccion">Dirección:</label>
                                     <input type="text" class="form-control" id="direccion" required
-                                        onblur="formatAlphabetic(this)">
+                                        oninput="formatAlphabetic(this)">
                                 </div>
 
                                 <!--Input correo -->
                                 <div class="form-group mt-3">
                                     <label for="correo">Correo Electrónico:</label>
                                     <input type="text" class="form-control" id="correo" required
-                                        onblur="formatEmail(this)" placeholder="ejemplo@gmail.com">
+                                        oninput="formatEmail(this)" placeholder="ejemplo@gmail.com">
                                 </div>
 
                                 <!--Input contraseña -->
                                 <div class="form-group mt-3">
                                     <label for="contrasena">Contraseña:</label>
                                     <input type="password" class="form-control" id="contraseña" required
-                                        onblur="formatPassword(this)" placeholder="8 caracteres minimo">
+                                        oninput="formatPassword(this)" placeholder="8 caracteres minimo">
                                 </div>
                             </div>
                         </div>
@@ -116,6 +116,7 @@
     <!-- Js de navbar y footer -->
     <script src="../../controllers/utils/public.js" defer></script>
     <script src="../../controllers/utils/admin.js" defer></script>
+    
     <!-- script de datos navbar y footer -->
     <script src="../../controllers/utils/cargar_menu.js"></script>
 
