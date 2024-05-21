@@ -1,10 +1,6 @@
 /* Controlador de uso general en las páginas web del sitio privado.
 * Sirve para manejar la plantilla del encabezado y pie del documento.
 */
-
-
-
-
 function generarMenuIndex() {
 
 

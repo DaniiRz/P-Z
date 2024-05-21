@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once('../../api/helpers/database.php');
+require_once('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla administrador.
  */
@@ -98,7 +98,7 @@ require_once('../../api/helpers/database.php');
     public function createRow()
     {
         $sql = 'INSERT INTO tb_admins(nombre_admin, apellido_admin, correo_admin, clave_admin)
-                VALUES(?, ?, ?, ?, ?)';
+                VALUES(?, ?, ?, ?)';
         $params = array($this->nombre, $this->apellido, $this->correo, $this->clave);
         return Database::executeRow($sql, $params);
     }
