@@ -27,11 +27,11 @@
     </header>
 
     <main class="py-5">
-        <div class="container-fluid text-center mb-4 mt-5">
-            <h3 class="text-center mb-4">Usuarios Registrados</h3>
+        <div class="container text-center mb-4 mt-5">
+            <h3 class="mb-4">Usuarios Registrados</h3>
         </div>
         <!-- Formulario de búsqueda -->
-        <form class="col-sm-12 col-md-6" id="searchForm">
+        <form class="col-sm-12 col-md-6 mx-md-auto  " id="searchForm">
             <div class="row">
                 <div class="col-6">
                     <input type="search" class="form-control" name="search" placeholder="Buscar" required>
@@ -43,11 +43,10 @@
                     <button type="reset" class="btn btn-secondary" onclick="fillTable()">
                         <i class="fas fa-times-circle"></i>
                     </button>
-
                 </div>
             </div>
         </form>
-        <div class="container-fluid justify-content-center mt-3">
+        <div class="container justify-content-center mt-3">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -66,66 +65,22 @@
                             <td>Dirección 1</td>
                             <td>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="switch1"
-                                        onchange="toggleSwitchColor(this)">
+                                    <input class="form-check-input" type="checkbox" id="switch1" onchange="toggleSwitchColor(this)">
                                     <label class="form-check-label" for="switch1"></label>
                                 </div>
                             </td>
                             <td>
-                                <button class="btn btn-outline-primary btn-sm"><img src="../../resources/img/lapiz.png"
-                                        alt="Editar" data-bs-toggle="modal" data-bs-target="#ModalEditar"
-                                        width="24px"></button>
-                                <button class="btn btn-outline-danger btn-sm"><img src="../../resources/img/basura.png"
-                                        alt="Eliminar" width="24px"></button>
+                                <button class="btn btn-outline-primary btn-sm"><img src="../../resources/img/lapiz.png" alt="Editar" data-bs-toggle="modal" data-bs-target="#ModalEditar" width="24px"></button>
+                                <button class="btn btn-outline-danger btn-sm"><img src="../../resources/img/basura.png" alt="Eliminar" width="24px"></button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Usuario 2</td>
-                            <td>usuario2@example.com</td>
-                            <td>Dirección 2</td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="switch2"
-                                        onchange="toggleSwitchColor(this)">
-                                    <label class="form-check-label" for="switch2"></label>
-                                </div>
-                            </td>
-                            <td>
-                                <button class="btn btn-outline-primary btn-sm"><img src="../../resources/img/lapiz.png"
-                                        alt="Editar" data-bs-toggle="modal" data-bs-target="#ModalEditar"
-                                        width="24px"></button>
-                                <button class="btn btn-outline-danger btn-sm"><img src="../../resources/img/basura.png"
-                                        alt="Eliminar" width="24px"></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Usuario 2</td>
-                            <td>usuario2@example.com</td>
-                            <td>Dirección 2</td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="switch2"
-                                        onchange="toggleSwitchColor(this)">
-                                    <label class="form-check-label" for="switch2"></label>
-                                </div>
-                            </td>
-                            <td>
-                                <button class="btn btn-outline-primary btn-sm"><img src="../../resources/img/lapiz.png"
-                                        alt="Editar" data-bs-toggle="modal" data-bs-target="#ModalEditar"
-                                        width="24px"></button>
-                                <button class="btn btn-outline-danger btn-sm"><img src="../../resources/img/basura.png"
-                                        alt="Eliminar" width="24px"></button>
-                            </td>
-                        </tr>
-
+                        <!-- Resto de filas -->
                     </tbody>
                 </table>
             </div>
         </div>
     </main>
-
-
-
+    
 
     <footer>
 
