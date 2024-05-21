@@ -20,23 +20,6 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../../resources/css/principal_admin.css">
     <script src="../../controllers/utils/admin.js" defer></script>
-
-    <style>
-        body {
-            overflow-y: hidden; /* Deshabilita el desplazamiento vertical */
-        }
-
-        .form-inline input[type="search"] {
-            width: 150px; /* Ajusta el ancho de la barra de búsqueda */
-        }
-
-        main {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* Establece la altura mínima de la sección principal */
-        }
-    </style>
 </head>
 
 <body>
@@ -44,100 +27,73 @@
         <div id="menuContent"></div>
     </header>
 
-    <main class="py-5">
-        
-        <div class="container mt-5">
-            <div class="row mb-3">
-                <div class="col-md-12">
-                    <form class="form-inline" id="searchForm">
-                        <input type="search" class="form-control form-control-sm mr-2" placeholder="Buscar...">
-                        <a href="#" class="btn btn-primary" id="openModalButton">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                    </form>
-                </div>
-            </div>
-
-            <div class="table-responsive-md">
-                <table class="table table-bordered table-hover">
-                    <thead class="thead-dark">
+    <main class="py-5 pt-5 mt-5">
+        <div class="container-fluid text-center mb-4 mt-5">
+            <h3 class="text-center mb-4">Administrar Reseñas</h3>
+        </div>
+        <button type="button" class="btn btn-primary mt-5">
+            <img src="../../resources/img/agregar (1).png" alt="" class="me-2">
+            Crear Reseña
+        </button>
+        <div class="container-fluid justify-content-center mt-3">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
                         <tr>
-                            <th>Imagen</th>
-                            <th>Usuario</th>
-                            <th>Correo</th>
-                            <th>Comentario</th>
-                            <th>Acciones</th>
+                            <th scope="col">Usuarios</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Comentario</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Acciones</th> <!-- Botones con accion-->
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><img src="https://via.placeholder.com/50" alt="Imagen" class="img-fluid"></td>
-                            <td>Usuario1</td>
+                            <td>Usuario 1</td>
                             <td>usuario1@example.com</td>
-                            <td>Comentario de ejemplo 1</td>
-                            <td><button class="btn btn-warning btn-disable"><i class="fas fa-ban"></i> Deshabilitar</button></td>
+                            <td>No me gusto</td>
+                            <td>28/02/2024</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="switch1"
+                                        onchange="toggleSwitchColor(this)">
+                                    <label class="form-check-label" for="switch1"></label>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
-                            <td><img src="https://via.placeholder.com/50" alt="Imagen" class="img-fluid"></td>
-                            <td>Usuario2</td>
-                            <td>usuario2@example.com</td>
-                            <td>Comentario de ejemplo 2</td>
-                            <td><button class="btn btn-warning btn-disable"><i class="fas fa-ban"></i> Deshabilitar</button></td>
+                            <td>Usuario 1</td>
+                            <td>usuario1@example.com</td>
+                            <td>No me gusto</td>
+                            <td>28/02/2024</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="switch1"
+                                        onchange="toggleSwitchColor(this)">
+                                    <label class="form-check-label" for="switch1"></label>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
-                            <td><img src="https://via.placeholder.com/50" alt="Imagen" class="img-fluid"></td>
-                            <td>Usuario3</td>
-                            <td>usuario3@example.com</td>
-                            <td>Comentario de ejemplo 3</td>
-                            <td><button class="btn btn-warning btn-disable"><i class="fas fa-ban"></i> Deshabilitar</button></td>
+                            <td>Usuario 1</td>
+                            <td>usuario1@example.com</td>
+                            <td>No me gusto</td>
+                            <td>28/02/2024</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="switch1"
+                                        onchange="toggleSwitchColor(this)">
+                                    <label class="form-check-label" for="switch1"></label>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="reviewModalLabel">Crear nueva reseña</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="usuario">Usuario</label>
-                                <input type="text" class="form-control" id="usuario" placeholder="Ingresa el usuario">
-                            </div>
-                            <div class="form-group">
-                                <label for="correo">Correo</label>
-                                <input type="email" class="form-control" id="correo" placeholder="Ingresa el correo">
-                            </div>
-                            <div class="form-group">
-                                <label for="comentario">Comentario</label>
-                                <textarea class="form-control" id="comentario" rows="3"
-                                    placeholder="Ingresa el comentario"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="imagen">Adjuntar imagen</label>
-                                <input type="file" class="form-control-file" id="imagen">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Guardar reseña</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
 
-   
+
 
 
     <footer id="footerIndex" class="pt-3"></footer>
