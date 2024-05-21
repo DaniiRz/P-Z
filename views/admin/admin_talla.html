@@ -44,138 +44,83 @@
                             <button type="reset" class="btn btn-secondary" onclick="fillTable()">
                                 <i class="fas fa-times-circle"></i>
                             </button>
-                            <a href="../admin/admin_subcategorias.html"><button type="reset" class="btn btn-primary"
-                                    onclick="fillTable()">
-                                    <i class="fa-solid fa-plus"></i>
-                                </button></a>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#modalAgregar" id="btnAbrirModal"><i class="fas fa-plus"></i></button>
 
                         </div>
                     </div>
                 </form>
-                <!-- Modal -->
-                <div class="modal fade" id="modalColor" tabindex="-1" role="dialog" aria-labelledby="modalColorLabel"
+
+                <!-- Modal agregar talla nueva-->
+                <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalAgregarLabel"
                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modalColorLabel">Agregar Talla</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                                <h5 class="modal-title" id="modalAgregarLabel">Crear Talla</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <div class="form-group">
+                                    <label for="input1">Nombre Talla:</label>
+                                    <input type="text" class="form-control" id="input1" placeholder="Escriba aquí...">
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label>Colores: </label>
                                     <div class="form-group">
-                                        <label for="nombre">Talla:</label>
-                                        <input type="text" class="form-control" id="nombre"
-                                            placeholder="Ingrese la talla">
+                                        <form>
+                                            <input type="color" class="form-control form-control-color mt-2 " id="myColor"
+                                                value="#0d6e78" title="Choose a color">
+                                        </form>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary">Agregar</button>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary">Guardar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Tabla de tallas con opciones -->
-            <div class="container mb-3 justify-content-center">
-                <div class="container-fluid mt-3">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nombre Talla</th>
-                                    <th scope="col">Color</th>
-                                    <th scope="col">Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Talla S</td>
-                                    <td>
-                                        <!-- Botón para abrir el modal -->
-                                        <button type="button" class="btn btn-outline-secondary" data-toggle="modal"
-                                            data-target="#exampleModal">
-                                            Agregar Color
-                                        </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Agregar Color
-                                                        </h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-6">
-                                                                <!-- Tabla derecha -->
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th></th>
-                                                                            <th>Código Color</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>1</td>
-                                                                            <td>#FF0000</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>2</td>
-                                                                            <td>#00FF00</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>3</td>
-                                                                            <td>#0000FF</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <!-- Contenedor izquierdo -->
-                                                                <div class="form-group">
-                                                                    <form>
-                                                                        <input type="color"
-                                                                            class="form-control form-control-color"
-                                                                            id="myColor" value="#0d6e78"
-                                                                            title="Choose a color">
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Cerrar</button>
-                                                        <button type="button" class="btn btn-primary">Guardar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                                        <button class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+        </div>
+        </div>
+        <!-- Tabla de tallas con opciones -->
+        <div class="container mb-3 justify-content-center">
+            <div class="container-fluid mt-3">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre Talla</th>
+                                <th scope="col">Color</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Talla S</td>
+                                <td>
+                                    <!-- Botón para abrir el modal -->
+                                    <button type="button" class="btn btn-outline-secondary" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                        Agregar Color
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                    <button class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-
             </div>
+
+        </div>
         </div>
     </main>
 
