@@ -31,7 +31,7 @@
     <main class="pt-5">
         <div id="textos" class="container-fluid py-5 text-center">
             <div class="row justify-content-center py-5">
-                <h3> Administrar Categorías </h3>
+                <h3 id="mainTitle"> Administrar Categorías </h3>
             </div>
         </div>
         <div class="container justify-content-center">
@@ -48,101 +48,71 @@
                         <button type="reset" class="btn btn-secondary" onclick="fillTable()">
                             <i class="fas fa-times-circle"></i>
                         </button>
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                            data-bs-target="#modalAgregar" id="btnAbrirModal"><i class="fas fa-plus"></i></button>
+                        <button type="button" class="btn btn-warning" onclick="openCreate()">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
                 </div>
             </form>
 
-            <!-- Modal -->
-            <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalAgregarLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
+            <!-- Componente Modal para guardar un registro -->
+            <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="modalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalAgregarLabel">Crear Categoría</h5>
+                            <h1 class="modal-title fs-5" id="modalTitle"></h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="input1">Nombre Categoría:</label>
-                                <input type="text" class="form-control" id="input1" placeholder="Escriba aquí...">
+                        <!-- Formulario para guardar un registro -->
+                        <form id="saveForm">
+                            <div class="modal-body row g-3">
+                                <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                                <input type="number" class="d-none" id="idCategoria" name="idCategoria">
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="nombreCategoria" class="form-label">Nombre</label>
+                                    <input id="nombreCategoria" type="text" name="nombreCategoria" class="form-control"
+                                        required>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="descripcionCategoria" class="form-label">Descripción</label>
+                                    <input id="descripcionCategoria" type="text" name="descripcionCategoria"
+                                        class="form-control">
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="imagenCategoria" class="form-label">Imagen</label>
+                                    <input id="imagenCategoria" type="file" name="imagenCategoria" class="form-control"
+                                        accept=".png, .jpg">
+                                </div>
                             </div>
-                            <div class="form-group mt-3">
-                                <label for="input2">Descripción: </label>
-                                <input type="text" class="form-control" id="input2" placeholder="Escriba aquí...">
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
-                            <div class="form-group mt-3">
-                                <label for="dropdown">Sub-Categoría</label>
-                                <select class="form-control" id="dropdown">
-                                    <option value="opcion1">Opción 1</option>
-                                    <option value="opcion2">Opción 2</option>
-                                    <option value="opcion3">Opción 3</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary">Guardar</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <!--Separacion de odal y tabla -->
+            <!--Separacion de Modal y tabla -->
             <div class="container mb-3 justify-content-center">
                 <!-- Tabla de Categorías -->
                 <div class="container-fluid mt-3">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
+                        <!-- Tabla para mostrar los registros existentes -->
+                        <table class="table table-hover">
+                            <!-- Encabezado de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
                             <thead>
                                 <tr>
-                                    <th scope="col">Nombre Categoria</th>
-                                    <th scope="col">Descripcion</th>
-                                    <th scope="col">Sub-Categoría</th>
-                                    <th scope="col">Opciones</th>
+                                    <td colspan="4" id="rowsFound"></td>
+                                </tr>
+                                <tr>
+                                    <th>IMAGEN</th>
+                                    <th>NOMBRE</th>
+                                    <th>DESCRIPCIÓN</th>
+                                    <th>ACCIONES</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Blusas</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <a href="../admin/admin_subcategorias.html" class="btn btn-success">
-                                            <i class="fas fa-plus"></i>
-                                        </a>
-                                        <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                                        <button class="btn btn-primary"><i
-                                                class="fa-regular fa-pen-to-square"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Jeans</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <a href="../admin/admin_subcategorias.html" class="btn btn-success">
-                                            <i class="fas fa-plus"></i>
-                                        </a>
-                                        <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                                        <button class="btn btn-primary"><i
-                                                class="fa-regular fa-pen-to-square"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Vestidos</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <a href="../admin/admin_subcategorias.html" class="btn btn-success">
-                                            <i class="fas fa-plus"></i>
-                                        </a>
-                                        <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                                        <button class="btn btn-primary"><i
-                                                class="fa-regular fa-pen-to-square"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
+                            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                            <tbody id="tableBody"></tbody>
                         </table>
                     </div>
                 </div>
