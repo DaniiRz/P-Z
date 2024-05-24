@@ -8,8 +8,8 @@ function formatPhoneNumber(input) {
     phoneNumber = phoneNumber.replace(/-/g, '');
 
     // Validar que solo se permitan números y el formato XXXX-XXXX
-    let regex = /^[0-9]{4}-?[0-9]{4}$/;
-    if (!regex.test(phoneNumber)) {
+    let phoneNumberPattern = /^[0-9]{4}-?[0-9]{4}$/;
+    if (!phoneNumberPattern.test(phoneNumber)) {
 
         // Mostrar mensaje de error
         input.classList.add("is-invalid");
@@ -46,7 +46,7 @@ function formatEmail(input) {
     // Obtener el valor actual del campo de entrada
     let Email = input.value;
 
-    // Validar formato de correo electrónico ABC@gmail.com
+    // Validar formato de correo electrónico
     let emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
     if (!emailPattern.test(Email)) {
 
@@ -130,7 +130,7 @@ function formatDui(input) {
 function formatAlphabetic(input) {
 
     // Obtener el valor actual del campo de entrada
-    let Text = input.value
+    let Text = input.value;
 
     // Establecer el formato del texto
     let TextPattern = /^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]+$/;
@@ -148,6 +148,30 @@ function formatAlphabetic(input) {
 
     // Establecer el valor formateado en el campo de entrada
     input.value = Text;
+}
+
+// Codigo de validacion de campo de precio
+function formatDolar(input) {
+
+    // Obtener el valor actual del campo de entrada
+    let Dolar = input.value
+
+    // Establecer el formato del precio
+    let DolarPattern = /^[0-9]+(?:\.[0-9]{1,2})?$/;
+    if (!DolarPattern.test(Dolar)) {
+
+        // Mostrar mensaje de error
+        input.classList.add("is-invalid");
+    }
+
+    // En caso de pasar el test del formato
+    else {
+        input.setCustomValidity("");
+        input.classList.remove("is-invalid");
+    }
+
+    // Establecer el valor formateado en el campo de entrada
+    input.value = Dolar;
 }
 
 // Lógica para validar el formulario y habilitar el botón de submit
@@ -224,11 +248,19 @@ function formatAlphabetic(input) {
                     formatAlphabetic(input);
                 }
 
+                else if (input.id === 'precio') {
+                    formatDolar(input);
+                }
+
                 else {
 
                     // Agregar la clase 'was-validated' al formulario
                     form.classList.add('was-validated');
-                    form.submit();
+                    
+                    // Esperar 3 segundos antes de enviar el formulario
+                    setTimeout(function () {
+                        form.submit();
+                    }, 3000);
                 }
             });
         });
