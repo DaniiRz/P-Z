@@ -30,7 +30,7 @@ require_once('../../models/handler/categoria_handler.php');
             $this->data_error = 'El nombre debe ser un valor alfanumérico';
             return false;
         }elseif (Validator::validateLength($value, $min, $max)) {
-            $this -> nombre = $value;
+            $this -> nombrecategoria = $value;
             return true;
           }else{
             $this-> data_error = 'El nombre debe de tener una longitud entre' .$min. 'y' .$max; 
