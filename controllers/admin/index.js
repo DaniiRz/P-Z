@@ -21,11 +21,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         sweetAlert(4, DATA.error, true);
     }
 });
-
+// Método del evento para cuando se envía el formulario de registro del primer usuario.
 SIGNUP_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SIGNUP_FORM);
+    // Petición para registrar el primer usuario del sitio privado.
     const DATA = await fetchData(USER_API, 'signUp', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         sweetAlert(1, DATA.message, true, 'index.html');
     } else {
@@ -33,10 +37,18 @@ SIGNUP_FORM.addEventListener('submit', async (event) => {
     }
 });
 
+
+
+
+// Método del evento para cuando se envía el formulario de inicio de sesión.
 LOGIN_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(LOGIN_FORM);
+    // Petición para registrar el primer usuario del sitio privado.
     const DATA = await fetchData(USER_API, 'logIn', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         sweetAlert(1, DATA.message, true, 'inicio_admin.html');
     } else {
