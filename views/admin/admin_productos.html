@@ -16,7 +16,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
     <link rel="stylesheet" href="../../resources/css/productos.css">
-    <link rel="stylesheet" href="../../resources/css/admin_producto.css">
     <link rel="stylesheet" href="../../resources/css/index.css">
     <link rel="stylesheet" href="../../resources/css/principal_admin.css">
 </head>
@@ -50,10 +49,10 @@
                         <button type="reset" class="btn btn-secondary" onclick="fillTable()">
                             <i class="fas fa-times-circle"></i>
                         </button>
-                        <a href="../admin/admin_subcategorias.html"><button type="reset" class="btn btn-warning"
-                                onclick="fillTable()">
-                                <i class="fa-solid fa-plus"></i>
-                            </button></a>
+                        <button type="reset" class="btn btn-warning" onclick="fillTable()" data-bs-toggle="modal"
+                            data-bs-target="#saveModal">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
                 </div>
             </form>
@@ -88,65 +87,95 @@
         </div>
 
         <!-- Componente Modal para guardar un registro -->
-        <div class="modal fade" id="saveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="modalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal fade" id="saveModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="miModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
-                    <form id="saveForm" class="needs-validation">
 
-                        <!-- Heador del modal -->
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="modalTitle"></h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- Body del modal -->
+                    <div class="modal-body">
+                        <div class="tab-content">
+
+                            <!-- Navegacion de formularios -->
+                            <div class="container mb-5 mt-3">
+                                <button type="button" class="btn-close btn-danger" aria-label="Close" data-bs-dismiss="modal"></button>
+                                <h4 class="modal-title text-center mb-2 fw-light"> AGREGAR PRODUCTO </h4>
+                                <ul class="nav nav-pills justify-content-center">
+                                    <li class="nav-item me-4">
+                                        <a class="nav-link active link-gris" id="formulario1-tab" data-bs-toggle="pill"
+                                            href="#formulario1" role="tab" aria-controls="formulario1"
+                                            aria-selected="true">Datos del producto
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link disabled link-gris" id="formulario2-tab" data-bs-toggle="pill"
+                                            href="#formulario2" role="tab" aria-controls="formulario2"
+                                            aria-selected="false">Detalles del producto
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Formulario 1 -->
+                            <div class="tab-pane fade show active" id="formulario1" role="tabpanel"
+                                aria-labelledby="formulario1-tab">
+                                <form class="needs-validation">
+                                    <div class="row ps-5 pe-5 pb-5">
+                                        <div class="col-12 mb-3">
+                                            <label for="nombreProducto" class="form-label">Nombre</label>
+                                            <input id="nombreProducto" type="text" name="nombreProducto"
+                                                class="form-control" required oninput="formatAlphabetic(this)">
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="categoriaProducto" class="form-label">Categoría</label>
+                                            <select id="categoriaProducto" name="categoriaProducto" class="form-select"
+                                                required></select>
+                                        </div>
+                                        <div class="col-4 ">
+                                            <label for="subcategoriaProducto" class="form-label">Subcategoría</label>
+                                            <select id="subcategoriaProducto" name="subcategoriaProducto"
+                                                class="form-select" required></select>
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <label for="imagenProducto" class="form-label">Imagen</label>
+                                            <input id="imagenProducto" type="file" name="imagenProducto"
+                                                class="form-control" accept=".png, .jpg" required>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="tallasProducto" class="form-label">Tallas</label>
+                                            <input id="tallasProducto" type="number" name="tallasProducto" min="1"
+                                                step="1" class="form-control" required>
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <label for="precioProducto" class="form-label">Precio</label>
+                                            <input id="precioProducto" type="number" name="precioProducto" min="0.01"
+                                                step="0.1" class="form-control" required oninput="formatDolar(this)">
+                                        </div>
+                                        <div class="col-8">
+                                            <label for="descripcionProducto" class="form-label">Descripción</label>
+                                            <textarea id="descripcionProducto" type="text" name="descripcionProducto"
+                                                class="form-control descripcion" required oninput="formatAlphabetic(this)">
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Formulario 2 -->
+                            <div class="tab-pane fade" id="formulario2" role="tabpanel"
+                                aria-labelledby="formulario2-tab">
+                                <form>
+
+                                </form>
+                            </div>
                         </div>
+                    </div>
 
-                        <!-- Body del modal -->
-                        <div class="modal-body row g-3">
-
-                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                            <input type="number" class="d-none" id="idProducto" name="idProducto">
-                            <div class="col-sm-12 col-md-6">
-                                <label for="nombreProducto" class="form-label">Nombre</label>
-                                <input id="nombreProducto" type="text" name="nombreProducto" class="form-control"
-                                    required oninput="formatAlphabetic(this)">
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="descripcionProducto" class="form-label">Descripción</label>
-                                <input id="descripcionProducto" type="text" name="descripcionProducto"
-                                    class="form-control" required oninput="formatAlphabetic(this)">
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="precioProducto" class="form-label">Precio (US$)</label>
-                                <input id="precioProducto" type="number" name="precioProducto" min="0.01" step="0.01"
-                                    class="form-control" required oninput="formatDolar(this)">
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="existenciasProducto" class="form-label">Existencias</label>
-                                <input id="existenciasProducto" type="number" name="existenciasProducto" min="1"
-                                    step="1" class="form-control" required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="categoriaProducto" class="form-label">Categoría</label>
-                                <select id="categoriaProducto" name="categoriaProducto" class="form-select" required>
-                                </select>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="imagenProducto" class="form-label">Imagen</label>
-                                <input id="imagenProducto" type="file" name="imagenProducto" class="form-control"
-                                    accept=".png, .jpg" required>
-                            </div>
-                            <div class="form-check form-switch form-check-reverse">
-                                <input class="form-check-input" type="checkbox" id="estadoProducto"
-                                    name="estadoProducto" checked>
-                                <label class="form-check-label" for="estadoProducto">Estado</label>
-                            </div>
-                        </div>
-
-                        <!-- Botones del modal -->
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                    </form>
+                    <!-- Botón de cierre del modal -->
+                    <div class="modal-footer">
+                        <button id="retrocederPestana" type="button" class="btn btn-danger ps-4 pe-4">Anterior</button>
+                        <button id="cambiarPestana" type="button" class="btn btn-success ps-4 pe-4">Siguiente</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -167,6 +196,7 @@
     <script src="../../controllers/utils/cargar_menu.js"></script>
     <script src="../../controllers/admin/productos.js"></script>
     <script src="../../controllers/utils/Validaciones.js"></script>
+    <script src="../../controllers/utils/formulario_doble.js"></script>
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
