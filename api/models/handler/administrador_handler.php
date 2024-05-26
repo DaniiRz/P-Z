@@ -28,7 +28,7 @@ require_once('../../helpers/database.php');
         $params = array($_SESSION['idAdministrador']);
         $data = Database::getRow($sql, $params);
         // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
-        if (password_verify($clave, $data['clave_administrador'])) {
+        if (password_verify($clave, $data['clave_admin'])) {
             return true;
         } else {
             return false;
@@ -53,9 +53,9 @@ require_once('../../helpers/database.php');
         $params = array($correo);
         if (!($data = Database::getRow($sql, $params))) {
             return false;
-        } elseif (password_verify($clave, $data['claveAdministrador'])) {
-            $_SESSION['idAdministrador'] = $data['id_administrador'];
-            $_SESSION['correoAdministrador'] = $data['correoAdministrador'];
+        } elseif (password_verify($clave, $data['clave_admin'])) {
+            $_SESSION['idAdministrador'] = $data['id_admin'];
+            $_SESSION['correoAdministrador'] = $data['correo_admin'];
             return true;
         } else {
             return false;

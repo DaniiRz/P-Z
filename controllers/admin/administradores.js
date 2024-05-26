@@ -14,7 +14,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     NOMBRE_ADMINISTRADOR = document.getElementById('nombreAdministrador'),
     APELLIDO_ADMINISTRADOR = document.getElementById('apellidoAdministrador'),
     TELEFONO_ADMINISTRADOR = document.getElementById('telefonoAdministrador')
-CORREO_ADMINISTRADOR = document.getElementById('correoAdministrador'),
+    CORREO_ADMINISTRADOR = document.getElementById('correoAdministrador'),
     CLAVE_ADMINISTRADOR = document.getElementById('claveAdministrador'),
     CONFIRMAR_CLAVE = document.getElementById('confirmarClave');
 
