@@ -2,11 +2,16 @@
 <html lang="es">
 
 <head>
+
+    <!-- Título del documento -->
     <title>PULL&ZARA - Tallas</title>
+
+    <!-- Metadatos de la página web -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
     <link rel="stylesheet" href="../../resources/css/admin_talla.css">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -16,21 +21,25 @@
 </head>
 
 <body>
+
+    <!-- Navbar -->
     <header>
         <div id="menuContent"></div>
     </header>
 
-
+    <!-- Contenedor principal -->
     <main class="py-5">
-        <div class="mt-5 justify-content-center">
 
+        <!-- Titulos -->
+        <div class="mt-5 justify-content-center">
             <div id="textos" class="container-fluid py-5 text-center">
                 <div class="row justify-content-center py-5">
                     <h3>Administrar Tallas</h3>
-
                 </div>
             </div>
+
             <div class="container mb-3 justify-content-center">
+
                 <!-- Formulario de búsqueda -->
                 <form class="col-sm-12 col-md-6" id="searchForm">
                     <div class="row">
@@ -45,52 +54,61 @@
                                 <i class="fas fa-times-circle"></i>
                             </button>
                             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                data-bs-target="#modalAgregar" id="btnAbrirModal"><i class="fas fa-plus"></i></button>
-
+                                data-bs-target="#modalAgregar" id="btnAbrirModal"><i class="fas fa-plus"></i>
+                            </button>
                         </div>
                     </div>
                 </form>
 
-                <!-- Modal agregar talla nueva-->
+                <!-- Modal agregar talla nueva -->
                 <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalAgregarLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
+                            <form class="needs-validation">
+
+                            <!-- Header del modal -->
                             <div class="modal-header">
                                 <h5 class="modal-title" id="modalAgregarLabel">Crear Talla</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                </button>
                             </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="input1">Nombre Talla:</label>
-                                    <input type="text" class="form-control" id="input1" placeholder="Escriba aquí...">
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label>Colores: </label>
+
+                                <!-- Body del modal -->
+                                <div class="modal-body">
                                     <div class="form-group">
-                                        <form>
-                                            <input type="color" class="form-control form-control-color mt-2 " id="myColor"
-                                                value="#0d6e78" title="Choose a color">
-                                        </form>
+                                        <label for="input1">Nombre Talla:</label>
+                                        <input type="text" class="form-control" id="nombreTalla"  placeholder="Escriba aquí..." required
+                                            oninput="formatAlphabetic(this)">
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <label>Colores: </label>
+                                        <div class="form-group">
+                                            <input type="color" class="form-control form-control-color mt-2 " id="myColor" value="#0d6e78" title="Choose a color"
+                                                required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Botones del modal -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cerrar</button>
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
                                     </div>
                                 </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn btn-primary">Guardar</button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
+
         <!-- Tabla de tallas con opciones -->
         <div class="container mb-3 justify-content-center">
             <div class="container-fluid mt-3">
                 <div class="table-responsive">
+
+                    <!-- Columnas -->
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -99,10 +117,13 @@
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
+
+                        <!-- Filas -->
                         <tbody>
                             <tr>
                                 <td>Talla S</td>
                                 <td>
+
                                     <!-- Botón para abrir el modal -->
                                     <button type="button" class="btn btn-outline-secondary" data-toggle="modal"
                                         data-target="#exampleModal">
@@ -119,26 +140,24 @@
                     </table>
                 </div>
             </div>
-
-        </div>
         </div>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div id="footerIndex"></div>
     </footer>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <!-- Librerias -->
+    <!-- Js -->
     <script src="../../controllers/utils/cargar_menu.js"></script>
     <script src="../../controllers/utils/admin.js" defer></script>
+    <script src="../../controllers/utils/Validaciones.js"></script>
 
-
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        crossorigin="anonymous"> </script>
 </body>
 
 </html>

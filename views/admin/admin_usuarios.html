@@ -2,6 +2,10 @@
 <html lang="es">
 
 <head>
+
+    <!-- Título del documento -->
+    <title>PULL&ZARA - Usuarios</title>
+    
     <!-- Metadatos de la página web -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,25 +15,29 @@
     <link rel="stylesheet" href="../../resources/css/index.css">
     <link rel="stylesheet" href="../../resources/css/admin_usuarios.css">
     <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
-    <title>PULL&ZARA - Usuarios</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../resources/css/principal_admin.css">
-
 </head>
 
 <body>
+
+    <!-- Navbar -->
     <header class="mb-5">
         <div id="menuContent"></div>
     </header>
 
+    <!-- Contenedor principal -->
     <main class="py-5">
+
+        <!-- Titulos -->
         <div class="container text-center mb-4 mt-5">
             <h3 class="mb-4">Usuarios Registrados</h3>
         </div>
+
         <!-- Formulario de búsqueda -->
         <form class="col-sm-12 col-md-6 mx-md-auto mt-5 " id="searchForm">
             <div class="row">
@@ -46,8 +54,12 @@
                 </div>
             </div>
         </form>
+
+        <!-- Contenedor de tablas -->
         <div class="container justify-content-center mt-3">
             <div class="table-responsive">
+
+                <!-- Columnas -->
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -55,9 +67,11 @@
                             <th scope="col">Correo</th>
                             <th scope="col">Dirección</th>
                             <th scope="col">Conexión</th>
-                            <th scope="col">Acciones</th> <!-- Nueva columna para los botones de acción -->
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
+
+                    <!-- Filas -->
                     <tbody>
                         <tr>
                             <td>Usuario 1</td>
@@ -75,6 +89,7 @@
                                 <button class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></button>
                             </td>
                         </tr>
+
                         <!-- Resto de filas -->
                     </tbody>
                 </table>
@@ -82,22 +97,21 @@
         </div>
     </main>
 
-
+    <!-- Footer -->
     <footer>
-
         <div id="footerIndex"></div>
-
     </footer>
 
-
-
+    <!-- Librerias -->
+    <!-- Js -->
     <script src="../../controllers/utils/admin_usuarios.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
     <script src="../../controllers/utils/cargar_menu.js"></script>
 
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"> </script>
 </body>
 
 </html>
