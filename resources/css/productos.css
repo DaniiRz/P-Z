@@ -30,9 +30,22 @@
   color: #ffffff;
 }
 
+img {
+  max-height: 200px;
+  max-width: 200px;
+}
+
+.btnmodal {
+  width: 100%;
+  max-width: 470px;
+}
+
 .descripcion {
+  width: 100%;
+  max-width: 480px;
   height: 100px;
   max-height: 100px;
+  white-space: pre-wrap;
 }
 
 .message,

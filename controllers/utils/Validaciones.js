@@ -154,7 +154,7 @@ function formatAlphabetic(input) {
 function formatDolar(input) {
 
     // Obtener el valor actual del campo de entrada
-    let Dolar = input.value
+    let Dolar = input.value;
 
     // Establecer el formato del precio
     let DolarPattern = /^[0-9]+(?:\.[0-9]{1,2})?$/;
@@ -172,6 +172,54 @@ function formatDolar(input) {
 
     // Establecer el valor formateado en el campo de entrada
     input.value = Dolar;
+}
+
+// Codigo de validacion y proceso de imagen
+function formatImg(input) {
+
+    // Obtener el archivo de imagen seleccionado
+    var archivoImagen = input.files[0];
+
+    // Crear un objeto de FileReader
+    var lectorImagen = new FileReader();
+
+    // Definir la función de carga del lector de imágenes
+    lectorImagen.onload = function (eventoCarga) {
+
+        // Crear un elemento de imagen y establecer la vista previa
+        var imagenPrev = document.createElement('img');
+        imagenPrev.src = eventoCarga.target.result;
+
+        // Mostrar la vista previa en el contenedor correspondiente
+        var contenedorPrev = document.getElementById('vista-previa');
+        contenedorPrev.innerHTML = '';
+        contenedorPrev.appendChild(imagenPrev);
+    };
+
+    // Leer el archivo de imagen como una URL de datos
+    lectorImagen.readAsDataURL(archivoImagen);
+}
+
+function formatCombo(input) {
+
+    // Obtener el valor seleccionado del combobox
+    let valorSeleccionado = input.value;
+
+    // Si no se ha seleccionado ninguna opción
+    if (!valorSeleccionado) {
+
+        // Mostrar mensaje de error
+        input.classList.add("is-invalid");
+    }
+
+    // En caso de pasar el test del formato
+    else {
+        input.setCustomValidity("");
+        input.classList.remove("is-invalid");
+    }
+
+    // Establecer el valor formateado en el campo de entrada
+    input.value = valorSeleccionado
 }
 
 // Lógica para validar el formulario y habilitar el botón de submit
@@ -195,6 +243,8 @@ function formatDolar(input) {
 
             // Obtener todos los campos de entrada dentro del formulario actual
             const inputs = form.querySelectorAll('input');
+            const selects = form.querySelectorAll('select');
+            const textareas = form.querySelectorAll('textarea');
 
             // Variable para controlar si todos los campos están llenos y en un formato correcto
             let allFieldsValid = true;
@@ -206,12 +256,27 @@ function formatDolar(input) {
                 }
             });
 
+            // Iterar sobre cada select y verificar si está seleccionado
+            selects.forEach(select => {
+                if (!select.value) {
+                    allFieldsValid = false;
+                }
+            });
+
+            // Iterar sobre cada textarea y verificar si está lleno
+            textareas.forEach(textarea => {
+                if (textarea.value.trim() === '' || textarea.classList.contains('is-invalid')) {
+                    allFieldsValid = false;
+                }
+            });
+
             // Habilitar o deshabilitar el botón de submit según si todos los campos están llenos y en un formato correcto
             submitButton.disabled = !allFieldsValid;
         });
 
         // Agregar el evento de 'submit' a cada formulario
         form.addEventListener('submit', event => {
+
             // Detener el envío del formulario por defecto
             event.preventDefault();
 
@@ -252,11 +317,15 @@ function formatDolar(input) {
                     formatDolar(input);
                 }
 
+                else if (input.id === 'imagen') {
+                    formatImg(input);
+                }
+
                 else {
 
                     // Agregar la clase 'was-validated' al formulario
                     form.classList.add('was-validated');
-                    
+
                     // Esperar 3 segundos antes de enviar el formulario
                     setTimeout(function () {
                         form.submit();
