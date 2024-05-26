@@ -15,7 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../../resources/css/registro_admin.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 </head>
 
 <body>
@@ -48,8 +48,8 @@
                             <label for="emailAdminLogin">Correo Electrónico</label>
                         </div>
                         <div class="form-floating mt-3">
-                            <input type="password" class="form-control" name="claveAdministrador" id="contraseñaAdminLogin"
-                                placeholder="Clave" required oninput="formatPassword(this)">
+                            <input type="password" class="form-control" name="claveAdministrador"
+                                id="contraseñaAdminLogin" placeholder="Clave" required oninput="formatPassword(this)">
                             <label for="contraseñaAdminLogin">Contraseña</label>
                         </div>
                         <div class="text-center mt-3">
@@ -67,8 +67,8 @@
                     <div class="row g-3">
                         <div class="col-sm-12 col-md-6">
                             <label for="nombreAdminSignup" class="form-label">Nombre</label>
-                            <input id="nombreAdminSignup" type="text" name="nombreAdministrador"
-                                class="form-control" required oninput="formatAlphabetic(this)">
+                            <input id="nombreAdminSignup" type="text" name="nombreAdministrador" class="form-control"
+                                required oninput="formatAlphabetic(this)">
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="apellidoAdminSignup" class="form-label">Apellido</label>
@@ -77,8 +77,8 @@
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="emailAdminSignup" class="form-label">Correo</label>
-                            <input id="emailAdminSignup" type="email" name="correoAdministrador"
-                                class="form-control" required oninput="formatEmail(this)">
+                            <input id="emailAdminSignup" type="email" name="correoAdministrador" class="form-control"
+                                required oninput="formatEmail(this)">
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="contraseñaAdminSignup" class="form-label">Contraseña</label>
@@ -87,18 +87,20 @@
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="contraseñaConfirmarSignup" class="form-label">Confirmar contraseña</label>
-                            <input id="contraseñaConfirmarSignup" type="password" name="confirmarClave" 
-                            class="form-control" required oninput="formatPassword(this)">
+                            <input id="contraseñaConfirmarSignup" type="password" name="confirmarClave"
+                                class="form-control" required oninput="formatPassword(this)">
                         </div>
                         <div class="text-center mt-3 pt-5">
-                            <button type="reset" class="btn btn-outline-dark"><i class="bi bi-x-square"></i> Cancelar</button>
-                            <button type="submit" class="btn btn-outline-dark"><i class="bi bi-save"></i> Registrarme</button>
+                            <button type="reset" class="btn btn-outline-dark"><i class="bi bi-x-square"></i>
+                                Cancelar</button>
+                            <button type="submit" class="btn btn-outline-dark"><i class="bi bi-save"></i>
+                                Registrarme</button>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
-        
+
     </main>
 
     <!-- Librerias -->
@@ -106,7 +108,8 @@
     <script src="../../controllers/utils/Validaciones.js"></script>
     <script src="../../controllers/utils/components.js"></script>
     <script src="../../controllers/admin/index.js"></script>
-    
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+
 
 
     <!-- Bootstrap -->

@@ -53,7 +53,7 @@ const sweetAlert = async (type, text, timer, url = null) => {
     if (timer) {
         options.timer = 3000;
     }
-    await Swal.fire(options);
+    await swal.fire(options);
     if (url) {
         location.href = url;
     }
