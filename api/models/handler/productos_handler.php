@@ -32,8 +32,8 @@ class ProductoHandler
     public function updateRows()
     {
         $sql = 'UPDATE P.nombre_producto, P.Desc_producto, D.existencias, C.nombre_color, T.nombre_talla
-                FROM tb_detalle_producto AS D 
-                JOIN tb_producto AS P ON D.id_producto = P.id_producto
+                FROM tb_detalle_productos AS D 
+                JOIN tb_productos AS P ON D.id_producto = P.id_producto
                 JOIN tb_color AS C ON D.id_color = C.id_color
                 JOIN tb_talla AS T ON D.id_talla = T.id_talla
                 WHERE id_producto = ?';
@@ -55,17 +55,17 @@ class ProductoHandler
     {
         $sql = 'SELECT P.nombre_producto, D.existencias, SC.nombre_sub_categoria, C.nombre_categoria
                 FROM tb_productos AS P 
-                JOIN tb_detalle_producto AS D ON P.id_producto = D.id_producto
-                JOIN tb_sub_categoria AS SC ON P.id_sub_categoria = SC.id_sub_categoria
-                JOIN tb_categoria AS C ON SC.id_categoria = C.id_categoria';
+                JOIN tb_detalle_productos AS D ON P.id_producto = D.id_producto
+                JOIN tb_sub_categorias AS SC ON P.id_sub_categoria = SC.id_sub_categoria
+                JOIN tb_categorias AS C ON SC.id_categoria = C.id_categoria';
         return Database::getRows($sql);
     }
 
     public function readOne()
     {
         $sql = 'SELECT P.nombre_producto, P.Desc_producto, P.cant_producto, P.precio_producto, D.existencias, D.img_producto, D.id_color, D.id_talla,
-                FROM tb_detalle_producto AS D 
-                JOIN tb_producto AS P ON D.id_producto = P.id_producto
+                FROM tb_detalle_productos AS D 
+                JOIN tb_productos AS P ON D.id_producto = P.id_producto
                 JOIN tb_color AS C ON D.id_color = C.id_color
                 JOIN tb_talla AS T ON D.id_talla = T.id_talla
                 WHERE id_producto = ?';
