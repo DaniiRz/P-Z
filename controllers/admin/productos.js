@@ -12,11 +12,14 @@ const SAVE_FORM = document.getElementById('saveForm'),
     ID_PRODUCTO = document.getElementById('idProducto'),
     NOMBRE_PRODUCTO = document.getElementById('nombreProducto'),
     DESCRIPCION_PRODUCTO = document.getElementById('descripcionProducto'),
+    CANTIDAD_PRODUCTO = document.getElementById('cantidadProducto'),
     PRECIO_PRODUCTO = document.getElementById('precioProducto'),
-    EXISTENCIAS_PRODUCTO = document.getElementById('existenciasProducto'),
     SUBCATEGORIA_PRODUCTO = document.getElementById('subcategoriaProducto'),
-    CATEGORIA_PRODUCTO = document.getElementById('categoriaProducto');
-
+    CATEGORIA_PRODUCTO = document.getElementById('categoriaProducto'),
+    EXISTENCIAS_PRODUCTO = document.getElementById('existenciasProducto'),
+    IMAGEN_PRODUCTO = document.getElementById('imagenProducto');
+    COLOR_PRODUCTO = document.getElementById('colorProducto');
+    TALLA_PRODUCTO = document.getElementById('tallaProducto');
     
 // Metodo para llenar la tabla
 const fillTable = async (form = null) => {
@@ -27,17 +30,11 @@ const fillTable = async (form = null) => {
     (form) ? action = 'searchRows' : action = 'readAll';
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(PRODUCTO_API, action, form);
-    console.log(DATA);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros fila por fila.
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-            console.log(row.nombre_producto);
-            console.log(row.precio_producto);
-            console.log(row.nombre_categoria);
-            console.log(row.id_producto);
-            console.log(row.imagen_producto);
             TABLE_BODY.innerHTML += `
             <tr>
                 <td><img src="${SERVER_URL}images/productos/${row.imagen_producto}" height="50"></td>
@@ -58,19 +55,16 @@ const fillTable = async (form = null) => {
         });
         // Se muestra un mensaje de acuerdo con el resultado.
         ROWS_FOUND.textContent = DATA.message;
-        console.log(ROWS_FOUND);
     } else {
-        console.log(sweetAlert(4, DATA.error, true));
+        sweetAlert(4, DATA.error, true);
     }
 }
-
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
-
 
 // Método del evento para cuando se envía el formulario de buscar.
 SEARCH_FORM.addEventListener('submit', (event) => {
@@ -104,7 +98,6 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         sweetAlert(2, DATA.error, false);
     }
 });
-
 
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.

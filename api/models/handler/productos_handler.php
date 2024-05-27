@@ -13,19 +13,19 @@ class ProductoHandler
     protected $cantproducto = null;
     protected $precioproducto = null;
     protected $idsubcategoria = null;
+    protected $idcategoria = null;
     protected $existencias = null;
     protected $imgproducto = null;
     protected $idcolor = null;
     protected $idtalla = null;
-    protected $idproducto = null;
 
     // Metodos de las operaciones SCRUD
     public function createRows()
     {
         $sql = 'CALL insertar_producto
                 (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombreproducto, $this->descproducto, $this->cantproducto, $this->precioproducto, $this->idsubcategoria, 
-                        $this->existencias, $this->imgproducto, $this->idcolor, $this->idtalla, $this->idproducto);
+        $params = array($this->nombreproducto, $this->descproducto, $this->cantproducto, $this->precioproducto, $this->idsubcategoria, $this->idcategoria, 
+                        $this->existencias, $this->imgproducto, $this->idcolor, $this->idtalla);
         return Database::executeRow($sql, $params);
     }
 
@@ -53,7 +53,7 @@ class ProductoHandler
 
     public function readAll()
     {
-        $sql = 'SELECT P.nombre_producto, D.existencias, SC.nombre_sub_categoria, C.nombre_categoria
+        $sql = 'SELECT D.img_producto, P.nombre_producto, P.precio_producto, SC.nombre_sub_categoria
                 FROM tb_productos AS P 
                 JOIN tb_detalle_productos AS D ON P.id_producto = D.id_producto
                 JOIN tb_sub_categorias AS SC ON P.id_sub_categoria = SC.id_sub_categoria

@@ -10,7 +10,7 @@ const SERVER_URL = 'http://localhost/P-Z/api/';
 *   Retorno: resultado de la promesa.
 */
 const confirmAction = (message) => {
-    return Swal.fire({
+    return swal({
         title: 'Advertencia',
         text: message,
         icon: 'warning',
@@ -53,7 +53,7 @@ const sweetAlert = async (type, text, timer, url = null) => {
     if (timer) {
         options.timer = 3000;
     }
-    await swal.fire(options);
+    await swal(options);
     if (url) {
         location.href = url;
     }
