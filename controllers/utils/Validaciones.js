@@ -164,10 +164,32 @@ function formatDolar(input) {
         input.classList.add("is-invalid");
     }
 
-    // En caso de pasar el test del formato
     else {
+
+        // En caso de pasar el test del formato
         input.setCustomValidity("");
         input.classList.remove("is-invalid");
+    }
+
+    // Verificar si ya se agregó el punto antes del penúltimo dígito
+    let indexOfDot = Dolar.lastIndexOf(".");
+    if (indexOfDot === -1 || indexOfDot !== Dolar.length - 3) {
+
+        // Si no se ha agregado, agregar el punto antes del penúltimo dígito
+        Dolar = Dolar + ".00";
+    }
+
+    // Verificar si el valor es 0 y mostrar el mensaje de error
+    if (Dolar == '0.00') {
+        
+        // Mostrar mensaje de error
+        document.getElementById("mensaje-error").style.display = "block";
+    } 
+    
+    else {
+
+        // En caso de pasar el test
+        document.getElementById("mensaje-error").style.display = "none";
     }
 
     // Establecer el valor formateado en el campo de entrada
@@ -200,6 +222,7 @@ function formatImg(input) {
     lectorImagen.readAsDataURL(archivoImagen);
 }
 
+// Codigo de validacion de Combo Box
 function formatCombo(input) {
 
     // Obtener el valor seleccionado del combobox
@@ -221,6 +244,45 @@ function formatCombo(input) {
     // Establecer el valor formateado en el campo de entrada
     input.value = valorSeleccionado
 }
+
+// Codigo para vaciar los campos de un Form
+function vaciarInputs() {
+
+    // Obtener el formulario por su id
+    const formulario = document.querySelectorAll('.needs-validation');
+    console.log(formulario);
+
+    // Obtener todos los elementos input del formulario
+    const inputs = formulario.querySelectorAll('input');
+    console.log(inputs);
+
+    // Obtener todos los elementos select del formulario
+    const selects = formulario.querySelectorAll('select');
+    console.log(selects);
+
+    // Obtener todos los elementos textarea del formulario
+    const textareas = formulario.querySelectorAll('textarea');
+    console.log(textareas);
+
+    // Recorrer los elementos input y establecer su valor en una cadena vacía
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].value = '';
+        console.log(inputs[i].value);
+    }
+
+    // Recorrer los elementos select y establecer su índice seleccionado en 0 para seleccionar la primera opción
+    for (var j = 0; j < selects.length; j++) {
+        selects[j].selectedIndex = 0;
+        console.log(selects[j].selectedIndex);
+    }
+
+    // Recorrer los elementos textarea y establecer su valor en una cadena vacía
+    for (var k = 0; k < textareas.length; k++) {
+        textareas[k].value = '';
+        console.log(textareas[k].value);
+    }
+}
+
 
 // Lógica para validar el formulario y habilitar el botón de submit
 (() => {
