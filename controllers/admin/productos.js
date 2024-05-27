@@ -2,11 +2,13 @@
 const PRODUCTO_API = '../../api/services/admin/producto.php';
 const CATEGORIA_API = '../../api/services/admin/categorias.php';
 const SUBCATEGORIA_API = '../../api/services/admin/subcategoria.php';
+// Constante para establecer el formulario de buscar.
+const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer los elementos de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#btnAgregar'),
+const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
@@ -27,6 +29,16 @@ document.addEventListener('DOMContentLoaded', () => {
     fillTable();
 });
 
+// Método del evento para cuando se envía el formulario de buscar.
+SEARCH_FORM.addEventListener('submit', (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(SEARCH_FORM);
+    // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
+    fillTable(FORM);
+});
+
 // Método del evento para cuando se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -36,7 +48,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(ID_PRODUCTO, action, FORM);
+    const DATA = await fetchData(PRODUCTO_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se cierra la caja de diálogo.
@@ -59,40 +71,47 @@ const fillTable = async (form = null) => {
     (form) ? action = 'searchRows' : action = 'readAll';
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(PRODUCTO_API, action, form);
+    console.log(DATA);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros fila por fila.
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+            console.log(row.nombre_producto);
+            console.log(row.precio_producto);
+            console.log(row.nombre_categoria);
+            console.log(row.id_producto);
+            console.log(row.imagen_producto);
             TABLE_BODY.innerHTML += `
             <tr>
-            <td><img src="${SERVER_URL}images/productos/${row.imagen_producto}" height="50"></td>
-            <td>${row.nombre_producto}</td>
-            <td>${row.precio_producto}</td>
-            <td>${row.nombre_categoria}</td>
-            <td><i class="${icon}"></i></td>
-            <td>
-                <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_producto})">
-                    <i class="bi bi-pencil-fill"></i>
-                </button>
-                <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_producto})">
-                    <i class="bi bi-trash-fill"></i>
-                </button>
-            </td>
-        </tr>
+                <td><img src="${SERVER_URL}images/productos/${row.imagen_producto}" height="50"></td>
+                <td>${row.nombre_producto}</td>
+                <td>${row.precio_producto}</td>
+                <td>${row.nombre_categoria}</td>
+                <td><i class="${icon}"></i></td>
+                <td>
+                    <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_producto})">
+                        <i class="bi bi-pencil-fill"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_producto})">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+                </td>
+            </tr>
             `;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
         ROWS_FOUND.textContent = DATA.message;
+        console.log(ROWS_FOUND);
     } else {
-        sweetAlert(4, DATA.error, true);
+        console.log(sweetAlert(4, DATA.error, true));
     }
 }
 
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
-    MODAL_TITLE.textContent = 'Agregar producto';
+    MODAL_TITLE.textContent = 'AGREGAR PRODUCTO';
     // Se prepara el formulario.
     SAVE_FORM.reset();
     EXISTENCIAS_PRODUCTO.disabled = false;
@@ -110,7 +129,7 @@ const openUpdate = async (id) => {
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'Editar Producto';
+        MODAL_TITLE.textContent = 'EDITAR PRODUCTO';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         EXISTENCIAS_PRODUCTO.disabled = true;

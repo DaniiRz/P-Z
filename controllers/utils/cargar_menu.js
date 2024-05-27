@@ -8,10 +8,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-
     const contenedorMenu = document.getElementById("menuIndexPublic");
-    contenedorMenu.innerHTML = generarMenuPublic();
 
+    // Verifica si el elemento existe
+    if (contenedorMenu) {
+        contenedorMenu.innerHTML = generarMenuPublic();
+    }
 });
 
 window.addEventListener('scroll', () => {
