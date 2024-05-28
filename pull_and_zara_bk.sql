@@ -18,6 +18,10 @@
 --
 -- Table structure for table `tb_admins`
 --
+DROP DATABASE if EXISTS pull_and_zara;
+CREATE DATABASE pull_and_zara; 
+
+USE pull_and_zara; 
 
 DROP TABLE IF EXISTS `tb_admins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -52,10 +56,13 @@ DROP TABLE IF EXISTS `tb_categorias`;
 CREATE TABLE `tb_categorias` (
   `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_categoria` varchar(255) NOT NULL,
+  `descripcion_categoria` varchar(255) NOT NULL,
+  `imagen_categoria` varchar(25) NOT NULL,
   PRIMARY KEY (`id_categoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+SELECT * FROM tb_categorias;
 --
 -- Dumping data for table `tb_categorias`
 --
