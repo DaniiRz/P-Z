@@ -367,10 +367,7 @@ function formatCombo(input) {
                     // Agregar la clase 'was-validated' al formulario
                     form.classList.add('was-validated');
 
-                    // Esperar 3 segundos antes de enviar el formulario
-                    setTimeout(function () {
-                        form.submit();
-                    }, 3000);
+                    event.preventDefault();
                 }
             });
         });
