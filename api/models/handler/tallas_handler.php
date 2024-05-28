@@ -20,7 +20,7 @@ class TallaHandler
 
     public function deleteRows()
     {
-        $sql = 'DELETE numerotalla
+        $sql = 'DELETE numero_talla
                 FROM tb_tallas
                 WHERE id_talla = ?';
         $params = array($this->id);
