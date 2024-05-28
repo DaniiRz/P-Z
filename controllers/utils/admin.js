@@ -32,9 +32,6 @@ function generarMenuIndex() {
                                     <a class="nav-link active" aria-current="page" href="../admin/admin_categoria.html">Categorias</a>
                                 </li>
                                 <li class="nav-item ms-5">
-                                    <a class="nav-link active" aria-current="page" href="../admin/admin_talla.html">Tallas</a>
-                                </li>
-                                <li class="nav-item ms-5">
                                     <a class="nav-link active" aria-current="page" href="../admin/admin_reseñas.html">Reseñas</a>
                                 </li>
                                 <li class="nav-item ms-5">
