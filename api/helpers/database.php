@@ -96,7 +96,7 @@ class Database
                 self::$error = 'Base de datos desconocida';
                 break;
             case '1045':
-                self::$error = 'Acceso denegado';
+               self::$error = 'Acceso denegado';
                 break;
             case '42S02':
                 self::$error = 'Tabla no encontrada';
