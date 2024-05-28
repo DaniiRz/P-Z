@@ -83,13 +83,10 @@ function generarFooterIndex() {
                         </div>
                         <div class="col-md-6 d-flex justify-content-end align-items-center">
                             <div class="social-icons align-self-start">
-                                <a href="https://www.facebook.com" target="_blank"><img src="../../resources/img/facebook.png"
-                                        alt="Facebook"></a>
-                                <a href="https://www.instagram.com" target="_blank"><img src="../../resources/img/instagram.png"
-                                        alt="Instagram"></a>
-                                <a href="https://twitter.com" target="_blank"><img src="../../resources/img/x.png" alt="X"></a>
-                                <a href="https://www.tiktok.com/" target="_blank"><img src="../../resources/img/tik-tok.png"
-                                        alt="Tik Tok"></a>
+                                <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook" style="color: #ffffff;"></i></a>
+                                <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram" style="color: #fcfcfc;"></i></a>
+                                <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-twitter" style="color: #ffffff;"></i></a>
+                                <a href="https://www.tiktok.com/" target="_blank"><i class="fa-brands fa-tiktok" style="color: #ffffff;"></i></a>
                             </div>
                         </div>
                     </div>
