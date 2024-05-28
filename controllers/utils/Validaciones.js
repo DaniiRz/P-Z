@@ -260,43 +260,6 @@ function formatCombo(input) {
     input.value = valorSeleccionado
 }
 
-// Código para vaciar los campos de un Form
-function vaciarInputs() {
-    // Obtener el formulario por su clase
-    const formulario = document.querySelectorAll('.needs-validation');
-    console.log(formulario);
-
-    // Obtener todos los elementos input del formulario
-    const inputs = formulario.querySelectorAll('input');
-    console.log(inputs);
-
-    // Obtener todos los elementos select del formulario
-    const selects = formulario.querySelectorAll('select');
-    console.log(selects);
-
-    // Obtener todos los elementos textarea del formulario
-    const textareas = formulario.querySelectorAll('textarea');
-    console.log(textareas);
-
-    // Recorrer los elementos input y establecer su valor en una cadena vacía
-    inputs.forEach(input => {
-        input.value = '';
-        console.log(input.value);
-    });
-
-    // Recorrer los elementos select y establecer su índice seleccionado en 0 para seleccionar la primera opción
-    selects.forEach(select => {
-        select.selectedIndex = 0;
-        console.log(select.selectedIndex);
-    });
-
-    // Recorrer los elementos textarea y establecer su valor en una cadena vacía
-    textareas.forEach(textarea => {
-        textarea.value = '';
-        console.log(textarea.value);
-    });
-}
-
 // Lógica para validar el formulario y habilitar el botón de submit
 (() => {
     'use strict'

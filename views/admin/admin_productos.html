@@ -249,6 +249,8 @@
                                                 <option value="5"> Rojo </option>
                                             </select>
                                         </div>
+
+                                        <!-- Boton submit -->
                                         <div class="d-flex flex-row-reverse">
                                             <button type="submit" class="btn btn-success ps-4 pe-4 ms-2 me-3"
                                                 data-bs-toggle="modal" data-bs-target="#ModalCompletar"> Completar
@@ -263,6 +265,7 @@
             </div>
         </div>
 
+        <!-- Modal para cancelar operacion -->
         <div class="modal fade" id="ModalCancelar" data-bs-backdrop="static" tabindex="-1"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -272,18 +275,18 @@
                     <div class="modal-body text-center">
                         <img src="../../resources/img/Eliminar.png" alt="" height="80px">
                         <p>
-                            Al cancelar se eliminara este producto.
+                            Al aceptar se eliminara este producto.
                         </p>
-                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#saveModal">
                             Cerrar </button>
-                        <button type="reset" class="btn btn-outline-primary" onclick="cerrarTodosModales(this)"
-                            onclick="vaciarInputs(this)"> Aceptar
+                        <button type="button" class="btn btn-outline-primary" onclick="cerrarTodosModales(this)"> Aceptar
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Modal para completar proceso -->
         <div class="modal fade" id="ModalCompletar" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
