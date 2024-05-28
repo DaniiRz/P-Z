@@ -14,6 +14,8 @@ class CategoriaHandler
     protected $descripcion = null;
     protected $imagen = null;
 
+    const RUTA_IMAGEN = '../../images/categorias/';
+
     // Constante para establecer la ruta de las imágenes.
 
     /*

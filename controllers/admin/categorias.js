@@ -59,40 +59,38 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 *   Retorno: ninguno.
 */
 const fillTable = async (form = null) => {
-    // Se inicializa el contenido de la tabla.
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
-    // Se verifica la acción a realizar.
-    (form) ? action = 'searchRows' : action = 'readAll';
-    // Petición para obtener los registros disponibles.
+
+    const action = form ? 'searchRows' : 'readAll';
     const DATA = await fetchData(CATEGORIA_API, action, form);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+
     if (DATA.status) {
-        // Se recorre el conjunto de registros fila por fila.
+        let rowsHtml = '';
         DATA.dataset.forEach(row => {
-            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-            TABLE_BODY.innerHTML += `
+            rowsHtml += `
                 <tr>
-                    <td><img src="${SERVER_URL}images/categorias/${row.imagen_categoria}" height="50"></td>
+                    <td><img src="${SERVER_URL}images/categorias/${row.imagen_categoria}" alt="Imagen de ${row.nombre_categoria}" height="50"></td>
                     <td>${row.nombre_categoria}</td>
                     <td>${row.descripcion_categoria}</td>
                     <td>
-                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_categoria})">
+                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_categoria})" aria-label="Editar ${row.nombre_categoria}">
                             <i class="bi bi-pencil-fill"></i>
                         </button>
-                        <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_categoria})">
+                        <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_categoria})" aria-label="Eliminar ${row.nombre_categoria}">
                             <i class="bi bi-trash-fill"></i>
                         </button>
                     </td>
                 </tr>
             `;
         });
-        // Se muestra un mensaje de acuerdo con el resultado.
+        TABLE_BODY.innerHTML = rowsHtml;
         ROWS_FOUND.textContent = DATA.message;
     } else {
         sweetAlert(4, DATA.error, true);
     }
 }
+
 
 /*
 *   Función para preparar el formulario al momento de insertar un registro.
