@@ -56,7 +56,7 @@ class validator
         if (trim($value) == '') {
             self::$search_error = 'Ingrese un valor para buscar';
             return false;
-        } elseif(str_word_count($value) > 3) {
+        } elseif (str_word_count($value) > 3) {
             self::$search_error = 'La búsqueda contiene más de 3 palabras';
             return false;
         } elseif (self::validateString($value)) {
@@ -240,7 +240,7 @@ class validator
     }
 
     // Metodo para validar un archivo de imagen
-    public static function validateImageFile($file, $dimension)
+    public static function validateImageFile($file, $min_dimension)
     {
         if (is_uploaded_file($file['tmp_name'])) {
             // Se obtienen los datos de la imagen.
@@ -249,8 +249,8 @@ class validator
             if ($file['size'] > 2097152) {
                 self::$file_error = 'El tamaño de la imagen debe ser menor a 2MB';
                 return false;
-            } elseif ($image[0] < $dimension) {
-                self::$file_error = 'La dimensión de la imagen es menor a ' . $dimension . 'px';
+            } elseif ($image[0] < $min_dimension || $image[1] < $min_dimension) {
+                self::$file_error = 'Las dimensiones de la imagen deben ser al menos ' . $min_dimension . 'px';
                 return false;
             } elseif ($image[0] != $image[1]) {
                 self::$file_error = 'La imagen no es cuadrada';
@@ -268,4 +268,5 @@ class validator
         } else {
             return false;
         }
-} }
+    }
+}

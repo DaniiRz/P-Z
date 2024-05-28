@@ -53,7 +53,7 @@ class CategoriaData extends CategoriaHandler
             $this->imagen = $filename;
             return true;
         } else {
-            $this->imagen = 'default.png';
+            $this->imagen = 'default.jpg';
             return true;
         }
     }
@@ -84,7 +84,7 @@ class CategoriaData extends CategoriaHandler
             return false;
         }
     }
-    
+
     /*
      *  Métodos para obtener el valor de los atributos adicionales.
      */
