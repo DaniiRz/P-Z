@@ -76,12 +76,12 @@ const fillTable = async (form = null) => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
             <tr>
-                <td>${row.nombre_administrador}</td>
-                <td>${row.apellido_administrador}</td>
-                <td>${row.correo_administrador}</td>
+                <td>${row.nombre_admin}</td>
+                <td>${row.apellido_admin}</td>
+                <td>${row.correo_admin}</td>
                 <td>
-                <button class="btn btn-danger"><i class="fa-solid fa-trash" onclick="openDelete(${row.id_administrador})"></i></button>
-                <button class="btn btn-primary"><i class="fa-regular fa-pen-to-square" onclick="openUpdate(${row.id_administrador})"></i></button>
+                <button class="btn btn-danger"><i class="fa-solid fa-trash" onclick="openDelete(${row.id_admin})"></i></button>
+                <button class="btn btn-primary"><i class="fa-regular fa-pen-to-square" onclick="openUpdate(${row.id_admin})"></i></button>
             </td>
         </tr>
             `;
@@ -129,10 +129,10 @@ const openUpdate = async (id) => {
         CONFIRMAR_CLAVE.disabled = true;
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
-        ID_ADMINISTRADOR.value = ROW.id_administrador;
-        NOMBRE_ADMINISTRADOR.value = ROW.nombre_administrador;
-        APELLIDO_ADMINISTRADOR.value = ROW.apellido_administrador;
-        CORREO_ADMINISTRADOR.value = ROW.correo_administrador;
+        ID_ADMINISTRADOR.value = ROW.id_admin;
+        NOMBRE_ADMINISTRADOR.value = ROW.nombre_admin;
+        APELLIDO_ADMINISTRADOR.value = ROW.apellido_admin;
+        CORREO_ADMINISTRADOR.value = ROW.correo_admin;
     } else {
         sweetAlert(2, DATA.error, false);
     }

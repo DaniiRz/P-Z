@@ -1,6 +1,10 @@
 /* Controlador de uso general en las páginas web del sitio privado.
 * Sirve para manejar la plantilla del encabezado y pie del documento.
 */
+
+
+const USER_API="services/admin/administrador.php";
+
 function generarMenuIndex() {
 
 
