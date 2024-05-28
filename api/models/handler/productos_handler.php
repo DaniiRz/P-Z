@@ -18,6 +18,7 @@ class ProductoHandler
     protected $imgproducto = null;
     protected $idcolor = null;
     protected $idtalla = null;
+    protected $registro = null; 
 
     // Metodos de las operaciones SCRUD
     public function createRows()
