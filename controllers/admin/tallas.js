@@ -1,5 +1,5 @@
 const TALLA_API = 'services/admin/tallas.php';
-const SUBCATEGORIA_API = '../../api/services/admin/subcategoria.php';
+const SUBCATEGORIA_API = '../../api/services/admin/tallas.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer los elementos de la tabla.
@@ -69,7 +69,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se verifica la acción a realizar.
-    (ID_TALLA.value) ? action = 'updateRow' : action = 'createRows';
+    (ID_TALLA.value) ? action = 'updateRow' : action = 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
@@ -109,17 +109,17 @@ const openUpdate = async (id) => {
         MODAL_TITLE.textContent = 'EDITAR TALLA';
         // Se prepara el formulario.
         SAVE_FORM.reset();
-        EXISTENCIAS_PRODUCTO.disabled = true;
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
+        ID_TALLA.value = ROW.id_talla;
         NUMERO_TALLA.value = ROW.numero_talla;
-        fillSelect(SUBCATEGORIA_API, 'readAll', 'subcategoriaTalla', ROW.id_sub_categoria);
     } else {
         sweetAlert(2, DATA.error, false);
     }
 }
 
 const openDelete = async (id) => {
+    console.log(id);
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Desea eliminar la talla de forma permanente?');
     // Se verifica la respuesta del mensaje.

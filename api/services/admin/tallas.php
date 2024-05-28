@@ -20,20 +20,26 @@ if (isset($_GET['action'])) {
 
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            case 'createRows':
+            case 'searchRows':
+                if (!Validator::validateSearch($_POST['search'])) {
+                    $result['error'] = Validator::getSearchError();
+                } elseif ($result['dataset'] = $Talla->searchRows()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' coincidencias';
+                } else {
+                    $result['error'] = 'No hay coincidencias';
+                }
+                break;
+            case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$Talla->setNumeroTalla($_POST['numeroTalla'])
                 ) {
                     $result['error'] = $Talla->getDataError();
-                } 
-                
-                elseif ($Talla->createRows()) {
+                } elseif ($Talla->createRows()) {
                     $result['status'] = 1;
                     $result['message'] = 'Talla creado correctamente';
-                } 
-                
-                else {
+                } else {
                     $result['error'] = 'Ocurrió un problema al crear la Talla';
                 }
                 break;
@@ -42,23 +48,17 @@ if (isset($_GET['action'])) {
                 if ($result['dataset'] = $Talla->readAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
-                } 
-                
-                else {
+                } else {
                     $result['error'] = 'No existen Tallas registradas';
                 }
                 break;
 
             case 'readOne':
-                if (!$Talla->setNumeroTalla($_POST['numeroTalla'])) {
+                if (!$Talla->setIdTalla($_POST['idTalla'])) {
                     $result['error'] = $Talla->getDataError();
-                } 
-                
-                elseif ($result['dataset'] = $Talla->readOne()) {
+                } elseif ($result['dataset'] = $Talla->readOne()) {
                     $result['status'] = 1;
-                } 
-                
-                else {
+                } else {
                     $result['error'] = 'Talla inexistente';
                 }
                 break;
@@ -66,18 +66,15 @@ if (isset($_GET['action'])) {
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$Talla->setIdTalla($_POST['idTalla'])
+                    !$Talla->setIdTalla($_POST['idTalla']) or
+                    !$Talla->setNumeroTalla($_POST['numeroTalla'])
                 ) {
                     $result['error'] = $Talla->getDataError();
-                } 
-                
-                elseif ($Talla->updateRows()) {
+                } elseif ($Talla->updateRows()) {
                     $result['status'] = 1;
                     $result['message'] = 'Talla modificada correctamente';
                     // Se asigna el estado del archivo después de actualizar.
-                } 
-                
-                else {
+                } else {
                     $result['error'] = 'Ocurrió un problema al modificar la Talla';
                 }
                 break;
@@ -87,14 +84,10 @@ if (isset($_GET['action'])) {
                     !$Talla->setIdTalla($_POST['idTalla'])
                 ) {
                     $result['error'] = $Talla->getDataError();
-                } 
-                
-                elseif ($Talla->deleteRows()) {
+                } elseif ($Talla->deleteRows()) {
                     $result['status'] = 1;
                     $result['message'] = 'Talla eliminada correctamente';
-                } 
-                
-                else {
+                } else {
                     $result['error'] = 'Ocurrió un problema al eliminar la Talla';
                 }
                 break;
@@ -108,11 +101,9 @@ if (isset($_GET['action'])) {
 
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
     header('Content-type: application/json; charset=utf-8');
-    
+
     // Se imprime el resultado en formato JSON y se retorna al controlador.
     print (json_encode($result));
-} 
-
-else {
-    print(json_encode('Recurso no disponible'));
+} else {
+    print (json_encode('Recurso no disponible'));
 }

@@ -10,6 +10,17 @@ class TallaHandler
     protected $numerotalla = null;
     protected $idsubcategoria = null;
 
+    public function searchRows()
+    {
+        $value = '%' . validator::getSearchValue() . '%';
+        $sql = 'SELECT id_talla, numero_talla
+                FROM tb_tallas
+                WHERE numero_talla LIKE ?
+                ORDER BY numero_talla';
+        $params = array($value);
+        return Database::getRows($sql, $params);
+    }
+
     public function createRows()
     {
         $sql = 'INSERT INTO tb_tallas(numero_talla)
@@ -20,8 +31,7 @@ class TallaHandler
 
     public function deleteRows()
     {
-        $sql = 'DELETE numero_talla
-                FROM tb_tallas
+        $sql = 'DELETE FROM tb_tallas
                 WHERE id_talla = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
@@ -38,14 +48,14 @@ class TallaHandler
 
     public function readAll()
     {
-        $sql = 'SELECT numero_talla
+        $sql = 'SELECT numero_talla, id_talla
                 FROM tb_tallas';
         return Database::getRows($sql);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT numero_talla
+        $sql = 'SELECT numero_talla, id_talla
                 FROM tb_tallas
                 WHERE id_talla = ?';
         $params = array($this->id);
