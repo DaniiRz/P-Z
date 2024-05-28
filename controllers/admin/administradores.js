@@ -6,24 +6,19 @@ const SEARCH_FORM = document.getElementById('searchForm');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
+    const SAVE_MODAL = new bootstrap.Modal('#AgregarAdmin'),
     MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
-const SAVE_FORM = document.getElementById('saveForm'),
+    const SAVE_FORM = document.getElementById('saveForm'),
     ID_ADMINISTRADOR = document.getElementById('idAdministrador'),
     NOMBRE_ADMINISTRADOR = document.getElementById('nombreAdministrador'),
     APELLIDO_ADMINISTRADOR = document.getElementById('apellidoAdministrador'),
-    TELEFONO_ADMINISTRADOR = document.getElementById('telefonoAdministrador')
     CORREO_ADMINISTRADOR = document.getElementById('correoAdministrador'),
     CLAVE_ADMINISTRADOR = document.getElementById('claveAdministrador'),
     CONFIRMAR_CLAVE = document.getElementById('confirmarClave');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
-    // Llamada a la función para mostrar el encabezado y pie del documento.
-    cargarPlantillas();
-    // Se establece el título del contenido principal.
-    MAIN_TITLE.textContent = 'Gestionar administradores';
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
@@ -80,19 +75,15 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
-                <tr>
-                    <td>${row.apellido_administrador}</td>
-                    <td>${row.nombre_administrador}</td>
-                    <td>${row.correo_administrador}</td>
-                    <td>
-                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_administrador})">
-                            <i class="bi bi-pencil-fill"></i>
-                        </button>
-                        <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_administrador})">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
-                    </td>
-                </tr>
+            <tr>
+                <td>${row.nombre_administrador}</td>
+                <td>${row.apellido_administrador}</td>
+                <td>${row.correo_administrador}</td>
+                <td>
+                <button class="btn btn-danger"><i class="fa-solid fa-trash" onclick="openDelete(${row.id_administrador})"></i></button>
+                <button class="btn btn-primary"><i class="fa-regular fa-pen-to-square" onclick="openUpdate(${row.id_administrador})"></i></button>
+            </td>
+        </tr>
             `;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
@@ -110,7 +101,6 @@ const fillTable = async (form = null) => {
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
-    MODAL_TITLE.textContent = 'Crear administrador';
     // Se prepara el formulario.
     SAVE_FORM.reset();
     CLAVE_ADMINISTRADOR.disabled = false;
@@ -139,10 +129,10 @@ const openUpdate = async (id) => {
         CONFIRMAR_CLAVE.disabled = true;
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
-        ID_ADMINISTRADOR.value = ROW.id_admin;
-        NOMBRE_ADMINISTRADOR.value = ROW.nombre_admin;
-        APELLIDO_ADMINISTRADOR.value = ROW.apellido_admin;
-        CORREO_ADMINISTRADOR.value = ROW.correo_admin;
+        ID_ADMINISTRADOR.value = ROW.id_administrador;
+        NOMBRE_ADMINISTRADOR.value = ROW.nombre_administrador;
+        APELLIDO_ADMINISTRADOR.value = ROW.apellido_administrador;
+        CORREO_ADMINISTRADOR.value = ROW.correo_administrador;
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -153,6 +143,7 @@ const openUpdate = async (id) => {
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
+
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Desea eliminar el administrador de forma permanente?');

@@ -14,16 +14,25 @@ const confirmAction = (message) => {
         title: 'Advertencia',
         text: message,
         icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí',
-        cancelButtonText: 'No',
-        allowOutsideClick: false,
-        allowEscapeKey: false
+        closeOnClickOutside: false,
+        closeOnEsc: false,
+        buttons: {
+            cancel: {
+                text: 'No',
+                value: false,
+                visible: true
+            },
+            confirm: {
+                text: 'Sí',
+                value: true,
+                visible: true
+            }
+        }
     });
 }
 
 const sweetAlert = async (type, text, timer, url = null) => {
-    let title, icon;
+    // Se compara el tipo de mensaje a mostrar.
     switch (type) {
         case 1:
             title = 'Éxito';
@@ -40,23 +49,24 @@ const sweetAlert = async (type, text, timer, url = null) => {
         case 4:
             title = 'Aviso';
             icon = 'info';
-            break;
     }
+    // Se define un objeto con las opciones principales para el mensaje.
     let options = {
         title: title,
         text: text,
         icon: icon,
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        confirmButtonText: 'Aceptar'
+        closeOnClickOutside: false,
+        closeOnEsc: false,
+        button: {
+            text: 'Aceptar'
+        }
     };
-    if (timer) {
-        options.timer = 3000;
-    }
+    // Se verifica el uso del temporizador.
+    (timer) ? options.timer = 3000 : options.timer = null;
+    // Se muestra el mensaje.
     await swal(options);
-    if (url) {
-        location.href = url;
-    }
+    // Se direcciona a una página web si se indica.
+    (url) ? location.href = url : undefined;
 }
 
 

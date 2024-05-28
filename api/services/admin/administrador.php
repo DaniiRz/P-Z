@@ -89,11 +89,11 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'getUser':
-                if (isset($_SESSION['aliasAdministrador'])) {
+                if (isset($_SESSION['correoAdministrador'])) {
                     $result['status'] = 1;
-                    $result['username'] = $_SESSION['aliasAdministrador'];
+                    $result['username'] = $_SESSION['correoAdministrador'];
                 } else {
-                    $result['error'] = 'Alias de administrador indefinido';
+                    $result['error'] = 'Correo de administrador indefinido';
                 }
                 break;
             case 'logOut':
@@ -122,7 +122,7 @@ if (isset($_GET['action'])) {
                 } elseif ($administrador->editProfile()) {
                     $result['status'] = 1;
                     $result['message'] = 'Perfil modificado correctamente';
-                    $_SESSION['aliasAdministrador'] = $_POST['aliasAdministrador'];
+                    $_SESSION['idAdministrador'] = $_POST['idAdministrador'];
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el perfil';
                 }

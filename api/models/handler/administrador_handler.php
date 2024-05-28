@@ -66,10 +66,9 @@ require_once('../../helpers/database.php');
     /*
      *  Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
      */
-    public function searchRows()
-    {
+    public function searchRows() {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_admin, nombre_admin, apellido_admin, correo_admin, clave_admin
+        $sql = 'SELECT id_admin, nombre_admin, apellido_admin, correo_admin
                 FROM tb_admins
                 WHERE apellido_admin LIKE ? OR nombre_admin LIKE ?
                 ORDER BY apellido_admin';
@@ -113,7 +112,7 @@ require_once('../../helpers/database.php');
 
     public function readOne()
     {
-        $sql = 'SELECT id_admin, nombre_admin, apellido_admin, correo_admin
+        $sql = 'SELECT id_admin, nombre_admin, apellido_admin, correo_admin FROM tb_admins
                 WHERE id_admin = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
@@ -136,4 +135,4 @@ require_once('../../helpers/database.php');
         return Database::executeRow($sql, $params);
     }
 
- }
+}
