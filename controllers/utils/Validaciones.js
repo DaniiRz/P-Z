@@ -310,6 +310,9 @@ function vaciarInputs() {
         // Obtener el botón de submit dentro del formulario
         const submitButton = form.querySelector('button[type="submit"]');
 
+        // Cargar mensajes preventivos desde el principio del documento
+        document.getElementById("mensaje-preventivo").style.display = "block";
+
         // Desactivar el botón de submit por defecto
         submitButton.disabled = true;
 
