@@ -5,8 +5,8 @@ const SEARCH_FORM_COLORES = document.getElementById('searchFormColores');
 const TABLE_BODY_COLORES = document.getElementById('tableBodyColores'),
     ROWS_FOUND_COLORES = document.getElementById('rowsFoundColores');
 // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL_COLORES = new bootstrap.Modal('#saveModalColores'),
-    MODAL_TITLE_COLORES = document.getElementById('modalTitleColores');
+const SAVE_MODAL_COLORES = new bootstrap.Modal('#ColorModal'),
+    MODAL_TITLE_COLORES = document.getElementById('ColorTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM_COLORES = document.getElementById('saveFormColores'),
     ID_COLOR = document.getElementById('idColor'),
@@ -51,6 +51,8 @@ const fillTableColores = async (form = null) => {
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTableColores();
+    // Llamada a la función para llenar la tabla con los registros existentes.
+    fillTable();
 });
 
 // Método del evento para cuando se envía el formulario de buscar.
@@ -80,7 +82,7 @@ SAVE_FORM_COLORES.addEventListener('submit', async (event) => {
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
         // Se carga nuevamente la tabla para visualizar los cambios.
-        fillTable();
+        fillTableColores();
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -132,7 +134,7 @@ const openDeleteColores = async (id) => {
             // Se muestra un mensaje de éxito.
             await sweetAlert(1, DATA.message, true);
             // Se carga nuevamente la tabla para visualizar los cambios.
-            fillTable();
+            fillTableColores();
         } else {
             sweetAlert(2, DATA.error, false);
         }

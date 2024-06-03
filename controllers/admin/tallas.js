@@ -6,8 +6,8 @@ const SEARCH_FORM = document.getElementById('searchForm');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
-    MODAL_TITLE = document.getElementById('modalTitle');
+const SAVE_MODAL = new bootstrap.Modal('#TallaModal'),
+    MODAL_TITLE = document.getElementById('TallaTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_TALLA = document.getElementById('idTalla'),
@@ -48,11 +48,6 @@ const fillTable = async (form = null) => {
     }
 }
 
-// Método del evento para cuando el documento ha cargado.
-document.addEventListener('DOMContentLoaded', () => {
-    // Llamada a la función para llenar la tabla con los registros existentes.
-    fillTable();
-});
 
 // Método del evento para cuando se envía el formulario de buscar.
 SEARCH_FORM.addEventListener('submit', (event) => {
