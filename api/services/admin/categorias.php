@@ -28,7 +28,6 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$categoria->setNombre($_POST['nombreCategoria']) or
-                    !$categoria->setDescripcion($_POST['descripcionCategoria']) or
                     !$categoria->setImagen($_FILES['imagenCategoria'])
                 ) {
                     $result['error'] = $categoria->getDataError();
@@ -64,7 +63,6 @@ if (isset($_GET['action'])) {
                     !$categoria->setId($_POST['idCategoria']) or
                     !$categoria->setFilename() or
                     !$categoria->setNombre($_POST['nombreCategoria']) or
-                    !$categoria->setDescripcion($_POST['descripcionCategoria']) or
                     !$categoria->setImagen($_FILES['imagenCategoria'], $categoria->getFilename())
                 ) {
                     $result['error'] = $categoria->getDataError();

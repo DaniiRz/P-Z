@@ -11,7 +11,6 @@ const SAVE_MODAL = new bootstrap.Modal('#AgregarCategoria'),
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_CATEGORIA = document.getElementById('idCategoria'),
     NOMBRE_CATEGORIA = document.getElementById('nombreCategoria'),
-    DESCRIPCION_CATEGORIA = document.getElementById('descripcionCategoria'),
     IMAGEN_CATEGORIA = document.getElementById('imagenCategoria');
 
 
@@ -72,7 +71,6 @@ const fillTable = async (form = null) => {
                 <tr>
                     <td><img src="${SERVER_URL}images/categorias/${row.imagen_categoria}" alt="Imagen de ${row.nombre_categoria}" height="50"></td>
                     <td>${row.nombre_categoria}</td>
-                    <td>${row.descripcion_categoria}</td>
                     <td>
                         <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_categoria})" aria-label="Editar ${row.nombre_categoria}">
                         <i class="fa-regular fa-pen-to-square"></i>
@@ -103,6 +101,7 @@ const openCreate = () => {
     MODAL_TITLE.textContent = 'Crear categoría';
     // Se prepara el formulario.
     SAVE_FORM.reset();
+    IMAGEN_CATEGORIA.required=true;
 }
 
 
@@ -124,11 +123,11 @@ const openUpdate = async (id) => {
         MODAL_TITLE.textContent = 'Actualizar categoría';
         // Se prepara el formulario.
         SAVE_FORM.reset();
+        IMAGEN_CATEGORIA.required=false;
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
         ID_CATEGORIA.value = ROW.id_categoria;
         NOMBRE_CATEGORIA.value = ROW.nombre_categoria;
-        DESCRIPCION_CATEGORIA.value = ROW.descripcion_categoria;
     } else {
         sweetAlert(2, DATA.error, false);
     }

@@ -24,9 +24,9 @@ class CategoriaHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_categoria, nombre_categoria, , descripcion_categoria, imagen_categoria
+        $sql = 'SELECT id_categoria, nombre_categoria, imagen_categoria
                 FROM tb_categorias
-                WHERE nombre_categoria LIKE ? OR descripcion_categoria LIKE ?
+                WHERE nombre_categoria LIKE ? OR   LIKE ?
                 ORDER BY nombre_categoria';
         $params = array($value, $value);
         return Database::getRows($sql, $params);
@@ -34,15 +34,15 @@ class CategoriaHandler
 
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_categorias(nombre_categoria, descripcion_categoria, imagen_categoria)
-                VALUES(?, ?, ?)';
-        $params = array($this->nombre, $this->descripcion, $this->imagen);
+        $sql = 'INSERT INTO tb_categorias(nombre_categoria,imagen_categoria)
+                VALUES(?, ?)';
+        $params = array($this->nombre, $this->imagen);
         return Database::executeRow($sql, $params);
     }
 
     public function readAll()
     {
-        $sql = 'SELECT id_categoria, nombre_categoria, imagen_categoria, descripcion_categoria
+        $sql = 'SELECT id_categoria, nombre_categoria, imagen_categoria  
                 FROM tb_categorias
                 ORDER BY nombre_categoria';
         return Database::getRows($sql);
@@ -50,7 +50,7 @@ class CategoriaHandler
 
     public function readOne()
     {
-        $sql = 'SELECT id_categoria, nombre_categoria, imagen_categoria, descripcion_categoria
+        $sql = 'SELECT id_categoria, nombre_categoria, imagen_categoria
                 FROM tb_categorias
                 WHERE id_categoria = ?';
         $params = array($this->id);
@@ -69,9 +69,9 @@ class CategoriaHandler
     public function updateRow()
     {
         $sql = 'UPDATE tb_categorias
-                SET imagen_categoria = ?, nombre_categoria = ?, descripcion_categoria = ?
+                SET imagen_categoria = ?, nombre_categoria = ?
                 WHERE id_categoria = ?';
-        $params = array($this->imagen, $this->nombre, $this->descripcion, $this->id);
+        $params = array($this->imagen, $this->nombre, $this->id);
         return Database::executeRow($sql, $params);
     }
 

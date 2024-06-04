@@ -56,7 +56,6 @@ DROP TABLE IF EXISTS `tb_categorias`;
 CREATE TABLE `tb_categorias` (
   `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_categoria` varchar(255) NOT NULL,
-  `descripcion_categoria` varchar(255) NOT NULL,
   `imagen_categoria` varchar(25) NOT NULL,
   PRIMARY KEY (`id_categoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
