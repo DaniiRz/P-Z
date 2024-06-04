@@ -16,7 +16,7 @@ class ClienteHandler{
     protected $telefono = null;
     protected $correo = null;
     protected $clave = null;
-
+    protected $estado = null;
 
     /*
      *  Métodos para gestionar la cuenta del cliente.
@@ -63,6 +63,16 @@ class ClienteHandler{
         }
     }
 
+    public function checkStatus()
+    {
+        if ($this->estado) {
+            $_SESSION['idCliente'] = $this->id;
+            $_SESSION['correoCliente'] = $this->correo;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /*
      *  Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
