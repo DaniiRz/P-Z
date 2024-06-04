@@ -29,7 +29,10 @@ function generarMenuIndex() {
                                     <a class="nav-link active" aria-current="page" href="../admin/admin_usuarios.html">Usuarios</a>
                                 </li>
                                 <li class="nav-item ms-5">
-                                    <a class="nav-link active" aria-current="page" href="../admin/admin_categoria.html">Categorias</a>
+                                    <a class="nav-link active" aria-current="page" href="../admin/admin_categoria.html">Categorías</a>
+                                </li>
+                                <li class="nav-item ms-5">
+                                    <a class="nav-link active" aria-current="page" href="../admin/admin_subcategorias.html">SubCategorías</a>
                                 </li>
                                 <li class="nav-item ms-5">
                                     <a class="nav-link active" aria-current="page" href="../admin/admin_reseñas.html">Reseñas</a>
