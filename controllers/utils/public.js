@@ -1,5 +1,8 @@
 //footer y navbar para web publica
 
+// Constante de uso general para la pagina publica
+const CLIENTE_API = 'services/public/clientes.php';
+
 function generarMenuPublic() {
 
     const menuIndexPublic = `

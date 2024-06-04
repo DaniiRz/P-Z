@@ -93,8 +93,11 @@ function formatDui(input) {
     // Obtener el valor actual del campo de entrada
     let Dui = input.value;
 
+    // Eliminar cualquier guion presente en el valor del campo
+    Dui = Dui.replace(/-/g, '');
+
     // Agregar el guion después del cuarto dígito si no se ha agregado anteriormente
-    if (Dui.length >= 9 && Dui.charAt(8) !== '-') {
+    if (Dui.length >= 8 && Dui.charAt(8) !== '-') {
         Dui = Dui.slice(0, 8) + '-' + Dui.slice(8);
     }
 
@@ -115,7 +118,7 @@ function formatDui(input) {
     // Establecer el valor formateado en el campo de entrada
     input.value = Dui;
 
-    // Limitar la cantidad máxima de caracteres a 9
+    // Limitar la cantidad máxima de caracteres a 10
     if (Dui.length >= 10) {
         input.value = Dui.slice(0, 10);
         input.setAttribute("maxlength", "10");
@@ -272,9 +275,6 @@ function formatCombo(input) {
 
         // Obtener el botón de submit dentro del formulario
         const submitButton = form.querySelector('button[type="submit"]');
-
-        // Cargar mensajes preventivos desde el principio del documento
-        document.getElementById("mensaje-preventivo").style.display = "block";
 
         // Desactivar el botón de submit por defecto
         submitButton.disabled = true;

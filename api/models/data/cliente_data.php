@@ -54,6 +54,20 @@ class ClienteData extends ClienteHandler
         }
     }
 
+    public function setDireccion($value, $min = 2, $max = 50)
+    {
+        if (!Validator::validateAlphabetic($value)) {
+            $this->data_error = 'La direccion debe ser un valor alfabético';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->apellido = $value;
+            return true;
+        } else {
+            $this->data_error = 'La direccion debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        }
+    }
+
     public function setDui($value)
     {
         if (Validator::validateDui($value)) {
@@ -90,7 +104,7 @@ class ClienteData extends ClienteHandler
         }
     }
 
-    public function setClave($value)
+    public function setContraseña($value)
     {
         if (Validator::validatePassword($value)) {
             $this->clave = password_hash($value, PASSWORD_DEFAULT);
