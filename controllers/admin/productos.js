@@ -1,12 +1,15 @@
 // Constante para completar la ruta de la API.
 const PRODUCTO_API = 'services/admin/producto.php';
-const CATEGORIA_API = '../../api/services/admin/categorias.php';
-const SUBCATEGORIA_API = '../../api/services/admin/subcategoria.php';
+const CATEGORIA_API = 'services/admin/categorias.php';
+const SUBCATEGORIA_API = 'services/admin/subcategoria.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
 // Constantes para establecer los elementos de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
+
+const SAVE_MODAL_PRODUCTO = new bootstrap.Modal('#saveModal'),
+    MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_PRODUCTO = document.getElementById('idProducto'),
@@ -15,12 +18,23 @@ const SAVE_FORM = document.getElementById('saveForm'),
     CANTIDAD_PRODUCTO = document.getElementById('cantidadProducto'),
     PRECIO_PRODUCTO = document.getElementById('precioProducto'),
     SUBCATEGORIA_PRODUCTO = document.getElementById('subcategoriaProducto'),
-    CATEGORIA_PRODUCTO = document.getElementById('categoriaProducto'),
-    EXISTENCIAS_PRODUCTO = document.getElementById('existenciasProducto'),
+    CATEGORIA_PRODUCTO = document.getElementById('categoriaProducto');
+
+
+//constante para establecer los elementos del modal de detalle producto
+const SAVE_MODAL_DETALLE = new bootstrap.Modal('#modalDetalle');
+
+//contsnate de elementos del formulario de detalle producto 
+const DETALLE_FORM = document.getElementById('formDetalle'),
+    ID_DETALLE_PRODUCTO = document.getElementById('idDetalleProducto'),
+    EXISTENCIAS = document.getElementById('existenciasProducto'),
+    TALLA = document.getElementById('tallaProducto'),
+    COLOR = document.getElementById('colorProducto'),
     IMAGEN_PRODUCTO = document.getElementById('imagenProducto');
-    COLOR_PRODUCTO = document.getElementById('colorProducto');
-    TALLA_PRODUCTO = document.getElementById('tallaProducto');
-    
+
+
+
+
 // Metodo para llenar la tabla
 const fillTable = async (form = null) => {
     // Se inicializa el contenido de la tabla.
@@ -35,12 +49,17 @@ const fillTable = async (form = null) => {
         // Se recorre el conjunto de registros fila por fila.
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+            //se agrego la fila del boton de detalle producto, que abre un nuevo forms 
             TABLE_BODY.innerHTML += `
             <tr>
-                <td><img src="${SERVER_URL}images/productos/${row.imagen_producto}" height="50"></td>
                 <td>${row.nombre_producto}</td>
+                <td>${row.categoria_producto}</td>
+                <td>${row.subcategoria_producto}</td>
                 <td>${row.precio_producto}</td>
-                <td>${row.nombre_categoria}</td>
+                <td>
+                <button type="button" class="btn btn-warning" data-bs-target="#modalDetalle" data-bs-toggle="modal">
+                <i class="fa-solid fa-ellipsis"></i></button>  
+                </td> 
                 <td><i class="${icon}"></i></td>
                 <td>
                     <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_producto})">
@@ -99,13 +118,13 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
+
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
-    SAVE_MODAL.show();
+    SAVE_MODAL_PRODUCTO.show();
     MODAL_TITLE.textContent = 'AGREGAR PRODUCTO';
     // Se prepara el formulario.
     SAVE_FORM.reset();
-    EXISTENCIAS_PRODUCTO.disabled = false;
     fillSelect(CATEGORIA_API, 'readAll', 'categoriaProducto');
     fillSelect(SUBCATEGORIA_API, 'readAll', 'subcategoriaProducto');
 }
@@ -128,7 +147,7 @@ const openUpdate = async (id) => {
         const ROW = DATA.dataset;
         ID_PRODUCTO.value = ROW.id_producto;
         NOMBRE_PRODUCTO.value = ROW.nombre_producto;
-        DESCRIPCION_PRODUCTO.value = ROW.desc_producto; 
+        DESCRIPCION_PRODUCTO.value = ROW.desc_producto;
         PRECIO_PRODUCTO.value = ROW.precio_producto;
         EXISTENCIAS_PRODUCTO.value = ROW.existencias;
         IMAGEN_PRODUCTO.value = ROW.img_producto;
