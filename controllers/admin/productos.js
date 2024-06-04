@@ -126,8 +126,15 @@ const openCreate = () => {
     // Se prepara el formulario.
     SAVE_FORM.reset();
     fillSelect(CATEGORIA_API, 'readAll', 'categoriaProducto');
-    fillSelect(SUBCATEGORIA_API, 'readAll', 'subcategoriaProducto');
+    SUBCATEGORIA_PRODUCTO.disabled = true;
 }
+
+CATEGORIA_PRODUCTO.addEventListener('change', () => {
+    SUBCATEGORIA_PRODUCTO.disabled = false;
+    const FORM = new FormData();
+    FORM.append('idCategoria', CATEGORIA_PRODUCTO.value);
+    fillSelect(SUBCATEGORIA_API, 'readSome', 'subcategoriaProducto', FORM);
+});
 
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.

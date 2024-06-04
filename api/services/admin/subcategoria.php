@@ -63,6 +63,19 @@ if (isset($_GET['action'])) {
                 }
                 break;
 
+                case 'readSome':
+                    if (!$Subcategoria->setIdCategoria($_POST['idCategoria'])) {
+                        $result['error'] = $Subcategoria->getDataError();
+                    } 
+                    elseif ($result['dataset'] = $Subcategoria->readSome()) {
+                        $result['status'] = 1;
+                    } 
+                    
+                    else {
+                        $result['error'] = 'Subcategorias inexistentes';
+                    }
+                    break;
+
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (

@@ -3,7 +3,7 @@
 // Se incluye la clase
 require_once ('../../helpers/database.php');
 
-class SubCategoriaHandler
+class SubcategoriaHandler
 {
 
     // Declaracion de atributos
@@ -59,6 +59,15 @@ class SubCategoriaHandler
         $sql = 'SELECT nombre_sub_categoria
                 FROM tb_sub_categorias';
         return Database::getRows($sql);
+    }
+
+    public function readSome()
+    {
+        $sql = 'SELECT id_sub_categoria, nombre_sub_categoria
+                FROM tb_sub_categorias
+                WHERE id_categoria = ?';
+                $params = array($this->idcategoria);
+        return Database::getRows($sql, $params);
     }
 
     public function readOne()

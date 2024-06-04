@@ -2,10 +2,10 @@
 
 // Se incluyen las clases
 require_once('../../helpers/validator.php');
-require_once('../../models/handler/productos_handler.php');
+require_once('../../models/handler/subcategoria_handler.php');
 
 // Clase para manejar el encapsulamiento de datos
-class SubCategoriaData extends SubCategoriaHandler
+class SubcategoriaData extends SubcategoriaHandler
 {
     
     // Artributo adicional
@@ -26,11 +26,9 @@ class SubCategoriaData extends SubCategoriaHandler
 
     public function setIdCategoria($value){
         if (Validator::validateNaturalNumber($value)) {
-            $this->id = $value;
+            $this->idcategoria = $value;
             return true;
-        } 
-        
-        else {
+        }  else {
             $this->data_error = 'El identificador de la categoria es incorrecto';
             return false;
         }
@@ -43,7 +41,7 @@ class SubCategoriaData extends SubCategoriaHandler
         } 
         
         elseif (Validator::validateLength($value, $min, $max)) {
-            $this->nombre = $value;
+            $this->nombresubcategoria = $value;
             return true;
         } 
         
@@ -51,5 +49,10 @@ class SubCategoriaData extends SubCategoriaHandler
             $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
             return false;
         }
+    }
+
+    public function getDataError()
+    {
+        return $this->data_error;
     }
 }
