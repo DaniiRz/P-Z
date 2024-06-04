@@ -116,10 +116,7 @@ DROP TABLE IF EXISTS `tb_colores`;
 CREATE TABLE `tb_colores` (
   `id_color` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_color` varchar(255) DEFAULT NULL,
-  `id_sub_categoria` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_color`),
-  KEY `fk_id_color_id_sub_categorias` (`id_sub_categoria`),
-  CONSTRAINT `fk_id_color_id_sub_categorias` FOREIGN KEY (`id_sub_categoria`) REFERENCES `tb_sub_categorias` (`id_sub_categoria`)
+  PRIMARY KEY (`id_color`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -368,10 +365,7 @@ DROP TABLE IF EXISTS `tb_tallas`;
 CREATE TABLE `tb_tallas` (
   `id_talla` int(11) NOT NULL AUTO_INCREMENT,
   `numero_talla` varchar(255) DEFAULT NULL,
-  `id_sub_categoria` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_talla`),
-  KEY `fk_id_talla_id_sub_categorias` (`id_sub_categoria`),
-  CONSTRAINT `fk_id_talla_id_sub_categorias` FOREIGN KEY (`id_sub_categoria`) REFERENCES `tb_sub_categorias` (`id_sub_categoria`)
+  PRIMARY KEY (`id_talla`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
