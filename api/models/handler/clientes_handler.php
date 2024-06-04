@@ -17,6 +17,7 @@ class ClienteHandler{
     protected $correo = null;
     protected $clave = null;
     protected $estado = null;
+    protected $direccion = null;
 
     /*
      *  Métodos para gestionar la cuenta del cliente.

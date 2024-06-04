@@ -38,7 +38,7 @@
                         <input type="number" class="d-none" id="idCliente" name="idCliente">
                         <form class="needs-validation" novalidate>
                             <div class="row">
-                                <p class="fs-3 text-center fw-bold mt-5 pt-5"> ¡Registrate! </p>
+                                <p class="fs-3 text-center fw-bold mt-5"> ¡Registrate! </p>
                                 <div class="col-md-6 mt-3">
                                     <!--Input nombre -->
                                     <div class="form-group">
@@ -60,14 +60,6 @@
                                         <input type="text" class="form-control" id="duiCliente" name="duiCliente"
                                             required onkeypress="formatDui(this)" placeholder="########-#">
                                     </div>
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                    <!--Input direccion -->
-                                    <div class="form-group">
-                                        <label for="direccion">Dirección:</label>
-                                        <input type="text" class="form-control" id="direccionCliente" name="direccionCliente"
-                                            required oninput="formatAlphabetic(this)">
-                                    </div>
 
                                     <!--Input correo -->
                                     <div class="form-group mt-3">
@@ -76,11 +68,35 @@
                                             required oninput="formatEmail(this)" placeholder="ejemplo@gmail.com">
                                     </div>
 
+                                </div>
+                                <div class="col-md-6">
+                                    <!--Input telefono -->
+                                    <div class="form-group mt-3">
+                                        <label for="direccion">Telefono:</label>
+                                        <input type="text" class="form-control" id="telefonoCliente"
+                                            name="telefonoCliente" required oninput="formatPhoneNumber(this)">
+                                    </div>
+
+                                    <!--Input direccion -->
+                                    <div class="form-group mt-3">
+                                        <label for="direccion">Dirección:</label>
+                                        <input type="text" class="form-control" id="direccionCliente"
+                                            name="direccionCliente" required oninput="formatAlphabetic(this)">
+                                    </div>
+
                                     <!--Input contraseña -->
                                     <div class="form-group mt-3">
                                         <label for="contrasena">Contraseña:</label>
                                         <input type="password" class="form-control" id="contraseñaCliente"
                                             name="contraseñaCliente" required oninput="formatPassword(this)"
+                                            placeholder="8 caracteres minimo">
+                                    </div>
+
+                                    <!--Input confirmar contraseña -->
+                                    <div class="form-group mt-3">
+                                        <label for="contrasena">Confirmar contraseña:</label>
+                                        <input type="password" class="form-control" id="confirmarcontraseñaCliente"
+                                            name="confirmarcontraseñaCliente" required oninput="formatPassword(this)"
                                             placeholder="8 caracteres minimo">
                                     </div>
                                 </div>
@@ -91,6 +107,7 @@
                                     <div class="d-flex justify-content-center mt-4">
                                         <button id="btnRegistrarme" type="submit"
                                             class="btn btn-outline-dark mx-2 mb-5">
+                                            <i class="bi bi-arrow-clockwise"></i>
                                             Registrarme
                                         </button>
                                     </div>
@@ -110,15 +127,15 @@
         </footer>
     </div>
 
-    <!-- Bootstrap Bundle with Popper -->
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"> </script>
 
-    <!-- script de validaciones del registro -->
+    <!--Js -->
+    <script src="../../resources/js/sweetalert.min.js"></script>
+    <script src="../../controllers/utils/components.js"></script>
     <script src="../../controllers/utils/Validaciones.js"></script>
-
-    <!-- Js de navbar y footer -->
     <script src="../../controllers/utils/public.js" defer></script>
     <script src="../../controllers/utils/admin.js" defer></script>
     <script src="../../controllers/public/Cliente.js"></script>

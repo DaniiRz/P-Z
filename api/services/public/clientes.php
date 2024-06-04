@@ -39,10 +39,6 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'signUp':
                 $_POST = Validator::validateForm($_POST);
-                $context = stream_context_create($options);
-                $response = file_get_contents($url, false, $context);
-                $captcha = json_decode($response, true);
- 
                 if (
                     !$cliente->setNombre($_POST['nombreCliente']) or
                     !$cliente->setApellido($_POST['apellidoCliente']) or
@@ -50,10 +46,11 @@ if (isset($_GET['action'])) {
                     !$cliente->setDireccion($_POST['direccionCliente']) or
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
                     !$cliente->setDui($_POST['duiCliente']) or
-                    !$cliente->setContraseña($_POST['contraseñaCliente'])
+                    !$cliente->setContraseña($_POST['contraseñaCliente']) or
+                    !$cliente->setconfirmarContraseña($_POST['confirmarcontraseñaCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
-                } elseif ($_POST['claveCliente'] != $_POST['confirmarClave']) {
+                } elseif ($_POST['contraseñaCliente'] != $_POST['confirmarcontraseñaCliente']) {
                     $result['error'] = 'Contraseñas diferentes';
                 } elseif ($cliente->createRow()) {
                     $result['status'] = 1;
@@ -66,7 +63,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (!$cliente->checkUser($_POST['correo'], $_POST['clave'])) {
                     $result['error'] = 'Datos incorrectos';
-                } elseif ($cliente->checkStatus()) {
+                } elseif ($cliente->checkStatus()) {  
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
                 } else {

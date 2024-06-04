@@ -2,7 +2,7 @@
 // Se incluye la clase para validar los datos de entrada.
 require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
-require_once('cliente_handler.php'); // Ajusta la ruta según la ubicación del archivo handler
+require_once('../../models/handler/clientes_handler.php'); // Ajusta la ruta según la ubicación del archivo handler
 
 /*
  *  Clase para manejar el encapsulamiento de los datos de la tabla CLIENTES.
@@ -60,7 +60,7 @@ class ClienteData extends ClienteHandler
             $this->data_error = 'La direccion debe ser un valor alfabético';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->apellido = $value;
+            $this->direccion = $value;
             return true;
         } else {
             $this->data_error = 'La direccion debe tener una longitud entre ' . $min . ' y ' . $max;
@@ -105,6 +105,17 @@ class ClienteData extends ClienteHandler
     }
 
     public function setContraseña($value)
+    {
+        if (Validator::validatePassword($value)) {
+            $this->clave = password_hash($value, PASSWORD_DEFAULT);
+            return true;
+        } else {
+            $this->data_error = Validator::getPasswordError();
+            return false;
+        }
+    }
+
+    public function setconfirmarContraseña($value)
     {
         if (Validator::validatePassword($value)) {
             $this->clave = password_hash($value, PASSWORD_DEFAULT);
