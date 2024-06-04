@@ -39,6 +39,10 @@ function generarMenuIndex() {
                                         href="../admin/admin_productos.html">Productos</a>
                                 </li>
                                 <li class="nav-item ms-5">
+                                    <a class="nav-link active" aria-current="page"
+                                        href="../admin/admin_talla_colores.html">Tallas y colores</a>
+                                </li>
+                                <li class="nav-item ms-5">
                                     <a class="nav-link active" aria-current="page" href="../admin/admin_pedidos.html">Pedidos</a>
                                 </li>
                                 <li class="nav-item ms-5">
