@@ -43,7 +43,6 @@ if (isset($_GET['action'])) {
                     !$cliente->setNombre($_POST['nombreCliente']) or
                     !$cliente->setApellido($_POST['apellidoCliente']) or
                     !$cliente->setCorreo($_POST['correoCliente']) or
-                    !$cliente->setDireccion($_POST['direccionCliente']) or
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
                     !$cliente->setDui($_POST['duiCliente']) or
                     !$cliente->setContraseña($_POST['contraseñaCliente']) or

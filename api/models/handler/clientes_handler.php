@@ -17,7 +17,6 @@ class ClienteHandler{
     protected $correo = null;
     protected $clave = null;
     protected $estado = null;
-    protected $direccion = null;
 
     /*
      *  Métodos para gestionar la cuenta del cliente.
@@ -108,7 +107,7 @@ class ClienteHandler{
 
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_cliente, telf_cliente, correo_cliente, clave_cliente)
+        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente, clave_cliente)
                 VALUES(?, ?, ?, ?, ?, ?)';
         $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->clave);
         return Database::executeRow($sql, $params);

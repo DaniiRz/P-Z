@@ -58,7 +58,7 @@
                                     <div class="form-group mt-3">
                                         <label for="dui">Dui:</label>
                                         <input type="text" class="form-control" id="duiCliente" name="duiCliente"
-                                            required onkeypress="formatDui(this)" placeholder="########-#">
+                                            required oninput="formatDui(this)" placeholder="########-#">
                                     </div>
 
                                     <!--Input correo -->
@@ -75,13 +75,6 @@
                                         <label for="direccion">Telefono:</label>
                                         <input type="text" class="form-control" id="telefonoCliente"
                                             name="telefonoCliente" required oninput="formatPhoneNumber(this)">
-                                    </div>
-
-                                    <!--Input direccion -->
-                                    <div class="form-group mt-3">
-                                        <label for="direccion">Dirección:</label>
-                                        <input type="text" class="form-control" id="direccionCliente"
-                                            name="direccionCliente" required oninput="formatAlphabetic(this)">
                                     </div>
 
                                     <!--Input contraseña -->
