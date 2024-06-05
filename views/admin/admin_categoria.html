@@ -62,9 +62,40 @@
                 </div>
             </form>
 
+
+
+            <!--Separacion de Modal y tabla -->
+            <div class="container mb-3 justify-content-center">
+                <!-- Tabla de Categorías -->
+                <div class="container-fluid mt-3">
+                    <div class="table-responsive">
+
+                        <!-- Tabla para mostrar los registros existentes -->
+                        <table class="table table-hover">
+
+                            <!-- Encabezado de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                            <thead>
+                                <tr>
+                                    <td colspan="4" id="rowsFound"></td>
+                                </tr>
+                                <tr>
+                                    <th>IMAGEN</th>
+                                    <th>NOMBRE</th>
+                                    <th>SUB-CATEGORIAS</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                            </thead>
+
+                            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                            <tbody id="tableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
             <!-- Componente Modal para guardar un registro -->
-            <div class="modal fade" id="AgregarCategoria" data-bs-keyboard="false"
-                tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label" aria-hidden="true">
+            <div class="modal fade" id="AgregarCategoria" data-bs-keyboard="false" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModal1Label" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <!--formulario para guardar una categoria-->
@@ -73,7 +104,7 @@
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModal1Label"></h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                                    aria-label="Close"></button>
                             </div>
 
                             <!-- Body del modal -->
@@ -100,35 +131,86 @@
                 </div>
             </div>
 
-            <!--Separacion de Modal y tabla -->
-            <div class="container mb-3 justify-content-center">
-                <!-- Tabla de Categorías -->
-                <div class="container-fluid mt-3">
-                    <div class="table-responsive">
+            <!-- Componente Modal para agregar subcategorías -->
+            <div class="modal fade" id="AgregarSubCategoria" data-bs-keyboard="false" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModal2Label" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <!-- Header del modal -->
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModal2Label">Gestiona Subcategoría</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
 
-                        <!-- Tabla para mostrar los registros existentes -->
-                        <table class="table table-hover">
+                        <!-- Body del modal -->
+                        <div class="modal-body">
+                            <!-- Tabla para mostrar las subcategorías -->
+                            <table class="table table-hover">
+                                <!-- Encabezado de la tabla -->
+                                <thead>
+                                    <tr>
+                                        <th>Subcategoría</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <!-- Cuerpo de la tabla -->
+                                <tbody id="subcategoriaTableBody">
+                                    <!-- Aquí se cargarán dinámicamente las filas de la tabla -->
+                                </tbody>
+                            </table>
+                        </div>
 
-                            <!-- Encabezado de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                            <thead>
-                                <tr>
-                                    <td colspan="4" id="rowsFound"></td>
-                                </tr>
-                                <tr>
-                                    <th>IMAGEN</th>
-                                    <th>NOMBRE</th>
-                                    <th>ACCIONES</th>
-                                </tr>
-                            </thead>
-
-                            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-                            <tbody id="tableBody"></tbody>
-                        </table>
+                        <!-- Footer del modal -->
+                        <div class="modal-footer">
+                            <!-- Botón para agregar nueva subcategoría -->
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#AgregarSubCategoriaFORM">Agregar
+                                Subcategoría</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+
+            <!-- Componente Modal para agregar subcategorías -->
+            <div class="modal fade" id="AgregarSubCategoriaFORM" data-bs-keyboard="false" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModal2Label" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <!-- Header del modal -->
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModal2Label">Agregar Subcategoría</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <!-- Body del modal -->
+                        <div class="modal-body">
+                            <!-- Formulario para agregar subcategoría -->
+                            <form id="addSubcategoriaForm">
+                                <div class="mb-3">
+                                    <label for="nombreSubcategoria" class="form-label">Nombre de la Subcategoría</label>
+                                    <input type="text" class="form-control" id="nombreSubcategoria"
+                                        name="nombreSubcategoria" required>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Footer del modal -->
+                        <div class="modal-footer">
+                            <!-- Botón para cancelar -->
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <!-- Botón para agregar subcategoría -->
+                            <button type="submit" class="btn btn-primary" form="addSubcategoriaForm">Agregar
+                                Subcategoría</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
     </main>
+
+
 
     <!-- Footer -->
     <footer class="my-5">
@@ -140,8 +222,8 @@
     <!-- Boostrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
     <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>   
-    
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+
     <!-- Librerias -->
     <!-- Js -->
     <script src="../../controllers/utils/admin.js" defer></script>
