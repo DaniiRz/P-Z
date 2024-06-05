@@ -1,7 +1,7 @@
 <?php
 // Se incluye la clase del modelo.
 require_once('../../models/data/cliente_data.php');
- 
+
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
@@ -62,7 +62,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (!$cliente->checkUser($_POST['correo'], $_POST['clave'])) {
                     $result['error'] = 'Datos incorrectos';
-                } elseif ($cliente->checkStatus()) {  
+                } elseif ($cliente->checkStatus()) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
                 } else {

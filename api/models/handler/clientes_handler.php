@@ -1,14 +1,17 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
 require_once('../../helpers/database.php');
+
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla clientes.
  */
 
 class ClienteHandler{
+
     /*
      *  Declaración de atributos para el manejo de datos.
      */
+
     protected $id = null;
     protected $nombre = null;
     protected $apellido = null;
@@ -77,6 +80,7 @@ class ClienteHandler{
     /*
      *  Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
      */
+
     public function searchRows() {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente
@@ -145,5 +149,4 @@ class ClienteHandler{
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
-
 }

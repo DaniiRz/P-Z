@@ -7,6 +7,7 @@ require_once('../../models/handler/clientes_handler.php'); // Ajusta la ruta seg
 /*
  *  Clase para manejar el encapsulamiento de los datos de la tabla CLIENTES.
  */
+
 class ClienteData extends ClienteHandler
 {
     // Atributo genérico para manejo de errores.
@@ -15,6 +16,7 @@ class ClienteData extends ClienteHandler
     /*
      *  Métodos para validar y asignar valores de los atributos.
      */
+
     public function setId($value)
     {
         if (Validator::validateNaturalNumber($value)) {

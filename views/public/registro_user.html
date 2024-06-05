@@ -22,24 +22,35 @@
 
 <body>
 
+    <!-- Header -->
     <header>
         <div id="menuIndexPublic"></div>
     </header>
 
+    <!-- Contenedor principal -->
     <div class="container mt-3 pt-5">
+
         <div class="row">
+
+            <!-- Contenedor de imagen -->
             <div class="col-md-6 mt-5 pt-5">
                 <img src="../../resources/img/registro.png" alt="Imagen Grande" class="img-fluid">
             </div>
 
+            <!-- Contenedor del formulario -->
             <div class="col-md-6 mt-5">
                 <div class="container">
+
+                    <!-- Formulario saveForm -->
                     <form id="saveForm">
                         <input type="number" class="d-none" id="idCliente" name="idCliente">
                         <form class="needs-validation" novalidate>
                             <div class="row">
                                 <p class="fs-3 text-center fw-bold mt-5"> ¡Registrate! </p>
+
+                                <!-- Primera columna del Form -->
                                 <div class="col-md-6 mt-3">
+
                                     <!--Input nombre -->
                                     <div class="form-group">
                                         <label for="nombre">Nombre(s):</label>
@@ -67,9 +78,11 @@
                                         <input type="text" class="form-control" id="correoCliente" name="correoCliente"
                                             required oninput="formatEmail(this)" placeholder="ejemplo@gmail.com">
                                     </div>
-
                                 </div>
+
+                                <!-- Primera columna del Form -->
                                 <div class="col-md-6">
+
                                     <!--Input telefono -->
                                     <div class="form-group mt-3">
                                         <label for="direccion">Telefono:</label>
@@ -95,6 +108,7 @@
                                 </div>
                             </div>
 
+                            <!-- Contenedor del boton submit -->
                             <div class="row mt-3">
                                 <div class="col">
                                     <div class="d-flex justify-content-center mt-4">
@@ -114,16 +128,16 @@
     </div>
     </div>
 
+    <!-- Footer -->
     <div class="footerF">
         <footer class="bg-dark">
             <div id="footerIndex"></div>
         </footer>
     </div>
 
+    <!-- Librerias -->
     <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"> </script>
+    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
 
     <!--Js -->
     <script src="../../resources/js/sweetalert.min.js"></script>
@@ -132,8 +146,6 @@
     <script src="../../controllers/utils/public.js" defer></script>
     <script src="../../controllers/utils/admin.js" defer></script>
     <script src="../../controllers/public/Cliente.js"></script>
-
-    <!-- script de datos navbar y footer -->
     <script src="../../controllers/utils/cargar_menu.js"></script>
 
 </body>
