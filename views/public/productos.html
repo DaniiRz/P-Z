@@ -2,28 +2,44 @@
 <html lang="es">
 
 <head>
+    <!-- Título del documento -->
+    <title>PULL&ZARA - Administracion</title>
+    <!-- Metadatos de la página web -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Autores -->
+    <meta name="author" content="Carlos Quintanilla">
+    <meta name="author" content="Daniela Alexandra">
+    <meta name="author" content="Jhonny">
+
     <!-- Bootstrap CSS Index -->
     <link rel="stylesheet" href="../../resources/css/index.css">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../../resources/css/principal_admin.css">
     <link rel="stylesheet" href="../../resources/css/buscador.css">
+
     <!-- Logo -->
     <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
-    <title>Catálogo Shorts</title>
+
+    <title>Inicio</title>
 </head>
 
 <body>
+
     <header>
         <div id="menuIndexPublic"></div>
     </header>
 
+    <!-- Contenido principal del documento -->
     <main>
-        <div id="catalogoProductos"></div>
+        <!-- Título del contenido principal -->
+        <h4 id="mainTitle"></h4>
+        <!-- Contenedor para mostrar los productos disponibles de la categoría seleccionada -->
+        <div class="row" id="productos"></div>
     </main>
 
     <div class="footerF mt-5">
@@ -32,16 +48,16 @@
         </footer>
     </div>
 
+
     <!-- Librerias -->
     <!-- Bootstrap -->
     <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
 
     <!-- Js -->
-    <script src="../../controllers/utils/public.js" defer></script>
     <script src="../../controllers/utils/admin.js" defer></script>
+    <script src="../../controllers/utils/public.js" defer></script>
     <script src="../../controllers/utils/cargar_menu.js"></script>
-    <script src="../../controllers/utils/catalogo.js"></script>
-    <script src="../../controllers/utils/cargar_catalogos.js"></script>
+
 </body>
 
 </html>
