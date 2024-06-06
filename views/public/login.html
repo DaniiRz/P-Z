@@ -2,6 +2,8 @@
 <html lang="es">
 
 <head>
+
+    <!-- Metadatos de la pagina -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -22,45 +24,48 @@
 
 <body>
 
+    <!-- Header -->
     <header>
         <div id="menuIndexPublic"></div>
     </header>
 
-
-
-
+    <!-- Contenedor principal -->
     <div class="container mt-3 pt-5">
         <div class="row">
+
+            <!-- Contenedor de la imagen -->
             <div class="col-md-6 pt-5">
                 <img src="../../resources/img/admin_login.png" alt="Imagen Grande" class="img-fluid" width="700px">
             </div>
 
+            <!-- Contenedor del Form -->
             <div class="col-md-4 pt-5 mt-5">
                 <div class="row mt-5">
-                    <div class="pt-5 mt-5">
-                        <!-- formulario con labels flotantes -->
-                        <div class="form-floating mt-5">
-                            <input type="email" class="form-control border-warning rounded-pill" id="floatingInput"
-                                placeholder="name@example.com">
-                            <label for="floatingInput"> Usuario </label>
+                    <form id="saveForm" class="needs-validation">
+                        <div class="pt-5 mt-5">
+
+                            <!-- formulario con labels flotantes -->
+                            <div class="form-floating mt-5">
+                                <input type="email" class="form-control border-warning rounded-pill" id="correoCliente"
+                                    name="correoCliente" required oninput="formatEmail(this)">
+                                <label for="floatingInput"> Correo </label>
+                            </div>
+                            <div class="form-floating mt-3">
+                                <input type="password" class="form-control border-warning rounded-pill"
+                                    id="contraseñaCliente" name="contraseñaCliente" required oninput="formatPassword(this)">
+                                <label for="floatingPassword"> Contraseña </label>
+                            </div>
+                            <div class="text-center mt-3">
+                                <button type="submit" class="btn btn-outline-dark rounded-pill pe-4 ps-4"> Ingresar </button>
+                            </div>
                         </div>
-                        <div class="form-floating mt-3">
-                            <input type="password" class="form-control border-warning rounded-pill"
-                                id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Contraseña</label>
-                        </div>
-                        <div class="text-center mt-3">
-                            <button type="submit" class="btn btn-outline-dark rounded-pill pe-4 ps-4" id="btnInicio"
-                                onclick="validarInicios()">Ingresar</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-
-
+    <!-- Footer -->
     <div class="footerF mt-5">
         <footer class="bg-dark">
             <div id="footerIndex"></div>
@@ -72,9 +77,13 @@
     <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
 
     <!-- Js -->
+    <script src="../../resources/js/sweetalert.min.js"></script>
+    <script src="../../controllers/utils/components.js"></script>
     <script src="../../controllers/utils/public.js" defer></script>
     <script src="../../controllers/utils/admin.js" defer></script>
     <script src="../../controllers/utils/cargar_menu.js"></script>
+    <script src="../../controllers/utils/Validaciones.js"></script>
+    <script src="../../controllers/public/Login.js"></script>
 
 </body>
 

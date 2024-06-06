@@ -49,17 +49,16 @@ class ClienteHandler{
         return Database::executeRow($sql, $params);
     }
 
-    public function checkUser($correo, $clave)
+    public function checkUser($email, $contraseña)
     {
         $sql = 'SELECT id_cliente, correo_cliente, clave_cliente
                 FROM tb_clientes
                 WHERE correo_cliente = ?';
-        $params = array($correo);
-        if (!($data = Database::getRow($sql, $params))) {
-            return false;
-        } elseif (password_verify($clave, $data['clave_cliente'])) {
-            $_SESSION['idCliente'] = $data['id_cliente'];
-            $_SESSION['correoCliente'] = $data['correo_cliente'];
+        $params = array($email);
+        $data = Database::getRow($sql, $params);
+        if (password_verify($contraseña, $data['clave_cliente'])) {
+            $this->id = $data['id_cliente'];
+            $this->correo = $data['correo_cliente'];
             return true;
         } else {
             return false;

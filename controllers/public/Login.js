@@ -8,11 +8,11 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(CLIENTE_API, 'signUp', FORM);
+    const DATA = await fetchData(CLIENTE_API, 'logIn', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra un mensaje de éxito.
-        sweetAlert(1, DATA.message, true, 'login.html');
+        sweetAlert(1, DATA.message, true, 'index.html');
     } else {
         sweetAlert(2, DATA.error, false);
     }

@@ -60,7 +60,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'logIn':
                 $_POST = Validator::validateForm($_POST);
-                if (!$cliente->checkUser($_POST['correo'], $_POST['clave'])) {
+                if (!$cliente->checkUser($_POST['correoCliente'], $_POST['contraseñaCliente'])) {
                     $result['error'] = 'Datos incorrectos';
                 } elseif ($cliente->checkStatus()) {
                     $result['status'] = 1;
