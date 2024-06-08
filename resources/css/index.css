@@ -1,5 +1,16 @@
-
 .social-icons i {
   font-size: 32px;
   margin-right: 0px;
+}
+
+.cartaSubcategoria {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contenedorCartas {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -10,6 +10,7 @@ class SubcategoriaData extends SubcategoriaHandler
     
     // Artributo adicional
     private $data_error = null;
+    private $filename = null;
 
     // Metodos para validar y establecer los datos
     public function setIdSubCategoria($value){
@@ -51,8 +52,57 @@ class SubcategoriaData extends SubcategoriaHandler
         }
     }
 
+    public function setImagen($file, $filename = null)
+    {
+        if (Validator::validateImageFile($file, 1000)) {
+            $this->imagen = Validator::getFilename();
+            return true;
+        } elseif (Validator::getFileError()) {
+            $this->data_error = Validator::getFileError();
+            return false;
+        } elseif ($filename) {
+            $this->imagen = $filename;
+            return true;
+        } else {
+            $this->imagen = 'default.png';
+            return true;
+        }
+    }
+
+    public function setDescripcion($value, $min = 2, $max = 250)
+    {
+        if (!$value) {
+            return true;
+        } elseif (!Validator::validateString($value)) {
+            $this->data_error = 'La descripción contiene caracteres prohibidos';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->descripcion = $value;
+            return true;
+        } else {
+            $this->data_error = 'La descripción debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        }
+    }
+
+    public function setFilename()
+    {
+        if ($data = $this->readFilename()) {
+            $this->filename = $data['imagen_categoria'];
+            return true;
+        } else {
+            $this->data_error = 'Categoría inexistente';
+            return false;
+        }
+    }
+
     public function getDataError()
     {
         return $this->data_error;
+    }
+
+    public function getFilename()
+    {
+        return $this->filename;
     }
 }

@@ -339,6 +339,8 @@ DROP TABLE IF EXISTS `tb_sub_categorias`;
 CREATE TABLE `tb_sub_categorias` (
   `id_sub_categoria` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_sub_categoria` varchar(255) DEFAULT NULL,
+  `descripcion_subcategoria` varchar(250) DEFAULT NULL,
+  `imagen_subcategoria` varchar(25) NOT NULL,
   `id_categoria` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_sub_categoria`),
   KEY `fk_id_categoria_id_sub_categorias` (`id_categoria`),
