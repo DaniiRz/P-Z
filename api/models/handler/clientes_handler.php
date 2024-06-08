@@ -51,7 +51,7 @@ class ClienteHandler{
 
     public function checkUser($email, $contraseña)
     {
-        $sql = 'SELECT id_cliente, correo_cliente, clave_cliente
+        $sql = 'SELECT id_cliente, correo_cliente, clave_cliente, estado_cliente
                 FROM tb_clientes
                 WHERE correo_cliente = ?';
         $params = array($email);
@@ -59,6 +59,7 @@ class ClienteHandler{
         if (password_verify($contraseña, $data['clave_cliente'])) {
             $this->id = $data['id_cliente'];
             $this->correo = $data['correo_cliente'];
+            $this->estado = $data['estado_cliente'];
             return true;
         } else {
             return false;
@@ -74,6 +75,15 @@ class ClienteHandler{
         } else {
             return false;
         }
+    }
+
+    public function changeStatus()
+    {
+        $sql = 'UPDATE tb_clientes
+                SET estado_cliente = ?
+                WHERE id_cliente = ?';
+        $params = array($this->estado, $this->id);
+        return Database::executeRow($sql, $params);
     }
 
     /*
