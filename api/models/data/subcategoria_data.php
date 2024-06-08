@@ -52,7 +52,7 @@ class SubcategoriaData extends SubcategoriaHandler
         }
     }
 
-    public function setImagen($file, $filename = null)
+    public function setImagenSubcategoria($file, $filename = null)
     {
         if (Validator::validateImageFile($file, 1000)) {
             $this->imagen = Validator::getFilename();
@@ -69,7 +69,7 @@ class SubcategoriaData extends SubcategoriaHandler
         }
     }
 
-    public function setDescripcion($value, $min = 2, $max = 250)
+    public function setDescripcionSubcategoria($value, $min = 2, $max = 250)
     {
         if (!$value) {
             return true;
@@ -88,7 +88,7 @@ class SubcategoriaData extends SubcategoriaHandler
     public function setFilename()
     {
         if ($data = $this->readFilename()) {
-            $this->filename = $data['imagen_categoria'];
+            $this->filename = $data['imagen_subcategoria'];
             return true;
         } else {
             $this->data_error = 'Categoría inexistente';

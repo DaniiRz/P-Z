@@ -5,26 +5,25 @@ const SEARCH_FORM = document.getElementById('searchForm');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-const SAVE_MODAL = new bootstrap.Modal('#saveModal'),
-    MODAL_TITLE = document.getElementById('modalTitle');
+const SAVE_MODAL = new bootstrap.Modal('#SubcategoriaModal'),
+    MODAL_TITLE = document.getElementById('SubcategoriaTitle');
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_SUBCATEGORIA = document.getElementById('idSubcategoria'),
-    NOMBRE_SUBCATEGORIA = document.getElementById('nombreSubcategoria');
+    NOMBRE_SUBCATEGORIA = document.getElementById('nombreSubcategoria'),
+    DESCRIPCION_SUBCATEGORIA = document.getElementById('descripcionSubcategoria'),
+    IMAGEN_SUBCATEGORIA = document.getElementById('imagenSubcategoria');
 
 document.addEventListener('DOMContentLoaded', () => {
-    //titulo del documento que se muestra cuando carga el doc 
-    MAIN_TITLE.textContent = 'Administrar Sub-categorias';
-
     //funcion para mostrar la tabla con registros existentes
     fillTable();
 });
 
 //metodo de envio del formulario de busqueda 
-SAVE_FORM.addEventListener('submit', (event) => {
+SEARCH_FORM.addEventListener('submit', (event) => {
     //evitar que la pagina se recargue al enviar el forms de busqueda
     event.preventDefault();
-    //contsnate tipo objeto con datos ddel forms 
+    //constante tipo objeto con datos del forms 
     const FORM = new FormData(SEARCH_FORM);
     //funcion de llenado de tabla con resultados 
     fillTable(FORM);
@@ -51,7 +50,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     } else {
         sweetAlert(2, DATA.error, false);
     }
-}); 
+});
 
 /*
 *   Función asíncrona para llenar la tabla con los registros disponibles.
@@ -73,17 +72,21 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
-                <tr>
-                    <td>${row.nombre_sub_categoria}</td>
-                    <td>
-                        <button class="btn btn-primary" onclick="openUpdate(${row.id_subcategoria})"
-                            data-bs-toggle="modal" data-bs-target="#ModalEditar"><i class="fa-regular fa-pen-to-square"></i>
-                        </button>
-                        <button class="btn btn-danger" onclick="openDelete(${row.id_subcategoria})"
-                            data-bs-toggle="modal" data-bs-target="#ModalEliminar"><i class="fa-solid fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
+                    <tr>
+                        <td class="text-center ImagenTablas"> 
+                            <img src="${SERVER_URL}images/subcategorias/${row.imagen_subcategoria}">
+                        </td>
+                        <td>${row.nombre_subcategoria}</td>
+                        <td>${row.descripcion_subcategoria}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" onclick="openUpdate(${row.id_subcategoria})">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_subcategoria})">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
             `;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
@@ -102,7 +105,7 @@ const fillTable = async (form = null) => {
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
-    MODAL_TITLE.textContent = 'Crear Subcategoría';
+    MODAL_TITLE.textContent = 'CREAR SUBCATEGORIA';
     // Se prepara el formulario.
     SAVE_FORM.reset();
 }
@@ -122,13 +125,15 @@ const openUpdate = async (id) => {
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'Actualizar Subcategoría';
+        MODAL_TITLE.textContent = 'EDITAR SUBCATEGORIA';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
-        ID_SUBCATEGORIA.value = ROW.id_sub_categoria;
-        NOMBRE_SUBCATEGORIA.value = ROW.nombre_sub_categoria;
+        ID_SUBCATEGORIA.value = ROW.id_subcategoria;
+        NOMBRE_SUBCATEGORIA.value = ROW.nombre_subcategoria;
+        DESCRIPCION_SUBCATEGORIA.value = ROW.descripcion_subcategoria;
+        IMAGEN_SUBCATEGORIA.value = ROW.imagen_subcategoria;
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -161,7 +166,3 @@ const openDelete = async (id) => {
         }
     }
 }
-
-
-
-

@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    
+
     <!-- Título del documento -->
     <title>PULL&ZARA - SubCategorias</title>
 
@@ -36,8 +36,7 @@
         <!-- Titulos -->
         <div id="textos" class="container-fluid py-5 text-center">
             <div class="row justify-content-center py-5">
-                <h3>Administrar Sub-Categorias</h3>
-                <h4>Blusas</h4>
+                <h3>Administrar SubCategorias</h3>
             </div>
         </div>
 
@@ -56,7 +55,8 @@
                         <button type="reset" class="btn btn-secondary" onclick="fillTable()">
                             <i class="fas fa-times-circle"></i>
                         </button>
-                        <button type="reset" class="btn btn-warning" onclick="fillTable()">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#SubcategoriaModal" onclick="openCreate()">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -72,16 +72,13 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col" class="text-center">
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            <span class="align-self-center"> Nombre Subcategoria </span>
-                                        </div>
-                                    </th>
-                                    <th scope="col" class="text-center">
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            <span class="align-self-center"> Acciones </span>
-                                        </div>
-                                    </th>
+                                    <td colspan="6" id="rowsFound"></td>
+                                </tr>
+                                <tr>
+                                    <th>IMAGEN SUBCATEGORIA</th>
+                                    <th>NOMBRE SUBCATEGORIA</th>
+                                    <th>DESCRIPCION SUBCATEGORIA</th>
+                                    <th>ACCIONES</th>
                                 </tr>
                             </thead>
 
@@ -89,6 +86,86 @@
                             <tbody id="tableBody">
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal agregar Subcategoria nueva -->
+            <div class="modal fade" id="SubcategoriaModal" data-bs-backdrop="static" tabindex="-1"
+                aria-labelledby="miModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content">
+
+                        <!-- Formulario saveForm -->
+                        <form id="saveForm">
+                            <input type="number" class="d-none" id="idSubcategoria" name="idSubcategoria">
+
+                            <!-- Body del modal -->
+                            <div class="modal-body">
+                                <div class="tab-content">
+
+                                    <!-- Formulario de validacion -->
+                                    <form class="needs-validation">
+                                        <div class="container mb-3 mt-3">
+                                            <button type="button" class="btn-close btn-danger" aria-label="Close"
+                                                data-bs-dismiss="modal"></button>
+                                            <h4 id="SubcategoriaTitle" class="modal-title text-center fw-light mb-3">
+                                                AGREGAR
+                                                SUBCATEGORIA
+                                            </h4>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                                    <div class="col-12 mb-3">
+                                                        <label for="nombreSubcategoria" class="form-label">Nombre
+                                                            Subcategoria</label>
+                                                        <input id="nombreSubcategoria" type="text"
+                                                            name="nombreSubcategoria" class="form-control" required
+                                                            onblur="formatAlphabetic(this)">
+                                                    </div>
+                                                    <div class="col-12 mb-3">
+                                                        <label for="descripcionSubcategoria"
+                                                            class="form-label">Descripción</label>
+                                                        <textarea id="descripcionSubcategoria" type="text"
+                                                            name="descripcionSubcategoria"
+                                                            class="form-control descripcion" required
+                                                            onblur="formatAlphabetic(this)"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                                    <div class="col-12 mb-3">
+                                                        <div class="form-group">
+                                                            <label for="imagenSubcategoria"
+                                                                class="form-label">Imagen</label>
+                                                            <input id="imagenSubcategoria" type="file"
+                                                                name="imagenSubcategoria" class="form-control"
+                                                                accept=".png, .jpg" required oninput="formatImg(this)">
+                                                            <div id="mensaje-error-previa" class="invalid-feedback">
+                                                                Error al cambiar imagen.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 mb-3">
+                                                        <label for="imagenSubcategoria" class="form-label">Vista
+                                                            previa</label>
+                                                        <div id="vista-previa"
+                                                            class="border border-black p-2 text-center ContenedorImg">
+                                                            <img src="../../resources/img/Imagen vacia.png" alt=""
+                                                                height="200px">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Botones del modal -->
+                                        <div class="d-flex flex-row-reverse">
+                                            <button type="submit" class="btn btn-success ps-4 pe-4 ms-2 me-3"> Completar
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -101,17 +178,16 @@
     </footer>
 
     <!-- Librerias -->
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
+
     <!-- Js -->
     <script src="../../resources/js/sweetalert.min.js"></script>
     <script src="../../controllers/utils/components.js"></script>
     <script src="../../controllers/utils/admin.js" defer></script>
     <script src="../../controllers/utils/cargar_menu.js"></script>
+    <script src="../../controllers/utils/Validaciones.js"></script>
     <script src="../../controllers/admin/subcategorias.js"></script>
-
-    <!-- Bootstrap  -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"> </script>
 </body>
 
 </html>
