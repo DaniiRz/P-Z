@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="card cartaSubcategoria mb-3">
                         <img src="${SERVER_URL}images/subcategorias/${row.imagen_subcategoria}" class="card-img-top">
                         <div class="card-body text-center">
-                            <h5 class="card-title">${row.nombre_sub_categoria}</h5>
+                            <h5 class="card-title">${row.nombre_subcategoria}</h5>
                             <p class="card-text">${row.descripcion_subcategoria}</p>
                             <a href="${url}" class="btn btn-primary">Ver productos</a>
                         </div>
