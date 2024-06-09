@@ -197,6 +197,27 @@ const logOut = async () => {
 }
 
 /*
+*   Función asíncrona para cerrar la sesión del usuario publico.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const logOutPublic = async () => {
+    // Se muestra un mensaje de confirmación y se captura la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Está seguro de cerrar la sesión?');
+    // Se verifica la respuesta del mensaje.
+    if (RESPONSE) {
+        // Petición para eliminar la sesión.
+        const DATA = await fetchData(CLIENTE_API, 'logOut');
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            sweetAlert(1, DATA.message, true, 'index.html');
+        } else {
+            sweetAlert(2, DATA.exception, false);
+        }
+    }
+}
+
+/*
 *   Función asíncrona para intercambiar datos con el servidor.
 *   Parámetros: filename (nombre del archivo), action (accion a realizar) y form (objeto opcional con los datos que serán enviados al servidor).
 *   Retorno: constante tipo objeto con los datos en formato JSON.
