@@ -35,8 +35,8 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$Subcategoria->setNombreSubCategoria($_POST['nombreSubcategoria']) or
-                    !$Subcategoria->setDescripcionSubcategoria($_POST['descripcionSubcategoria']) or
-                    !$Subcategoria->setImagenSubcategoria($_FILES['imagenSubcategoria'])
+                    !$Subcategoria->setImagenSubcategoria($_FILES['imagenSubcategoria'])or
+                    !$Subcategoria->setIdCategoria($_POST['idCategoria']) 
                 ) {
                     $result['error'] = $Subcategoria->getDataError();
                 } elseif ($Subcategoria->createRow()) {
@@ -48,16 +48,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al crear la Subcategoria';
                 }
                 break;
-
             case 'readAll':
-                if ($result['dataset'] = $Subcategoria->readAll()) {
+                if (!isset($_POST['idCategoria']) || !$Subcategoria->setIdCategoria($_POST['idCategoria'])) {
+                    $result['error'] = 'Categoría no válida';
+                } elseif ($result['dataset'] = $Subcategoria->readAll()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
-                    $result['error'] = 'No existen subcategorias registradas';
+                    $result['error'] = 'Subcategorias inexistentes';
                 }
                 break;
-
             case 'readOne':
                 if (!$Subcategoria->setIdSubCategoria($_POST['idSubcategoria'])) {
                     $result['error'] = $Subcategoria->getDataError();
@@ -73,7 +72,6 @@ if (isset($_GET['action'])) {
                     !$Subcategoria->setIdSubCategoria($_POST['idSubcategoria']) or
                     !$Subcategoria->setFilename() or
                     !$Subcategoria->setNombreSubCategoria($_POST['nombreSubcategoria']) or
-                    !$Subcategoria->setDescripcionSubcategoria($_POST['descripcionSubcategoria']) or
                     !$Subcategoria->setImagenSubcategoria($_FILES['imagenSubcategoria'], $Subcategoria->getFilename())
                 ) {
                     $result['error'] = $Subcategoria->getDataError();

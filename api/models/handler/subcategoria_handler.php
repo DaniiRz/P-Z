@@ -10,7 +10,6 @@ class SubcategoriaHandler
     protected $id = null;
     protected $nombresubcategoria = null;
     protected $idcategoria = null;
-    protected $descripcion = null;
     protected $imagen = null;
 
     // Constante para establecer la ruta de las imágenes.
@@ -19,35 +18,36 @@ class SubcategoriaHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_subcategoria, nombre_subcategoria, imagen_subcategoria, descripcion_subcategoria
+        $sql = 'SELECT id_sub_categoria, nombre_subcategoria, imagen_subcategoria
                 FROM tb_sub_categorias
-                WHERE nombre_subcategoria LIKE ? OR descripcion_subcategoria LIKE ?
+                WHERE nombre_subcategoria LIKE ?
                 ORDER BY nombre_subcategoria';
-        $params = array($value, $value);
+        $params = array($value);
         return Database::getRows($sql, $params);
     }
 
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_sub_categorias(nombre_subcategoria, imagen_subcategoria, descripcion_subcategoria)
+        $sql = 'INSERT INTO tb_sub_categorias(nombre_subcategoria, imagen_subcategoria, id_categoria)
                 VALUES(?, ?, ?)';
-        $params = array($this->nombresubcategoria, $this->imagen, $this->descripcion);
+        $params = array($this->nombresubcategoria, $this->imagen, $this->idcategoria);
         return Database::executeRow($sql, $params);
     }
 
     public function readAll()
     {
-        $sql = 'SELECT id_subcategoria, nombre_subcategoria, imagen_subcategoria, descripcion_subcategoria
-                FROM tb_sub_categorias
+        $sql = 'SELECT id_sub_categoria, nombre_subcategoria, imagen_subcategoria
+                FROM tb_sub_categorias WHERE id_categoria = ?
                 ORDER BY nombre_subcategoria';
-        return Database::getRows($sql);
+        $params = array($this->idcategoria);
+        return Database::getRows($sql, $params);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT id_subcategoria, nombre_subcategoria, imagen_subcategoria, descripcion_subcategoria
+        $sql = 'SELECT id_sub_categoria, nombre_subcategoria, imagen_subcategoria
                 FROM tb_sub_categorias
-                WHERE id_subcategoria = ?';
+                WHERE id_sub_categoria = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -56,7 +56,7 @@ class SubcategoriaHandler
     {
         $sql = 'SELECT imagen_subcategoria
                 FROM tb_subcategorias
-                WHERE id_subcategoria = ?';
+                WHERE id_sub_categoria = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -64,16 +64,16 @@ class SubcategoriaHandler
     public function updateRow()
     {
         $sql = 'UPDATE tb_sub_categorias
-                SET imagen_subcategoria = ?, nombre_subcategoria = ?, descripcion_subcategoria = ?
-                WHERE id_subcategoria = ?';
-        $params = array($this->imagen, $this->nombresubcategoria, $this->descripcion, $this->id);
+                SET imagen_subcategoria = ?, nombre_subcategoria = ?
+                WHERE id_sub_categoria = ?';
+        $params = array($this->imagen, $this->nombresubcategoria, $this->id);
         return Database::executeRow($sql, $params);
     }
 
     public function deleteRow()
     {
         $sql = 'DELETE FROM tb_sub_categorias
-                WHERE id_subcategoria = ?';
+                WHERE id_sub_categoria = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
