@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //metodo de envio del formulario de busqueda 
-SAVE_FORM.addEventListener('submit', (event) => {
+SEARCH_FORM.addEventListener('submit', (event) => {
     //evitar que la pagina se recargue al enviar el forms de busqueda
     event.preventDefault();
     //contsnate tipo objeto con datos ddel forms 
