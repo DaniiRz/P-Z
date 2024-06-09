@@ -20,20 +20,16 @@ const SAVE_FORM = document.getElementById('saveForm'),
     SUBCATEGORIA_PRODUCTO = document.getElementById('subcategoriaProducto'),
     CATEGORIA_PRODUCTO = document.getElementById('categoriaProducto');
 
-
-//constante para establecer los elementos del modal de detalle producto
+// Constante para establecer los elementos del modal de detalle producto
 const SAVE_MODAL_DETALLE = new bootstrap.Modal('#modalDetalle');
 
-//contsnate de elementos del formulario de detalle producto 
+// Constante de elementos del formulario de detalle producto 
 const DETALLE_FORM = document.getElementById('formDetalle'),
     ID_DETALLE_PRODUCTO = document.getElementById('idDetalleProducto'),
     EXISTENCIAS = document.getElementById('existenciasProducto'),
     TALLA = document.getElementById('tallaProducto'),
     COLOR = document.getElementById('colorProducto'),
     IMAGEN_PRODUCTO = document.getElementById('imagenProducto');
-
-
-
 
 // Metodo para llenar la tabla
 const fillTable = async (form = null) => {
@@ -133,7 +129,7 @@ CATEGORIA_PRODUCTO.addEventListener('change', () => {
     SUBCATEGORIA_PRODUCTO.disabled = false;
     const FORM = new FormData();
     FORM.append('idCategoria', CATEGORIA_PRODUCTO.value);
-    fillSelect(SUBCATEGORIA_API, 'readSome', 'subcategoriaProducto', FORM);
+    fillSelect(SUBCATEGORIA_API, 'readOne', 'subcategoriaProducto', FORM);
 });
 
 const openUpdate = async (id) => {

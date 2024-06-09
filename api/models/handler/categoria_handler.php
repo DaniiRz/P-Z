@@ -11,7 +11,6 @@ class CategoriaHandler
      */
     protected $id = null;
     protected $nombre = null;
-    protected $descripcion = null;
     protected $imagen = null;
 
     const RUTA_IMAGEN = '../../images/categorias/';
