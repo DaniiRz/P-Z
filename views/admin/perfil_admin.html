@@ -16,6 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../../resources/css/principal_admin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 </head>
 
@@ -25,30 +26,27 @@
     <header>
         <div id="menuContent"></div>
     </header>
-    
+
     <!-- Contenedor principal -->
     <main class="py-5">
 
         <!-- Perfil -->
-        <div class="container d-flex justify-content-center align-items-center text-auto mb-5">
-            <div class="text-left">
-                <img class="text-center py-5 mt-2" style="z-index: 999;" src="../../resources/img/Perfil.png">
+        <div class="container d-flex justify-content-center mb-5">
+            <div class="text-center mt-5">
+                <img class="text-center mt-2" src="../../resources/img/Perfil.png">
                 <div>
-                    <p class="fs-5 justify-content-center">Nombre administrador:</p>
-                    <p class="fs-5 justify-content-center">Correo administrador:</p>
-                    <div class="row">
-                        <p class="fs-5 ">Telefono: ####-####</p>
-                    </div>
+                    <p class="fs-3 fw-bold" id="nombreAdminPerfil">Nombre administrador</p>
+                    <p class="fs-3 fw-bold" id="correoAdminPerfil">Correo administrador</p>
+                    <p class="fs-3 fw-bold" id="numeroAdminPerfil">Numero de Telefono</p>
                 </div>
                 <div class="container">
                     <div class="d-flex flex-column">
-                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal1"><img src="../../resources/img/lapiz.png">
-                        </button>
                         <button type="button" class="btn btn-outline-primary mt-3" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Cambiar contraseña</button>
-                        <button type="button" class="btn btn-outline-danger mt-3" onclick= logOut() id="cerrar-sesion">
-                            Cerrar Sesión
+                            data-bs-target="#passwordModal"> <i class="bi bi-shield-lock-fill me-1"></i> Cambiar
+                            contraseña
+                        </button>
+                        <button type="button" class="btn btn-outline-danger mt-3" onclick=logOut() id="cerrar-sesion">
+                            <i class="bi bi-person-dash-fill me-1"></i> Cerrar Sesión
                         </button>
                     </div>
                 </div>
@@ -56,35 +54,40 @@
         </div>
 
         <!-- Modal cambiar contraseña -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
+                    <form id="passwordForm" class="needs-validation">
 
-                    <!-- Header del modal -->
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar contraseña</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+                        <!-- Body del modal -->
+                        <div class="modal-body">
 
-                    <!-- Body del modal -->
-                    <div class="modal-body">
-                        <div class="d-flex flex-column text-center">
-                            <div class="col">
-                                <p class="fs-5">Nueva contraseña</p>
-                                <input type="text" class="form-control">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h1 class="fs-5 text-center mb-4" id="modalTitle"> RESTABLECER CONTRASEÑA</h1>
+                            <div class="d-flex flex-column text-center">
+                                <div class="col">
+                                    <label for="claveActual" class="form-label">Contraseña actual</label>
+                                    <input id="claveActual" type="password" name="claveActual" class="form-control"
+                                        required oninput="formatPassword(this)">
+                                </div>
+                                <div class="col mt-3">
+                                    <label for="claveActual" class="form-label">Contraseña nueva</label>
+                                    <input type="password" id="claveNueva" name="claveNueva" class="form-control" required oninput="formatPassword(this)">
+                                </div>
+                                <div class="col mt-3">
+                                    <label for="claveActual" class="form-label">Confirmar contraseña</label>
+                                    <input type="password" id="confirmarClave" name="confirmarClave" class="form-control"
+                                        required oninput="formatPassword(this)">
+                                </div>
                             </div>
-                            <div class="col mt-3">
-                                <p class="fs-5">Confirmar nueva contraseña</p>
-                                <input type="text" class="form-control">
-                            </div>
+
                         </div>
-                    </div>
 
-                    <!-- Botones del modal -->
-                    <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-success">Guardar</button>
-                    </div>
+                        <!-- Botones del modal -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Cambiar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -105,7 +108,7 @@
                         <div class="d-flex flex-column text-center">
                             <div class="col">
                                 <p class="fs-5">Ingrese su nuevo nombre de administrador</p>
-                                <input type="text" class="form-control">
+                                <input type="text" id="nombreAdmin" name="nombreAdmin" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -126,16 +129,16 @@
     </footer>
 
     <!-- Librerias -->
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
+
     <!-- Js -->
+    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+    <script src="../../controllers/utils/components.js"></script>
     <script src="../../controllers/utils/admin.js" defer></script>
     <script src="../../controllers/utils/cargar_menu.js"></script>
-    <script src="../../controllers/utils/components.js"></script>
-    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
-
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"> </script>
+    <script src="../../controllers/admin/perfil.js"></script>
+    <script src="../../controllers/utils/Validaciones.js"></script>
 </body>
 
 </html>

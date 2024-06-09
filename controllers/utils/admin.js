@@ -2,8 +2,11 @@
 * Sirve para manejar la plantilla del encabezado y pie del documento.
 */
 
-
 const USER_API="services/admin/administrador.php";
+// Constantes para establecer los datos del perfil.
+const NOMBRE_ADMIN_PERFIL = document.getElementById('nombreAdminPerfil');
+const CORREO_ADMIN_PERFIL = document.getElementById('correoAdminPerfil');
+const TELEFONO_ADMIN_PERFIL = document.getElementById('numeroAdminPerfil');
 
 function generarMenuIndex() {
 
