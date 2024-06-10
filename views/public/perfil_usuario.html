@@ -21,15 +21,17 @@
 </head>
 
 <body>
+
+    <!-- Header -->
     <header>
         <div id="menuIndexPublic"></div>
     </header>
 
     <div class="container mt-5 pt-5 pb-3 border">
-        <form id="saveForm">
-            <div class="row d-flex flex-row mt-5">
+        <form id="profileForm">
 
-                <!-- Perfil -->
+            <!-- Perfil -->
+            <div class="row d-flex flex-row mt-5">
                 <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="col-12 text-center">
                         <img src="../../resources/img/Perfil.png" alt="Imagen de perfil">
@@ -38,87 +40,70 @@
 
                 <!-- Inputs -->
                 <div class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="col-12 mt-5">
+                    <div class="col-10 mt-5">
 
                         <!-- Input nombre -->
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombreCliente" name="nombreCliente" required>
+                            <input type="text" class="form-control" id="nombreClientePerfil" name="nombreClientePerfil"
+                                value="" required readonly>
                         </div>
 
                         <!-- Input nombre -->
                         <div class="form-group mt-3">
                             <label for="apellido">Apellido</label>
-                            <input type="text" class="form-control" id="apellidoCliente" name="apellidoCliente" required>
+                            <input type="text" class="form-control" id="apellidoClientePerfil"
+                                name="apellidoClientePerfil" value="" required readonly>
                         </div>
 
                         <!-- Input dui -->
                         <div class="form-group mt-3">
                             <label for="dui">DUI</label>
-                            <input type="text" class="form-control" id="duiCliente" name="duiCliente" required>
+                            <input type="text" class="form-control" id="duiClientePerfil" name="duiClientePerfil"
+                                value="" required readonly>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="col-12 mt-5">
-
-                        <!-- Input direccion -->
-                        <div class="form-group">
-                            <label for="direccion">Dirección</label>
-                            <div class="input-group">
-                                <select class="form-control" id="direccionCliente" name="direccionCliente">
-                                </select>
-
-                                <!-- Boton agregar -->
-                                <div class="input-group-append">
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                        data-bs-target="#ModalUsuario">
-                                        <i class="bi bi-plus-circle-fill"></i>
-                                    </button>
-                                </div>
-
-                                <!-- Boton editar -->
-                                <div class="input-group-append">
-                                    <button type="button" class="btn btn-light" data-bs-toggle="modal"
-                                        data-bs-target="#ModalUsuario">
-                                        <i class="bi bi-pen-fill"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-10 mt-5">
 
                         <!-- Input correo -->
                         <div class="form-group mt-3">
                             <label for="correo">Correo Electrónico</label>
-                            <input type="text" class="form-control" id="correoCliente" name="correoCliente">
+                            <input type="text" class="form-control" id="correoClientePerfil" name="correoClientePerfil"
+                                value="" required readonly>
                         </div>
 
                         <!-- Input telefono -->
                         <div class="form-group mt-3">
                             <label for="telefono">Telefono</label>
-                            <input type="text" class="form-control" id="telefonoCliente" name="telefonoCliente"
-                                required>
+                            <input type="text" class="form-control" id="telefonoClientePerfil"
+                                name="telefonoClientePerfil" value="" required readonly>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
 
-        <!-- Buttons container -->
-        <div class="row mt-4">
-            <div class="col-12 text-center">
-                <button id="btnEditar" type="submit" class="btn btn-info p-2 ps-5 pe-5">
-                    <i class="bi bi-pen-fill"></i>
-                </button>
-                <button class="btn btn-danger ms-3 p-2 ps-5 pe-5" onclick="logOutPublic()">
-                    <i class="bi bi-person-dash-fill"></i>
-                </button>
-                <button id="btnGuardar" type="submit" class="btn btn-success ms-3 p-2 ps-5 pe-5">
-                    <i class="bi bi-check-lg"></i>
-                </button>
+            <!-- Buttons container -->
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <button id="btnEditar" type="button" class="btn btn-info p-2 ps-5 pe-5">
+                        <i class="bi bi-pen-fill"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger ms-3 p-2 ps-5 pe-5" onclick="logOutPublic()">
+                        <i class="bi bi-person-dash-fill"></i>
+                    </button>
+                    <button id="btnGuardar" type="submit" class="btn btn-success ms-3 p-2 ps-5 pe-5" disabled>
+                        <i class="bi bi-check-lg"></i>
+                    </button>
+                    <button type="button" class="btn btn-warning ms-3 p-2 ps-5 pe-5" data-bs-toggle="modal"
+                        data-bs-target="#passwordModal">
+                        <i class="bi bi-person-fill-lock"></i>
+                    </button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 
     <!-- Modal de direcciones -->
@@ -203,6 +188,43 @@
         </div>
     </div>
 
+    <!-- Modal cambiar contraseña -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="passwordForm" class="needs-validation">
+
+                    <!-- Body del modal -->
+                    <div class="modal-body">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h1 class="fs-4 text-center mb-5" id="modalTitle"> CAMBIAR CONTRASEÑA </h1>
+                        <div class="d-flex flex-column text-center">
+                            <div class="col">
+                                <label for="claveActual" class="form-label">Contraseña actual</label>
+                                <input id="claveActual" type="password" name="claveActual" class="form-control" required
+                                    oninput="formatPassword(this)">
+                            </div>
+                            <div class="col mt-3">
+                                <label for="claveActual" class="form-label">Contraseña nueva</label>
+                                <input type="password" id="claveNueva" name="claveNueva" class="form-control" required
+                                    oninput="formatPassword(this)">
+                            </div>
+                            <div class="col mt-3">
+                                <label for="claveActual" class="form-label">Confirmar contraseña</label>
+                                <input type="password" id="confirmarClave" name="confirmarClave" class="form-control"
+                                    required oninput="formatPassword(this)">
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary ps-4 pe-4"><i class="bi bi-shield-lock-fill me-2"></i>Cambiar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <div class="footerF mt-5">
         <footer class="bg-dark">
             <div id="footerIndex"></div>
@@ -219,6 +241,8 @@
     <script src="../../controllers/utils/public.js" defer></script>
     <script src="../../controllers/utils/admin.js" defer></script>
     <script src="../../controllers/utils/cargar_menu.js"></script>
+    <script src="../../controllers/public/perfil.js"></script>
+    <script src="../../controllers/utils/Validaciones.js"></script>
 
 </body>
 
