@@ -17,9 +17,8 @@
     <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
 
     <!-- Bootstrap CSS -->
-
     <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../resources/css/principal_admin.css">
 </head>
 
@@ -41,56 +40,136 @@
                 </div>
             </div>
 
-        <div class="container mb-3 justify-content-center">
+            <div class="container mb-3 justify-content-center">
 
-            <!-- Formulario de búsqueda -->
-            <form class="col-sm-12 col-md-12" id="searchForm">
-                <div class="row">
-                    <div class="col-6">
-                        <input type="search" class="form-control" id="search" name="search" placeholder="Buscar"
-                            required>
+                <!-- Formulario de búsqueda -->
+                <form class="col-sm-12 col-md-12" id="searchForm">
+                    <div class="row">
+                        <div class="col-4">
+                            <input type="search" class="form-control" id="search" name="search" placeholder="Buscar"
+                                required>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                                <i class="fas fa-times-circle"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#modalCliente" onclick="openCreate()"><i class="fas fa-plus"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <button type="submit" class="btn btn-success">
-                            <i class="fas fa-search"></i>
-                        </button>
-                        <button type="reset" class="btn btn-secondary" onclick="fillTable()">
-                            <i class="fas fa-times-circle"></i>
-                        </button>
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                            data-bs-target="#TallaModal" id="btnAbrirModal"><i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
+                </form>
 
-            <!-- Tabla de usuarios con opciones -->
-            <div class="table-responsive">
-
-                <!-- Tabla -->
+                <!-- Tabla de usuarios con opciones -->
                 <div class="table-responsive">
 
-                    <!-- Tabla para mostrar los registros existentes -->
-                    <table class="table table-hover">
+                    <!-- Tabla -->
+                    <div class="table-responsive">
 
-                        <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                        <thead>
-                            <tr>
-                                <td colspan="6" id="rowsFound"></td>
-                            </tr>
-                            <tr>
-                                <th scope="col">NOMBRE</th>
-                                <th scope="col">DUI</th>
-                                <th scope="col">TELEFONO</th>
-                                <th scope="col">CORREO</th>
-                                <th scope="col">ACCIONES</th>
-                            </tr>
-                        </thead>
+                        <!-- Tabla para mostrar los registros existentes -->
+                        <table class="table table-hover">
 
-                        <!-- Filas -->
-                        <tbody id="tableBody">
-                        </tbody>
-                    </table>
+                            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                            <thead>
+                                <tr>
+                                    <td colspan="6" id="rowsFound"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">NOMBRE COMPLETO</th>
+                                    <th scope="col">DUI</th>
+                                    <th scope="col">TELEFONO</th>
+                                    <th scope="col">CORREO</th>
+                                    <th scope="col">ACCIONES</th>
+                                </tr>
+                            </thead>
+
+                            <!-- Filas -->
+                            <tbody id="tableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal agregar cliente -->
+            <div class="modal fade" id="modalCliente" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+
+                        <!-- Formulario saveForm -->
+                        <form id="saveForm">
+                            <input type="number" class="d-none" id="idCliente" name="idCliente">
+                            <form class="needs-validation">
+
+                                <!-- Body del modal -->
+                                <div class="modal-body">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    <h1 class="fs-4 text-center mb-4" id="modalTitle"> AGREGAR CLIENTE </h1>
+
+                                    <!-- Inputs -->
+                                    <div class="row p-3">
+                                        <div class="col-12">
+                                            <div class="col-12">
+                                                <label class="form-label">Nombre(s) del cliente</label>
+                                                <input id="nombreCliente" name="nombreCliente" class="form-control"
+                                                    required oninput="formatAlphabetic(this)">
+                                            </div>
+                                            <div class="col-12 mt-3">
+                                                <label class="form-label">Apellido(s) del cliente</label>
+                                                <input id="apellidoCliente" name="apellidoCliente" class="form-control"
+                                                    required oninput="formatAlphabetic(this)">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-6 mt-3">
+                                                        <label class="form-label">Dui del
+                                                            cliente</label>
+                                                        <input id="duiCliente" name="duiCliente" class="form-control"
+                                                            required oninput="formatDui(this)">
+                                                    </div>
+                                                    <div class="col-6 mt-3">
+                                                        <label for="claveActual mt-3" class="form-label">Telefono del
+                                                            cliente</label>
+                                                        <input id="telefonoCliente" name="telefonoCliente"
+                                                            class="form-control" required
+                                                            oninput="formatPhoneNumber(this)">
+                                                    </div>
+                                                    <div class="col-6 mt-3">
+                                                        <label class="form-label">Correo del
+                                                            cliente</label>
+                                                        <input id="correoCliente" name="correoCliente"
+                                                            class="form-control" required oninput="formatEmail(this)">
+                                                    </div>
+                                                    <div class="col-6 mt-3">
+                                                        <label class="form-label">Contraseña del
+                                                            cliente</label>
+                                                        <input type="password" id="contraseñaCliente"
+                                                            name="contraseñaCliente" class="form-control" required
+                                                            oninput="formatPassword(this)">
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-6"></div>
+                                                    <div class="col-6 text-end">
+                                                        <button type="submit" class="btn btn-primary ps-4 pe-4">
+                                                            <i class="bi bi-person-fill-add me-1"></i> Agregar cliente
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -106,9 +185,13 @@
     <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
 
     <!-- Js -->
+    <script src="../../resources/js/sweetalert.min.js"></script>
+    <script src="../../controllers/utils/components.js"></script>
     <script src="../../controllers/utils/admin_usuarios.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
     <script src="../../controllers/utils/cargar_menu.js"></script>
+    <script src="../../controllers/admin/Cliente.js"></script>
+    <script src="../../controllers/utils/Validaciones.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </body>
 
