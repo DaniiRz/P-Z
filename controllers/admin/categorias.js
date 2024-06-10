@@ -107,7 +107,7 @@ const fillTable = async (form = null) => {
                 <tr>
                     <td><img src="${SERVER_URL}images/categorias/${row.imagen_categoria}" alt="Imagen de ${row.nombre_categoria}" height="50"></td>
                     <td>${row.nombre_categoria}</td>
-                    <td><button type="button" class="btn btn-success" data-bs-toggle="modal"
+                    <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                     data-bs-target="#AgregarSubCategoria" onclick="openSubCategoryModal(${row.id_categoria});">Ver Sub-categorias</button></td>
                     <td>
                         <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_categoria})" aria-label="Editar ${row.nombre_categoria}">

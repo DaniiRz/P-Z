@@ -125,6 +125,7 @@ const openCreate = () => {
     SUBCATEGORIA_PRODUCTO.disabled = true;
 }
 
+
 CATEGORIA_PRODUCTO.addEventListener('change', () => {
     SUBCATEGORIA_PRODUCTO.disabled = false;
     const FORM = new FormData();
