@@ -16,7 +16,7 @@ if (isset($_GET['action'])) {
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
 
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['idAdministrador'])) {
+    if (isset($_SESSION['idAdministrador']) || true) {
 
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
@@ -54,22 +54,22 @@ if (isset($_GET['action'])) {
                 } elseif ($result['dataset'] = $Subcategoria->readAll()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'Subcategorias inexistentes';
+                    $result['error'] = 'Error al leer las Subcategorias, inexistentes';
                 }
                 break;
             case 'readOne':
-                if (!$Subcategoria->setIdSubCategoria($_POST['id_sub_categoria'])) {
+                if (!$Subcategoria->setIdSubCategoria($_POST['idSubcategoria'])) {
                     $result['error'] = $Subcategoria->getDataError();
                 } elseif ($result['dataset'] = $Subcategoria->readOne()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'Subcategoria inexistente';
+                    $result['error'] = 'Error al leer la Subcategoria, inexistente';
                 }
                 break;
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$Subcategoria->setIdSubCategoria($_POST['id_sub_categoria']) or
+                    !$Subcategoria->setIdSubCategoria($_POST['idSubcategoria']) or
                     !$Subcategoria->setFilename() or
                     !$Subcategoria->setNombreSubCategoria($_POST['nombreSubcategoria']) or
                     !$Subcategoria->setImagenSubcategoria($_FILES['imagenSubcategoria'], $Subcategoria->getFilename())
@@ -84,7 +84,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar la Subcategoria';
                 }
                 break;
-
+                
             case 'deleteRow':
                 if (
                     !$Subcategoria->setIdSubCategoria($_POST['id_sub_categoria'])

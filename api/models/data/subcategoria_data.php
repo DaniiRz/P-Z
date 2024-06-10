@@ -74,7 +74,7 @@ class SubcategoriaData extends SubcategoriaHandler
             $this->filename = $data['imagen_subcategoria'];
             return true;
         } else {
-            $this->data_error = 'Subcategoría inexistente';
+            $this->data_error = 'error en setFilename Subcategoría inexistente, desde data';
             return false;
         }
     }

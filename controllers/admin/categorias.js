@@ -75,6 +75,7 @@ SAVE_FORM_SUB.addEventListener('submit', async (event) => {
     // Guardar datos del formulario
     const DATA = await fetchData(SUBCATEGORIA_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    console.log(ID_SUBCATEGORIA.value);
     if (DATA.status) {
         // Se cierra la caja de diálogo.
         SAVE_MODAL_SUB.hide();
@@ -235,10 +236,13 @@ const openUpdate = async (id) => {
 const openUpdateSub = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_sub_categoria', id);
+    FORM.append('idSubcategoria', id);
+    console.log(id);
+    console.log(FORM);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(SUBCATEGORIA_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    console.log(DATA.status)
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL_SUB.show();
@@ -247,7 +251,7 @@ const openUpdateSub = async (id) => {
         IMAGEN_SUBCATEGORIA.required = false;
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
-        ID_SUBCATEGORIA.value = ROW.id_subcategoria;
+        ID_SUBCATEGORIA.value = ROW.id_sub_categoria;
         NOMBRE_SUBCATEGORIA.value = ROW.nombre_subcategoria;
     } else {
         sweetAlert(2, DATA.error, false);

@@ -55,8 +55,8 @@ class SubcategoriaHandler
     public function readFilename()
     {
         $sql = 'SELECT imagen_subcategoria
-                FROM tb_subcategorias
-                WHERE id_sub_categoria = ?';
+        FROM tb_sub_categorias
+        WHERE id_sub_categoria = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -65,7 +65,7 @@ class SubcategoriaHandler
     {
         $sql = 'UPDATE tb_sub_categorias
                 SET imagen_subcategoria = ?, nombre_subcategoria = ?
-                WHERE id_sub_categoria = ?';
+                WHERE id_sub_categoria = ?';  
         $params = array($this->imagen, $this->nombresubcategoria, $this->id);
         return Database::executeRow($sql, $params);
     }
