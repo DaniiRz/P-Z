@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <img src="${SERVER_URL}images/categorias/${row.imagen_categoria}" class="card-img-top">
                         <div class="card-body text-center">
                             <h5 class="card-title">${row.nombre_categoria}</h5>
-                            <a href="${url}" class="btn btn-primary">Ver productos</a>
+                            <a href="${url}" class="btn btn-outline-success">Ver productos</a>
                         </div>
                     </div>
                 </div>
