@@ -162,10 +162,10 @@ const fillTableSub = async (idCategoria, form = null) => {
                         </td>
                         <td>${row.nombre_subcategoria}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" onclick="openUpdateSub(${row.id_subcategoria})">
+                            <button type="button" class="btn btn-primary" onclick="openUpdateSub(${row.id_sub_categoria})">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </button>
-                            <button type="button" class="btn btn-danger" onclick="openDeleteSub(${row.id_subcategoria})">
+                            <button type="button" class="btn btn-danger" onclick="openDeleteSub(${row.id_sub_categoria})">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </td>
@@ -235,7 +235,7 @@ const openUpdate = async (id) => {
 const openUpdateSub = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('idSubcategoria', id);
+    FORM.append('id_sub_categoria', id);
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(SUBCATEGORIA_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -288,7 +288,7 @@ const openDeleteSub = async (id) => {
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('idSubcategoria', id);
+        FORM.append('id_sub_categoria', id);
         // Petición para eliminar el registro seleccionado.
         const DATA = await fetchData(SUBCATEGORIA_API, 'deleteRow', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.

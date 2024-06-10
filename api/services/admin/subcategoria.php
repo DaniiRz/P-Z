@@ -58,7 +58,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$Subcategoria->setIdSubCategoria($_POST['idSubcategoria'])) {
+                if (!$Subcategoria->setIdSubCategoria($_POST['id_sub_categoria'])) {
                     $result['error'] = $Subcategoria->getDataError();
                 } elseif ($result['dataset'] = $Subcategoria->readOne()) {
                     $result['status'] = 1;
@@ -69,7 +69,7 @@ if (isset($_GET['action'])) {
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$Subcategoria->setIdSubCategoria($_POST['idSubcategoria']) or
+                    !$Subcategoria->setIdSubCategoria($_POST['id_sub_categoria']) or
                     !$Subcategoria->setFilename() or
                     !$Subcategoria->setNombreSubCategoria($_POST['nombreSubcategoria']) or
                     !$Subcategoria->setImagenSubcategoria($_FILES['imagenSubcategoria'], $Subcategoria->getFilename())
@@ -87,7 +87,7 @@ if (isset($_GET['action'])) {
 
             case 'deleteRow':
                 if (
-                    !$Subcategoria->setIdSubCategoria($_POST['idSubcategoria'])
+                    !$Subcategoria->setIdSubCategoria($_POST['id_sub_categoria'])
                 ) {
                     $result['error'] = $Subcategoria->getDataError();
                 } elseif ($Subcategoria->deleteRow()) {
