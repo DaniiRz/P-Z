@@ -198,32 +198,6 @@ LOCK TABLES `tb_detalle_productos` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tb_direccion_clientes`
---
-
-DROP TABLE IF EXISTS `tb_direccion_clientes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_direccion_clientes` (
-  `id_direccion_c` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_direccion` varchar(255) NOT NULL,
-  `id_cliente` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_direccion_c`),
-  KEY `fk_id_cliente_direccion_cliente` (`id_cliente`),
-  CONSTRAINT `fk_id_cliente_direccion_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `tb_clientes` (`id_cliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tb_direccion_clientes`
---
-
-LOCK TABLES `tb_direccion_clientes` WRITE;
-/*!40000 ALTER TABLE `tb_direccion_clientes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_direccion_clientes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `tb_estado_pedidos`
 --
 
@@ -280,14 +254,12 @@ CREATE TABLE `tb_pedidos` (
   `id_pedido` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_pedido` datetime DEFAULT NULL,
   `id_estado_pedido` int(11) DEFAULT NULL,
-  `id_direccion_c` int(11) DEFAULT NULL,
+  `direccion_pedido` VARCHAR(125) DEFAULT NULL,
   `id_cliente` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_pedido`),
   KEY `fk_id_estado_pedido_id_pedido` (`id_estado_pedido`),
   KEY `fk_id_cliente_id_pedido` (`id_cliente`),
-  KEY `fk_id_direccion_c_id_pedido` (`id_direccion_c`),
   CONSTRAINT `fk_id_cliente_id_pedido` FOREIGN KEY (`id_cliente`) REFERENCES `tb_clientes` (`id_cliente`),
-  CONSTRAINT `fk_id_direccion_c_id_pedido` FOREIGN KEY (`id_direccion_c`) REFERENCES `tb_direccion_clientes` (`id_direccion_c`),
   CONSTRAINT `fk_id_estado_pedido_id_pedido` FOREIGN KEY (`id_estado_pedido`) REFERENCES `tb_estado_pedidos` (`id_estado_pedido`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
