@@ -74,7 +74,7 @@ const sweetAlert = async (type, text, timer, url = null) => {
 *   Función asíncrona para cargar las opciones en un select de formulario.
 *   Parámetros: filename (nombre del archivo), action (acción a realizar), select (identificador del select en el formulario) y filter (dato opcional para seleccionar una opción o filtrar los datos).
 *   Retorno: ninguno.
-*/
+*/ 
 const fillSelect = async (filename, action, select, filter = undefined) => {
     // Se verifica si el filtro contiene un objeto para enviar a la API.
     const FORM = (typeof filter === 'object') ? filter : null;
