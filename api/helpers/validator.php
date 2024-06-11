@@ -143,6 +143,7 @@ class validator
         }
     }
 
+    
     // Metodo para validar un dato monetario
     public static function validateMoney($value)
     {
@@ -161,10 +162,10 @@ class validator
         if (strlen($value) < 8) {
             self::$password_error = 'La contraseña es menor a 8 caracteres';
             return false;
-        } elseif (strlen($value) <= 72) {
+        } elseif (strlen($value) <= 50) {
             return true;
         } else {
-            self::$password_error = 'La contraseña es mayor a 72 caracteres';
+            self::$password_error = 'La contraseña es mayor a 50 caracteres';
             return false;
         }
     }
