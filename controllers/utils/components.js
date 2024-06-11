@@ -74,15 +74,14 @@ const sweetAlert = async (type, text, timer, url = null) => {
 *   Función asíncrona para cargar las opciones en un select de formulario.
 *   Parámetros: filename (nombre del archivo), action (acción a realizar), select (identificador del select en el formulario) y filter (dato opcional para seleccionar una opción o filtrar los datos).
 *   Retorno: ninguno.
-*/
-const fillSelect = async (filename, action, select, filter = undefined) => {
+*/const fillSelect = async (filename, action, select, filter = undefined) => {
     // Se verifica si el filtro contiene un objeto para enviar a la API.
     const FORM = (typeof (filter) == 'object') ? filter : null;
     // Petición para obtener los datos.
     const DATA = await fetchData(filename, action, FORM);
     let content = '';
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje.
-    if (DATA.status) {
+    // Se comprueba si DATA es undefined o null antes de intentar acceder a su propiedad status.
+    if (DATA && DATA.status) { //se verifica que data no sea indefinido 
         content += '<option value="" selected>Seleccione una opción</option>';
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
@@ -104,6 +103,7 @@ const fillSelect = async (filename, action, select, filter = undefined) => {
     // Se agregan las opciones a la etiqueta select mediante el id.
     document.getElementById(select).innerHTML = content;
 }
+
 
 /*
 *   Función para generar un gráfico de barras verticales. Requiere la librería chart.js para funcionar.
