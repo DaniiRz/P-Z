@@ -26,7 +26,7 @@ class CategoriaData extends CategoriaHandler
         }
     }
 
-    public function setNombre($value, $min = 4, $max = 30)
+    public function setNombre($value, $min = 2, $max = 30)
     {
 
         if (!Validator::validateAlphanumeric($value)) {
@@ -36,7 +36,7 @@ class CategoriaData extends CategoriaHandler
             $this->nombre = $value;
             return true;
         } else {
-            $this->data_error = 'El nombre debe de tener una longitud entre' . $min . 'y' . $max;
+            $this->data_error = 'El nombre debe de tener una longitud entre ' . $min . ' y ' . $max;
             return false;
         }
     }

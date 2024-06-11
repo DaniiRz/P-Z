@@ -143,13 +143,13 @@ const openCreate = () => {
 }
 
 
-
+/*
 CATEGORIA_PRODUCTO.addEventListener('change', () => {
     SUBCATEGORIA_PRODUCTO.disabled = false;
     const FORM = new FormData();
     FORM.append('idCategoria', CATEGORIA_PRODUCTO.value);
     fillSelect(SUBCATEGORIA_API, 'readOne', 'idSubcategoria', FORM);
-});
+});*/
 
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
@@ -174,7 +174,6 @@ const openUpdate = async (id) => {
         EXISTENCIAS_PRODUCTO.value = ROW.existencias;
         IMAGEN_PRODUCTO.value = ROW.img_producto;
         fillSelect(CATEGORIA_API, 'readAll', 'categoriaProducto', ROW.id_categoria);
-        fillSelect(SUBCATEGORIA_API, 'readAll', 'subcategoriaProducto', ROW.id_sub_categoria);
     } else {
         sweetAlert(2, DATA.error, false);
     }

@@ -10,7 +10,7 @@ const TABLE_BODY = document.getElementById('tableBody'),
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#AgregarCategoria'),
     MODAL_TITLE = document.getElementById('exampleModal1Label');
-const SAVE_MODAL_SUB = new bootstrap.Modal('#AgregarSubCategoriaFORM');
+//const SAVE_MODAL_SUB = new bootstrap.Modal('#AgregarSubCategoriaFORM');
 
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
@@ -18,12 +18,13 @@ const SAVE_FORM = document.getElementById('saveForm'),
     NOMBRE_CATEGORIA = document.getElementById('nombreCategoria'),
     IMAGEN_CATEGORIA = document.getElementById('imagenCategoria');
 
+/*
 const SAVE_FORM_SUB = document.getElementById('saveFormSub'),
     ID_SUBCATEGORIA = document.getElementById('idSubcategoria'),
     NOMBRE_SUBCATEGORIA = document.getElementById('nombreSubcategoria'),
     IMAGEN_SUBCATEGORIA = document.getElementById('imagenSubcategoria');
+*/
 
-let currentCategoryId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     // Función para mostrar la tabla con registros existentes
@@ -63,6 +64,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
+/*
 // Método del evento de guardar para subcategorías
 SAVE_FORM_SUB.addEventListener('submit', async (event) => {
     // Evitar que la página se recargue al enviar el formulario de búsqueda
@@ -107,8 +109,6 @@ const fillTable = async (form = null) => {
                 <tr>
                     <td><img src="${SERVER_URL}images/categorias/${row.imagen_categoria}" alt="Imagen de ${row.nombre_categoria}" height="50"></td>
                     <td>${row.nombre_categoria}</td>
-                    <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
-                    data-bs-target="#AgregarSubCategoria" onclick="openSubCategoryModal(${row.id_categoria});">Ver Sub-categorias</button></td>
                     <td>
                         <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_categoria})" aria-label="Editar ${row.nombre_categoria}">
                         <i class="fa-regular fa-pen-to-square"></i>
@@ -132,6 +132,8 @@ const fillTable = async (form = null) => {
 *   Parámetros: idcat (id de la categoría), form (objeto opcional con los datos de búsqueda).
 *   Retorno: ninguno.
 */
+
+/*
 const fillTableSub = async (idCategoria, form = null) => {
     ROWS_FOUND_SUB.textContent = '';
     TABLE_BODY_SUB.innerHTML = '';
@@ -143,7 +145,7 @@ const fillTableSub = async (idCategoria, form = null) => {
   /*Si hay un formulario de búsqueda, también añadimos sus datos.
     Este código se asegura de que cualquier dato que venga de un formulario
     de búsqueda (form) se agregue a un nuevo objeto FormData llamado FORM.
-   */
+
     if (form) {
         for (let key of form.keys()) {
             FORM.append(key, form.get(key));
@@ -182,7 +184,7 @@ const fillTableSub = async (idCategoria, form = null) => {
         sweetAlert(4, DATA.error, true);
     }
 }
-
+*/
 /*
 *   Función para preparar el formulario al momento de insertar un registro.
 *   Parámetros: ninguno.
@@ -197,6 +199,7 @@ const openCreate = () => {
     IMAGEN_CATEGORIA.required = true;
 }
 
+/*
 const openCreateSub = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL_SUB.show();
@@ -204,7 +207,7 @@ const openCreateSub = () => {
     SAVE_FORM_SUB.reset();
     IMAGEN_SUBCATEGORIA.required = true;
 }
-
+*/
 /*
 *   Función asíncrona para preparar el formulario al momento de actualizar un registro.
 *   Parámetros: id (identificador del registro seleccionado).
@@ -232,7 +235,7 @@ const openUpdate = async (id) => {
         sweetAlert(2, DATA.error, false);
     }
 }
-
+/*
 const openUpdateSub = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
@@ -257,7 +260,7 @@ const openUpdateSub = async (id) => {
         sweetAlert(2, DATA.error, false);
     }
 }
-
+*/
 /*
 *   Función asíncrona para eliminar un registro.
 *   Parámetros: id (identificador del registro seleccionado).
@@ -284,7 +287,7 @@ const openDelete = async (id) => {
         }
     }
 }
-
+/*
 const openDeleteSub = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Desea eliminar la subcategoria de forma permanente?');
@@ -306,9 +309,11 @@ const openDeleteSub = async (id) => {
         }
     }
 }
-
+*/
+/*
 // Función para abrir el modal de subcategorías y establecer la categoría actual
 const openSubCategoryModal = (idCategoria) => {
     currentCategoryId = idCategoria;
     fillTableSub(idCategoria);
 }
+*/
