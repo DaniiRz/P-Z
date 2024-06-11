@@ -125,10 +125,23 @@ const openCreate = () => {
     MODAL_TITLE.textContent = 'AGREGAR PRODUCTO';
     // Se prepara el formulario.
     SAVE_FORM.reset();
+    // Llenar el primer select con las categorías
     fillSelect(CATEGORIA_API, 'readAll', 'categoriaProducto');
+
+    // Agregar evento de cambio al primer select (categoriaProducto)
+    document.getElementById('categoriaProducto').addEventListener('change', () => {
+        // Obtener el valor seleccionado de la categoría
+        const selectedCategoryId = document.getElementById('categoriaProducto').value;
+        // Habilitar el segundo select (subcategoría)
+        SUBCATEGORIA_PRODUCTO.disabled = false;
+        // Llenar el segundo select con las subcategorías filtradas por la categoría seleccionada
+        fillSelect(SUBCATEGORIA_API, 'readAllSub',  selectedCategoryId);
+    });
+
+    // Deshabilitar el segundo select inicialmente
     SUBCATEGORIA_PRODUCTO.disabled = true;
-    fillSelect(SUBCATEGORIA_API, 'readAll', 'categoriaProducto');
 }
+
 
 
 CATEGORIA_PRODUCTO.addEventListener('change', () => {
