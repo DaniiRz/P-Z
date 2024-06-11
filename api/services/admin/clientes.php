@@ -63,6 +63,7 @@ if (isset($_GET['action'])) {
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
+                    !$cliente->setId($_POST['idCliente']) or
                     !$cliente->setNombre($_POST['nombreCliente']) or
                     !$cliente->setApellido($_POST['apellidoCliente']) or
                     !$cliente->setCorreo($_POST['correoCliente']) or
@@ -78,9 +79,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'deleteRow':
-                if ($_POST['idCliente'] == $_SESSION['idCliente']) {
-                    $result['error'] = 'No se puede eliminar a sí mismo';
-                } elseif (!$cliente->setId($_POST['idCliente'])) {
+                if (!$cliente->setId($_POST['idCliente'])) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->deleteRow()) {
                     $result['status'] = 1;
