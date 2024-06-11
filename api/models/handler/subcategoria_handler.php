@@ -43,6 +43,15 @@ class SubcategoriaHandler
         return Database::getRows($sql, $params);
     }
 
+    public function readAllSub()
+    {
+        $sql = 'SELECT id_sub_categoria, nombre_subcategoria
+                FROM tb_sub_categorias WHERE id_categoria = ?   
+                ORDER BY nombre_subcategoria';
+        $params = array($this->idcategoria);
+        return Database::getRows($sql, $params);
+    }
+
     public function readOne()
     {
         $sql = 'SELECT id_sub_categoria, nombre_subcategoria, imagen_subcategoria

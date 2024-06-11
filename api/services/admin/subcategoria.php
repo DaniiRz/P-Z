@@ -57,6 +57,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Error al leer las Subcategorias, inexistentes';
                 }
                 break;
+                case 'readAllSub':
+                    if (!isset($_POST['idCategoria']) || !$Subcategoria->setIdCategoria($_POST['idCategoria'])) {
+                        $result['error'] = 'Categoría no válida';
+                    } elseif ($result['dataset'] = $Subcategoria->readAllSub()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'Error al leer las Subcategorias, inexistentes';
+                    }
+                    break;
             case 'readOne':
                 if (!$Subcategoria->setIdSubCategoria($_POST['idSubcategoria'])) {
                     $result['error'] = $Subcategoria->getDataError();

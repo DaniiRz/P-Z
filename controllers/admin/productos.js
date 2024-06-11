@@ -17,7 +17,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     DESCRIPCION_PRODUCTO = document.getElementById('descripcionProducto'),
     CANTIDAD_PRODUCTO = document.getElementById('cantidadProducto'),
     PRECIO_PRODUCTO = document.getElementById('precioProducto'),
-    SUBCATEGORIA_PRODUCTO = document.getElementById('subcategoriaProducto'),
+    SUBCATEGORIA_PRODUCTO = document.getElementById('idSubcategoria'),
     CATEGORIA_PRODUCTO = document.getElementById('categoriaProducto');
 
 // Constante para establecer los elementos del modal de detalle producto
@@ -90,27 +90,31 @@ SEARCH_FORM.addEventListener('submit', (event) => {
     // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
     fillTable(FORM);
 });
-
 // Método del evento para cuando se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se verifica la acción a realizar.
-    (ID_PRODUCTO.value) ? action = 'updateRow' : action = 'createRow';
+    const action = (ID_PRODUCTO.value) ? 'updateRow' : 'createRow';
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(PRODUCTO_API, action, FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se cierra la caja de diálogo.
-        SAVE_MODAL.hide();
-        // Se muestra un mensaje de éxito.
-        sweetAlert(1, DATA.message, true);
-        // Se carga nuevamente la tabla para visualizar los cambios.
-        fillTable();
-    } else {
-        sweetAlert(2, DATA.error, false);
+    try {
+        const DATA = await fetchData(PRODUCTO_API, action, FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA && DATA.status) {
+            // Se cierra la caja de diálogo.
+            SAVE_MODAL.hide();
+            // Se muestra un mensaje de éxito.
+            sweetAlert(1, DATA.message, true);
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            fillTable();
+        } else {
+            sweetAlert(2, DATA ? DATA.error : "Error desconocido", false);
+        }
+    } catch (error) {
+        console.error('Error al procesar la solicitud:', error);
+        sweetAlert(2, error.message, false); // Mostrar el mensaje de error exacto devuelto por la excepción
     }
 });
 
@@ -123,6 +127,7 @@ const openCreate = () => {
     SAVE_FORM.reset();
     fillSelect(CATEGORIA_API, 'readAll', 'categoriaProducto');
     SUBCATEGORIA_PRODUCTO.disabled = true;
+    fillSelect(SUBCATEGORIA_API, 'readAll', 'categoriaProducto');
 }
 
 
@@ -130,7 +135,7 @@ CATEGORIA_PRODUCTO.addEventListener('change', () => {
     SUBCATEGORIA_PRODUCTO.disabled = false;
     const FORM = new FormData();
     FORM.append('idCategoria', CATEGORIA_PRODUCTO.value);
-    fillSelect(SUBCATEGORIA_API, 'readOne', 'subcategoriaProducto', FORM);
+    fillSelect(SUBCATEGORIA_API, 'readOne', 'idSubcategoria', FORM);
 });
 
 const openUpdate = async (id) => {
