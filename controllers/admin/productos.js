@@ -132,14 +132,8 @@ const openCreate = () => {
     document.getElementById('categoriaProducto').addEventListener('change', () => {
         // Obtener el valor seleccionado de la categoría
         const selectedCategoryId = document.getElementById('categoriaProducto').value;
-        // Habilitar el segundo select (subcategoría)
-        SUBCATEGORIA_PRODUCTO.disabled = false;
-        // Llenar el segundo select con las subcategorías filtradas por la categoría seleccionada
-        fillSelect(SUBCATEGORIA_API, 'readAllSub',  selectedCategoryId);
     });
 
-    // Deshabilitar el segundo select inicialmente
-    SUBCATEGORIA_PRODUCTO.disabled = true;
 }
 
 
