@@ -1,6 +1,7 @@
 <?php
 // Se incluye la clase del modelo.
 require_once('../../models/data/productos_data.php');
+require_once('../../helpers/validator.php'); //se incluye validator 
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -26,20 +27,27 @@ if (isset($_GET['action'])) {
                 break;
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
+                // Verifica que todas las claves necesarias existen en $_POST
                 if (
-                    !$producto->setNombreproducto($_POST['nombreProducto']) or
-                    !$producto->setDescripcion($_POST['descripcionProducto']) or
-                    !$producto->setPrecio($_POST['precioProducto']) or
-                    !$producto->setsubcategoria($_POST['subcategoriaProducto']) 
+                    isset($_POST['nombreProducto']) &&
+                    isset($_POST['categoriaProducto']) &&
+                    isset($_POST['descripcionProducto']) 
                 ) {
-                    $result['error'] = $producto->getDataError();
-                } elseif ($producto->createRow()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Producto creado correctamente';
-                    // Se asigna el estado del archivo después de insertar.
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenProducto'], $producto::RUTA_IMAGEN);
+                    if (
+                        !$producto->setNombreproducto($_POST['nombreProducto']) or
+                        !$producto->setDescripcion($_POST['descripcionProducto']) or
+                        !$producto->setCategoria($_POST['categoriaProducto'])
+                    ) {
+                        $result['error'] = $producto->getDataError();
+                    } elseif ($producto->createRow()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Producto creado correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al crear el producto';
+                    }
                 } else {
-                    $result['error'] = 'Ocurrió un problema al crear el producto';
+                    // Maneja el caso en que alguna clave no esté definida en $_POST
+                    $result['error'] = 'Faltan datos necesarios para crear el producto';
                 }
                 break;
             case 'readAll':

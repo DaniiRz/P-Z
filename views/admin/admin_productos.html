@@ -69,10 +69,9 @@
                             <td colspan="6" id="rowsFound"></td>
                         </tr>
                         <tr>
-                            <th>NOMBRE</th>
+                            <th>NOMBRE PRODUCTO</th>
                             <th>CATEGORÍA</th>
-                            <th>SUB-CATEGORÍA</th>
-                            <th>PRECIO (US$)</th>
+                            <th>DESCRIPCIÓN</th>
                             <th>DETALLE PRODUCTO</th>
                             <th>ACCIONES</th>
                         </tr>
@@ -128,21 +127,6 @@
                                                         <select id="categoriaProducto" name="categoriaProducto"
                                                             class="form-select" required>
                                                         </select>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
-                                                        <label for="tallaProducto" class="form-label">Precio</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-text">$</span>
-                                                            <input type="number" class="form-control"
-                                                                aria-label="Dollar amount" required
-                                                                onblur="formatDolar(this)" min="1" step="1">
-                                                            <div id="mensaje-error" class="invalid-feedback">
-                                                                No se permite el valor $0.00
-                                                            </div>
-                                                            <div class="invalid-feedback">
-                                                                El formato es "00.00".
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                     <div class="col-12 mb-3">
                                                         <label for="descripcionProducto"
