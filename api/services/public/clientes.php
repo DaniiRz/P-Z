@@ -71,7 +71,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             default:
-                $result['error'] = 'Acción no disponible dentro de la sesión';
+                $result['error'] = 'Ya existe una sesion iniciada.';
         }
     } else {
         // Se compara la acción a realizar cuando el cliente no ha iniciado sesión.
@@ -109,7 +109,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             default:
-                $result['error'] = 'Acción no disponible fuera de la sesión';
+            $result['message'] = 'Debes iniciar sesion en una cuenta primero.';
         }
     }
     // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.

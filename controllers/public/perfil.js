@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         DUI_CLIENTE_PERFIL.value = ROW.dui_client;
         TELEFONO_CLIENTE_PERFIL.value = ROW.telf_cliente;
     } else {
-        sweetAlert(2, DATA.error, null);
+        // Si no hay un usuario que leer dentro del perfil, se enviara a registrarse.
+        sweetAlert(4, DATA.message, true, 'registro_user.html');
     }
 });
 
