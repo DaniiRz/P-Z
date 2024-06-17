@@ -1,37 +1,36 @@
 // Constante para completar la ruta de la API.
 const PRODUCTO_API = 'services/admin/producto.php';
 const CATEGORIA_API = 'services/admin/categorias.php';
-const SUBCATEGORIA_API = 'services/admin/subcategoria.php';
-// Constante para establecer el formulario de buscar.
+
+// Constante para establecer el formulario de buscar de productos.
 const SEARCH_FORM = document.getElementById('searchForm');
+
 // Constantes para establecer los elementos de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 
+// Constante para el modal de registro de producto.
 const SAVE_MODAL_PRODUCTO = new bootstrap.Modal('#saveModal'),
-    MODAL_TITLE = document.getElementById('modalTitle');
+    MODAL_TITLE_S = document.getElementById('modalTitleS');
+
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_PRODUCTO = document.getElementById('idProducto'),
     NOMBRE_PRODUCTO = document.getElementById('nombreProducto'),
     DESCRIPCION_PRODUCTO = document.getElementById('descripcionProducto'),
-    CANTIDAD_PRODUCTO = document.getElementById('cantidadProducto'),
-    PRECIO_PRODUCTO = document.getElementById('precioProducto'),
-    SUBCATEGORIA_PRODUCTO = document.getElementById('idSubcategoria'),
     CATEGORIA_PRODUCTO = document.getElementById('categoriaProducto');
 
-// Constante para establecer los elementos del modal de detalle producto
-const SAVE_MODAL_DETALLE = new bootstrap.Modal('#modalDetalle');
+// Método del evento para cuando el documento ha cargado.
+document.addEventListener('DOMContentLoaded', () => {
+    // Llamada a la función para llenar la tabla con los registros existentes.
+    fillTable();
+});
 
-// Constante de elementos del formulario de detalle producto 
-const DETALLE_FORM = document.getElementById('formDetalle'),
-    ID_DETALLE_PRODUCTO = document.getElementById('idDetalleProducto'),
-    EXISTENCIAS = document.getElementById('existenciasProducto'),
-    TALLA = document.getElementById('tallaProducto'),
-    COLOR = document.getElementById('colorProducto'),
-    IMAGEN_PRODUCTO = document.getElementById('imagenProducto');
-
-// Metodo para llenar la tabla
+/*
+*   Función asíncrona para llenar la tabla con los registros disponibles.
+*   Parámetros: form (objeto opcional con los datos de búsqueda).
+*   Retorno: ninguno.
+*/
 const fillTable = async (form = null) => {
     // Se inicializa el contenido de la tabla.
     ROWS_FOUND.textContent = '';
@@ -49,14 +48,13 @@ const fillTable = async (form = null) => {
             TABLE_BODY.innerHTML += `
             <tr>
                 <td>${row.nombre_producto}</td>
-                <td>${row.categoria_producto}</td>
-                <td>${row.subcategoria_producto}</td>
-                <td>${row.precio_producto}</td>
+                <td>${row.nombre_categoria}</td>
+                <td>${row.desc_producto}</td>
                 <td>
-                <button type="button" class="btn btn-warning" data-bs-target="#modalDetalle" data-bs-toggle="modal">
-                <i class="fa-solid fa-ellipsis"></i></button>  
-                </td> 
-                <td><i class="${icon}"></i></td>
+                    <button type="button" class="btn btn-warning" onclick="openCreateD(${row.id_producto})">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                </td>
                 <td>
                     <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_producto})">
                         <i class="bi bi-pencil-fill"></i>
@@ -75,12 +73,6 @@ const fillTable = async (form = null) => {
     }
 }
 
-// Método del evento para cuando el documento ha cargado.
-document.addEventListener('DOMContentLoaded', () => {
-    // Llamada a la función para llenar la tabla con los registros existentes.
-    fillTable();
-});
-
 // Método del evento para cuando se envía el formulario de buscar.
 SEARCH_FORM.addEventListener('submit', (event) => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -90,7 +82,8 @@ SEARCH_FORM.addEventListener('submit', (event) => {
     // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
     fillTable(FORM);
 });
-// Método del evento para cuando se envía el formulario de guardar.
+
+// Método del evento para cuando se envía el formulario de productos.
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
@@ -104,7 +97,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
         if (DATA && DATA.status) {
             // Se cierra la caja de diálogo.
-            SAVE_MODAL.hide();
+            SAVE_MODAL_PRODUCTO.hide();
             // Se muestra un mensaje de éxito.
             sweetAlert(1, DATA.message, true);
             // Se carga nuevamente la tabla para visualizar los cambios.
@@ -118,11 +111,15 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
-
+/*
+*   Función para preparar el formulario al momento de insertar un registro.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL_PRODUCTO.show();
-    MODAL_TITLE.textContent = 'AGREGAR PRODUCTO';
+    MODAL_TITLE_S.textContent = 'AGREGAR PRODUCTO';
     // Se prepara el formulario.
     SAVE_FORM.reset();
     // Llenar el primer select con las categorías
@@ -133,18 +130,13 @@ const openCreate = () => {
         // Obtener el valor seleccionado de la categoría
         const selectedCategoryId = document.getElementById('categoriaProducto').value;
     });
-
 }
 
-
 /*
-CATEGORIA_PRODUCTO.addEventListener('change', () => {
-    SUBCATEGORIA_PRODUCTO.disabled = false;
-    const FORM = new FormData();
-    FORM.append('idCategoria', CATEGORIA_PRODUCTO.value);
-    fillSelect(SUBCATEGORIA_API, 'readOne', 'idSubcategoria', FORM);
-});*/
-
+*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
 const openUpdate = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
@@ -154,24 +146,27 @@ const openUpdate = async (id) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
-        SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'EDITAR PRODUCTO';
+        SAVE_MODAL_PRODUCTO.show();
+        MODAL_TITLE_S.textContent = 'EDITAR PRODUCTO';
         // Se prepara el formulario.
         SAVE_FORM.reset();
-        EXISTENCIAS_PRODUCTO.disabled = true;
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
         ID_PRODUCTO.value = ROW.id_producto;
         NOMBRE_PRODUCTO.value = ROW.nombre_producto;
         DESCRIPCION_PRODUCTO.value = ROW.desc_producto;
-        PRECIO_PRODUCTO.value = ROW.precio_producto;
-        EXISTENCIAS_PRODUCTO.value = ROW.existencias;
-        IMAGEN_PRODUCTO.value = ROW.img_producto;
+        CATEGORIA_PRODUCTO.value = ROW.nombre_categoria;
         fillSelect(CATEGORIA_API, 'readAll', 'categoriaProducto', ROW.id_categoria);
     } else {
         sweetAlert(2, DATA.error, false);
     }
 }
+
+/*
+*   Función asíncrona para eliminar un registro.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
 
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.

@@ -48,7 +48,7 @@ class TallaHandler
 
     public function readAll()
     {
-        $sql = 'SELECT numero_talla, id_talla
+        $sql = 'SELECT id_talla, numero_talla
                 FROM tb_tallas';
         return Database::getRows($sql);
     }

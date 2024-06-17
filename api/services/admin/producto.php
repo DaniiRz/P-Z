@@ -12,7 +12,7 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'fileStatus' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['idAdministrador']) or true) {
+    if (isset($_SESSION['idAdministrador'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'searchRows':
@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
                 if (
                     isset($_POST['nombreProducto']) &&
                     isset($_POST['categoriaProducto']) &&
-                    isset($_POST['descripcionProducto']) 
+                    isset($_POST['descripcionProducto'])
                 ) {
                     if (
                         !$producto->setNombreproducto($_POST['nombreProducto']) or
@@ -39,7 +39,7 @@ if (isset($_GET['action'])) {
                         !$producto->setCategoria($_POST['categoriaProducto'])
                     ) {
                         $result['error'] = $producto->getDataError();
-                    } elseif ($producto->createRow()) {
+                    } elseif ($producto->createRows()) {
                         $result['status'] = 1;
                         $result['message'] = 'Producto creado correctamente';
                     } else {
@@ -59,7 +59,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
-                if (!$producto->setId($_POST['idProducto'])) {
+                if (!$producto->setIdProducto($_POST['idProducto'])) {
                     $result['error'] = $producto->getDataError();
                 } elseif ($result['dataset'] = $producto->readOne()) {
                     $result['status'] = 1;
@@ -70,40 +70,25 @@ if (isset($_GET['action'])) {
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$producto->setId($_POST['idProducto']) or
-                    !$producto->setFilename() or
-                    !$producto->setNombre($_POST['nombreProducto']) or
+                    !$producto->setIdProducto($_POST['idProducto']) or
+                    !$producto->setNombreproducto($_POST['nombreProducto']) or
                     !$producto->setDescripcion($_POST['descripcionProducto']) or
-                    !$producto->setCantidadproducto($_POST['cantidadProducto']) or
-                    !$producto->setPrecio($_POST['precioProducto']) or
-                    !$producto->setFecharegistro($_POST['fechaProducto']) or
-                    !$producto->setsubcategoria($_POST['subcategoriaProducto']) or
-                    !$producto->setExistencias($_POST['existenciasProducto']) or
-                    !$producto->setImagen($_FILES['imagenProducto']) or
-                    !$producto->setIdcolor($_POST['colorProducto']) or
-                    !$producto->setIdtalla($_POST['tallaProducto'])
+                    !$producto->setCategoria($_POST['categoriaProducto'])
                 ) {
                     $result['error'] = $producto->getDataError();
-                } elseif ($producto->updateRow()) {
+                } elseif ($producto->updateRows()) {
                     $result['status'] = 1;
                     $result['message'] = 'Producto modificado correctamente';
-                    // Se asigna el estado del archivo después de actualizar.
-                    $result['fileStatus'] = Validator::changeFile($_FILES['imagenProducto'], $producto::RUTA_IMAGEN, $producto->getFilename());
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el producto';
                 }
                 break;
             case 'deleteRow':
-                if (
-                    !$producto->setId($_POST['idProducto']) or
-                    !$producto->setFilename()
-                ) {
+                if (!$producto->setIdProducto($_POST['idProducto'])) {
                     $result['error'] = $producto->getDataError();
-                } elseif ($producto->deleteRow()) {
+                } elseif ($producto->deleteRows()) {
                     $result['status'] = 1;
                     $result['message'] = 'Producto eliminado correctamente';
-                    // Se asigna el estado del archivo después de eliminar.
-                    $result['fileStatus'] = Validator::deleteFile($producto::RUTA_IMAGEN, $producto->getFilename());
                 } else {
                     $result['error'] = 'Ocurrió un problema al eliminar el producto';
                 }

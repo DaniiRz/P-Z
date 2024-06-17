@@ -1,7 +1,7 @@
 <?php
 
 // Se incluye la clase
-require_once ('../../helpers/database.php');
+require_once('../../helpers/database.php');
 
 class ProductoHandler
 {
@@ -10,58 +10,60 @@ class ProductoHandler
     protected $id = null;
     protected $nombreproducto = null;
     protected $descproducto = null;
-    protected $cantproducto = null;
-    protected $precioproducto = null;
-    protected $idsubcategoria = null;
     protected $idcategoria = null;
-    protected $existencias = null;
-    protected $imgproducto = null;
-    protected $idcolor = null;
-    protected $idtalla = null;
-    protected $registro = null; 
 
     // Metodos de las operaciones SCRUD
+    public function searchRows()
+    {
+        $value = '%' . Validator::getSearchValue() . '%';
+        $sql = 'SELECT P.id_producto, P.nombre_producto, P.desc_producto, C.nombre_categoria
+                FROM tb_productos AS P
+                INNER JOIN tb_categorias AS C ON P.id_categoria = C.id_categoria
+                WHERE P.nombre_producto LIKE ? OR P.desc_producto LIKE ?
+                ORDER BY P.nombre_producto';
+        $params = array($value, $value);
+        return Database::getRows($sql, $params);
+    }
+
     public function createRows()
     {
-        $sql = 'INSERT INTO tb_productos(nombre_producto,desc_producto, id_categoria) VALUES (?, ?, ?, ?)';
+        $sql = 'INSERT INTO tb_productos(nombre_producto, desc_producto, id_categoria) 
+                VALUES (?, ?, ?)';
         $params = array($this->nombreproducto, $this->descproducto, $this->idcategoria);
         return Database::executeRow($sql, $params);
     }
 
     public function updateRows()
     {
-        $sql = 'UPDATE P.nombre_producto, P.Desc_producto
-                FROM tb_detalle_productos AS D 
-                JOIN tb_productos AS P ON D.id_producto = P.id_producto
+        $sql = 'UPDATE tb_productos
+                SET nombre_producto = ?, Desc_producto = ?, id_categoria = ?
                 WHERE id_producto = ?';
-        $params = array($this->id);
+        $params = array($this->nombreproducto, $this->descproducto, $this->idcategoria, $this->id);
         return Database::executeRow($sql, $params);
     }
 
     public function deleteRows()
     {
-        $sql = 'DELETE D, P
-                FROM tb_detalle_productos AS D
-                INNER JOIN tb_productos AS P ON D.id_producto = P.id_producto
-                WHERE P.id_producto = ?';
+        $sql = 'DELETE FROM tb_productos
+                WHERE id_producto = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
 
     public function readAll()
     {
-        $sql = 'SELECT P.nombre_producto, C.nombre_categoria
-                FROM tb_productos AS P 
-                JOIN tb_detalle_productos AS D ON P.id_producto = D.id_producto
-                JOIN tb_categorias AS C ON C.id_categoria = C.id_categoria';
+        $sql = 'SELECT P.id_producto, P.nombre_producto, P.desc_producto, C.nombre_categoria
+                FROM tb_productos AS P
+                INNER JOIN tb_categorias AS C ON P.id_categoria = C.id_categoria
+                ORDER BY P.nombre_producto';
         return Database::getRows($sql);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT P.nombre_producto, P.Desc_producto, P.precio_producto,  D.img_producto,
-                FROM tb_detalle_productos AS D 
-                JOIN tb_productos AS P ON D.id_producto = P.id_producto
+        $sql = 'SELECT P.id_producto, P.nombre_producto, P.desc_producto, C.nombre_categoria, P.id_producto
+                FROM tb_productos AS P
+                INNER JOIN tb_categorias AS C ON P.id_categoria = C.id_categoria
                 WHERE id_producto = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);

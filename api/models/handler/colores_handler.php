@@ -48,7 +48,7 @@ class ColorHandler
 
     public function readAll()
     {
-        $sql = 'SELECT nombre_color, id_color
+        $sql = 'SELECT id_color, nombre_color
                 FROM tb_colores';
         return Database::getRows($sql);
     }
