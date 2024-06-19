@@ -84,7 +84,7 @@ const fillSelect = async (filename, action, select, filter = undefined) => {
     
     // Se comprueba si DATA no es undefined y si el elemento select existe en el DOM.
     if (DATA && DATA.status && document.getElementById(select)) { 
-        content += '<option value="" selected>Seleccione una opción</option>';
+        content += '';
         
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
@@ -113,7 +113,6 @@ const fillSelect = async (filename, action, select, filter = undefined) => {
         console.error(`Elemento select con id '${select}' no encontrado en el DOM.`);
     }
 }
-
 
 /*
 *   Función para generar un gráfico de barras verticales. Requiere la librería chart.js para funcionar.

@@ -37,9 +37,9 @@ const fillTableD = async (form = null) => {
     ROWS_FOUND_D.textContent = '';
     TABLE_BODY_D.innerHTML = '';
     // Se verifica la acción a realizar.
-    form ? action = 'searchRowsD' : 'createRowD';
+    form ? action = 'searchRowsD' : 'readDetails';
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(DETALLE_API, action, form);
+    const DATA = await fetchData(DETALLE_API, 'readDetails', form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros fila por fila.
@@ -48,8 +48,8 @@ const fillTableD = async (form = null) => {
             TABLE_BODY_D.innerHTML += `
             <tr>
                 <td><img src="${SERVER_URL}images/productos/${row.img_producto}" height="50"</td>
-                <td>${row.nombre_color}</td>
                 <td>${row.numero_talla}</td>
+                <td>${row.nombre_color}</td>
                 <td>${row.existencias}</td>
                 <td>
                     <button type="button" class="btn btn-info" onclick="openUpdateD(${row.id_detalle_producto})">
@@ -75,6 +75,7 @@ SEARCH_FORM_DETALLE.addEventListener('submit', (event) => {
     event.preventDefault();
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SEARCH_FORM_DETALLE);
+    FORM.append('idProducto', IDProducto);
     // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
     fillTableD(FORM);
 });
@@ -97,7 +98,7 @@ DETALLE_FORM.addEventListener('submit', async (event) => {
             // Se muestra un mensaje de éxito.
             sweetAlert(1, DATA.message, true);
             // Se carga nuevamente la tabla para visualizar los cambios.
-            fillTableD();
+            fillTableD(FORM);
         } else {
             sweetAlert(2, DATA ? DATA.error : "Error desconocido", false);
         }
@@ -108,11 +109,14 @@ DETALLE_FORM.addEventListener('submit', async (event) => {
 });
 
 /*
-*   Función para preparar el formulario al momento de insertar un registro.
-*   Parámetros: ninguno.
+*   Función para abrir el modal con la tabla de detalle producto.
+*   Parámetros: IDproducto.
 *   Retorno: ninguno.
 */
+// Variable para guardar el id del producto donde se esta trabajando.
+let IDProducto;
 const openCreateD = async (id) => {
+    IDProducto = id;
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
     FORM.append('idProducto', id);
@@ -131,27 +135,28 @@ const openCreateD = async (id) => {
 *   Retorno: ninguno.
 */
 const openCreateA = async () => {
-
+    // Se prepara el formulario.
+    DETALLE_FORM.reset();
+    // Definir el id del producto como valor en el campo
+    document.getElementById('idProductoD').value = IDProducto;
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL_DETALLE_AGREGAR.show();
     MODAL_TITLE_A.textContent = 'AGREGAR DETALLE DEL PRODUCTO';
-
     // Se inicializan los campos con los datos.
     fillSelect(COLOR_API, 'readAll', 'colorProducto');
-
     // Agregar evento de cambio al primer select
     document.getElementById('colorProducto').addEventListener('change', () => {
         // Obtener el valor seleccionado de la categoría
         const selectedColor = document.getElementById('colorProducto').value;
     });
-
     fillSelect(TALLA_API, 'readAll', 'tallaProducto');
-
     // Agregar evento de cambio al primer select
     document.getElementById('tallaProducto').addEventListener('change', () => {
         // Obtener el valor seleccionado de la categoría
         const selectedTalla = document.getElementById('tallaProducto').value;
     });
+    // Colocar una imagen por defecto de ejemplo para el contenedor.
+    document.getElementById('vista-previa').innerHTML = '<img src="../../resources/img/Imagen vacia.png" alt="" height="200px">';
 }
 
 /*
@@ -177,10 +182,13 @@ const openUpdateD = async (id) => {
         ID_DETALLE_PRODUCTO.value = ROW.id_detalle_producto;
         EXISTENCIAS.value = ROW.existencias;
         COLOR.value = ROW.nombre_color;
+        // Se llenan los combobox con los datos necesarios.
         fillSelect(COLOR_API, 'readAll', 'colorProducto', ROW.id_color);
         TALLA.value = ROW.numero_talla;
         fillSelect(TALLA_API, 'readAll', 'tallaProducto', ROW.id_talla);
-        IMAGEN_PRODUCTO.value = ROW.img_producto;
+        // Colocar la imagen del producto en el contenedor para obtener una vista previa
+        const vistaPrevia = document.getElementById('vista-previa');
+        vistaPrevia.innerHTML = `<img src="${SERVER_URL}images/productos/${ROW.img_producto}" alt="" height="200px">`;
     } else {
         sweetAlert(2, DATA.error, false);
     }

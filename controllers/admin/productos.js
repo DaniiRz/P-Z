@@ -18,7 +18,8 @@ const SAVE_FORM = document.getElementById('saveForm'),
     ID_PRODUCTO = document.getElementById('idProducto'),
     NOMBRE_PRODUCTO = document.getElementById('nombreProducto'),
     DESCRIPCION_PRODUCTO = document.getElementById('descripcionProducto'),
-    CATEGORIA_PRODUCTO = document.getElementById('categoriaProducto');
+    CATEGORIA_PRODUCTO = document.getElementById('categoriaProducto'),
+    CATEGORIA_PRODUCTO_S = document.getElementById('categoriaProductoS');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -120,6 +121,9 @@ const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL_PRODUCTO.show();
     MODAL_TITLE_S.textContent = 'AGREGAR PRODUCTO';
+    // Para ocultar el ComboBox de editar Categoria.
+    CATEGORIA_PRODUCTO_S.style.display = 'none';
+    document.getElementById('textCategoriaProductosS').style.display = 'none';
     // Se prepara el formulario.
     SAVE_FORM.reset();
     // Llenar el primer select con las categorías
@@ -148,6 +152,9 @@ const openUpdate = async (id) => {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL_PRODUCTO.show();
         MODAL_TITLE_S.textContent = 'EDITAR PRODUCTO';
+        // Para mostrar el ComboBox de editar Categoria.
+        CATEGORIA_PRODUCTO_S.classList.remove('none');
+        document.getElementById('textCategoriaProductosS').classList.remove('none');
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.
@@ -155,8 +162,10 @@ const openUpdate = async (id) => {
         ID_PRODUCTO.value = ROW.id_producto;
         NOMBRE_PRODUCTO.value = ROW.nombre_producto;
         DESCRIPCION_PRODUCTO.value = ROW.desc_producto;
-        CATEGORIA_PRODUCTO.value = ROW.nombre_categoria;
-        fillSelect(CATEGORIA_API, 'readAll', 'categoriaProducto', ROW.id_categoria);
+        // Seleccionar la categoria seleccionada
+        fillSelect(CATEGORIA_API, 'readOneP', 'categoriaProducto', FORM);
+        // Seleccionar las categorias disponibles
+        fillSelect(CATEGORIA_API, 'readAll', 'categoriaProductoS', ROW.id_categoria);
     } else {
         sweetAlert(2, DATA.error, false);
     }

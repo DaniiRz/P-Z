@@ -29,24 +29,35 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 // Verifica que todas las claves necesarias existen en $_POST
                 if (
-                    !$detalle->setIdProducto($_POST['idProductoD']) or
-                    !$detalle->setExistencias($_POST['existenciasProducto']) or
-                    !$detalle->setImagen($_FILES['imagenProducto']) or
-                    !$detalle->setIdcolor($_POST['colorProducto']) or
-                    !$detalle->setIdtalla($_POST['tallaProducto'])
-                ) {
-                    $result['error'] = $detalle->getDataError();
-                } elseif ($detalle->createRowsD()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Detalle creado correctamente';
-                    // Se asigna el estado del archivo después de actualizar.
-                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenProducto'], $detalle::RUTA_IMAGEN);
-                } else {
-                    $result['error'] = 'Ocurrió un problema al crear el detalle';
+                    isset($_POST['idProductoD']) &&
+                    isset($_POST['existenciasProducto']) &&
+                    isset($_POST['tallaProducto']) &&
+                    isset($_POST['colorProducto']) &&
+                    isset($_POST['imagenProducto'])
+                )
+                    if (
+                        !$detalle->setIdProducto($_POST['idProductoD']) or
+                        !$detalle->setExistencias($_POST['existenciasProducto']) or
+                        !$detalle->setIdtalla($_POST['tallaProducto']) or
+                        !$detalle->setIdcolor($_POST['colorProducto']) or
+                        !$detalle->setImagen($_FILES['imagenProducto'])
+                    ) {
+                        $result['error'] = $detalle->getDataError();
+                    } elseif ($detalle->createRowsD()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Detalle creado correctamente';
+                        // Se asigna el estado del archivo después de actualizar.
+                        $result['fileStatus'] = Validator::saveFile($_FILES['imagenProducto'], $detalle::RUTA_IMAGEN);
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al crear el detalle';
+                    }
+                else {
+                    // Maneja el caso en que alguna clave no esté definida en $_POST
+                    $result['error'] = 'Faltan datos necesarios para crear el detalle del producto';
                 }
                 break;
             case 'readDetails':
-                if (!$detalle->setIdProducto($_POST['idProductoD'])) {
+                if (!$detalle->setIdProducto($_POST['idProducto'])) {
                     $result['error'] = $detalle->getDataError();
                 } elseif ($result['dataset'] = $detalle->readDetails()) {
                     $result['status'] = 1;

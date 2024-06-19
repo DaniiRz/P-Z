@@ -21,7 +21,19 @@ class CategoriaData extends CategoriaHandler
             return true;
 
         } else {
-            $this->data_error = 'Identificador de categoría incorrecto';
+            $this->data_error = 'Identificador de la categoría es incorrecto';
+            return false;
+        }
+    }
+
+    public function setIdProducto($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->idProducto = $value;
+            return true;
+
+        } else {
+            $this->data_error = 'Identificador del producto es incorrecto';
             return false;
         }
     }

@@ -73,7 +73,7 @@ if (isset($_GET['action'])) {
                     !$producto->setIdProducto($_POST['idProducto']) or
                     !$producto->setNombreproducto($_POST['nombreProducto']) or
                     !$producto->setDescripcion($_POST['descripcionProducto']) or
-                    !$producto->setCategoria($_POST['categoriaProducto'])
+                    !$producto->setCategoria($_POST['categoriaProductoS'])
                 ) {
                     $result['error'] = $producto->getDataError();
                 } elseif ($producto->updateRows()) {

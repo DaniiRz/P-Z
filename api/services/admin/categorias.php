@@ -57,6 +57,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Categoría inexistente';
                 }
                 break;
+            case 'readOneP':
+                if (!$categoria->setIdProducto($_POST['idProducto'])) {
+                    $result['error'] = $categoria->getDataError();
+                } elseif ($result['dataset'] = $categoria->readOneP()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'La categoria dentro del producto es inexistente';
+                }
+                break;
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (

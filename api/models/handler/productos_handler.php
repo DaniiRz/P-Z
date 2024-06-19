@@ -61,7 +61,7 @@ class ProductoHandler
 
     public function readOne()
     {
-        $sql = 'SELECT P.id_producto, P.nombre_producto, P.desc_producto, C.nombre_categoria, P.id_producto
+        $sql = 'SELECT P.id_producto, P.nombre_producto, P.desc_producto, C.nombre_categoria, P.id_producto, P.id_categoria
                 FROM tb_productos AS P
                 INNER JOIN tb_categorias AS C ON P.id_categoria = C.id_categoria
                 WHERE id_producto = ?';

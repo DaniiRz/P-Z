@@ -60,14 +60,15 @@ class DetalleHandler
 
     public function readDetails()
     {
+        $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT D.id_detalle_producto, D.existencias, D.img_producto, C.nombre_color, T.numero_talla, P.id_producto
                 FROM tb_detalle_productos AS D
                 INNER JOIN tb_productos AS P ON D.id_producto = P.id_producto
                 INNER JOIN tb_colores AS C ON D.id_color = C.id_color
                 INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
-                WHERE P.id_producto = ?';
-        $params = array($this->idproducto);
-        return Database::getRow($sql, $params);
+                WHERE P.id_producto = ? AND (C.nombre_color LIKE ? OR T.numero_talla LIKE ?)';
+        $params = array($this->idproducto, $value, $value);
+        return Database::getRows($sql, $params);
     }
 
     public function readOneD()

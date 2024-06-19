@@ -12,10 +12,10 @@ class CategoriaHandler
     protected $id = null;
     protected $nombre = null;
     protected $imagen = null;
-
-    const RUTA_IMAGEN = '../../images/categorias/';
+    protected $idProducto = null;
 
     // Constante para establecer la ruta de las imágenes.
+    const RUTA_IMAGEN = '../../images/categorias/';
 
     /*
      *  Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
@@ -45,6 +45,17 @@ class CategoriaHandler
                 FROM tb_categorias
                 ORDER BY nombre_categoria';
         return Database::getRows($sql);
+    }
+
+    public function readOneP()
+    {
+        $sql = 'SELECT C.id_categoria, C.nombre_categoria, P.id_categoria, P.id_producto
+                FROM tb_categorias AS C
+                INNER JOIN tb_productos AS P ON C.id_categoria = P.id_categoria
+                WHERE P.id_producto = ?
+                ORDER BY nombre_categoria';
+        $params = array($this->idProducto);
+        return Database::getRows($sql, $params);
     }
 
     public function readOne()
