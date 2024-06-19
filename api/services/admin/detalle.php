@@ -46,7 +46,7 @@ if (isset($_GET['action'])) {
                     } elseif ($detalle->createRowsD()) {
                         $result['status'] = 1;
                         $result['message'] = 'Detalle creado correctamente';
-                        // Se asigna el estado del archivo después de actualizar.
+                        // Se asigna el estado del archivo después de agregar.
                         $result['fileStatus'] = Validator::saveFile($_FILES['imagenProducto'], $detalle::RUTA_IMAGEN);
                     } else {
                         $result['error'] = 'Ocurrió un problema al crear el detalle';
@@ -88,6 +88,8 @@ if (isset($_GET['action'])) {
                 } elseif ($detalle->updateRowsD()) {
                     $result['status'] = 1;
                     $result['message'] = 'Detalle modificado correctamente';
+                    // Se asigna el estado del archivo después de actualizar.
+                    $result['fileStatus'] = Validator::changeFile($_FILES['imagenProducto'], $detalle::RUTA_IMAGEN, $detalle->getFilename());
                 } else {
                     $result['error'] = 'Ocurrió un problema al modificar el detalle';
                 }
@@ -98,6 +100,8 @@ if (isset($_GET['action'])) {
                 } elseif ($detalle->deleteRowsD()) {
                     $result['status'] = 1;
                     $result['message'] = 'Detalle eliminado correctamente';
+                    // Se asigna el estado del archivo después de borrar.
+                    $result['fileStatus'] = Validator::deleteFile($detalle::RUTA_IMAGEN, $detalle->getFilename());
                 } else {
                     $result['error'] = 'Ocurrió un problema al eliminar el detalle';
                 }
