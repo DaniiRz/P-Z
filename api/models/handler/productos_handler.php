@@ -68,4 +68,16 @@ class ProductoHandler
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
+
+    public function readProductosCategoria()
+    {
+        $sql = 'SELECT P.id_producto, D.id_producto, D.img_producto, P.nombre_producto
+                FROM tb_productos AS P
+                INNER JOIN tb_categorias AS C ON P.id_categoria = C.id_categoria
+                INNER JOIN tb_detalle_productos AS D ON P.id_producto = D.id_producto
+                WHERE P.id_categoria = ?
+                ORDER BY P.nombre_producto';
+        $params = array($this->idcategoria);
+        return Database::getRows($sql, $params);
+    }
 }

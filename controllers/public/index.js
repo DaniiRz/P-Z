@@ -1,5 +1,5 @@
 // Constante para completar la ruta de la API.
-const CATEGORIA_API = 'services/admin/categorias.php';
+const CATEGORIA_API = 'services/public/categorias.php';
 // Constante para establecer el contenedor de categorías.
 const CATEGORIAS = document.getElementById('Categoria');
 

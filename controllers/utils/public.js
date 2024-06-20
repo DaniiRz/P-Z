@@ -4,7 +4,6 @@
 const CLIENTE_API = 'services/public/clientes.php';
 
 const MAIN_TITLE = document.getElementById('mainTitle');
-MAIN_TITLE.classList.add('text-center'); 
 
 function generarMenuPublic() {
 
