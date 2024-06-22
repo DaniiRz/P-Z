@@ -311,7 +311,7 @@ CREATE TABLE `tb_productos` (
   `id_categoria` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_producto`),
   KEY `fk_id_producto_id_categoria` (`id_categoria`),
-  CONSTRAINT `fk_id_producto_id_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `tb_categorias` (`id_categoria`)
+  CONSTRAINT `fk_id_producto_id_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `tb_categorias` (`id_categoria`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
