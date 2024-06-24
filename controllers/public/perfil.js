@@ -84,17 +84,21 @@ function habilitarBotonGuardar() {
     botonGuardar.disabled = false;
 }
 
-// Evento del boton editar para habilitar los campos y el boton Submit
+// Evento del boton editar para habilitar los campos y el boton Submit.
 botonEditar.addEventListener('click', () => {
-    // Activar los campos para realizar cambios en el perfil
+    // Activar los campos para realizar cambios en el perfil.
     NOMBRE_CLIENTE_PERFIL.readOnly = false;
     APELLIDO_CLIENTE_PERFIL.readOnly = false;
     CORREO_CLIENTE_PERFIL.readOnly = false;
     DUI_CLIENTE_PERFIL.readOnly = false;
     TELEFONO_CLIENTE_PERFIL.readOnly = false;
 
-    // Llama a la función para habilitar el botón "Guardar"
+    // Llama a la función para habilitar el botón "Guardar".
     habilitarBotonGuardar();
+
+    // Seleccionar el primer input por defecto para empezar a editar.
+    NOMBRE_CLIENTE_PERFIL.classList.add('animate__fadeIn');
+    NOMBRE_CLIENTE_PERFIL.focus();
 });
 
 // Evento del boton submit para confirmar la edicion y enviar el formulario
