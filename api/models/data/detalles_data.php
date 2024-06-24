@@ -67,6 +67,16 @@ class DetalleData extends DetalleHandler
             return false;
         }
     }
+    public function setPrecioProducto($value)
+    {
+        if (Validator::validateMoney($value)) {
+            $this->precio = $value;
+            return true;
+        } else {
+            $this->data_error = '';
+            return false;
+        }
+    }
 
     public function setImagen($file, $filename = null)
     {

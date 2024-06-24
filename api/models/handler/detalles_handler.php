@@ -10,6 +10,7 @@ class DetalleHandler
     protected $idproducto = null;
     protected $iddetalle = null;
     protected $existencias = null;
+    protected $precio = null;
     protected $imgproducto = null;
     protected $idcolor = null;
     protected $idtalla = null;

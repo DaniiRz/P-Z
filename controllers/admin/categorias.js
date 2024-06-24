@@ -268,7 +268,7 @@ const openUpdateSub = async (id) => {
 */
 const openDelete = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
-    const RESPONSE = await confirmAction('¿Desea eliminar la categoría de forma permanente?');
+    const RESPONSE = await confirmAction('¿Desea eliminar la categoría de forma permanente? Esto también eliminará todos los productos y sus detalles pertenecientes a esta categoría.');
     // Se verifica la respuesta del mensaje.
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
@@ -287,6 +287,7 @@ const openDelete = async (id) => {
         }
     }
 }
+
 /*
 const openDeleteSub = async (id) => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
