@@ -253,28 +253,6 @@ UNLOCK TABLES;
 -- Table structure for table `tb_productos`
 --
 
-DROP TABLE IF EXISTS `tb_sub_categorias`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_sub_categorias` (
-  `id_sub_categoria` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_subcategoria` varchar(255) DEFAULT NULL,
-  `imagen_subcategoria` varchar(25) NOT NULL,
-  `id_categoria` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_sub_categoria`),
-  KEY `fk_id_categoria_id_sub_categorias` (`id_categoria`),
-  CONSTRAINT `fk_id_categoria_id_sub_categorias` FOREIGN KEY (`id_categoria`) REFERENCES `tb_categorias` (`id_categoria`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
---
--- Dumping data for table `tb_sub_categorias`
---
-
-LOCK TABLES `tb_sub_categorias` WRITE;
-/*!40000 ALTER TABLE `tb_sub_categorias` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_sub_categorias` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
 DROP TABLE IF EXISTS `tb_productos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
