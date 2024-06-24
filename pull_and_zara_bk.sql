@@ -230,7 +230,7 @@ DROP TABLE IF EXISTS `tb_pedidos`;
 CREATE TABLE `tb_pedidos` (
   `id_pedido` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_pedido` datetime DEFAULT NULL,
-  `estado_pedido` VARCHAR(50) DEFAULT NULL,
+  `estado_pedido` ENUM ('Pendiente','Finalizado','Entregado','Anulado') NOT NULL,
   `direccion_pedido` VARCHAR(125) DEFAULT NULL,
   `id_cliente` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_pedido`),
@@ -348,3 +348,22 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2024-05-15 17:04:33
+
+
+SELECT * FROM tb_admins;
+SELECT * FROM tb_categorias;
+SELECT * FROM tb_clientes;
+SELECT * FROM tb_colores;
+SELECT * FROM tb_detalle_pedido;
+SELECT * FROM tb_detalle_productos;
+SELECT * FROM tb_estado_valo;
+SELECT * FROM tb_pedidos;
+SELECT * FROM tb_productos;
+SELECT * FROM tb_tallas;
+SELECT * FROM tb_valoracion;
+
+
+
+
+
+
