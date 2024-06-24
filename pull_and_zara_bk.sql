@@ -198,29 +198,6 @@ LOCK TABLES `tb_detalle_productos` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tb_estado_pedidos`
---
-
-DROP TABLE IF EXISTS `tb_estado_pedidos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_estado_pedidos` (
-  `id_estado_pedido` int(11) NOT NULL AUTO_INCREMENT,
-  `estado_pedido` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_estado_pedido`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tb_estado_pedidos`
---
-
-LOCK TABLES `tb_estado_pedidos` WRITE;
-/*!40000 ALTER TABLE `tb_estado_pedidos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_estado_pedidos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `tb_estado_valo`
 --
 
@@ -253,14 +230,12 @@ DROP TABLE IF EXISTS `tb_pedidos`;
 CREATE TABLE `tb_pedidos` (
   `id_pedido` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_pedido` datetime DEFAULT NULL,
-  `id_estado_pedido` int(11) DEFAULT NULL,
+  `estado_pedido` VARCHAR(50) DEFAULT NULL,
   `direccion_pedido` VARCHAR(125) DEFAULT NULL,
   `id_cliente` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_pedido`),
-  KEY `fk_id_estado_pedido_id_pedido` (`id_estado_pedido`),
   KEY `fk_id_cliente_id_pedido` (`id_cliente`),
-  CONSTRAINT `fk_id_cliente_id_pedido` FOREIGN KEY (`id_cliente`) REFERENCES `tb_clientes` (`id_cliente`),
-  CONSTRAINT `fk_id_estado_pedido_id_pedido` FOREIGN KEY (`id_estado_pedido`) REFERENCES `tb_estado_pedidos` (`id_estado_pedido`)
+  CONSTRAINT `fk_id_cliente_id_pedido` FOREIGN KEY (`id_cliente`) REFERENCES `tb_clientes` (`id_cliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
