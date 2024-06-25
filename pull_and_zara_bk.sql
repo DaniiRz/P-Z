@@ -64,7 +64,6 @@ CREATE TABLE `tb_categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-SELECT * FROM tb_categorias;
 --
 -- Dumping data for table `tb_categorias`
 --
@@ -177,12 +176,13 @@ CREATE TABLE `tb_detalle_productos` (
   `id_color` int(11) DEFAULT NULL,
   `id_talla` int(11) DEFAULT NULL,
   `id_producto` int(11) DEFAULT NULL,
+  `precio_producto` DECIMAL(8,2) NOT NULL,
   PRIMARY KEY (`id_detalle_producto`),
   KEY `fk_id_color_id_detalle` (`id_color`),
   KEY `fk_id_talla_id_detalle` (`id_talla`),
   KEY `fk_id_producto_id_detalle` (`id_producto`),
   CONSTRAINT `fk_id_color_id_detalle` FOREIGN KEY (`id_color`) REFERENCES `tb_colores` (`id_color`),
-  CONSTRAINT `fk_id_producto_id_detalle` FOREIGN KEY (`id_producto`) REFERENCES `tb_productos` (`id_producto`) ON DELETE CASCADE,
+  CONSTRAINT `fk_id_producto_id_detalle` FOREIGN KEY (`id_producto`) REFERENCES `tb_productos` (`id_producto`) ON DELETE CASCADE, 
   CONSTRAINT `fk_id_talla_id_detalle` FOREIGN KEY (`id_talla`) REFERENCES `tb_tallas` (`id_talla`),
   CONSTRAINT `rest_check_existencias` CHECK (`existencias`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -349,6 +349,64 @@ UNLOCK TABLES;
 
 -- Dump completed on 2024-05-15 17:04:33
 
+-- Inserción en tb_categorias
+INSERT INTO tb_categorias (nombre_categoria, imagen_categoria)
+VALUES ('Camisa', '667923961abbb.png'),
+       ('Calzado', '667923961abbb.png'),
+       ('Accesorios', '667923961abbb.png');
+
+-- Inserción en tb_colores
+INSERT INTO tb_colores (nombre_color)
+VALUES ('Rojo'),
+       ('Azul'),
+       ('Verde'),
+       ('Amarillo');
+-- Inserción en tb_tallas
+INSERT INTO tb_tallas (numero_talla)
+VALUES ('S'),
+       ('M'),
+       ('L');
+       -- Inserción en tb_productos
+INSERT INTO tb_productos (nombre_producto, desc_producto, fecha_registro_produc, id_categoria)
+VALUES ('Camisa Casual Azul', 'Camisa de algodón para hombre', NOW(), 1),
+       ('Zapatos Deportivos Negros', 'Zapatos para correr con tecnología avanzada', NOW(), 2),
+       ('Bolso de Cuero Marrón', 'Bolso elegante para mujer', NOW(), 3);
+
+       
+-- Inserción en tb_detalle_productos
+INSERT INTO tb_detalle_productos (existencias, img_producto, id_color, id_talla, id_producto, precio_producto)
+VALUES (50, '66560f818bd86.png', 1, 1, 1, 49.99),
+       (30, '66560f818bd86.png', 2, 2, 2, 59.99),
+       (20, '66560f818bd86.png', 3, 3, 3, 39.99);
+
+-- Inserción en tb_pedidos
+INSERT INTO tb_pedidos (fecha_pedido, estado_pedido, direccion_pedido, id_cliente)
+VALUES ('2024-06-01 10:00:00', 'Pendiente', 'Calle Principal 123', NULL),
+       ('2024-06-02 11:00:00', 'Finalizado', 'Avenida Central 456', NULL),
+       ('2024-06-03 12:00:00', 'Entregado', 'Boulevard Norte 789', NULL);
+
+
+
+
+-- Inserción en tb_estado_valo
+INSERT INTO tb_estado_valo (estado_valo)
+VALUES ('Activo'),
+       ('Inactivo');
+
+-- Inserción en tb_detalle_pedido
+INSERT INTO tb_detalle_pedido (cantidad_producto, precio_producto, id_pedido, id_detalle_producto)
+VALUES (2, 49.99, 1, 1),
+       (1, 59.99, 2, 2),
+       (3, 39.99, 3, 3);
+
+-- Inserción en tb_valoracion
+INSERT INTO tb_valoracion (comentario_cliente, fecha_valoracion, id_detalle_p, id_estado_valo)
+VALUES ('Buen producto, excelente calidad.', NOW(), 1, 1),
+       ('Envío rápido, muy satisfecho con el servicio.', NOW(), 2, 1),
+       ('Producto llegó dañado, espero una solución rápida.', NOW(), 3, 2);
+
+
+
 
 SELECT * FROM tb_admins;
 SELECT * FROM tb_categorias;
@@ -361,9 +419,5 @@ SELECT * FROM tb_pedidos;
 SELECT * FROM tb_productos;
 SELECT * FROM tb_tallas;
 SELECT * FROM tb_valoracion;
-
-
-
-
-
-
+            
+                
