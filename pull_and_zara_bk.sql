@@ -430,7 +430,8 @@ SELECT * FROM tb_valoracion;
 
 
 
----------------------------------------VERSION ANTERIOR POR SI LA VERSION DE BASE DE DATOS CON INSERCIONES NO FUNCIONA----------------------------------------------------------
+/*VERSION ANTERIOR POR SI LA VERSION DE BASE DE DATOS CON INSERCIONES NO FUNCIONA*/
+
 
 
 
