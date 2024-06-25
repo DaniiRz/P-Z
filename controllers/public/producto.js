@@ -3,8 +3,6 @@ const PRODUCTO_API = 'services/public/producto.php';
 // Constante tipo objeto para obtener los parámetros disponibles en la URL.
 const PARAMS = new URLSearchParams(location.search);
 const PRODUCTOS = document.getElementById('productos');
-// Constante para establecer el formulario de buscar de productos.
-const SEARCH_FORM = document.getElementById('searchForm');
 
 // Método manejador de eventos para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -39,14 +37,4 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Se presenta un mensaje de error cuando no existen datos para mostrar.
         MAIN_TITLE.textContent = DATA.error;
     }
-});
-
-// Método del evento para cuando se envía el formulario de buscar.
-SEARCH_FORM.addEventListener('submit', (event) => {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    // Constante tipo objeto con los datos del formulario.
-    const FORM = new FormData(SEARCH_FORM);
-    // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
-    //fillTable(FORM);
 });
