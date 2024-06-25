@@ -182,7 +182,7 @@ const openUpdateD = async (id) => {
         ID_DETALLE_PRODUCTO.value = ROW.id_detalle_producto;
         EXISTENCIAS.value = ROW.existencias;
         COLOR.value = ROW.nombre_color;
-        IMAGEN_PRODUCTO.required =false;
+        //IMAGEN_PRODUCTO.required =false;
         // Se llenan los combobox con los datos necesarios.
         fillSelect(COLOR_API, 'readAll', 'colorProducto', ROW.id_color);
         TALLA.value = ROW.numero_talla;
