@@ -43,34 +43,45 @@ class PedidoHandler
         }
     }
 
-    // Método para iniciar un pedido en proceso.
     public function startOrder()
     {
         if ($this->getOrder()) {
             return true;
         } else {
-            $sql = 'INSERT INTO tb_pedidos(direccion_pedido, id_cliente)
-                    VALUES((SELECT direccion_pedido FROM tb_pedidos WHERE id_cliente = ?), ?)';
-            $params = array($_SESSION['idCliente'], $_SESSION['idCliente']);
-            // Se obtiene el ultimo valor insertado de la llave primaria en la tabla pedido.
-            if ($_SESSION['idPedido'] = Database::getLastRow($sql, $params)) {
-                return true;
-            } else {
+                // 1. se obtiene direccion del pedido 
+                $sql = 'SELECT direccion_pedido FROM tb_pedidos WHERE id_cliente = ? LIMIT 1';
+                $params = array($_SESSION['idCliente']);
+                $direccionPedido = Database::getRow($sql, $params)['direccion_pedido'];
+        
+                // 2. se realiza la insercion con el valor que se obtuvo 
+                $sql = 'INSERT INTO tb_pedidos(direccion_pedido, id_cliente)
+                VALUES(?, ?)';
+                 $params = array($direccionPedido, $_SESSION['idCliente']);
+        
+                // 3. se obtiene el último valor insertado de la llave primaria en la tabla pedido
+                if ($_SESSION['idPedido'] = Database::getLastRow($sql, $params))        
+                {
+                    return true;
+                } else {
                 return false;
+                
+                
             }
+          
         }
     }
+    
 
-    // Método para agregar un producto al carrito de compras.
+   // Método para agregar un producto al carrito de compras.
     public function createDetail()
     {
         // Se realiza una subconsulta para obtener el precio del producto.
-        $sql = 'INSERT INTO DROP TABLE IF EXISTS `tb_detalle_pedido`;
-        (id_detalle_producto, precio_producto, cantidad_producto, id_pedido)
-                VALUES(?, (SELECT precio_producto FROM tb_productos WHERE id_producto = ?), ?, ?)'; //se obtiene el precio de la tabla productos
+        $sql = 'INSERT INTO tb_detalle_pedido (id_detalle_producto, precio_producto, cantidad_producto, id_pedido)
+            VALUES (?, (SELECT precio_producto FROM tb_productos WHERE id_producto = ?), ?, ?)'; //se obtiene el precio de la tabla productos
         $params = array($this->producto, $this->producto, $this->cantidad, $_SESSION['idPedido']);
         return Database::executeRow($sql, $params);
     }
+
 
     // Método para obtener los productos que se encuentran en el carrito de compras.
     public function readDetail()
@@ -113,4 +124,5 @@ class PedidoHandler
         $params = array($this->id_detalle, $_SESSION['idPedido']);
         return Database::executeRow($sql, $params);
     }
+
 }

@@ -32,6 +32,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al agregar el producto';
                 }
                 break;
+            
             // Acción para obtener los productos agregados en el carrito de compras.
             case 'readDetail':
                 if (!$pedido->getOrder()) {

@@ -5,6 +5,9 @@ const PARAMS = new URLSearchParams(location.search);
 // Constante para establecer el formulario de agregar un producto al carrito de compras.
 const SHOPPING_FORM = document.getElementById('shoppingForm');
 
+//contsnate para establecer la ruta de la API de detalle 
+PEDIDO_API = 'services/public/pedido.php'; 
+
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
     // Se establece el título del contenido principal.
