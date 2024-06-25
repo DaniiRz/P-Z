@@ -13,6 +13,9 @@ class PedidoHandler
     protected $id_detalle = null;
     protected $cliente = null;
     protected $producto = null;
+    protected $detalle_producto = null;
+    protected $color = null;
+    protected $talla = null;
     protected $cantidad = null;
     protected $estado = null;
 
@@ -31,7 +34,7 @@ class PedidoHandler
     public function getOrder()
     {
         $this->estado = 'Pendiente';
-        $sql = 'SELECT estado_pedido
+        $sql = 'SELECT id_pedido
                 FROM tb_pedidos
                 WHERE estado_pedido = ? AND id_cliente = ?';
         $params = array($this->estado, $_SESSION['idCliente']);
@@ -76,8 +79,8 @@ class PedidoHandler
     {
         // Se realiza una subconsulta para obtener el precio del producto.
         $sql = 'INSERT INTO tb_detalle_pedido (id_detalle_producto, precio_producto, cantidad_producto, id_pedido)
-            VALUES (?, (SELECT precio_producto FROM tb_productos WHERE id_producto = ?), ?, ?)'; //se obtiene el precio de la tabla productos
-        $params = array($this->producto, $this->producto, $this->cantidad, $_SESSION['idPedido']);
+            VALUES ((SELECT id_detalle_producto FROM tb_detalle_productos WHERE id_color = ? AND id_talla = ?), ( ROM tb_detalle_productos WHERE id_color = ? AND id_talla = ?), ?, ?)'; //se obtiene el precio de la tabla productos
+        $params = array($this->color, $this->talla, $this->color, $this->talla, $this->cantidad, $_SESSION['idPedido']);
         return Database::executeRow($sql, $params);
     }
 

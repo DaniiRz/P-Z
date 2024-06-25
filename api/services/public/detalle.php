@@ -46,19 +46,10 @@ if (isset($_GET['action'])) {
                 $result['error'] = 'Tallas del detalle inexistentes';
             }
             break;
-        case 'selectTallasyColores':
-                if (!$detalle->setIdDetalle($_POST['tallaProducto'])) {
-                    $result['error'] = $detalle->getDataError();
-                } elseif ($result['dataset'] = $detalle->selectTalla()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['error'] = 'Tallas del detalle inexistentes';
-                }
-                break;
         case 'readColor':
             if (!$detalle->setIdProducto($_POST['idProducto'])) {
                 $result['error'] = $detalle->getDataError();
-            } elseif ($result['dataset'] = $detalle->readColor()) {
+            } elseif ($result['dataset'] = $detalle->obtenerColoresProducto()) {
                 $result['status'] = 1;
             } else {
                 $result['error'] = 'Colores del detalle inexistentes';
@@ -67,7 +58,7 @@ if (isset($_GET['action'])) {
         case 'readTalla':
             if (!$detalle->setIdProducto($_POST['idProducto'])) {
                 $result['error'] = $detalle->getDataError();
-            } elseif ($result['dataset'] = $detalle->readTalla()) {
+            } elseif ($result['dataset'] = $detalle->obtenerTallasProducto()) {
                 $result['status'] = 1;
             } else {
                 $result['error'] = 'Tallas del detalle inexistentes';

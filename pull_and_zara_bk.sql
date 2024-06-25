@@ -594,6 +594,7 @@ CREATE TABLE `tb_detalle_productos` (
   `id_color` int(11) DEFAULT NULL,
   `id_talla` int(11) DEFAULT NULL,
   `id_producto` int(11) DEFAULT NULL,
+  `precio_producto` DECIMAL(8,2) NOT NULL,
   PRIMARY KEY (`id_detalle_producto`),
   KEY `fk_id_color_id_detalle` (`id_color`),
   KEY `fk_id_talla_id_detalle` (`id_talla`),

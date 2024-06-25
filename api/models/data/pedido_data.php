@@ -47,13 +47,35 @@ class PedidoData extends PedidoHandler
         }
     }
 
-    public function setProducto($value)
+    public function setDetalleProducto($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->producto = $value;
+            $this->detalle_producto = $value;
             return true;
         } else {
-            $this->data_error = 'El identificador del producto es incorrecto';
+            $this->data_error = 'El identificador del detalle producto es incorrecto';
+            return false;
+        }
+    }
+
+    public function setColor($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->color = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador del color es incorrecto';
+            return false;
+        }
+    }
+
+    public function setTalla($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->talla = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador de la talla es incorrecto';
             return false;
         }
     }
