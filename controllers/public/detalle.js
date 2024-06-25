@@ -6,7 +6,7 @@ const PARAMS = new URLSearchParams(location.search);
 const SHOPPING_FORM = document.getElementById('shoppingForm');
 
 //contsnate para establecer la ruta de la API de detalle 
-PEDIDO_API = 'services/public/pedido.php'; 
+const PEDIDO_API = 'services/public/pedido.php'; 
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -71,6 +71,6 @@ SHOPPING_FORM.addEventListener('submit', async (event) => {
     } else if (DATA.session) {
         sweetAlert(2, DATA.error, false);
     } else {
-        sweetAlert(3, DATA.error, true, 'login.html'); //iniciar sesion 
+        sweetAlert(3, DATA.error, true, 'registro_user.html'); //iniciar sesion 
     }
 });

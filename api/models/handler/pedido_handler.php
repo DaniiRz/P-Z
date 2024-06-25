@@ -31,9 +31,9 @@ class PedidoHandler
     public function getOrder()
     {
         $this->estado = 'Pendiente';
-        $sql = 'SELECT id_pedido
+        $sql = 'SELECT estado_pedido
                 FROM tb_pedidos
-                WHERE id_estado_pedido = ? AND id_cliente = ?';
+                WHERE estado_pedido = ? AND id_cliente = ?';
         $params = array($this->estado, $_SESSION['idCliente']);
         if ($data = Database::getRow($sql, $params)) {
             $_SESSION['idPedido'] = $data['id_pedido'];
