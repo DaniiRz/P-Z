@@ -33,7 +33,7 @@ if (isset($_GET['action'])) {
                     isset($_POST['existenciasProducto']) &&
                     isset($_POST['tallaProducto']) &&
                     isset($_POST['colorProducto']) &&
-                    isset($_POST['imagenProducto'])
+                    isset($_FILES['imagenProducto'])
                 )
                     if (
                         !$detalle->setIdProducto($_POST['idProductoD']) or

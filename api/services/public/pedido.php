@@ -21,7 +21,7 @@ if (isset($_GET['action'])) {
                 if (!$pedido->startOrder()) {
                     $result['error'] = 'Ocurrió un problema al iniciar el pedido';
                 } elseif (
-                    !$pedido->setProducto($_POST['idProducto']) or
+                    !$pedido->setIdDetalle($_POST['idDetalle']) or
                     !$pedido->setCantidad($_POST['cantidadProducto'])
                 ) {
                     $result['error'] = $pedido->getDataError();
@@ -32,7 +32,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al agregar el producto';
                 }
                 break;
-            
             // Acción para obtener los productos agregados en el carrito de compras.
             case 'readDetail':
                 if (!$pedido->getOrder()) {
