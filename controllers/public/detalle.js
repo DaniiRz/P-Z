@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Se colocan los datos en la página web de acuerdo con el producto seleccionado previamente.
         document.getElementById('idProducto').value = DATA.dataset.id_producto;
         document.getElementById('imagenProducto').src = SERVER_URL.concat('images/productos/', DATA.dataset.img_producto);
+        document.getElementById('precioProducto').textContent = DATA.dataset.precio_producto; 
         document.getElementById('categoriaProducto').textContent = (DATA.dataset.nombre_categoria);
         document.getElementById('nombreProducto').textContent = DATA.dataset.nombre_producto;
         document.getElementById('descripcionProducto').textContent = DATA.dataset.desc_producto;

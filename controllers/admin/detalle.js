@@ -51,6 +51,7 @@ const fillTableD = async (form = null) => {
                 <td>${row.numero_talla}</td>
                 <td>${row.nombre_color}</td>
                 <td>${row.existencias}</td>
+                <td>${row.precio_producto}</td>
                 <td>
                     <button type="button" class="btn btn-info" onclick="openUpdateD(${row.id_detalle_producto})">
                         <i class="bi bi-pencil-fill"></i>
