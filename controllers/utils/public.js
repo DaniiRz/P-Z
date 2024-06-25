@@ -4,7 +4,7 @@
 const CLIENTE_API = 'services/public/clientes.php';
 
 const MAIN_TITLE = document.getElementById('mainTitle');
-
+//Aqui almacenamos en una funcion la plantilla del navbar en el sitio publico.
 function generarMenuPublic() {
 
     const menuIndexPublic = `

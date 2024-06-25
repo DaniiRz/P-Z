@@ -87,7 +87,7 @@ SAVE_FORM_COLORES.addEventListener('submit', async (event) => {
         sweetAlert(2, DATA.error, false);
     }
 });
-
+// Método pora abrir el modal para agregar un color en el sitio privado.
 const openCreateColores = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL_COLORES.show();
@@ -95,7 +95,7 @@ const openCreateColores = () => {
     // Se prepara el formulario.
     SAVE_FORM_COLORES.reset();
 }
-
+// Método pora abrir el modal para actualizar un color en el sitio privado.
 const openUpdateColores = async (id) => {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();

@@ -56,6 +56,7 @@ async function readDetail() {
         let total = 0;
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
+            //Realizamos la operacion para calcular el total a pagar por producto
             subtotal = row.precio_producto * row.cantidad_producto;
             total += subtotal;
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
