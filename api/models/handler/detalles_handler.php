@@ -116,24 +116,24 @@ class DetalleHandler
 
     public function selectColor()
     {
-        $sql = 'SELECT C.nombre_color, T.numero_talla, C.id_color, T.id_talla
+        $sql = 'SELECT T.numero_talla, C.id_color, T.id_talla, C.nombre_color
                 FROM tb_detalle_productos AS D
                 INNER JOIN tb_colores AS C ON D.id_color = C.id_color
                 INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
                 WHERE C.nombre_color = ?';
         $params = array($this->nombreColor);
-        return Database::getRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
     
     public function selectTalla()
     {
-        $sql = 'SELECT C.nombre_color, T.numero_talla, C.id_color, T.id_talla
+        $sql = 'SELECT C.nombre_color, C.id_color, T.id_talla, T.numero_talla
                 FROM tb_detalle_productos AS D
                 INNER JOIN tb_colores AS C ON D.id_color = C.id_color
                 INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
                 WHERE T.numero_talla = ?';
         $params = array($this->numeroTalla);
-        return Database::getRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
 
         //Recibimos el idDetalleProduto y en base a esta informacion obtenemos las tallas y colores agregadas 

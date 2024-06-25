@@ -34,20 +34,26 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Agregar un evento de cambio al combobox de colores.
         document.getElementById('colorProducto').addEventListener('change', async (event) => {
-            const selectedColor = event.target.value;
+            const selectedColor = event.value;
 
             // Realizar una nueva consulta a tu API para obtener las tallas disponibles para el color seleccionado.
             const tallasFilter = { color: selectedColor };
-            await fillSelect(DETALLE_API, 'selectColor', 'tallaProducto', tallasFilter);
+            const FORM = new FormData();
+            console.log(tallasFilter);
+            FORM.append('tallaProducto', tallasFilter);
+            await fillSelect(DETALLE_API, 'selectTalla', 'tallaProducto', FORM);
         });
 
         // Agregar un evento de cambio al combobox de tallas.
         document.getElementById('tallaProducto').addEventListener('change', async (event) => {
-            const selectedTalla = event.target.value;
+            const selectedTalla = event.value;
 
             // Realizar una nueva consulta a tu API para obtener los colores disponibles para la talla seleccionada.
             const coloresFilter = { talla: selectedTalla };
-            await fillSelect(DETALLE_API, 'selectTalla', 'colorProducto', coloresFilter);
+            const FORM = new FormData();
+            console.log(coloresFilter);
+            FORM.append('colorProducto', coloresFilter);
+            await fillSelect(DETALLE_API, 'selectColor', 'colorProducto', FORM);
         });
     } else {
         // Se presenta un mensaje de error cuando no existen datos para mostrar.

@@ -48,7 +48,7 @@ class DetalleData extends DetalleHandler
 
     public function setnumeroTalla($value)
     {
-        if (Validator::validateNaturalNumber($value)) {
+        if (Validator::validateAlphabetic($value)) {
             $this->numeroTalla = $value;
             return true;
         } else {
@@ -59,7 +59,7 @@ class DetalleData extends DetalleHandler
     
     public function setnombreColor($value)
     {
-        if (Validator::validateNaturalNumber($value)) {
+        if (Validator::validateAlphabetic($value)) {
             $this->nombreColor = $value;
             return true;
         } else {
