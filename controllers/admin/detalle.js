@@ -87,6 +87,7 @@ DETALLE_FORM.addEventListener('submit', async (event) => {
     event.preventDefault();
     // Se verifica la acción a realizar.
     const action = (ID_DETALLE_PRODUCTO.value) ? 'updateRowD' : 'createRowD';
+    //ID_DETALLE_PRODUCTO.value = 0; 
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(DETALLE_FORM);
     // Petición para guardar los datos del formulario.

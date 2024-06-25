@@ -30,7 +30,6 @@ if (isset($_GET['action'])) {
                 // Verifica que todas las claves necesarias existen en $_POST
                 if (
                     isset($_POST['idProductoD']) &&
-                    isset($_POST['precioProducto'])&&
                     isset($_POST['existenciasProducto']) &&
                     isset($_POST['tallaProducto']) &&
                     isset($_POST['colorProducto']) &&
