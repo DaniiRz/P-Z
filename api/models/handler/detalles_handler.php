@@ -136,6 +136,21 @@ class DetalleHandler
         return Database::getRow($sql, $params);
     }
 
+        //Recibimos el idDetalleProduto y en base a esta informacion obtenemos las tallas y colores agregadas 
+        //a un detalle producto, es decir, encontramos las tallas y 
+        //colores agregados a un detalle producto
+    public function ObtenerTallasColoresDetalle()
+        {
+            $sql = ' SELECT C.nombre_color, T.numero_talla, C.id_color, T.id_talla
+            FROM tb_detalle_productos AS D
+            INNER JOIN tb_colores AS C ON D.id_color = C.id_color
+            INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
+            WHERE D.id_detalle_producto = ?';
+            $params = array($this->iddetalle);
+        return Database::getRow($sql, $params);
+    }
+        
+
     public function readColor()
     {
         $sql = 'SELECT C.nombre_color, T.numero_talla, C.id_color, T.id_talla

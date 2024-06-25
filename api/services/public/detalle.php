@@ -46,6 +46,15 @@ if (isset($_GET['action'])) {
                 $result['error'] = 'Tallas del detalle inexistentes';
             }
             break;
+        case 'selectTallasyColores':
+                if (!$detalle->setIdDetalle($_POST['tallaProducto'])) {
+                    $result['error'] = $detalle->getDataError();
+                } elseif ($result['dataset'] = $detalle->selectTalla()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Tallas del detalle inexistentes';
+                }
+                break;
         case 'readColor':
             if (!$detalle->setIdProducto($_POST['idProducto'])) {
                 $result['error'] = $detalle->getDataError();
