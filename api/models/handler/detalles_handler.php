@@ -10,10 +10,11 @@ class DetalleHandler
     protected $idproducto = null;
     protected $iddetalle = null;
     protected $existencias = null;
-    protected $precio = null;
     protected $imgproducto = null;
     protected $idcolor = null;
     protected $idtalla = null;
+    protected $nombreColor = null;
+    protected $numeroTalla = null;
 
     // Constante para establecer la ruta de las imágenes.
     const RUTA_IMAGEN = '../../images/productos/';
@@ -80,6 +81,80 @@ class DetalleHandler
         INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
         WHERE D.id_detalle_producto = ?';
         $params = array($this->iddetalle);
+        return Database::getRow($sql, $params);
+    }
+
+    public function readOne()
+    {
+        $sql = 'SELECT P.id_producto, P.nombre_producto, P.id_categoria, G.nombre_categoria, P.desc_producto, D.img_producto,
+                        C.nombre_color, T.numero_talla, E.total_existencias
+                FROM tb_detalle_productos AS D
+                INNER JOIN tb_productos AS P ON D.id_producto = P.id_producto
+                INNER JOIN tb_colores AS C ON D.id_color = C.id_color
+                INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
+                INNER JOIN tb_categorias AS G ON P.id_categoria = G.id_categoria
+                INNER JOIN (SELECT id_producto, SUM(existencias) 
+                            AS total_existencias
+                            FROM tb_detalle_productos
+                            GROUP BY id_producto) 
+                            AS E ON D.id_producto = E.id_producto
+                WHERE P.id_producto = ?';
+        $params = array($this->idproducto);
+        return Database::getRow($sql, $params);
+    }
+
+    public function readDetailsP()
+    {
+        $sql = 'SELECT D.id_detalle_producto, C.nombre_color, T.numero_talla, C.id_color, T.id_talla
+                FROM tb_detalle_productos AS D
+                INNER JOIN tb_colores AS C ON D.id_color = C.id_color
+                INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
+                WHERE P.id_producto = ?';
+        $params = array($this->idproducto);
+        return Database::getRow($sql, $params);
+    }
+
+    public function selectColor()
+    {
+        $sql = 'SELECT C.nombre_color, T.numero_talla, C.id_color, T.id_talla
+                FROM tb_detalle_productos AS D
+                INNER JOIN tb_colores AS C ON D.id_color = C.id_color
+                INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
+                WHERE C.nombre_color = ?';
+        $params = array($this->nombreColor);
+        return Database::getRow($sql, $params);
+    }
+    
+    public function selectTalla()
+    {
+        $sql = 'SELECT C.nombre_color, T.numero_talla, C.id_color, T.id_talla
+                FROM tb_detalle_productos AS D
+                INNER JOIN tb_colores AS C ON D.id_color = C.id_color
+                INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
+                WHERE T.numero_talla = ?';
+        $params = array($this->numeroTalla);
+        return Database::getRow($sql, $params);
+    }
+
+    public function readColor()
+    {
+        $sql = 'SELECT C.nombre_color, T.numero_talla, C.id_color, T.id_talla
+                FROM tb_detalle_productos AS D
+                INNER JOIN tb_colores AS C ON D.id_color = C.id_color
+                INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
+                WHERE D.id_producto = ?';
+        $params = array($this->idproducto);
+        return Database::getRow($sql, $params);
+    }
+    
+    public function readTalla()
+    {
+        $sql = 'SELECT C.nombre_color, T.numero_talla, C.id_color, T.id_talla
+                FROM tb_detalle_productos AS D
+                INNER JOIN tb_colores AS C ON D.id_color = C.id_color
+                INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
+                WHERE D.id_producto = ?';
+        $params = array($this->idproducto);
         return Database::getRow($sql, $params);
     }
 }

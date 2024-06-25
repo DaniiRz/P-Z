@@ -46,6 +46,28 @@ class DetalleData extends DetalleHandler
         }
     }
 
+    public function setnumeroTalla($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->numeroTalla = $value;
+            return true;
+        } else {
+            $this->data_error = 'El numero de la talla es incorrecto';
+            return false;
+        }
+    }
+    
+    public function setnombreColor($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->nombreColor = $value;
+            return true;
+        } else {
+            $this->data_error = 'El nombre del color es incorrecto';
+            return false;
+        }
+    }
+
     public function setIdtalla($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -64,16 +86,6 @@ class DetalleData extends DetalleHandler
             return true;
         } else {
             $this->data_error = 'Las existencias debe ser un número entero positivo';
-            return false;
-        }
-    }
-    public function setPrecioProducto($value)
-    {
-        if (Validator::validateMoney($value)) {
-            $this->precio = $value;
-            return true;
-        } else {
-            $this->data_error = '';
             return false;
         }
     }

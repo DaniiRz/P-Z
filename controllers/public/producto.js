@@ -6,7 +6,6 @@ const PRODUCTOS = document.getElementById('productos');
 
 // Método manejador de eventos para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
-
     // Se define un objeto con los datos de la categoría seleccionada.
     const FORM = new FormData();
     FORM.append('idCategoria', PARAMS.get('id'));
@@ -27,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <img src="${SERVER_URL}images/productos/${row.img_producto}" class="card-img-top" alt="${row.nombre_producto}">
                         <div class="card-body text-center">
                             <h5 class="card-title fw-light">${row.nombre_producto}</h5>
-                            <a href="detalle_producto.html?id=${row.id_producto}" class="btn btn-primary m-2"> <i class="bi bi-bag-fill"></i> Ver detalles</a>
+                            <a href="detalle_producto.html?id=${row.id_producto}" class="btn btn-primary m-2" data-id="${row.id_producto}"> <i class="bi bi-bag-fill"></i> Ver detalles</a>
                         </div>
                         </div>
                     </div>

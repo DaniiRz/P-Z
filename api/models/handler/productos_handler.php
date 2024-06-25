@@ -76,6 +76,7 @@ class ProductoHandler
                 INNER JOIN tb_categorias AS C ON P.id_categoria = C.id_categoria
                 INNER JOIN tb_detalle_productos AS D ON P.id_producto = D.id_producto
                 WHERE P.id_categoria = ?
+                GROUP BY P.id_producto
                 ORDER BY P.nombre_producto';
         $params = array($this->idcategoria);
         return Database::getRows($sql, $params);
