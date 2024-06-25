@@ -518,7 +518,7 @@ CREATE TABLE `tb_clientes` (
   `telf_cliente` varchar(12) NOT NULL,
   `correo_cliente` varchar(255) NOT NULL,
   `clave_cliente` varchar(255) NOT NULL,
-  direccion_cliente VARCHAR(250) NOT NULL, 
+  `direccion_cliente` VARCHAR(250) NOT NULL, 
   `estado_cliente` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_cliente`),
   UNIQUE KEY `dui_client` (`dui_client`),
