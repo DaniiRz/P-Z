@@ -153,13 +153,13 @@ class DetalleHandler
 
     public function readColor()
     {
-        $sql = 'SELECT C.nombre_color, T.numero_talla, C.id_color, T.id_talla
+        $sql = 'SELECT T.numero_talla, C.nombre_color, C.id_color, T.id_talla
                 FROM tb_detalle_productos AS D
                 INNER JOIN tb_colores AS C ON D.id_color = C.id_color
                 INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
                 WHERE D.id_producto = ?';
         $params = array($this->idproducto);
-        return Database::getRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
     
     public function readTalla()
@@ -170,6 +170,6 @@ class DetalleHandler
                 INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
                 WHERE D.id_producto = ?';
         $params = array($this->idproducto);
-        return Database::getRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
 }
