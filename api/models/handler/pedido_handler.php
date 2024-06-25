@@ -46,30 +46,22 @@ class PedidoHandler
         }
     }
 
+    // Método para iniciar un pedido en proceso.
     public function startOrder()
     {
         if ($this->getOrder()) {
             return true;
         } else {
-                // 1. se obtiene direccion del pedido 
-                $sql = 'SELECT direccion_pedido FROM tb_pedidos WHERE id_cliente = ? LIMIT 1';
-                $params = array($_SESSION['idCliente']);
-                $direccionPedido = Database::getRow($sql, $params)['direccion_pedido'];
-        
-                // 2. se realiza la insercion con el valor que se obtuvo 
-                $sql = 'INSERT INTO tb_pedidos(direccion_pedido, id_cliente)
-                VALUES(?, ?)';
-                 $params = array($direccionPedido, $_SESSION['idCliente']);
-        
-                // 3. se obtiene el último valor insertado de la llave primaria en la tabla pedido
-                if ($_SESSION['idPedido'] = Database::getLastRow($sql, $params))        
-                {
-                    return true;
-                } else {
+            //se realiza la insercion del pedido al carrito 
+            $sql = 'INSERT INTO tb_pedidos(direccion_pedido, id_cliente)
+                    VALUES((SELECT direccion_cliente FROM tb_clientes WHERE id_cliente = ?), ?)';
+            $params = array($_SESSION['idCliente'], $_SESSION['idCliente']);
+            // Se obtiene el ultimo valor insertado de la llave primaria en la tabla pedido.
+            if ($_SESSION['idPedido'] = Database::getLastRow($sql, $params)) {
+                return true;
+            } else {
                 return false;
-                
             }
-          
         }
     }
     
