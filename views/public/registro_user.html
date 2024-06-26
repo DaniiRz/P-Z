@@ -105,6 +105,14 @@
                                             name="confirmarcontraseñaCliente" required oninput="formatPassword(this)"
                                             placeholder="8 caracteres minimo">
                                     </div>
+
+                                    <!--input direccion cliente-->
+                                    <div class="form-group mt-3">
+                                        <label for="direccion">Dirección: </label>
+                                        <input type="text" minlength="2" class="form-control" id="direccionCliente"
+                                            name="direccionCliente" required oninput="formatAlphabetic(this)"
+                                            placeholder="Calle, Barrio, Ciudad">
+                                    </div>
                                 </div>
                             </div>
 
@@ -144,8 +152,9 @@
 
                             <!-- formulario con labels flotantes -->
                             <div class="form-floating mt-5">
-                                <input type="email" class="form-control border-warning rounded-pill" id="correoClienteLogin"
-                                    name="correoClienteLogin" required oninput="formatEmail(this)">
+                                <input type="email" class="form-control border-warning rounded-pill"
+                                    id="correoClienteLogin" name="correoClienteLogin" required
+                                    oninput="formatEmail(this)">
                                 <label for="floatingInput"> Correo </label>
                             </div>
                             <div class="form-floating mt-3">

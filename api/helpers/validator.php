@@ -155,7 +155,7 @@ class validator
         }
     }
 
-    // Metodo para validar una contraseña
+    // Metodo para validar una contraseña en registro-login 
     public static function validatePassword($value)
     {
         // Se verifica la longitud mínima.

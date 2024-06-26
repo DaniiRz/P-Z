@@ -16,6 +16,7 @@ class ClienteHandler {
     protected $correo = null;
     protected $clave = null;
     protected $estado = null;
+    protected$direccion = null; 
 
     /*
      *  Métodos para gestionar la cuenta del cliente.
@@ -97,7 +98,7 @@ class ClienteHandler {
     // Método para buscar registros de clientes con un valor de búsqueda específico
     public function searchRows() {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente, direccion_cliente
                 FROM tb_clientes
                 WHERE apellido_cliente LIKE ? OR nombre_cliente LIKE ?
                 ORDER BY apellido_cliente';
@@ -108,7 +109,7 @@ class ClienteHandler {
     // Método para leer el perfil del cliente actual
     public function readProfile()
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente, direccion_cliente
                 FROM tb_clientes
                 WHERE id_cliente = ?';
         $params = array($_SESSION['idCliente']);
@@ -119,25 +120,25 @@ class ClienteHandler {
     public function editProfile()
     {
         $sql = 'UPDATE tb_clientes
-                SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_client = ?, telf_cliente = ?
+                SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_client = ?, telf_cliente = ?, direccion_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->nombre, $this->apellido, $this->correo,$this->dui, $this->telefono, $_SESSION['idCliente']);
+        $params = array($this->nombre, $this->apellido, $this->correo,$this->dui, $this->telefono,$this->direccion, $_SESSION['idCliente']);
         return Database::executeRow($sql, $params);
     }
 
     // Método para crear un nuevo registro de cliente
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente, clave_cliente)
-                VALUES(?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->clave);
+        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente, clave_cliente, direccion_cliente)
+                VALUES(?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->clave, $this->direccion);
         return Database::executeRow($sql, $params);
     }
 
     // Método para obtener todos los registros de clientes
     public function readAll()
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_client, telf_cliente
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_client, telf_cliente, direccion_cliente
                 FROM tb_clientes
                 ORDER BY apellido_cliente';
         return Database::getRows($sql);
@@ -146,7 +147,7 @@ class ClienteHandler {
     // Método para obtener un registro de cliente específico por su ID
     public function readOne()
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_client, telf_cliente
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_client, telf_cliente, direccion_cliente
                 FROM tb_clientes
                 WHERE id_cliente = ?';
         $params = array($this->id);
@@ -157,9 +158,9 @@ class ClienteHandler {
     public function updateRow()
     {
         $sql = 'UPDATE tb_clientes
-                SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_client = ?, telf_cliente = ?
+                SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_client = ?, telf_cliente = ?, direccion_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->id);
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->id, $this->direccion);
         return Database::executeRow($sql, $params);
     }
 

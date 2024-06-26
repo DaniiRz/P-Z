@@ -77,7 +77,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando el cliente no ha iniciado sesión.
         switch ($_GET['action']) {
             case 'signUp':
-                $_POST = Validator::validateForm($_POST);
+                $_POST = Validator::validateForm($_POST); 
                 if (
                     !$cliente->setNombre($_POST['nombreCliente']) or
                     !$cliente->setApellido($_POST['apellidoCliente']) or
@@ -85,7 +85,8 @@ if (isset($_GET['action'])) {
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
                     !$cliente->setDui($_POST['duiCliente']) or
                     !$cliente->setContraseña($_POST['contraseñaCliente']) or
-                    !$cliente->setconfirmarContraseña($_POST['confirmarcontraseñaCliente'])
+                    !$cliente->setconfirmarContraseña($_POST['confirmarcontraseñaCliente']) or
+                    !$cliente->setDireccion($_POST['direccionCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($_POST['contraseñaCliente'] != $_POST['confirmarcontraseñaCliente']) {
