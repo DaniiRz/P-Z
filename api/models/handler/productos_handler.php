@@ -81,4 +81,18 @@ class ProductoHandler
         $params = array($this->idcategoria);
         return Database::getRows($sql, $params);
     }
+    public function readProductosCategoriaMobile()
+    {
+        // Consulta SQL para seleccionar productos de una categoría específica
+        $sql = 'SELECT P.id_producto, P.nombre_producto, P.desc_producto, D.precio_producto, D.existencias, D.img_producto, C.nombre_categoria
+                FROM tb_productos AS P
+                INNER JOIN tb_categorias AS C ON P.id_categoria = C.id_categoria
+                INNER JOIN tb_detalle_productos AS D ON P.id_producto = D.id_producto
+                WHERE C.id_categoria = ?  -- Añadir condición para filtrar por categoría
+                ORDER BY P.nombre_producto;';
+        // Parámetros para la consulta SQL (probablemente el ID de la categoría)
+        $params = array($this->idcategoria);
+        // Ejecutar la consulta utilizando un método como Database::getRows
+        return Database::getRows($sql, $params);
+    }
 }
