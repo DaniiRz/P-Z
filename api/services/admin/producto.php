@@ -59,15 +59,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
 
-                case 'readProductosCategoriaMobile':
-                    if (!$producto->setCategoria($_POST['idCategoria'])) {
-                        $result['error'] = $producto->getDataError();
-                    } elseif ($result['dataset'] = $producto->readProductosCategoriaMobile()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['error'] = 'Producto inexistente';
-                    }
-                    break;
+                
             case 'readOne':
                 if (!$producto->setIdProducto($_POST['idProducto'])) {
                     $result['error'] = $producto->getDataError();
