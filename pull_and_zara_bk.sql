@@ -364,9 +364,10 @@ VALUES ('Rojo'),
        ('Amarillo');
 -- Inserción en tb_tallas
 INSERT INTO tb_tallas (numero_talla)
-VALUES ('S'),
+VALUES ('S'), 	
        ('M'),
-       ('L');
+       ('L'),
+       ('XL');
        -- Inserción en tb_productos
 INSERT INTO tb_productos (nombre_producto, desc_producto, fecha_registro_produc, id_categoria)
 VALUES ('Camisa Casual Azul', 'Camisa de algodón para hombre', NOW(), 1),
