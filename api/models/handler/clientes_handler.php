@@ -1,12 +1,13 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once('../../helpers/database.php');
+require_once ('../../helpers/database.php');
 
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla clientes.
  */
-class ClienteHandler {
-    
+class ClienteHandler
+{
+
     // Declaración de atributos para el manejo de datos.
     protected $id = null;
     protected $nombre = null;
@@ -31,7 +32,7 @@ class ClienteHandler {
                 WHERE id_cliente = ?';
         $params = array($_SESSION['idCliente']);
         $data = Database::getRow($sql, $params);
-        
+
         // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
         if (password_verify($clave, $data['clave_cliente'])) {
             return true;
@@ -58,7 +59,7 @@ class ClienteHandler {
                 WHERE correo_cliente = ?';
         $params = array($email);
         $data = Database::getRow($sql, $params);
-        
+
         // Verifica si la contraseña coincide con el hash almacenado y establece los datos del cliente si es válido
         if (password_verify($contraseña, $data['clave_cliente'])) {
             $this->id = $data['id_cliente'];
@@ -97,7 +98,8 @@ class ClienteHandler {
      */
 
     // Método para buscar registros de clientes con un valor de búsqueda específico
-    public function searchRows() {
+    public function searchRows()
+    {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente, direccion_cliente
                 FROM tb_clientes
@@ -123,7 +125,7 @@ class ClienteHandler {
         $sql = 'UPDATE tb_clientes
                 SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_client = ?, telf_cliente = ?, direccion_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->nombre, $this->apellido, $this->correo,$this->dui, $this->telefono,$this->direccion, $_SESSION['idCliente']);
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->direccion, $_SESSION['idCliente']);
         return Database::executeRow($sql, $params);
     }
 
@@ -161,7 +163,7 @@ class ClienteHandler {
         $sql = 'UPDATE tb_clientes
                 SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_client = ?, telf_cliente = ?, direccion_cliente = ?, genero_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->direccion, $this->genero, $this->id,);
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->direccion, $this->genero, $this->id, );
         return Database::executeRow($sql, $params);
     }
 
@@ -172,5 +174,14 @@ class ClienteHandler {
                 WHERE id_cliente = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
+    }
+
+    // Metodo para visualizar la cantidad de genero por clientes
+    public function porcentajeGeneroUsuarios()
+    {
+        $sql = 'SELECT genero_cliente, ROUND((COUNT(id_cliente) * 100.0 / (SELECT COUNT(id_cliente) FROM tb_clientes)), 2) porcentaje
+                FROM tb_clientes
+                GROUP BY genero_cliente ORDER BY porcentaje DESC';
+        return Database::getRows($sql);
     }
 }
