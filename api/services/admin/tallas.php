@@ -93,9 +93,7 @@ if (isset($_GET['action'])) {
                 break;
 
                 case 'readProductoTalla':
-                    if (!$Talla->setIdTalla($_POST['idTalla'])) {
-                        $result['error'] = $Talla->getDataError();
-                    } elseif ($result['dataset'] = $Talla->readProductoTalla()) {
+                    if ($result['dataset'] = $Talla->readProductoTalla()) {
                         $result['status'] = 1;
                     } else {
                         $result['error'] = 'Sin productos';
