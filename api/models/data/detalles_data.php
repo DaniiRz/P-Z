@@ -45,6 +45,17 @@ class DetalleData extends DetalleHandler
             return false;
         }
     }
+    public function setprecioProducto($value)
+    {
+        if (Validator::validateMoney($value)) {
+            $this->precioProducto = $value;
+            return true;
+        } else {
+            $this->data_error = 'El precio del producto es incorrecto';
+            return false;
+        }
+    }
+
 
     public function setnumeroTalla($value)
     {
