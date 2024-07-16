@@ -7,7 +7,9 @@ const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
 const SAVE_MODAL = new bootstrap.Modal('#TallaModal'),
-    MODAL_TITLE = document.getElementById('TallaTitle');
+    MODAL_TITLE = document.getElementById('TallaTitle'), 
+    CHART_MODAL = new bootstrap.Modal('#chartModal'); 
+
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_TALLA = document.getElementById('idTalla'),
@@ -35,7 +37,7 @@ const fillTable = async (form = null) => {
                         <i class="fa-solid fa-trash"></i>
                     </button>
                     <button type="button" class="btn btn-primary" required onclick="openUpdate(${row.id_talla})">
-                        <i class="fa-regular fa-pen-to-square"></i>
+                       <i class="fa-solid fa-square-pen"></i>
                     </button>
                 </td>
             </tr>
@@ -133,5 +135,38 @@ const openDelete = async (id) => {
         } else {
             sweetAlert(2, DATA.error, false);
         }
+    }
+}
+
+
+/*Funcion asincrona para mostrar grafico parametrizado de cuantos productos poseen cierta talla 
+Parametros: ID 
+Retorno: ninguno */
+
+const openChart = async (id) => {
+    //se define constante de tipo objeto con los datos del registro seleccionado 
+    const FORM = new FormData(); 
+    FORM.append('idTalla', id); 
+    //Peticicon para obtener los datos solicitados 
+    const DATA = await fetchData(TALLA_API, 'readProductoTalla', FORM); 
+    //se comprueba si la respuesta es atisfactoria, sino se muestra un error 
+    if(DATA.status){
+        //caja de dialogo con titulo
+        CHART_MODAL.show(); 
+        //arreglos para guardar los datos de la grafica 
+        let productos = []; 
+        let tallas = []; 
+        //se recorre el conjunto de registros por medio dek objeto row 
+        DATA.dataset.forEach(row => {
+            //datos arreglados 
+            productos.push(row.cantidad_productos); 
+            tallas.push(row.numero_talla); 
+        }); 
+        //se agrega etiqueta canvas al contenedor del modal 
+        document.getElementById('chartContainer').innerHTML = `<canvas id="chart"></canvas>`;
+        //se llama la funcon para generar y mostrar un grafico de barras ubicado en component.js
+        barGraph('chart', tallas, productos,'Cantidad de Productos', 'Productos por tallas'); 
+    } else {
+        sweetAlert(4, DATA.error, true); 
     }
 }

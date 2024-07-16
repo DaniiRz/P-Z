@@ -10,6 +10,7 @@ class TallaData extends TallaHandler
 
     // Artributo adicional
     private $data_error = null;
+    private $filename = null; 
 
     public function setIdTalla($value)
     {
@@ -51,5 +52,10 @@ class TallaData extends TallaHandler
     public function getDataError()
     {
         return $this->data_error;
+    }
+    
+    public function getFilename()
+    {
+        return $this->filename;
     }
 }

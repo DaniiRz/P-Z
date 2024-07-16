@@ -91,6 +91,16 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al eliminar la Talla';
                 }
                 break;
+
+                case 'readProductoTalla':
+                    if (!$Talla->setIdTalla($_POST['idTalla'])) {
+                        $result['error'] = $Talla->getDataError();
+                    } elseif ($result['dataset'] = $Talla->readProductoTalla()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'Sin productos';
+                    }
+                    break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }

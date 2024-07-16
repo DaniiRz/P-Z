@@ -34,7 +34,7 @@ const fillTableColores = async (form = null) => {
                         <i class="fa-solid fa-trash"></i>
                     </button>
                     <button type="button" class="btn btn-primary" required onclick="openUpdateColores(${row.id_color})">
-                        <i class="fa-regular fa-pen-to-square"></i>
+                       <i class="fa-solid fa-square-pen"></i>
                     </button>
                 </td>
             </tr>

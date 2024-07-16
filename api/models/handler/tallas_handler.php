@@ -1,7 +1,7 @@
 <?php
 
 // Se incluye la clase
-require_once ('../../helpers/database.php');
+require_once('../../helpers/database.php');
 
 class TallaHandler
 {
@@ -60,5 +60,14 @@ class TallaHandler
                 WHERE id_talla = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
+    }
+
+    public function readProductoTalla()
+    {
+        $sql = 'SELECT tb_tallas.numero_talla, COUNT(tb_detalle_productos.id_producto) AS cantidad_productos
+            FROM tb_tallas
+            LEFT JOIN tb_detalle_productos ON tb_tallas.id_talla = tb_detalle_productos.id_talla
+            GROUP BY tb_tallas.id_talla';
+        return Database::getRows($sql); 
     }
 }
