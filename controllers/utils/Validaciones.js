@@ -97,7 +97,7 @@ function formatDui(input) {
     Dui = Dui.replace(/-/g, '');
 
     // Agregar el guion después del cuarto dígito si no se ha agregado anteriormente
-    if (Dui.length >= 8 && Dui.charAt(8) !== '-') {
+    if (Dui.length >= 9 && Dui.charAt(8) !== '-') {
         Dui = Dui.slice(0, 8) + '-' + Dui.slice(8);
     }
 

@@ -82,11 +82,13 @@ if (isset($_GET['action'])) {
                     !$cliente->setNombre($_POST['nombreCliente']) or
                     !$cliente->setApellido($_POST['apellidoCliente']) or
                     !$cliente->setCorreo($_POST['correoCliente']) or
-                    !$cliente->setTelefono($_POST['telefonoCliente']) or
                     !$cliente->setDui($_POST['duiCliente']) or
+                    !$cliente->setTelefono($_POST['telefonoCliente']) or
                     !$cliente->setContraseña($_POST['contraseñaCliente']) or
-                    !$cliente->setconfirmarContraseña($_POST['confirmarcontraseñaCliente']) or
-                    !$cliente->setDireccion($_POST['direccionCliente'])
+                    !$cliente->setDireccion($_POST['direccionCliente']) or 
+                    !$cliente->setGenero($_POST['generoCliente']) or
+                    !$cliente->setContraseña($_POST['contraseñaCliente']) or
+                    !$cliente->setconfirmarContraseña($_POST['confirmarcontraseñaCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($_POST['contraseñaCliente'] != $_POST['confirmarcontraseñaCliente']) {
