@@ -165,3 +165,11 @@ const openDelete = async (id) => {
         }
     }
 }
+
+/*Funcion para abrir un reporte automatico de administradores 
+Parametros: ninguno 
+Retorno: ninguno */
+const openReport = () => {
+    //se declara una constante tipo objeto con la ruta especifica del reporte en el servidor 
+    const PATH = new URL(`${SERVER_URL}reports/admin/productos.php`)
+}
