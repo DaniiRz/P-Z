@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once('../../helpers/database.php');
+require_once ('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla CATEGORIA.
  */
@@ -91,5 +91,17 @@ class CategoriaHandler
                 WHERE id_categoria = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
+    }
+
+    public function readProductos()
+    {
+        $sql = 'SELECT P.nombre_producto, SUM(D.existencias) total
+                FROM tb_productos AS P
+                INNER JOIN tb_detalle_productos AS D
+                WHERE P.id_categoria = ?
+                GROUP BY P.nombre_producto
+                ORDER BY total DESC';
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
     }
 }
