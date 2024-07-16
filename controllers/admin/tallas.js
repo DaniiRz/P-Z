@@ -143,12 +143,9 @@ const openDelete = async (id) => {
 Parametros: ID 
 Retorno: ninguno */
 
-const openChart = async (id) => {
-    //se define constante de tipo objeto con los datos del registro seleccionado 
-    const FORM = new FormData(); 
-    FORM.append('idTalla', id); 
+const openChart = async () => {
     //Peticicon para obtener los datos solicitados 
-    const DATA = await fetchData(TALLA_API, 'readProductoTalla', FORM); 
+    const DATA = await fetchData(TALLA_API, 'readProductoTalla'); 
     //se comprueba si la respuesta es atisfactoria, sino se muestra un error 
     if(DATA.status){
         //caja de dialogo con titulo
