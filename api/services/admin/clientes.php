@@ -33,7 +33,8 @@ if (isset($_GET['action'])) {
                     !$cliente->setCorreo($_POST['correoCliente']) or
                     !$cliente->setDui($_POST['duiCliente']) or
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
-                    !$cliente->setContraseña($_POST['contraseñaCliente'])                   
+                    !$cliente->setContraseña($_POST['contraseñaCliente']) or
+                    !$cliente->setDireccion($_POST['direccionCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->createRow()) {

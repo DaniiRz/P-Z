@@ -82,6 +82,7 @@
                                     <th scope="col">DUI</th>
                                     <th scope="col">TELEFONO</th>
                                     <th scope="col">CORREO</th>
+                                    <th scope="col">DIRECCION</th>
                                     <th scope="col">ACCIONES</th>
                                 </tr>
                             </thead>
@@ -116,18 +117,20 @@
                                         <div class="col-12">
                                             <div class="col-12">
                                                 <label class="form-label">Nombre(s) del cliente</label>
-                                                <input id="nombreCliente" name="nombreCliente" class="form-control"
-                                                    required oninput="formatAlphabetic(this)">
-                                            </div>
-                                            <div class="col-12 mt-3">
-                                                <label class="form-label">Apellido(s) del cliente</label>
-                                                <input id="apellidoCliente" name="apellidoCliente" class="form-control"
-                                                    required oninput="formatAlphabetic(this)">
+                                                <input id="nombreCliente" name="nombreCliente" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="row">
+                                                    <div class="col-6 mt-3">
+                                                        <label class="form-label">Apellido(s) del cliente</label>
+                                                        <input id="apellidoCliente" name="apellidoCliente" class="form-control" required>
+                                                    </div>
+                                                    <div class="col-6 mt-3">
+                                                        <label class="form-label">Dirección del cliente</label>
+                                                        <input id="direccionCliente" name="direccionCliente" class="form-control" required>
+                                                    </div>
                                                     <div class="col-6 mt-3">
                                                         <label class="form-label">Dui del
                                                             cliente</label>
