@@ -228,10 +228,10 @@ function formatImg(input) {
 
         // Eliminar el mensaje de error
         document.getElementById("mensaje-error-previa").style.display = "none";
-    } 
-    
+    }
+
     else {
-        
+
         // Mostrar mensaje de error
         document.getElementById("mensaje-error-previa").style.display = "block";
 
@@ -264,112 +264,22 @@ function formatCombo(input) {
 }
 
 // Lógica para validar el formulario y habilitar el botón de submit
+// Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
     'use strict'
-
-    // Obtener todos los formularios con la clase 'needs-validation'
-    const forms = document.querySelectorAll('.needs-validation');
-
-    // Iterar sobre cada formulario
-    forms.forEach(form => {
-
-        // Obtener el botón de submit dentro del formulario
-        const submitButton = form.querySelector('button[type="submit"]');
-
-        // Desactivar el botón de submit por defecto
-        submitButton.disabled = true;
-
-        // Agregar evento de 'input' a cada campo de entrada para verificar si el botón debe estar activo
-        form.addEventListener('input', () => {
-
-            // Obtener todos los campos de entrada dentro del formulario actual
-            const inputs = form.querySelectorAll('input');
-            const selects = form.querySelectorAll('select');
-            const textareas = form.querySelectorAll('textarea');
-
-            // Variable para controlar si todos los campos están llenos y en un formato correcto
-            let allFieldsValid = true;
-
-            // Iterar sobre cada campo de entrada y verificar si está lleno y en un formato correcto
-            inputs.forEach(input => {
-                if (input.value.trim() === '' || input.classList.contains('is-invalid')) {
-                    allFieldsValid = false;
-                }
-            });
-
-            // Iterar sobre cada select y verificar si está seleccionado
-            selects.forEach(select => {
-                if (!select.value) {
-                    allFieldsValid = false;
-                }
-            });
-
-            // Iterar sobre cada textarea y verificar si está lleno
-            textareas.forEach(textarea => {
-                if (textarea.value.trim() === '' || textarea.classList.contains('is-invalid')) {
-                    allFieldsValid = false;
-                }
-            });
-
-            // Habilitar o deshabilitar el botón de submit según si todos los campos están llenos y en un formato correcto
-            submitButton.disabled = !allFieldsValid;
-        });
-
-        // Agregar el evento de 'submit' a cada formulario
-        form.addEventListener('submit', event => {
-
-            // Detener el envío del formulario por defecto
-            event.preventDefault();
-
-            // Obtener todos los campos de entrada dentro del formulario actual
-            const inputs = form.querySelectorAll('input');
-
-            // Iterar sobre cada campo de entrada y realizar la validación
-            inputs.forEach(input => {
-                if (input.id === 'telefono') {
-                    formatPhoneNumber(input);
-                }
-
-                else if (input.id === 'email') {
-                    formatEmail(input);
-                }
-
-                else if (input.id === 'contraseña') {
-                    formatPassword(input);
-                }
-
-                else if (input.id === 'dui') {
-                    formatDui(input);
-                }
-
-                else if (input.id === 'nombre') {
-                    formatAlphabetic(input);
-                }
-
-                else if (input.id === 'apellido') {
-                    formatAlphabetic(input);
-                }
-
-                else if (input.id === 'direccion') {
-                    formatAlphabetic(input);
-                }
-
-                else if (input.id === 'precio') {
-                    formatDolar(input);
-                }
-
-                else if (input.id === 'imagen') {
-                    formatImg(input);
-                }
-
-                else {
-
-                    // Agregar la clase 'was-validated' al formulario
-                    form.classList.add('was-validated');
-
-                    event.preventDefault();
-                }
-            });
-        });
-    });
-})();
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+  
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
