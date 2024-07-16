@@ -127,13 +127,15 @@
                                                                 class="form-select" required></select>
                                                         </div>
                                                         <div class="col-12 mb-3">
-                                                            <label for="categoriaProductoS" id="textCategoriaProductosS" class="form-label">Escoger
+                                                            <label for="categoriaProductoS" id="textCategoriaProductosS"
+                                                                class="form-label">Escoger
                                                                 nueva categoría</label>
                                                             <select id="categoriaProductoS" name="categoriaProductoS"
                                                                 class="form-select"></select>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-lg-6">
                                                     <div class="col-12 mb-3">
                                                         <label for="descripcionProducto"
@@ -261,6 +263,11 @@
                                                     required onblur="formatCombo(this)">
                                                 </select>
                                             </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <label for="precioProducto" class="form-label">Precio (US$)</label>
+                                            <input id="precioProducto" type="number" name="precioProducto"
+                                                min="0.01" step="0.01" class="form-control" required>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">

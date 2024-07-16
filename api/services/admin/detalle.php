@@ -33,6 +33,7 @@ if (isset($_GET['action'])) {
                     isset($_POST['existenciasProducto']) &&
                     isset($_POST['tallaProducto']) &&
                     isset($_POST['colorProducto']) &&
+                    isset($_POST['precioProducto']) &&
                     isset($_FILES['imagenProducto'])
                 )
                     if (
@@ -40,6 +41,7 @@ if (isset($_GET['action'])) {
                         !$detalle->setExistencias($_POST['existenciasProducto']) or
                         !$detalle->setIdtalla($_POST['tallaProducto']) or
                         !$detalle->setIdcolor($_POST['colorProducto']) or
+                        !$detalle->setprecioProducto($_POST['precioProducto']) or
                         !$detalle->setImagen($_FILES['imagenProducto'])
                     ) {
                         $result['error'] = $detalle->getDataError();
@@ -82,6 +84,7 @@ if (isset($_GET['action'])) {
                     !$detalle->setExistencias($_POST['existenciasProducto']) or
                     !$detalle->setImagen($_FILES['imagenProducto']) or
                     !$detalle->setIdcolor($_POST['colorProducto']) or
+                    !$detalle->setprecioProducto($_POST['precioProducto']) or
                     !$detalle->setIdtalla($_POST['tallaProducto'])
                 ) {
                     $result['error'] = $detalle->getDataError();

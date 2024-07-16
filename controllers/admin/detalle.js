@@ -25,6 +25,7 @@ const DETALLE_FORM = document.getElementById('formDetalle'),
     EXISTENCIAS = document.getElementById('existenciasProducto'),
     TALLA = document.getElementById('tallaProducto'),
     COLOR = document.getElementById('colorProducto'),
+    PRECIO_PRODUCTO = document.getElementById('precioProducto'),
     IMAGEN_PRODUCTO = document.getElementById('imagenProducto');
 
 /*
@@ -99,8 +100,8 @@ DETALLE_FORM.addEventListener('submit', async (event) => {
             SAVE_MODAL_DETALLE_AGREGAR.hide();
             // Se muestra un mensaje de éxito.
             sweetAlert(1, DATA.message, true);
-            // Se carga nuevamente la tabla para visualizar los cambios.
-            fillTableD(FORM);
+            // Se llama a openCreateD para cargar la tabla nuevamente.
+            openCreateD(IDProducto); // Llama a openCreateD con el IDProducto actual
         } else {
             sweetAlert(2, DATA ? DATA.error : "Error desconocido", false);
         }

@@ -15,6 +15,7 @@ class DetalleHandler
     protected $idtalla = null;
     protected $nombreColor = null;
     protected $numeroTalla = null;
+    protected $precioProducto = null;
 
     // Constante para establecer la ruta de las imágenes.
     const RUTA_IMAGEN = '../../images/productos/';
@@ -37,9 +38,9 @@ class DetalleHandler
 
     public function createRowsD()
     {
-        $sql = 'INSERT INTO tb_detalle_productos(existencias, img_producto, id_color, id_talla, id_producto) 
-                VALUES (?, ?, ?, ?, ?)';
-        $params = array($this->existencias, $this->imgproducto, $this->idcolor, $this->idtalla, $this->idproducto);
+        $sql = 'INSERT INTO tb_detalle_productos(existencias, img_producto,   id_color, id_talla, id_producto, precio_producto) 
+                VALUES (?, ?, ?, ?, ?, ?)';
+        $params = array($this->existencias, $this->imgproducto, $this->idcolor, $this->idtalla, $this->idproducto, $this ->precioProducto);
         return Database::executeRow($sql, $params);
     }
 
@@ -63,7 +64,7 @@ class DetalleHandler
     public function readDetails()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT D.id_detalle_producto, D.existencias, D.img_producto, C.nombre_color, T.numero_talla, P.id_producto
+        $sql = 'SELECT D.id_detalle_producto, D.existencias, D.img_producto, C.nombre_color, T.numero_talla, P.id_producto, D.precio_producto
                 FROM tb_detalle_productos AS D
                 INNER JOIN tb_productos AS P ON D.id_producto = P.id_producto
                 INNER JOIN tb_colores AS C ON D.id_color = C.id_color
