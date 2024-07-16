@@ -16,7 +16,8 @@ class ClienteHandler {
     protected $correo = null;
     protected $clave = null;
     protected $estado = null;
-    protected$direccion = null; 
+    protected $direccion = null;
+    protected $genero = null;
 
     /*
      *  Métodos para gestionar la cuenta del cliente.
@@ -129,16 +130,16 @@ class ClienteHandler {
     // Método para crear un nuevo registro de cliente
     public function createRow()
     {
-        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente, clave_cliente, direccion_cliente)
-                VALUES(?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->clave, $this->direccion);
+        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente, clave_cliente, direccion_cliente, genero_cliente)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombre, $this->apellido, $this->dui, $this->telefono, $this->correo, $this->clave, $this->direccion, $this->genero);
         return Database::executeRow($sql, $params);
     }
 
     // Método para obtener todos los registros de clientes
     public function readAll()
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_client, telf_cliente, direccion_cliente
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_client, telf_cliente, direccion_cliente, genero_cliente
                 FROM tb_clientes
                 ORDER BY apellido_cliente';
         return Database::getRows($sql);

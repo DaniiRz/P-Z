@@ -17,6 +17,7 @@ const TABLE_BODY = document.getElementById('tableBody'),
     TELEFONO_CLIENTE = document.getElementById('telefonoCliente'),
     DUI_CLIENTE = document.getElementById('duiCliente'),
     DIRECCION_CLIENTE = document.getElementById('direccionCliente'),
+    GENERO_CLIENTE = document.getElementById('generoCliente'),
     CONTRASEÑA_CLIENTE = document.getElementById('contraseñaCliente');
 
 // Método del evento para cuando el documento ha cargado.
@@ -82,6 +83,7 @@ const fillTable = async (form = null) => {
                 <td>${row.dui_client}</td>
                 <td>${row.telf_cliente}</td>
                 <td>${row.correo_cliente}</td>
+                <td>${row.genero_cliente}</td>
                 <td>${row.direccion_cliente}</td>
                 <td>
                 <button class="btn btn-danger"><i class="fa-solid fa-trash" onclick="openDelete(${row.id_cliente})"></i></button>
@@ -135,6 +137,7 @@ const openUpdate = async (id) => {
         ID_CLIENTE.value = ROW.id_cliente;
         NOMBRE_CLIENTE.value = ROW.nombre_cliente;
         APELLIDO_CLIENTE.value = ROW.apellido_cliente;
+        GENERO_CLIENTE.value = ROW.genero_cliente;
         CORREO_CLIENTE.value = ROW.correo_cliente;
         TELEFONO_CLIENTE.value = ROW.telf_cliente;
         DIRECCION_CLIENTE.value = ROW.direccion_cliente;

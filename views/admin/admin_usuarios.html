@@ -82,6 +82,7 @@
                                     <th scope="col">DUI</th>
                                     <th scope="col">TELEFONO</th>
                                     <th scope="col">CORREO</th>
+                                    <th scope="col">GENERO</th>
                                     <th scope="col">DIRECCION</th>
                                     <th scope="col">ACCIONES</th>
                                 </tr>
@@ -114,22 +115,30 @@
 
                                     <!-- Inputs -->
                                     <div class="row p-3">
-                                        <div class="col-12">
-                                            <div class="col-12">
-                                                <label class="form-label">Nombre(s) del cliente</label>
-                                                <input id="nombreCliente" name="nombreCliente" class="form-control" required>
-                                            </div>
-                                        </div>
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="row">
-                                                    <div class="col-6 mt-3">
+                                                    <div class="col-6">
+                                                        <label class="form-label">Nombre(s) del cliente</label>
+                                                        <input id="nombreCliente" name="nombreCliente"
+                                                            class="form-control" required>
+                                                    </div>
+                                                    <div class="col-6">
                                                         <label class="form-label">Apellido(s) del cliente</label>
-                                                        <input id="apellidoCliente" name="apellidoCliente" class="form-control" required>
+                                                        <input id="apellidoCliente" name="apellidoCliente"
+                                                            class="form-control" required>
+                                                    </div>
+                                                    <div class="col-6 mt-3">
+                                                        <label class="form-label">Genero del cliente</label>
+                                                        <select class="form-select" id="generoCliente" name="generoCliente">
+                                                            <option value="Femenino">Femenino</option>
+                                                            <option value="Masculino">Masculino</option>
+                                                          </select>
                                                     </div>
                                                     <div class="col-6 mt-3">
                                                         <label class="form-label">Dirección del cliente</label>
-                                                        <input id="direccionCliente" name="direccionCliente" class="form-control" required>
+                                                        <input id="direccionCliente" name="direccionCliente"
+                                                            class="form-control" required>
                                                     </div>
                                                     <div class="col-6 mt-3">
                                                         <label class="form-label">Dui del

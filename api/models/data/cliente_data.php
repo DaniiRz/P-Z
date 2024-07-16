@@ -70,6 +70,20 @@ class ClienteData extends ClienteHandler
         }
     }
 
+    public function setGenero($value, $min = 5, $max = 100)
+    {
+        if (!Validator::validateAlphabetic($value)) {
+            $this->data_error = 'La dirección debe ser un valor alfabético';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->genero = $value;
+            return true;
+        } else {
+            $this->data_error = 'La dirección debe tener una longitud de ' . $min . ' y ' . $max;
+            return false;
+        }
+    }
+
     public function setDui($value)
     {
         if (Validator::validateDui($value)) {
