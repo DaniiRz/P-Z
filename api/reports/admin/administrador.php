@@ -15,7 +15,7 @@ if ($dataAdministradores = $administrador->readAll()) {
     // Se establece un color de relleno para los encabezados.
     $pdf->setFillColor(200);
     // Se establece la fuente para los encabezados.
-    $pdf->setFont('Arial', 'B', 11);
+    $pdf->setFont('Arial', 'B', 11); 
     // Se imprimen las celdas con los encabezados.
     $pdf->cell(60, 10, 'Nombre', 1, 0, 'C', 1);
     $pdf->cell(60, 10, 'Correo Electrónico', 1, 0, 'C', 1);

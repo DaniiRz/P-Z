@@ -75,13 +75,13 @@ const fillTable = async (form = null) => {
                     <td><img src="${SERVER_URL}images/categorias/${row.imagen_categoria}" alt="Imagen de ${row.nombre_categoria}" height="50"></td>
                     <td>${row.nombre_categoria}</td>
                     <td>
-                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_categoria})" aria-label="Editar ${row.nombre_categoria}">
-                        <i class="bi bi-pen-fill"></i>
+                        <button type="button" class="btn btn-primary" onclick="openUpdate(${row.id_categoria})" aria-label="Editar ${row.nombre_categoria}">
+                        <i class="fa-solid fa-square-pen"></i>
                         </button>
                         <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_categoria})" aria-label="Eliminar ${row.nombre_categoria}">
                         <i class="fa-solid fa-trash"></i>
                         </button>
-                        <button type="button" class="btn btn-warning" onclick="openChart(${row.id_categoria})">
+                        <button type="button" class="btn btn-info" onclick="openChart(${row.id_categoria})">
                         <i class="bi bi-bar-chart-fill"></i>
                         </button>
                     </td>
