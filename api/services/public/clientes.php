@@ -85,7 +85,6 @@ if (isset($_GET['action'])) {
                     !$cliente->setDui($_POST['duiCliente']) or
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
                     !$cliente->setContraseña($_POST['contraseñaCliente']) or
-                    !$cliente->setDireccion($_POST['direccionCliente']) or 
                     !$cliente->setGenero($_POST['generoCliente']) or
                     !$cliente->setContraseña($_POST['contraseñaCliente']) or
                     !$cliente->setconfirmarContraseña($_POST['confirmarcontraseñaCliente'])

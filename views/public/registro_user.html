@@ -78,15 +78,6 @@
                                         <input type="text" class="form-control" id="correoCliente" name="correoCliente"
                                             required oninput="formatEmail(this)" placeholder="ejemplo@gmail.com">
                                     </div>
-
-                                    <!--input genero cliente-->
-                                    <div class="form-group mt-3">
-                                        <label for="direccion">Genero: </label>
-                                        <select class="form-select" id="generoCliente" name="generoCliente">
-                                            <option value="Femenino">Femenino</option>
-                                            <option value="Masculino">Masculino</option>
-                                        </select>
-                                    </div>
                                 </div>
 
                                 <!-- Primera columna del Form -->
@@ -116,18 +107,19 @@
                                             placeholder="8 caracteres minimo">
                                     </div>
 
-                                    <!--input direccion cliente-->
+                                    <!--input genero cliente-->
                                     <div class="form-group mt-3">
-                                        <label for="direccion">Dirección: </label>
-                                        <input type="text" minlength="2" class="form-control" id="direccionCliente"
-                                            name="direccionCliente" required oninput="formatAlphabetic(this)"
-                                            placeholder="Calle, Barrio, Ciudad">
+                                        <label for="direccion">Genero: </label>
+                                        <select class="form-select" id="generoCliente" name="generoCliente">
+                                            <option value="Femenino">Femenino</option>
+                                            <option value="Masculino">Masculino</option>
+                                        </select>
                                     </div>
 
                                     <!--input genero cliente-->
                                     <div class="form-group text-center mt-4 pt-3">
                                         <button id="btnRegistrarme" type="submit"
-                                            class="btn btn-outline-success pe-5 ps-5 mb-5">
+                                            class="btn btn-outline-dark mx-2 mb-5">
                                             <i class="bi bi-person-fill-add"></i>
                                             Registrarme
                                         </button>

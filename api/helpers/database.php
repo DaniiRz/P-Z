@@ -1,6 +1,6 @@
 <?php
 // Se incluyen las credenciales para conectar con la base de datos.
-require_once('config.php');
+require_once ('config.php');
 
 /*
  *   Clase para realizar las operaciones en la base de datos.
@@ -26,9 +26,7 @@ class Database
             self::$statement = self::$connection->prepare($query);
             // Se ejecuta la sentencia preparada y se retorna el resultado.
             return self::$statement->execute($values);
-        } 
-        
-        catch (PDOException $error) {
+        } catch (PDOException $error) {
             // Se obtiene el código y el mensaje de la excepción para establecer un error personalizado.
             self::setException($error->getCode(), $error->getMessage());
             return false;
@@ -96,16 +94,16 @@ class Database
                 self::$error = 'Base de datos desconocida';
                 break;
             case '1045':
-               self::$error = 'Acceso denegado';
+                self::$error = 'Acceso denegado';
                 break;
             case '42S02':
                 self::$error = 'Tabla no encontrada';
                 break;
             case '42S22':
-                //self::$error = 'Columna no encontrada';
+                self::$error = 'Columna no encontrada';
                 break;
             case '23000':
-                //self::$error = 'Violación de restricción de integridad';
+                self::$error = 'Violación de restricción de integridad';
                 break;
             default:
                 self::$error = $message . PHP_EOL;

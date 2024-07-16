@@ -34,7 +34,6 @@ if (isset($_GET['action'])) {
                     !$cliente->setDui($_POST['duiCliente']) or
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
                     !$cliente->setContraseña($_POST['contraseñaCliente']) or
-                    !$cliente->setDireccion($_POST['direccionCliente']) or
                     !$cliente->setGenero($_POST['generoCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
@@ -71,7 +70,6 @@ if (isset($_GET['action'])) {
                     !$cliente->setCorreo($_POST['correoCliente']) or
                     !$cliente->setDui($_POST['duiCliente']) or
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
-                    !$cliente->setDireccion($_POST['direccionCliente']) or
                     !$cliente->setGenero($_POST['generoCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
