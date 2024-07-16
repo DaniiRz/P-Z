@@ -148,7 +148,7 @@ class ClienteHandler {
     // Método para obtener un registro de cliente específico por su ID
     public function readOne()
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_client, telf_cliente, direccion_cliente
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_client, telf_cliente, direccion_cliente, genero_cliente
                 FROM tb_clientes
                 WHERE id_cliente = ?';
         $params = array($this->id);
@@ -159,9 +159,9 @@ class ClienteHandler {
     public function updateRow()
     {
         $sql = 'UPDATE tb_clientes
-                SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_client = ?, telf_cliente = ?, direccion_cliente = ?
+                SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_client = ?, telf_cliente = ?, direccion_cliente = ?, genero_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->id, $this->direccion);
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->direccion, $this->genero, $this->id,);
         return Database::executeRow($sql, $params);
     }
 

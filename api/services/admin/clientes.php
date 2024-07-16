@@ -70,7 +70,9 @@ if (isset($_GET['action'])) {
                     !$cliente->setApellido($_POST['apellidoCliente']) or
                     !$cliente->setCorreo($_POST['correoCliente']) or
                     !$cliente->setDui($_POST['duiCliente']) or
-                    !$cliente->setTelefono($_POST['telefonoCliente'])
+                    !$cliente->setTelefono($_POST['telefonoCliente']) or
+                    !$cliente->setDireccion($_POST['direccionCliente']) or 
+                    !$cliente->setGenero($_POST['generoCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->updateRow()) {
