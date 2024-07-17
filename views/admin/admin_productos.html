@@ -192,7 +192,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <button type="button" class="btn btn-warning" onclick="openCreateA()">
-                                                    <i class="fa-solid fa-plus"></i> Agregar un detalle
+                                                    <i class="fa-solid fa-plus me-2"></i> Agregar un detalle
                                                 </button>
                                             </div>
                                         </div>
@@ -211,7 +211,7 @@
                                                 <th>TALLA</th>
                                                 <th>COLOR</th>
                                                 <th>EXISTENCIAS</th>
-                                                <th>PRECIO</th>
+                                                <th>PRECIO(US$)</th>
                                                 <th>ACCIONES</th>
                                             </tr>
                                         </thead>
@@ -252,17 +252,16 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label for="tallaProducto" class="form-label">Tallas</label>
-                                                        <select id="tallaProducto" name="tallaProducto"
-                                                            class="form-select" required onblur="formatCombo(this)">
-                                                        </select>
-                                                    </div>
-                                                    <div class="mb-3">
+                                                    <div class="col-sm-6 col-md-6 col-lg-12 mb-3">
                                                         <label for="imagenProducto" class="form-label">Imagen</label>
                                                         <input id="imagenProducto" type="file" name="imagenProducto"
                                                             class="form-control" accept=".png, .jpg" required
                                                             oninput="formatImg(this)">
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-6 col-lg-12">
+                                                        <label class="form-label">Vista previa</label>
+                                                        <div id="vista-previa" class="border p-2 text-center">
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12 col-md-6">
@@ -273,27 +272,14 @@
                                                     <select id="colorProducto" name="colorProducto"
                                                         class="form-select mb-3" required onblur="formatCombo(this)">
                                                     </select>
-                                                </div>
-                                                <div class="col-sm-12 col-md-6">
-                                                    <label class="form-label">Vista previa</label>
-                                                    <div id="vista-previa" class="border p-2 text-center">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="col-sm-12 col-md-6">
-                                                        <div class="form-group">
-                                                            <div id="mensaje-error-previa" class="invalid-feedback">
-                                                                Error al cambiar imagen.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-6 mb-3 row">
-                                                        <label class="form-label">Confirmar detalle:</label>
-                                                        <button type="submit" class="btn btn-primary">
-                                                            <i class="bi bi-clipboard2-fill"></i> <label
-                                                                id="buttonTitleDetalle"></label>
-                                                        </button>
-                                                    </div>
+                                                    <label for="tallaProducto" class="form-label">Tallas</label>
+                                                    <select id="tallaProducto" name="tallaProducto" class="form-select"
+                                                        required onblur="formatCombo(this)">
+                                                    </select>
+                                                    <button type="submit" class="btn btn-primary mt-4">
+                                                        <i class="bi bi-clipboard2-fill"></i> <label
+                                                            id="buttonTitleDetalle"></label>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>

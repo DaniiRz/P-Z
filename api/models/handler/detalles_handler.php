@@ -76,7 +76,7 @@ class DetalleHandler
 
     public function readOneD()
     {
-        $sql = 'SELECT D.id_detalle_producto, D.existencias, D.img_producto, C.nombre_color, T.numero_talla
+        $sql = 'SELECT D.id_detalle_producto, D.existencias, D.precio_producto, D.img_producto, C.nombre_color, T.numero_talla
         FROM tb_detalle_productos AS D
         INNER JOIN tb_colores AS C ON D.id_color = C.id_color
         INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
