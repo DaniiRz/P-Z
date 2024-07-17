@@ -97,35 +97,40 @@
                 aria-labelledby="exampleModal1Label" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
+
                         <!--formulario para guardar una categoria-->
                         <form id="saveForm">
-                            <!-- Header del modal -->
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModal1Label"></h1>
+                            <input type="number" class="d-none" id="idCategoria" name="idCategoria">
+                            <form class="needs-validation">
 
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
+                                <!-- Body del modal -->
+                                <div class="modal-body">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    <h1 class="fs-4 text-center mb-4" id="modalTitle"> </h1>
 
-                            <!-- Body del modal -->
-                            <div class="modal-body row g-3">
-                                <input type="number" class="d-none" id="idCategoria" name="idCategoria">
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="nombreCategoria" class="form-label">Nombre</label>
-                                    <input id="nombreCategoria" type="text" name="nombreCategoria" class="form-control"
-                                        required oninput="formatAlphabetic(this)">
+                                    <!-- Body del modal -->
+                                    <div class="modal-body row g-3">
+                                        <div class="col-sm-12 col-md-6">
+                                            <label for="nombreCategoria" class="form-label">Nombre</label>
+                                            <input id="nombreCategoria" type="text" name="nombreCategoria"
+                                                class="form-control" required oninput="formatAlphabetic(this)">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <label for="imagenCategoria" class="form-label">Imagen</label>
+                                            <input id="imagenCategoria" type="file" name="imagenCategoria"
+                                                class="form-control" accept=".png, .jpg" required>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 text-end">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="bi bi-bookmark-fill"></i> <label id="buttonTitle"></label>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="imagenCategoria" class="form-label">Imagen</label>
-                                    <input id="imagenCategoria" type="file" name="imagenCategoria" class="form-control"
-                                        accept=".png, .jpg" required>
-                                </div>
-                            </div>
-
-                            <!-- Botones del modal -->
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
+                            </form>
                         </form>
                     </div>
                 </div>

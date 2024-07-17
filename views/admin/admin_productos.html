@@ -31,278 +31,292 @@
     <main class="py-5">
 
         <!-- Titulos -->
-        <div class="container-fluid text-center mb-4 mt-5">
-            <h3 class="text-center mb-4">Administrar Productos</h3>
-        </div>
-        <div class="container mb-3 justify-content-center">
-
-            <!-- Formulario de búsqueda -->
-            <form class="col-sm-12 col-md-6" id="searchForm">
-                <div class="row">
-                    <div class="col-6">
-                        <input type="search" class="form-control" name="search" placeholder="Buscar" required>
-                    </div>
-                    <div class="col-6">
-                        <button type="submit" class="btn btn-success">
-                            <i class="fas fa-search"></i>
-                        </button>
-                        <button type="reset" class="btn btn-secondary" onclick="fillTable()">
-                            <i class="fas fa-times-circle"></i>
-                        </button>
-                        <button type="button" class="btn btn-warning" onclick="openCreate()">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </div>
+        <div class="mt-5 justify-content-center">
+            <div class="container-fluid text-center">
+                <div class="row justify-content-center py-5">
+                    <h3>Administrar Productos</h3>
                 </div>
-            </form>
-        </div>
-
-        <!-- Contenedor de tablas -->
-        <div class="container mb-3 justify-content-center">
-            <div class="table-responsive">
-
-                <!-- Tabla para mostrar los registros existentes -->
-                <table class="table table-hover">
-
-                    <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                    <thead>
-                        <tr>
-                            <td colspan="6" id="rowsFound"></td>
-                        </tr>
-                        <tr>
-                            <th>NOMBRE PRODUCTO</th>
-                            <th>CATEGORÍA</th>
-                            <th>DESCRIPCIÓN</th>
-                            <th>DETALLE PRODUCTO</th>
-                            <th>ACCIONES</th>
-                        </tr>
-                    </thead>
-
-                    <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-                    <tbody id="tableBody">
-
-                    </tbody>
-                </table>
             </div>
-        </div>
 
-        <!-- Componente Modal para guardar un registro -->
-        <div class="modal fade" id="saveModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="miModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-                <div class="modal-content">
+            <div class="container mb-3 justify-content-center">
 
-                    <!-- Body del modal -->
-                    <div class="modal-body">
-                        <button type="button" class="btn-close btn-danger" aria-label="Close"
-                            data-bs-dismiss="modal"></button>
-                        <h1 class="fs-4 text-center mb-4" id="modalTitleS"> </h1>
-                        <div class="tab-content">
-
-                            <!-- Formulario 1 -->
-                            <div class="tab-pane fade show active" id="formulario1" role="tabpanel"
-                                aria-labelledby="formulario1-tab">
-                                <div class="row ps-5 pe-5">
-
-                                    <!-- Formulario saveForm -->
-                                    <form id="saveForm">
-                                        <input type="number" class="d-none" id="idProducto" name="idProducto">
-
-                                        <form class="needs-validation">
-
-                                            <!-- Contenedor de los inputs -->
-                                            <div class="col-12 mb-3">
-                                                <label for="nombreProducto" class="form-label">Nombre del
-                                                    producto</label>
-                                                <input id="nombreProducto" type="text" name="nombreProducto"
-                                                    class="form-control" required>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="row">
-                                                        <div class="col-12 mb-3">
-                                                            <label for="categoriaProducto" class="form-label">Categoría
-                                                                Seleccionada</label>
-                                                            <select id="categoriaProducto" name="categoriaProducto"
-                                                                class="form-select" required></select>
-                                                        </div>
-                                                        <div class="col-12 mb-3">
-                                                            <label for="categoriaProductoS" id="textCategoriaProductosS"
-                                                                class="form-label">Escoger
-                                                                nueva categoría</label>
-                                                            <select id="categoriaProductoS" name="categoriaProductoS"
-                                                                class="form-select"></select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-lg-6">
-                                                    <div class="col-12 mb-3">
-                                                        <label for="descripcionProducto"
-                                                            class="form-label">Descripción</label>
-                                                        <textarea id="descripcionProducto" type="text"
-                                                            name="descripcionProducto" class="form-control descripcion"
-                                                            required onblur="formatAlphabetic(this)"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="d-flex flex-row-reverse mt-2">
-                                                <button type="button" class="btn btn-danger ps-4 pe-4 ms-2 me-4 mb-3"
-                                                    data-bs-dismiss="modal"> Cancelar
-                                                </button>
-                                                <!-- Boton submit -->
-                                                <button type="submit" class="btn btn-success ps-4 pe-4 ms-2 me-4 mb-3">
-                                                    Agregar
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </form>
-                                </div>
-                            </div>
+                <!-- Formulario de búsqueda -->
+                <form class="col-sm-12 col-md-12" id="searchForm">
+                    <div class="row">
+                        <div class="col-4">
+                            <input type="search" class="form-control" id="search" name="search" placeholder="Buscar"
+                                required>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                                <i class="fas fa-times-circle"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#modalCliente" onclick="openCreate()"><i class="fas fa-plus"></i>
+                            </button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </form>
 
-        <!-- Modal de tabla de detalle producto -->
-        <div class="modal fade" id="modalDetalle" data-bs-backdrop="static" tabindex="-1" aria-labelledby="miModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-                <div class="modal-content">
+                <!-- Tabla de productos con opciones -->
+                <div class="table-responsive">
 
-                    <!-- Body del modal -->
-                    <div class="modal-body">
-                        <button type="button" class="btn-close btn-danger" aria-label="Close"
-                            data-bs-dismiss="modal"></button>
-                        <h1 class="fs-4 text-center mb-4" id="modalTitleD"> </h1>
-                        <div class="table-responsive mt-5">
+                    <!-- Tabla -->
+                    <div class="table-responsive">
 
-                            <!--Modal detalle producto -->
-                            <form class="col-sm-12 col-md-6" id="searchFormDetalle">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <input type="search" class="form-control" name="searchDetalle"
-                                            placeholder="Buscar" required>
-                                    </div>
-                                    <div class="col-6">
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-warning" onclick="openCreateA()">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                        <!-- Tabla para mostrar los registros existentes -->
+                        <table class="table table-hover">
 
-                            <!-- Tabla para mostrar el detalle del producto agregado-->
-                            <table class="table table-hover">
+                            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                            <thead>
+                                <tr>
+                                    <td colspan="6" id="rowsFound"></td>
+                                </tr>
+                                <tr>
+                                    <th>NOMBRE PRODUCTO</th>
+                                    <th>CATEGORÍA</th>
+                                    <th>DESCRIPCIÓN</th>
+                                    <th>DETALLE PRODUCTO</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                            </thead>
 
-                                <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                                <thead>
-                                    <tr>
-                                        <td colspan="6" id="rowsFoundD"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>IMAGEN</th>
-                                        <th>TALLA</th>
-                                        <th>COLOR</th>
-                                        <th>EXISTENCIAS</th>
-                                        <th>PRECIO</th>
-                                        <th>ACCIONES</th>
-                                    </tr>
-                                </thead>
+                            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                            <tbody id="tableBody">
 
-                                <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-                                <tbody id="tableBodyD"></tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!--Modal para agregar el detalle del producto -->
-        <div class="modal fade" id="modalAgregarDetalle" data-bs-backdrop="static" tabindex="-1"
-            aria-labelledby="miModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-                <div class="modal-content">
-
-                    <!-- Formulario de detalle -->
-                    <form id="formDetalle">
-                        <input type="number" class="d-none" id="idProductoD" name="idProductoD" value="">
-                        <input type="number" class="d-none" id="idDetalleProducto" name="idDetalleProducto">
-                        <form class="needs-validation">
+                <!-- Componente Modal para guardar un registro -->
+                <div class="modal fade" id="saveModal" data-bs-backdrop="static" tabindex="-1"
+                    aria-labelledby="miModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
 
                             <!-- Body del modal -->
                             <div class="modal-body">
                                 <button type="button" class="btn-close btn-danger" aria-label="Close"
                                     data-bs-dismiss="modal"></button>
-                                <h1 class="fs-4 text-center mb-4" id="modalTitleA"> </h1>
+                                <h1 class="fs-4 text-center mb-4" id="modalTitleS"> </h1>
+                                <div class="tab-content">
 
-                                <!-- Contenedor de los inputs -->
-                                <div class="row ps-5 pe-5 mt-5">
-                                    <div class="col-12 mb-3">
-                                        <label for="existenciasProducto" class="form-label">Existencias</label>
-                                        <input id="existenciasProducto" type="number" name="existenciasProducto"
-                                            class="form-control" required min="0">
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="tallaProducto" class="form-label">Tallas</label>
-                                                <select id="tallaProducto" name="tallaProducto" class="form-select"
-                                                    required onblur="formatCombo(this)">
-                                                </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="colorProducto" class="form-label">Colores</label>
-                                                <select id="colorProducto" name="colorProducto" class="form-select"
-                                                    required onblur="formatCombo(this)">
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 col-md-6">
-                                            <label for="precioProducto" class="form-label">Precio (US$)</label>
-                                            <input id="precioProducto" type="number" name="precioProducto"
-                                                min="0.01" step="0.01" class="form-control" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <div class="form-group">
-                                                    <label for="imagenProducto" class="form-label">Imagen</label>
-                                                    <input id="imagenProducto" type="file" name="imagenProducto"
-                                                        class="form-control" accept=".png, .jpg" required
-                                                        oninput="formatImg(this)">
-                                                    <div id="mensaje-error-previa" class="invalid-feedback">
-                                                        Error al cambiar imagen.
+                                    <!-- Formulario 1 -->
+                                    <div class="tab-pane fade show active" id="formulario1" role="tabpanel"
+                                        aria-labelledby="formulario1-tab">
+                                        <div class="row ps-5 pe-5">
+
+                                            <!-- Formulario saveForm -->
+                                            <form id="saveForm">
+                                                <input type="number" class="d-none" id="idProducto" name="idProducto">
+
+                                                <form class="needs-validation">
+
+                                                    <!-- Contenedor de los inputs -->
+                                                    <div class="col-12 mb-3">
+                                                        <label for="nombreProducto" class="form-label">Nombre del
+                                                            producto</label>
+                                                        <input id="nombreProducto" type="text" name="nombreProducto"
+                                                            class="form-control" required>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Vista previa</label>
-                                                <div id="vista-previa" class="border p-2 text-center">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="row">
+                                                                <div class="col-12 mb-3">
+                                                                    <label for="categoriaProducto"
+                                                                        class="form-label">Categoría
+                                                                        Seleccionada</label>
+                                                                    <select id="categoriaProducto"
+                                                                        name="categoriaProducto" class="form-select"
+                                                                        required></select>
+                                                                </div>
+                                                                <div class="col-12 mb-3">
+                                                                    <label for="categoriaProductoS"
+                                                                        id="textCategoriaProductosS"
+                                                                        class="form-label">Escoger
+                                                                        nueva categoría</label>
+                                                                    <select id="categoriaProductoS"
+                                                                        name="categoriaProductoS"
+                                                                        class="form-select"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-                                                </div>
-                                            </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-12 mb-3">
+                                                                <label for="descripcionProducto"
+                                                                    class="form-label">Descripción</label>
+                                                                <textarea id="descripcionProducto" type="text"
+                                                                    name="descripcionProducto"
+                                                                    class="form-control descripcion" required
+                                                                    onblur="formatAlphabetic(this)"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex flex-row-reverse mt-2">
+                                                        <button type="button"
+                                                            class="btn btn-danger ps-4 pe-4 ms-2 me-4 mb-3"
+                                                            data-bs-dismiss="modal"> Cancelar
+                                                        </button>
+                                                        <!-- Boton submit -->
+                                                        <button type="submit"
+                                                            class="btn btn-success ps-4 pe-4 ms-2 me-4 mb-3">
+                                                            Agregar
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <!--Botones de accion-->
-                            <div class="modal-footer">
-
-                                <!-- Boton submit -->
-                                <button type="submit" class="btn btn-success">Guardar</button>
-                            </div>
-                        </form>
-                    </form>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+
+                <!-- Modal de tabla de detalle producto -->
+                <div class="modal fade" id="modalDetalle" data-bs-backdrop="static" tabindex="-1"
+                    aria-labelledby="miModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+
+                            <!-- Body del modal -->
+                            <div class="modal-body">
+                                <button type="button" class="btn-close btn-danger" aria-label="Close"
+                                    data-bs-dismiss="modal"></button>
+                                <h1 class="fs-4 text-center mb-4" id="modalTitleD"> </h1>
+                                <div class="table-responsive mt-5">
+
+                                    <!--Modal detalle producto -->
+                                    <form class="col-sm-12 col-md-6" id="searchFormDetalle">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input type="search" class="form-control" name="searchDetalle"
+                                                    placeholder="Buscar" required>
+                                            </div>
+                                            <div class="col-6">
+                                                <button type="submit" class="btn btn-success">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-warning" onclick="openCreateA()">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <!-- Tabla para mostrar el detalle del producto agregado-->
+                                    <table class="table table-hover">
+
+                                        <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                                        <thead>
+                                            <tr>
+                                                <td colspan="6" id="rowsFoundD"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>IMAGEN</th>
+                                                <th>TALLA</th>
+                                                <th>COLOR</th>
+                                                <th>EXISTENCIAS</th>
+                                                <th>PRECIO</th>
+                                                <th>ACCIONES</th>
+                                            </tr>
+                                        </thead>
+
+                                        <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                                        <tbody id="tableBodyD"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Modal para agregar el detalle del producto -->
+                <div class="modal fade" id="modalAgregarDetalle" data-bs-backdrop="static" tabindex="-1"
+                    aria-labelledby="miModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+
+                            <!-- Formulario de detalle -->
+                            <form id="formDetalle">
+                                <input type="number" class="d-none" id="idProductoD" name="idProductoD" value="">
+                                <input type="number" class="d-none" id="idDetalleProducto" name="idDetalleProducto">
+                                <form class="needs-validation">
+
+                                    <!-- Body del modal -->
+                                    <div class="modal-body">
+                                        <button type="button" class="btn-close btn-danger" aria-label="Close"
+                                            data-bs-dismiss="modal"></button>
+                                        <h1 class="fs-4 text-center mb-4" id="modalTitleA"> </h1>
+
+                                        <!-- Contenedor de los inputs -->
+                                        <div class="row ps-5 pe-5 mt-5">
+                                            <div class="col-12 mb-3">
+                                                <label for="existenciasProducto" class="form-label">Existencias</label>
+                                                <input id="existenciasProducto" type="number" name="existenciasProducto"
+                                                    class="form-control" required min="0">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label for="tallaProducto" class="form-label">Tallas</label>
+                                                        <select id="tallaProducto" name="tallaProducto"
+                                                            class="form-select" required onblur="formatCombo(this)">
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="colorProducto" class="form-label">Colores</label>
+                                                        <select id="colorProducto" name="colorProducto"
+                                                            class="form-select" required onblur="formatCombo(this)">
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <label for="precioProducto" class="form-label">Precio (US$)</label>
+                                                    <input id="precioProducto" type="number" name="precioProducto"
+                                                        min="0.01" step="0.01" class="form-control" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <div class="form-group">
+                                                            <label for="imagenProducto"
+                                                                class="form-label">Imagen</label>
+                                                            <input id="imagenProducto" type="file" name="imagenProducto"
+                                                                class="form-control" accept=".png, .jpg" required
+                                                                oninput="formatImg(this)">
+                                                            <div id="mensaje-error-previa" class="invalid-feedback">
+                                                                Error al cambiar imagen.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Vista previa</label>
+                                                        <div id="vista-previa" class="border p-2 text-center">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--Botones de accion-->
+                                    <div class="modal-footer">
+
+                                        <!-- Boton submit -->
+                                        <button type="submit" class="btn btn-success">Guardar</button>
+                                    </div>
+                                </form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
     </main>
 
     <!-- Footer -->

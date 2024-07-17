@@ -7,7 +7,8 @@ const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
     const SAVE_MODAL = new bootstrap.Modal('#modalCliente'),
-    MODAL_TITLE = document.getElementById('modalTitle');
+    MODAL_TITLE = document.getElementById('modalTitle'),
+    BUTTON_TITLE = document.getElementById('buttonTitle');
 // Constantes para establecer los elementos del formulario de guardar.
     const SAVE_FORM = document.getElementById('saveForm'),
     ID_CLIENTE = document.getElementById('idCliente'),
@@ -106,6 +107,7 @@ const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL.show();
     MODAL_TITLE.textContent = 'AGREGAR CLIENTE';
+    BUTTON_TITLE.textContent = 'Agregar cliente';
     // Se prepara el formulario.
     SAVE_FORM.reset();
     CONTRASEÑA_CLIENTE.disabled = false;
@@ -127,6 +129,7 @@ const openUpdate = async (id) => {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL.show();
         MODAL_TITLE.textContent = 'ACTUALIZAR CLIENTE';
+        BUTTON_TITLE.textContent = 'Actualizar cliente';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         CONTRASEÑA_CLIENTE.disabled = true;
