@@ -25,9 +25,9 @@ class CategoriaHandler
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT id_categoria, nombre_categoria, imagen_categoria
                 FROM tb_categorias
-                WHERE nombre_categoria LIKE ? OR   LIKE ?
+                WHERE nombre_categoria LIKE ?
                 ORDER BY nombre_categoria';
-        $params = array($value, $value);
+        $params = array($value);
         return Database::getRows($sql, $params);
     }
 
