@@ -156,8 +156,8 @@ const openUpdate = async (id) => {
         MODAL_TITLE.textContent = 'EDITAR PRODUCTO';
         BUTTON_TITLE.textContent = 'Editar producto';
         // Para mostrar el ComboBox de editar Categoria.
-        CATEGORIA_PRODUCTO_S.classList.remove('none');
-        document.getElementById('textCategoriaProductosS').classList.remove('none');
+        CATEGORIA_PRODUCTO_S.style.display = 'block';
+        document.getElementById('textCategoriaProductosS').style.display = 'block';
         // Se prepara el formulario.
         SAVE_FORM.reset();
         // Se inicializan los campos con los datos.

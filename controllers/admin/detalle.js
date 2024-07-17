@@ -55,11 +55,11 @@ const fillTableD = async (form = null) => {
                 <td>${row.existencias}</td>
                 <td>${row.precio_producto}</td>
                 <td>
-                    <button type="button" class="btn btn-info" onclick="openUpdateD(${row.id_detalle_producto})">
-                        <i class="bi bi-pencil-fill"></i>
+                    <button type="button" class="btn btn-primary" onclick="openUpdateD(${row.id_detalle_producto})">
+                        <i class="bi bi-pen-fill"></i>
                     </button>
                     <button type="button" class="btn btn-danger" onclick="openDeleteD(${row.id_detalle_producto})">
-                        <i class="bi bi-trash-fill"></i>
+                        <i class="fa-solid fa-trash"></i>
                     </button>
                 </td>
             </tr>
@@ -187,12 +187,13 @@ const openUpdateD = async (id) => {
         const ROW = DATA.dataset;
         ID_DETALLE_PRODUCTO.value = ROW.id_detalle_producto;
         EXISTENCIAS.value = ROW.existencias;
+        PRECIO_PRODUCTO.value = ROW.precio_producto;
         COLOR.value = ROW.nombre_color;
         //IMAGEN_PRODUCTO.required =false;
         // Se llenan los combobox con los datos necesarios.
-        fillSelect(COLOR_API, 'readAll', 'colorProducto', ROW.id_color);
+        fillSelect(COLOR_API, 'readAll', 'colorProducto', ROW.id_detalle_producto);
         TALLA.value = ROW.numero_talla;
-        fillSelect(TALLA_API, 'readAll', 'tallaProducto', ROW.id_talla);
+        fillSelect(TALLA_API, 'readAll', 'tallaProducto', ROW.id_detalle_producto);
         // Colocar la imagen del producto en el contenedor para obtener una vista previa
         const vistaPrevia = document.getElementById('vista-previa');
         vistaPrevia.innerHTML = `<img src="${SERVER_URL}images/productos/${ROW.img_producto}" alt="" height="200px">`;

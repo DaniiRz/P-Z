@@ -112,7 +112,8 @@ require_once('../../helpers/database.php');
 
     public function readOne()
     {
-        $sql = 'SELECT id_admin, nombre_admin, apellido_admin, correo_admin FROM tb_admins
+        $sql = 'SELECT id_admin, nombre_admin, apellido_admin, correo_admin 
+                FROM tb_admins
                 WHERE id_admin = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
