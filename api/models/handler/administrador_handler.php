@@ -90,7 +90,7 @@ require_once('../../helpers/database.php');
         $sql = 'UPDATE tb_admins
                 SET nombre_admin = ?, apellido_admin = ?, correo_admin = ?
                 WHERE id_admin = ?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $_SESSION['nombreAdministrador']);
+        $params = array($this->nombre, $this->apellido, $this->correo, $_SESSION['idAdministrador']);
         return Database::executeRow($sql, $params);
     }
 

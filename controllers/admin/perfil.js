@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-// Mètodo del evento para cuando se envía el formulario de cambiar contraseña.
+// Método del evento para cuando se envía el formulario de cambiar contraseña.
 PASSWORD_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
@@ -43,6 +43,25 @@ PASSWORD_FORM.addEventListener('submit', async (event) => {
     if (DATA.status) {
         // Se cierra la caja de diálogo.
         PASSWORD_MODAL.hide();
+        // Se muestra un mensaje de éxito.
+        sweetAlert(1, DATA.message, true);
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+});
+
+// Método del evento para cuando se envía el formulario de cambiar contraseña.
+PROFILE_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(PROFILE_FORM);
+    // Petición para actualizar la constraseña.
+    const DATA = await fetchData(USER_API, 'editProfile', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se cierra la caja de diálogo.
+        PERFIL_MODAL.hide();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
     } else {
