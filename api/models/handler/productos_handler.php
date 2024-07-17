@@ -95,4 +95,18 @@ class ProductoHandler
         // Ejecutar la consulta utilizando un método como Database::getRows
         return Database::getRows($sql, $params);
     }
+
+    /*
+    *   Métodos para generar reportes.
+    */
+    public function productosCategoria()
+    {
+        $sql = 'SELECT P.nombre_producto, P.desc_producto, P.fecha_registro_produc, C.nombre_categoria
+                FROM tb_productos AS P
+                INNER JOIN tb_categorias AS C ON P.id_categoria = C.id_categoria
+                WHERE P.id_categoria = ?
+                ORDER BY P.nombre_producto';
+        $params = array($this->idcategoria);
+        return Database::getRows($sql, $params);
+    }
 }

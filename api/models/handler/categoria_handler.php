@@ -97,7 +97,7 @@ class CategoriaHandler
     {
         $sql = 'SELECT P.nombre_producto, SUM(D.existencias) total
                 FROM tb_productos AS P
-                INNER JOIN tb_detalle_productos AS D
+                INNER JOIN tb_detalle_productos AS D ON P.id_producto = D.id_producto
                 WHERE P.id_categoria = ?
                 GROUP BY P.nombre_producto
                 ORDER BY total DESC';
