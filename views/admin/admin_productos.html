@@ -17,7 +17,7 @@
     <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
     <link rel="stylesheet" href="../../resources/css/productos.css">
     <link rel="stylesheet" href="../../resources/css/index.css">
-    <link rel="stylesheet" href="../../resources/css/principal_admin.css">
+
 </head>
 
 <body>
@@ -102,7 +102,7 @@
                             <div class="modal-body">
                                 <button type="button" class="btn-close btn-danger" aria-label="Close"
                                     data-bs-dismiss="modal"></button>
-                                <h1 class="fs-4 text-center mb-4" id="modalTitleS"> </h1>
+                                <h1 class="fs-4 text-center mb-4" id="modalTitle"> </h1>
                                 <div class="tab-content">
 
                                     <!-- Formulario 1 -->
@@ -113,7 +113,6 @@
                                             <!-- Formulario saveForm -->
                                             <form id="saveForm">
                                                 <input type="number" class="d-none" id="idProducto" name="idProducto">
-
                                                 <form class="needs-validation">
 
                                                     <!-- Contenedor de los inputs -->
@@ -145,7 +144,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                         <div class="col-lg-6">
                                                             <div class="col-12 mb-3">
                                                                 <label for="descripcionProducto"
@@ -156,18 +154,15 @@
                                                                     onblur="formatAlphabetic(this)"></textarea>
                                                             </div>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="d-flex flex-row-reverse mt-2">
-                                                        <button type="button"
-                                                            class="btn btn-danger ps-4 pe-4 ms-2 me-4 mb-3"
-                                                            data-bs-dismiss="modal"> Cancelar
-                                                        </button>
-                                                        <!-- Boton submit -->
-                                                        <button type="submit"
-                                                            class="btn btn-success ps-4 pe-4 ms-2 me-4 mb-3">
-                                                            Agregar
-                                                        </button>
+                                                        <div class="col-lg-6">
+                                                        </div>
+                                                        <div class="col-lg-6 text-end">
+                                                            <button type="submit"
+                                                                class="btn btn-primary ps-4 pe-4 ms-2 me-4 mb-3">
+                                                                <i class="bi bi-clipboard2-fill"></i> <label
+                                                                    id="buttonTitle"></label>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </form>
                                             </form>
@@ -196,15 +191,8 @@
                                     <form class="col-sm-12 col-md-6" id="searchFormDetalle">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input type="search" class="form-control" name="searchDetalle"
-                                                    placeholder="Buscar" required>
-                                            </div>
-                                            <div class="col-6">
-                                                <button type="submit" class="btn btn-success">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
                                                 <button type="button" class="btn btn-warning" onclick="openCreateA()">
-                                                    <i class="fa-solid fa-plus"></i>
+                                                    <i class="fa-solid fa-plus"></i> Agregar un detalle
                                                 </button>
                                             </div>
                                         </div>
@@ -271,52 +259,52 @@
                                                         </select>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="colorProducto" class="form-label">Colores</label>
-                                                        <select id="colorProducto" name="colorProducto"
-                                                            class="form-select" required onblur="formatCombo(this)">
-                                                        </select>
+                                                        <label for="imagenProducto" class="form-label">Imagen</label>
+                                                        <input id="imagenProducto" type="file" name="imagenProducto"
+                                                            class="form-control" accept=".png, .jpg" required
+                                                            oninput="formatImg(this)">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12 col-md-6">
                                                     <label for="precioProducto" class="form-label">Precio (US$)</label>
                                                     <input id="precioProducto" type="number" name="precioProducto"
                                                         min="0.01" step="0.01" class="form-control" required>
+                                                    <label for="colorProducto" class="form-label mt-3">Colores</label>
+                                                    <select id="colorProducto" name="colorProducto"
+                                                        class="form-select mb-3" required onblur="formatCombo(this)">
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <label class="form-label">Vista previa</label>
+                                                    <div id="vista-previa" class="border p-2 text-center">
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="mb-3">
+                                                    <div class="col-sm-12 col-md-6">
                                                         <div class="form-group">
-                                                            <label for="imagenProducto"
-                                                                class="form-label">Imagen</label>
-                                                            <input id="imagenProducto" type="file" name="imagenProducto"
-                                                                class="form-control" accept=".png, .jpg" required
-                                                                oninput="formatImg(this)">
                                                             <div id="mensaje-error-previa" class="invalid-feedback">
                                                                 Error al cambiar imagen.
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Vista previa</label>
-                                                        <div id="vista-previa" class="border p-2 text-center">
-
-                                                        </div>
+                                                    <div class="col-sm-12 col-md-6 mb-3 row">
+                                                        <label class="form-label">Confirmar detalle:</label>
+                                                        <button type="submit" class="btn btn-primary">
+                                                            <i class="bi bi-clipboard2-fill"></i> <label
+                                                                id="buttonTitleDetalle"></label>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <!--Botones de accion-->
-                                    <div class="modal-footer">
-
-                                        <!-- Boton submit -->
-                                        <button type="submit" class="btn btn-success">Guardar</button>
                                     </div>
                                 </form>
                             </form>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->

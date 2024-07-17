@@ -16,7 +16,8 @@ const SAVE_MODAL_DETALLE = new bootstrap.Modal('#modalDetalle'),
 
 // Constante para establecer los elementos del modal de agregar detalle producto.
 const SAVE_MODAL_DETALLE_AGREGAR = new bootstrap.Modal('#modalAgregarDetalle'),
-    MODAL_TITLE_A = document.getElementById('modalTitleA');
+    MODAL_TITLE_A = document.getElementById('modalTitleA'),
+    BUTTON_TITLE_A = document.getElementById('buttonTitleDetalle');
 
 // Constante de elementos del formulario de detalle producto 
 const DETALLE_FORM = document.getElementById('formDetalle'),
@@ -145,6 +146,7 @@ const openCreateA = async () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL_DETALLE_AGREGAR.show();
     MODAL_TITLE_A.textContent = 'AGREGAR DETALLE DEL PRODUCTO';
+    BUTTON_TITLE_A.textContent = 'Agregar el detalle';
     // Se inicializan los campos con los datos.
     fillSelect(COLOR_API, 'readAll', 'colorProducto');
     // Agregar evento de cambio al primer select
@@ -178,6 +180,7 @@ const openUpdateD = async (id) => {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL_DETALLE_AGREGAR.show();
         MODAL_TITLE_A.textContent = 'EDITAR DETALLE PRODUCTO';
+        BUTTON_TITLE_A.textContent = 'Editar el detalle';
         // Se prepara el formulario.
         DETALLE_FORM.reset();
         // Se inicializan los campos con los datos.

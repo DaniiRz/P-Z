@@ -11,7 +11,8 @@ const TABLE_BODY = document.getElementById('tableBody'),
 
 // Constante para el modal de registro de producto.
 const SAVE_MODAL_PRODUCTO = new bootstrap.Modal('#saveModal'),
-    MODAL_TITLE_S = document.getElementById('modalTitleS');
+    MODAL_TITLE = document.getElementById('modalTitle'),
+    BUTTON_TITLE = document.getElementById('buttonTitle');
 
 // Constantes para establecer los elementos del formulario de guardar.
 const SAVE_FORM = document.getElementById('saveForm'),
@@ -53,15 +54,15 @@ const fillTable = async (form = null) => {
                 <td>${row.desc_producto}</td>
                 <td>
                     <button type="button" class="btn btn-warning" onclick="openCreateD(${row.id_producto})">
-                        <i class="fa-solid fa-ellipsis"></i>
+                        <i class="bi bi-box-seam-fill"></i>
                     </button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_producto})">
-                        <i class="bi bi-pencil-fill"></i>
+                    <button type="button" class="btn btn-primary" onclick="openUpdate(${row.id_producto})">
+                        <i class="bi bi-pen-fill"></i>
                     </button>
                     <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_producto})">
-                        <i class="bi bi-trash-fill"></i>
+                        <i class="fa-solid fa-trash"></i>
                     </button>
                 </td>
             </tr>
@@ -120,7 +121,8 @@ SAVE_FORM.addEventListener('submit', async (event) => {
 const openCreate = () => {
     // Se muestra la caja de diálogo con su título.
     SAVE_MODAL_PRODUCTO.show();
-    MODAL_TITLE_S.textContent = 'AGREGAR PRODUCTO';
+    MODAL_TITLE.textContent = 'AGREGAR PRODUCTO';
+    BUTTON_TITLE.textContent = 'Agregar producto';
     // Para ocultar el ComboBox de editar Categoria.
     CATEGORIA_PRODUCTO_S.style.display = 'none';
     document.getElementById('textCategoriaProductosS').style.display = 'none';
@@ -151,7 +153,8 @@ const openUpdate = async (id) => {
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
         SAVE_MODAL_PRODUCTO.show();
-        MODAL_TITLE_S.textContent = 'EDITAR PRODUCTO';
+        MODAL_TITLE.textContent = 'EDITAR PRODUCTO';
+        BUTTON_TITLE.textContent = 'Editar producto';
         // Para mostrar el ComboBox de editar Categoria.
         CATEGORIA_PRODUCTO_S.classList.remove('none');
         document.getElementById('textCategoriaProductosS').classList.remove('none');
