@@ -76,7 +76,7 @@ const fillTable = async (form = null) => {
                     <td>${row.nombre_categoria}</td>
                     <td>
                         <button type="button" class="btn btn-primary" onclick="openUpdate(${row.id_categoria})" aria-label="Editar ${row.nombre_categoria}">
-                        <i class="fa-solid fa-square-pen"></i>
+                        <i class="bi bi-pen-fill"></i>
                         </button>
                         <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_categoria})" aria-label="Eliminar ${row.nombre_categoria}">
                         <i class="fa-solid fa-trash"></i>

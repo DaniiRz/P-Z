@@ -25,17 +25,17 @@ if (isset($_GET['idCategoria'])) {
                 // Se establece la fuente para los encabezados.
                 $pdf->setFont('Arial', 'B', 11);
                 // Se imprimen las celdas con los encabezados.
-                $pdf->cell(60, 10, 'Nombre', 1, 0, 'C', 1);
-                $pdf->cell(60, 10, 'Descripcion', 1, 0, 'C', 1);
-                $pdf->cell(60, 10, 'Fecha de registro', 1, 1, 'C', 1);
+                $pdf->cell(62, 10, 'Nombre', 1, 0, 'C', 1);
+                $pdf->cell(62, 10, 'Descripcion', 1, 0, 'C', 1);
+                $pdf->cell(62, 10, 'Fecha de registro', 1, 1, 'C', 1);
                 // Se establece la fuente para los datos de los productos.
                 $pdf->setFont('Arial', '', 11);
                 // Se recorren los registros fila por fila.
                 foreach ($dataProductos as $rowProducto) {
                     // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(60, 10, $rowProducto['nombre_producto'], 1, 0);
-                    $pdf->cell(60, 10, $rowProducto['desc_producto'], 1, 0);
-                    $pdf->cell(60, 10, $rowProducto['fecha_registro_produc'], 1, 1);
+                    $pdf->cell(62, 10, $pdf->encodeString($rowProducto['nombre_producto']), 1, 0);
+                    $pdf->cell(62, 10, $pdf->encodeString($rowProducto['desc_producto']), 1, 0);
+                    $pdf->cell(62, 10, $pdf->encodeString($rowProducto['fecha_registro_produc']), 1, 1);
                 }
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay productos para la categoría'), 1, 1);

@@ -26,47 +26,48 @@
 <body>
 
     <!-- Navbar -->
-    <header>
+    <header class="mb-5">
         <div id="menuContent"></div>
     </header>
 
     <!-- Contenedor principal -->
-    <main class="pt-5">
+    <main class="py-5">
 
         <!-- Titulos -->
-        <div id="textos" class="container-fluid py-5 text-center">
-            <div class="row justify-content-center py-5">
-                <h3 id="mainTitle"> Administrar Categorías </h3>
-            </div>
-        </div>
-
-        <div class="container justify-content-center">
-
-            <!-- Formulario de búsqueda -->
-            <form class="col-sm-12 col-md-6" id="searchForm">
-                <div class="row">
-                    <div class="col-6">
-                        <input type="search" class="form-control" name="search" placeholder="Buscar" required>
-                    </div>
-                    <div class="col-6">
-                        <button type="submit" class="btn btn-success">
-                            <i class="fas fa-search"></i>
-                        </button>
-                        <button type="reset" class="btn btn-secondary" onclick="fillTable()">
-                            <i class="fas fa-times-circle"></i>
-                        </button>
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                            data-bs-target="#AgregarCategoria" onclick="openCreate()">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </div>
+        <div class="mt-5 justify-content-center">
+            <div class="container-fluid text-center">
+                <div class="row justify-content-center py-5">
+                    <h3>Administrar Categorias</h3>
                 </div>
-            </form>
+            </div>
 
-            <!--Separacion de Modal y tabla -->
             <div class="container mb-3 justify-content-center">
-                <!-- Tabla de Categorías -->
-                <div class="container-fluid mt-3">
+
+                <!-- Formulario de búsqueda -->
+                <form class="col-sm-12 col-md-12" id="searchForm">
+                    <div class="row">
+                        <div class="col-4">
+                            <input type="search" class="form-control" id="search" name="search" placeholder="Buscar"
+                                required>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                                <i class="fas fa-times-circle"></i>
+                            </button>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#modalCliente" onclick="openCreate()"><i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Tabla de categorias con opciones -->
+                <div class="table-responsive">
+
+                    <!-- Tabla -->
                     <div class="table-responsive">
 
                         <!-- Tabla para mostrar los registros existentes -->
