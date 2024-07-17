@@ -11,10 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
-    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link type="image/png" rel="icon" href="../../resources/img/pull&zarablanco.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="../../resources/img/pull&zarablanco.png">
     <link rel="stylesheet" href="../../resources/css/productos.css">
     <link rel="stylesheet" href="../../resources/css/index.css">
     <link rel="stylesheet" href="../../resources/css/principal_admin.css">
@@ -23,300 +23,120 @@
 <body>
 
     <!-- Navbar -->
-    <header class="mb-5">
+    <header>
         <div id="menuContent"></div>
     </header>
 
     <!-- Contenedor principal -->
     <main class="py-5">
-
         <!-- Titulos -->
-        <div class="mt-5 justify-content-center">
-            <div class="container-fluid text-center">
-                <div class="row justify-content-center py-5">
+        <div class="mt-5 text-center">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
                     <h3>Administrar Productos</h3>
                 </div>
             </div>
+        </div>
 
-            <div class="container mb-3 justify-content-center">
-
-                <!-- Formulario de búsqueda -->
-                <form class="col-sm-12 col-md-12" id="searchForm">
-                    <div class="row">
-                        <div class="col-4">
-                            <input type="search" class="form-control" id="search" name="search" placeholder="Buscar"
-                                required>
-                        </div>
-                        <div class="col-6">
-                            <button type="submit" class="btn btn-success">
-                                <i class="fas fa-search"></i>
-                            </button>
-                            <button type="reset" class="btn btn-secondary" onclick="fillTable()">
-                                <i class="fas fa-times-circle"></i>
-                            </button>
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                data-bs-target="#modalCliente" onclick="openCreate()"><i class="fas fa-plus"></i>
-                            </button>
-                        </div>
+        <div class="container mb-3">
+            <!-- Formulario de búsqueda -->
+            <form id="searchForm">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <input type="search" class="form-control" id="search" name="search" placeholder="Buscar"
+                            required>
                     </div>
-                </form>
-
-                <!-- Tabla de productos con opciones -->
-                <div class="table-responsive">
-
-                    <!-- Tabla -->
-                    <div class="table-responsive">
-
-                        <!-- Tabla para mostrar los registros existentes -->
-                        <table class="table table-hover">
-
-                            <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                            <thead>
-                                <tr>
-                                    <td colspan="6" id="rowsFound"></td>
-                                </tr>
-                                <tr>
-                                    <th>Nombre cliente</th>
-                                    <th>Correo</th>
-                                    <th></th>
-                                    <th>DETALLE PRODUCTO</th>
-                                    <th>ACCIONES</th>
-                                </tr>
-                            </thead>
-
-                            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-                            <tbody id="tableBody">
-
-                            </tbody>
-                        </table>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-success"><i class="fas fa-search"></i></button>
+                        <button type="reset" class="btn btn-secondary" onclick="fillTable()"><i
+                                class="fas fa-times-circle"></i></button>
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#modalCliente" onclick="openCreate()">
+                            <i class="fas fa-plus"></i>
+                        </button>
                     </div>
                 </div>
+            </form>
 
-                <!-- Componente Modal para guardar un registro -->
-                <div class="modal fade" id="saveModal" data-bs-backdrop="static" tabindex="-1"
-                    aria-labelledby="miModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-xl">
-                        <div class="modal-content">
+            <!-- Tabla de productos con opciones -->
+            <div class="table-responsive mt-3">
+                <table class="table table-hover">
+                    <!-- Cabeza de la tabla -->
+                    <thead>
+                        <tr>
+                            <td colspan="6" id="rowsFound"></td>
+                        </tr>
+                        <tr>
+                            <th>NOMBRE CLIENTE</th>
+                            <th>CORREO</th>
+                            <th>DIRECCION PEDIDO</th>
+                            <th>DETALLE PEDIDO</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <!-- Cuerpo de la tabla -->
+                    <tbody id="tableBody">
+                        <!-- Aquí se llenarán dinámicamente las filas de la tabla -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-                            <!-- Body del modal -->
-                            <div class="modal-body">
-                                <button type="button" class="btn-close btn-danger" aria-label="Close"
-                                    data-bs-dismiss="modal"></button>
-                                <h1 class="fs-4 text-center mb-4" id="modalTitleS"> </h1>
-                                <div class="tab-content">
-
-                                    <!-- Formulario 1 -->
-                                    <div class="tab-pane fade show active" id="formulario1" role="tabpanel"
-                                        aria-labelledby="formulario1-tab">
-                                        <div class="row ps-5 pe-5">
-
-                                            <!-- Formulario saveForm -->
-                                            <form id="saveForm">
-                                                <input type="number" class="d-none" id="idProducto" name="idProducto">
-
-                                                <form class="needs-validation">
-
-                                                    <!-- Contenedor de los inputs -->
-                                                    <div class="col-12 mb-3">
-                                                        <label for="nombreProducto" class="form-label">Nombre del
-                                                            producto</label>
-                                                        <input id="nombreProducto" type="text" name="nombreProducto"
-                                                            class="form-control" required>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="row">
-                                                                <div class="col-12 mb-3">
-                                                                    <label for="categoriaProducto"
-                                                                        class="form-label">Categoría
-                                                                        Seleccionada</label>
-                                                                    <select id="categoriaProducto"
-                                                                        name="categoriaProducto" class="form-select"
-                                                                        required></select>
-                                                                </div>
-                                                                <div class="col-12 mb-3">
-                                                                    <label for="categoriaProductoS"
-                                                                        id="textCategoriaProductosS"
-                                                                        class="form-label">Escoger
-                                                                        nueva categoría</label>
-                                                                    <select id="categoriaProductoS"
-                                                                        name="categoriaProductoS"
-                                                                        class="form-select"></select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-6">
-                                                            <div class="col-12 mb-3">
-                                                                <label for="descripcionProducto"
-                                                                    class="form-label">Descripción</label>
-                                                                <textarea id="descripcionProducto" type="text"
-                                                                    name="descripcionProducto"
-                                                                    class="form-control descripcion" required
-                                                                    onblur="formatAlphabetic(this)"></textarea>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="d-flex flex-row-reverse mt-2">
-                                                        <button type="button"
-                                                            class="btn btn-danger ps-4 pe-4 ms-2 me-4 mb-3"
-                                                            data-bs-dismiss="modal"> Cancelar
-                                                        </button>
-                                                        <!-- Boton submit -->
-                                                        <button type="submit"
-                                                            class="btn btn-success ps-4 pe-4 ms-2 me-4 mb-3">
-                                                            Agregar
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </form>
-                                        </div>
+        <!-- Modal de tabla de detalle producto -->
+        <div class="modal fade" id="modalDetallePedido" data-bs-backdrop="static" tabindex="-1"
+            aria-labelledby="miModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <!-- Body del modal -->
+                    <div class="modal-body">
+                        <button type="button" class="btn-close btn-danger" aria-label="Close"
+                            data-bs-dismiss="modal"></button>
+                        <h1 class="fs-4 text-center mb-4" id="modalTitleD"></h1>
+                        <form id="searchFormDetallePedido">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <input type="search" class="form-control" name="searchDetalle" placeholder="Buscar"
+                                        required>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-success"><i class="fas fa-search"></i></button>
+                                    <div class="col-12 mb-3">
+                                        <label for="estadoPedido" class="form-label">Modifica el estado del
+                                            pedido</label>
+                                        <select id="estadoPedido" name="estadoPedido" class="form-select"></select>
                                     </div>
                                 </div>
                             </div>
+                        </form>
+
+                        <!-- Tabla para mostrar el detalle del producto agregado -->
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <!-- Cabeza de la tabla -->
+                                <thead>
+                                    <tr>
+                                        <td colspan="6" id="rowsFoundD"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>IMAGEN</th>
+                                        <th>TALLA</th>
+                                        <th>COLOR</th>
+                                        <th>EXISTENCIAS</th>
+                                        <th>PRECIO</th>
+                                        <th>ACCIONES</th>
+                                    </tr>
+                                </thead>
+                                <!-- Cuerpo de la tabla -->
+                                <tbody id="tableBodyD">
+                                    <!-- Aquí se llenarán dinámicamente las filas de la tabla -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Modal de tabla de detalle producto -->
-                <div class="modal fade" id="modalDetalle" data-bs-backdrop="static" tabindex="-1"
-                    aria-labelledby="miModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-xl">
-                        <div class="modal-content">
-
-                            <!-- Body del modal -->
-                            <div class="modal-body">
-                                <button type="button" class="btn-close btn-danger" aria-label="Close"
-                                    data-bs-dismiss="modal"></button>
-                                <h1 class="fs-4 text-center mb-4" id="modalTitleD"> </h1>
-                                <div class="table-responsive mt-5">
-
-                                    <!--Modal detalle producto -->
-                                    <form class="col-sm-12 col-md-6" id="searchFormDetalle">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <input type="search" class="form-control" name="searchDetalle"
-                                                    placeholder="Buscar" required>
-                                            </div>
-                                            <div class="col-6">
-                                                <button type="submit" class="btn btn-success">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-warning" onclick="openCreateA()">
-                                                    <i class="fa-solid fa-plus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-
-                                    <!-- Tabla para mostrar el detalle del producto agregado-->
-                                    <table class="table table-hover">
-
-                                        <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                                        <thead>
-                                            <tr>
-                                                <td colspan="6" id="rowsFoundD"></td>
-                                            </tr>
-                                            <tr>
-                                                <th>IMAGEN</th>
-                                                <th>TALLA</th>
-                                                <th>COLOR</th>
-                                                <th>EXISTENCIAS</th>
-                                                <th>PRECIO</th>
-                                                <th>ACCIONES</th>
-                                            </tr>
-                                        </thead>
-
-                                        <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-                                        <tbody id="tableBodyD"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Modal para agregar el detalle del producto -->
-                <div class="modal fade" id="modalAgregarDetalle" data-bs-backdrop="static" tabindex="-1"
-                    aria-labelledby="miModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-xl">
-                        <div class="modal-content">
-
-                            <!-- Formulario de detalle -->
-                            <form id="formDetalle">
-                                <input type="number" class="d-none" id="idProductoD" name="idProductoD" value="">
-                                <input type="number" class="d-none" id="idDetalleProducto" name="idDetalleProducto">
-                                <form class="needs-validation">
-
-                                    <!-- Body del modal -->
-                                    <div class="modal-body">
-                                        <button type="button" class="btn-close btn-danger" aria-label="Close"
-                                            data-bs-dismiss="modal"></button>
-                                        <h1 class="fs-4 text-center mb-4" id="modalTitleA"> </h1>
-
-                                        <!-- Contenedor de los inputs -->
-                                        <div class="row ps-5 pe-5 mt-5">
-                                            <div class="col-12 mb-3">
-                                                <label for="existenciasProducto" class="form-label">Existencias</label>
-                                                <input id="existenciasProducto" type="number" name="existenciasProducto"
-                                                    class="form-control" required min="0">
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label for="tallaProducto" class="form-label">Tallas</label>
-                                                        <select id="tallaProducto" name="tallaProducto"
-                                                            class="form-select" required onblur="formatCombo(this)">
-                                                        </select>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="colorProducto" class="form-label">Colores</label>
-                                                        <select id="colorProducto" name="colorProducto"
-                                                            class="form-select" required onblur="formatCombo(this)">
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-12 col-md-6">
-                                                    <label for="precioProducto" class="form-label">Precio (US$)</label>
-                                                    <input id="precioProducto" type="number" name="precioProducto"
-                                                        min="0.01" step="0.01" class="form-control" required>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <div class="form-group">
-                                                            <label for="imagenProducto"
-                                                                class="form-label">Imagen</label>
-                                                            <input id="imagenProducto" type="file" name="imagenProducto"
-                                                                class="form-control" accept=".png, .jpg" required
-                                                                oninput="formatImg(this)">
-                                                            <div id="mensaje-error-previa" class="invalid-feedback">
-                                                                Error al cambiar imagen.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Vista previa</label>
-                                                        <div id="vista-previa" class="border p-2 text-center">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--Botones de accion-->
-                                    <div class="modal-footer">
-
-                                        <!-- Boton submit -->
-                                        <button type="submit" class="btn btn-success">Guardar</button>
-                                    </div>
-                                </form>
-                            </form>
-                        </div>
-                    </div>
-                </div>
     </main>
 
     <!-- Footer -->
@@ -324,20 +144,19 @@
         <div id="footerIndex"></div>
     </footer>
 
-    <!-- Librerias -->
+
     <!-- Bootstrap -->
     <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 
-    <!-- Js -->
+    <!-- Script JS -->
     <script src="../../resources/js/sweetalert.min.js"></script>
     <script src="../../controllers/utils/components.js"></script>
-    <script src="../../controllers/utils/admin_usuarios.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
     <script src="../../controllers/utils/cargar_menu.js"></script>
     <script src="../../controllers/utils/Validaciones.js"></script>
-    <script src="../../controllers/admin/productos.js"></script>
-    <script src="../../controllers/admin/detalle.js"></script>
+    <script src="../../controllers/admin/pedidos.js"></script>
+
 </body>
 
 </html>
