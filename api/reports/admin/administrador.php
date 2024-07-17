@@ -13,7 +13,7 @@ $administrador = new AdministradorData;
 // Se verifica si existen registros de administradores para mostrar, de lo contrario se imprime un mensaje.
 if ($dataAdministradores = $administrador->readAll()) {
     // Se establece un color de relleno para los encabezados.
-    $pdf->setFillColor(200);
+    $pdf->setFillColor(150);
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Arial', 'B', 11); 
     // Se imprimen las celdas con los encabezados.
