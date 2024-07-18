@@ -6,10 +6,10 @@ const SEARCH_FORM = document.getElementById('searchForm');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-    const SAVE_MODAL = new bootstrap.Modal('#AgregarAdmin'),
+const SAVE_MODAL = new bootstrap.Modal('#AgregarAdmin'),
     MODAL_TITLE = document.getElementById('modalTitle');
 // Constantes para establecer los elementos del formulario de guardar.
-    const SAVE_FORM = document.getElementById('saveForm'),
+const SAVE_FORM = document.getElementById('saveForm'),
     ID_ADMINISTRADOR = document.getElementById('idAdministrador'),
     NOMBRE_ADMINISTRADOR = document.getElementById('nombreAdministrador'),
     APELLIDO_ADMINISTRADOR = document.getElementById('apellidoAdministrador'),
@@ -80,10 +80,14 @@ const fillTable = async (form = null) => {
                 <td>${row.apellido_admin}</td>
                 <td>${row.correo_admin}</td>
                 <td>
-                <button class="btn btn-danger"><i class="fa-solid fa-trash" onclick="openDelete(${row.id_admin})"></i></button>
-                <button class="btn btn-primary"><i class="fa-regular fa-pen-to-square" onclick="openUpdate(${row.id_admin})"></i></button>
+                <button type="button" class="btn btn-danger" required onclick="openDelete(${row.id_admin})">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+                <button type="button" class="btn btn-primary" required onclick="openUpdate(${row.id_admin})">
+                    <i class="bi bi-pen-fill"></i>
+                </button>
             </td>
-        </tr>
+            </tr>
             `;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
@@ -171,7 +175,7 @@ Parametros: ninguno
 Retorno: ninguno */
 const openReport = () => {
     //se declara una constante tipo objeto con la ruta especifica del reporte en el servidor 
-    const PATH = new URL(`${SERVER_URL}reports/admin/administrador.php`); 
+    const PATH = new URL(`${SERVER_URL}reports/admin/administrador.php`);
     //se abre el reporte en una nueva pestaña 
-    window.open(PATH.href); 
+    window.open(PATH.href);
 }

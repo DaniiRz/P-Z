@@ -37,7 +37,7 @@ const fillTable = async (form = null) => {
                         <i class="fa-solid fa-trash"></i>
                     </button>
                     <button type="button" class="btn btn-primary" required onclick="openUpdate(${row.id_talla})">
-                       <i class="fa-solid fa-square-pen"></i>
+                        <i class="bi bi-pen-fill"></i>
                     </button>
                 </td>
             </tr>

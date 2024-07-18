@@ -37,7 +37,7 @@ if (isset($_GET['idCategoria'])) {
                     // Se imprimen las celdas con los datos de los productos.
                     $pdf->cell(62, 10, $pdf->encodeString($rowProducto['nombre_producto']), 1, 0, 'C');
                     $pdf->cell(62, 10, $pdf->encodeString($rowProducto['fecha_registro_produc']), 1, 0, 'C');
-                    $pdf->MultiCell(62, 10, $pdf->encodeString($rowProducto['desc_producto']), 1, 'J'); // 'J' para justificar el texto
+                    $pdf->MultiCell(62, 5, $pdf->encodeString($rowProducto['desc_producto']), 1, 'J'); // 'J' para justificar el texto
                 }
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay productos para la categoría'), 1, 1);

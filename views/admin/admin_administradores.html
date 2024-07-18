@@ -38,46 +38,53 @@
         <div class="container mb-3 justify-content-center mt-5 ">
 
             <!-- Formulario de búsqueda -->
-            <form class="col-sm-12 col-md-6" id="searchForm">
+            <form class="col-sm-12 col-md-12" id="searchForm">
                 <div class="row">
-                    <div class="col-6">
-                        <input type="search" class="form-control" name="search" placeholder="Buscar" required>
+                    <div class="col-4">
+                        <input type="search" class="form-control" id="search" name="search"
+                            placeholder="Nombre o Apellido" required>
                     </div>
                     <div class="col-6">
                         <button type="submit" class="btn btn-success">
                             <i class="fas fa-search"></i>
                         </button>
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                            data-bs-target="#AgregarAdmin" onclick="openCreate()">
-                            <i class="fa-solid fa-plus"></i>
+                        <button type="reset" class="btn btn-secondary" onclick="fillTable()">
+                            <i class="fas fa-times-circle"></i>
                         </button>
-                        <button type="button" class="btn btn-info" required onclick="openReport()">
-                            <i class="fa-regular fa-file-pdf"></i>
+                        <button type="button" class="btn btn-warning"onclick="openCreate()"><i class="fas fa-plus"></i>
                         </button>
                     </div>
                 </div>
             </form>
-            <!-- Contenedor de las tablas -->
-            <div class="container mb-3 mt-5 justify-content-center">
+
+            <!-- Tabla de administradores con opciones -->
+            <div class="table-responsive">
+
+                <!-- Tabla -->
                 <div class="table-responsive">
-                    <!-- Columnas -->
-                    <table class="table table-bordered table-striped">
+
+                    <!-- Tabla para mostrar los registros existentes -->
+                    <table class="table table-hover">
+
+                        <!-- Cabeza de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
                         <thead>
                             <tr>
                             <tr>
                                 <td colspan="4" id="rowsFound"></td>
                             </tr>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Correo</th>
-                            <th>Acciones</th>
+                            <th>NOMBRE</th>
+                            <th>APELLIDO</th>
+                            <th>CORREO</th>
+                            <th>ACCIONES</th>
                             </tr>
                         </thead>
+
                         <!-- Filas -->
                         <tbody id="tableBody"></tbody>
                     </table>
                 </div>
             </div>
+
             <!-- Modal para agregar un administrador -->
             <div class="modal fade" id="AgregarAdmin" tabindex="-1" role="dialog" aria-labelledby="modalTitle"
                 aria-hidden="true">
@@ -94,6 +101,7 @@
 
                             <!-- Body del modal -->
                             <div class="modal-body">
+
                                 <!-- Campo oculto para asignar el id del registro al momento de modificar -->
                                 <input type="number" class="d-none" id="idAdministrador" name="idAdministrador">
                                 <div class="form-group">
@@ -136,27 +144,23 @@
                 </div>
             </div>
         </div>
-
-
     </main>
 
     <!-- Footer -->
     <footer id="footerIndex"></footer>
 
     <!-- Librerias -->
-    <!-- Librerías de Font Awesome -->
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
 
     <!-- Js -->
-    <script src="../../controllers/utils/cargar_menu.js"></script>
-    <script src="../../controllers/utils/admin.js" defer></script>
+    <script src="../../resources/js/sweetalert.min.js"></script>
     <script src="../../controllers/utils/components.js"></script>
+    <script src="../../controllers/utils/cargar_menu.js"></script>
+    <script src="../../controllers/utils/admin.js"></script>
     <script src="../../controllers/utils/Validaciones.js"></script>
     <script src="../../controllers/admin/administradores.js"></script>
-
-
 </body>
 
 </html>
