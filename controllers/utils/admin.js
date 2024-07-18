@@ -3,22 +3,15 @@
 */
 
 const USER_API="services/admin/administrador.php";
-// Constantes para establecer los datos del perfil.
-const NOMBRE_ADMIN_PERFIL = document.getElementById('nombreAdminPerfil');
-const CORREO_ADMIN_PERFIL = document.getElementById('correoAdminPerfil');
-const TELEFONO_ADMIN_PERFIL = document.getElementById('numeroAdminPerfil');
 
 function generarMenuIndex() {
 
-
     const menuContent = `
- 
-    
             <div id="navbar" class="fixed-top">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-on-scroll">
                     <div class="container">
                         <a class="navbar-brand" href="../admin/inicio_admin.html">
-                            <img src="../../resources/img/pull&zara (5).png" alt="" width="120" height="100">
+                            <img src="../../resources/img/pull&zara (5).png" alt="" width="100" height="90">
                         </a>
             
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -53,12 +46,6 @@ function generarMenuIndex() {
                                         href="../admin/admin_administradores.html">Administradores</a>
                                 </li>
                                 <li class="nav-item ms-5">
-                                    <a class="nav-link text-white" href="../admin/inicio_admin.html">
-                                        <img class="navbar-image" src="../../resources/img/casa 1.png" alt="" width="30"
-                                            height="30">
-                                    </a>
-                                </li>
-                                <li class="nav-item ms-5">
                                     <a class="nav-link text-white" href="../admin/perfil_admin.html">
                                         <img class="navbar-image" src="../../resources/img/usuario.png" alt="" width="30"
                                             height="30">
@@ -69,15 +56,13 @@ function generarMenuIndex() {
                     </div>
                 </nav>
             </div>`;
-
     return menuContent;
 }
 
 function generarFooterIndex() {
 
-
     const footerIndex = `
-<footer class="bg-dark text-white fixed-bottom">
+            <footer class="bg-dark text-white fixed-bottom">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-md-6">
@@ -104,4 +89,3 @@ function generarFooterIndex() {
 `;
 return  footerIndex;
 }
-
