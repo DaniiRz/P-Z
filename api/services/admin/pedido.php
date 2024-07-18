@@ -15,24 +15,6 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
-            // Acción para agregar un producto al carrito de compras.
-            case 'createDetail':
-                $_POST = Validator::validateForm($_POST);
-                if (!$pedido->startOrder()) {
-                    $result['error'] = 'Ocurrió un problema al iniciar el pedido';
-                } elseif (
-                    !$pedido->setColor($_POST['colorProducto']) or
-                    !$pedido->setTalla($_POST['tallaProducto']) or
-                    !$pedido->setCantidad($_POST['cantidadProducto'])
-                ) {
-                    $result['error'] = $pedido->getDataError();
-                } elseif ($pedido->createDetail()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Producto agregado correctamente';
-                } else {
-                    $result['error'] = 'Ocurrió un problema al agregar el producto';
-                }
-                break;
             // Acción para obtener los productos agregados en el carrito de compras.
             case 'readDetail':
                 if (!$pedido->getOrder()) {
@@ -59,7 +41,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             // Acción para remover un producto del carrito de compras.
-            case 'deleteDetail':
+            case 'deletePedido':
                 if (!$pedido->setIdDetalle($_POST['idDetalle'])) {
                     $result['error'] = $pedido->getDataError();
                 } elseif ($pedido->deleteDetail()) {
@@ -80,15 +62,6 @@ if (isset($_GET['action'])) {
                 break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
-        }
-    } else {
-        // Se compara la acción a realizar cuando un cliente no ha iniciado sesión.
-        switch ($_GET['action']) {
-            case 'createDetail':
-                $result['error'] = 'Debe iniciar sesión para agregar el producto al carrito';
-                break;
-            default:
-                $result['error'] = 'Acción no disponible fuera de la sesión';
         }
     }
     // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.

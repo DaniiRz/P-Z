@@ -29,11 +29,11 @@
 
     <!-- Contenedor principal -->
     <main class="py-5">
-        <!-- Titulos -->
+        <!-- Títulos -->
         <div class="mt-5 text-center">
             <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <h3>Administrar Productos</h3>
+                    <h3>Administrar Pedidos</h3>
                 </div>
             </div>
         </div>
@@ -43,22 +43,16 @@
             <form id="searchForm">
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <input type="search" class="form-control" id="search" name="search" placeholder="Buscar"
-                            required>
+                        <input type="search" class="form-control" id="search" name="search" placeholder="Buscar" required>
                     </div>
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-success"><i class="fas fa-search"></i></button>
-                        <button type="reset" class="btn btn-secondary" onclick="fillTable()"><i
-                                class="fas fa-times-circle"></i></button>
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                            data-bs-target="#modalCliente" onclick="openCreate()">
-                            <i class="fas fa-plus"></i>
-                        </button>
+                        <button type="reset" class="btn btn-secondary" onclick="fillTable()"><i class="fas fa-times-circle"></i></button>
                     </div>
                 </div>
             </form>
 
-            <!-- Tabla de productos con opciones -->
+            <!-- Tabla de pedidos con opciones -->
             <div class="table-responsive mt-3">
                 <table class="table table-hover">
                     <!-- Cabeza de la tabla -->
@@ -67,11 +61,13 @@
                             <td colspan="6" id="rowsFound"></td>
                         </tr>
                         <tr>
-                            <th>NOMBRE CLIENTE</th>
-                            <th>CORREO</th>
-                            <th>DIRECCION PEDIDO</th>
-                            <th>DETALLE PEDIDO</th>
-                            <th>ACCIONES</th>
+                            <th>Nombre cliente</th>
+                            <th>Correo</th>
+                            <th>Dirección pedido</th>
+                            <th>Fecha pedido</th>
+                            <th>Estado pedido</th>
+                            <th>Detalles pedido</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <!-- Cuerpo de la tabla -->
@@ -82,34 +78,30 @@
             </div>
         </div>
 
-        <!-- Modal de tabla de detalle producto -->
-        <div class="modal fade" id="modalDetallePedido" data-bs-backdrop="static" tabindex="-1"
-            aria-labelledby="miModalLabel" aria-hidden="true">
+        <!-- Modal de tabla de detalle pedido -->
+        <div class="modal fade" id="modalDetallePedido" data-bs-backdrop="static" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <!-- Body del modal -->
                     <div class="modal-body">
-                        <button type="button" class="btn-close btn-danger" aria-label="Close"
-                            data-bs-dismiss="modal"></button>
+                        <button type="button" class="btn-close btn-danger" aria-label="Close" data-bs-dismiss="modal"></button>
                         <h1 class="fs-4 text-center mb-4" id="modalTitleD"></h1>
                         <form id="searchFormDetallePedido">
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <input type="search" class="form-control" name="searchDetalle" placeholder="Buscar"
-                                        required>
+                                    <input type="search" class="form-control" name="searchDetalle" placeholder="Buscar" required>
                                 </div>
                                 <div class="col-md-6">
                                     <button type="submit" class="btn btn-success"><i class="fas fa-search"></i></button>
                                     <div class="col-12 mb-3">
-                                        <label for="estadoPedido" class="form-label">Modifica el estado del
-                                            pedido</label>
+                                        <label for="estadoPedido" class="form-label">Modifica estado del pedido</label>
                                         <select id="estadoPedido" name="estadoPedido" class="form-select"></select>
                                     </div>
                                 </div>
                             </div>
                         </form>
 
-                        <!-- Tabla para mostrar el detalle del producto agregado -->
+                        <!-- Tabla para mostrar el detalle del pedido agregado -->
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <!-- Cabeza de la tabla -->
@@ -118,12 +110,12 @@
                                         <td colspan="6" id="rowsFoundD"></td>
                                     </tr>
                                     <tr>
-                                        <th>IMAGEN</th>
-                                        <th>TALLA</th>
-                                        <th>COLOR</th>
-                                        <th>EXISTENCIAS</th>
-                                        <th>PRECIO</th>
-                                        <th>ACCIONES</th>
+                                        <th>Imagen</th>
+                                        <th>Talla</th>
+                                        <th>Color</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <!-- Cuerpo de la tabla -->
@@ -144,9 +136,8 @@
         <div id="footerIndex"></div>
     </footer>
 
-
     <!-- Bootstrap -->
-    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
+    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 
     <!-- Script JS -->

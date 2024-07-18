@@ -1,121 +1,189 @@
-// Constante para establecer la URL del servicio PHP
-const PEDIDO_ADMIN_API = 'services/admin/pedido.php';
+const PEDIDOS_API = 'services/admin/pedido.php';
+const DETALLES_PEDIDOS_API = 'services/admin/detallePedido.php';
+const ESTADOS_API = 'services/admin/estados_pedidos.php';
 
-// Constantes para establecer los elementos de la tabla de pedidos
-const TABLE_BODY = document.getElementById('tableBody');
-const ROWS_FOUND = document.getElementById('rowsFound');
-
-// Constante para establecer el formulario de búsqueda de pedidos
+// Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
+// Constantes para establecer los elementos de la tabla.
+const TABLE_BODY = document.getElementById('tableBody'),
+      ROWS_FOUND = document.getElementById('rowsFound');
 
-// Constante para el modal de registro de producto.
+// Constantes para establecer los elementos de la tabla.
+const  TABLE_BODY_DETALLE = document.getElementById('tableBodyD'),
+ROWS_FOUND_DETALLE = document.getElementById('rowsFoundD');
+
+// Constantes para establecer los elementos del modal de detalle pedido.
 const MODAL_DETALLE_PEDIDO = new bootstrap.Modal('#modalDetallePedido'),
-    MODAL_TITLE = document.getElementById('modalTitleD');
+      MODAL_TITLE_DETALLE_PEDIDO = document.getElementById('modalTitleD'),
+      SEARCH_FORM_DETALLE = document.getElementById('searchFormDetallePedido'),
+      ESTADO_PEDIDO = document.getElementById('estadoPedido');
 
-// Evento cuando se carga el DOM
-document.addEventListener('DOMContentLoaded', () => {
-    fillTable(); // Llenar la tabla al cargar la página
-});
-
-// Método de envío del formulario de búsqueda
-SEARCH_FORM.addEventListener('submit', (event) => {
-    // Evitar que la página se recargue al enviar el formulario de búsqueda
-    event.preventDefault();
-    // Constante tipo objeto con datos del formulario
-    const FORM = new FormData(SEARCH_FORM);
-    // Función de llenado de tabla con resultados
-    fillTable(FORM);
-});
-
-// Función para llenar la tabla de pedidos
+// Método para llenar la tabla de pedidos.
 const fillTable = async (form = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
-    const action = form ? 'searchOrders' : 'readAllOrders';
-    const DATA = await fetchData(PEDIDO_ADMIN_API, action, form);
-        if (DATA.status) {
-            let rowsHtml = '';
-            DATA.dataset.forEach(row => {
-                rowsHtml += `
-                    <tr>
-                        <td>${row.nombre_cliente}</td>
-                        <td>${row.correo}</td>
-                        <td>${row.direccion_pedido}</td>
-                        <td>
-                            <button class="btn btn-info btn-sm" onclick="openDetallePedido(${row.id_pedido})">
-                                Detalle
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            });
-        // Se muestra un mensaje de acuerdo con el resultado.
-        ROWS_FOUND.textContent = DATA.message;
-        } else {
-            sweetAlert(4, DATA.error, true);
-        }
-};
-
-/*
-*   Función asíncrona para llenar la tabla con los registros disponibles.
-*   Parámetros: form (objeto opcional con los datos de búsqueda).
-*   Retorno: ninguno.
-*/
-const fillTableD = async (form = null) => {
-    // Se inicializa el contenido de la tabla.
-    ROWS_FOUND_D.textContent = '';
-    TABLE_BODY_D.innerHTML = '';
-    // Se verifica la acción a realizar.
-    form ? action = 'searchRowsD' : 'readDetail';
-    // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(PEDIDO_ADMIN_API, 'readDetail', form);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    let action = form ? 'searchRows' : 'readAll';
+    const DATA = await fetchData(PEDIDOS_API, action, form);
     if (DATA.status) {
-        // Se recorre el conjunto de registros fila por fila.
         DATA.dataset.forEach(row => {
-            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
-            TABLE_BODY_D.innerHTML += `
-            <tr>
-                <td><img src="${SERVER_URL}images/productos/${row.img_producto}" height="50"</td>
-                <td>${row.numero_talla}</td>
-                <td>${row.nombre_color}</td>
-                <td>${row.existencias}</td>
-                <td>${row.precio_producto}</td>
-                <td>
-                    <button type="button" class="btn btn-info" onclick="openUpdateD(${row.id_detalle_producto})">
-                        <i class="bi bi-pencil-fill"></i>
-                    </button>
-                    <button type="button" class="btn btn-danger" onclick="openDeleteD(${row.id_detalle_producto})">
-                        <i class="bi bi-trash-fill"></i>
-                    </button>
-                </td>
-            </tr>
+            TABLE_BODY.innerHTML += `
+                <tr>
+                    <td>${row.nombre_cliente}</td>
+                    <td>${row.correo_cliente}</td>
+                    <td>${row.direccion_pedido}</td>
+                    <td>${row.fecha_pedido}</td>
+                    <td>${row.estado_pedido}</td>
+                    <td><button type="button" class="btn btn-info" onclick="openDetalle(${row.id_pedido})">Ver detalles</button></td>
+                    <td>
+                        <button type="button" class="btn btn-primary" onclick="openUpdate(${row.id_pedido})">Editar</button>
+                        <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_pedido})">Eliminar</button>
+                    </td>
+                </tr>
             `;
         });
-        // Se muestra un mensaje de acuerdo con el resultado.
-        ROWS_FOUND_D.textContent = DATA.message;
+        ROWS_FOUND.textContent = DATA.message;
     } else {
         sweetAlert(4, DATA.error, true);
     }
 }
 
-// Función para abrir el detalle de un pedido
-const openDetallePedido = async (idPedido) => {
-    try {
-        const response = await fetch(`${SERVICE_URL}?action=getOrderDetails&idPedido=${idPedido}`);
-        if (!response.ok) {
-            throw new Error('Error al obtener los detalles del pedido');
-        }
-        const data = await response.json();
+// Evento para buscar pedidos.
+SEARCH_FORM.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const FORM = new FormData(SEARCH_FORM);
+    fillTable(FORM);
+});
 
-        if (data.status === 1) {
-            console.log('Detalles del pedido:', data.dataset); // Aquí puedes manejar los detalles del pedido
-        } else {
-            console.error('Error en la respuesta del servidor:', data.error);
-            // Puedes manejar este error mostrando una alerta o mensaje al usuario
-        }
-    } catch (error) {
-        console.error('Error en la solicitud:', error.message);
-        // Puedes manejar este error mostrando una alerta o mensaje al usuario
+// Método para abrir el modal de detalles del pedido.
+const openDetalle = async (id) => {
+    MODAL_TITLE_DETALLE_PEDIDO.textContent = 'Detalles del pedido';
+    const FORM = new FormData();
+    FORM.append('idPedido', id);
+    const DATA = await fetchData(PEDIDOS_API, 'readOne', FORM);
+    if (DATA.status) {
+        MODAL_DETALLE_PEDIDO.show();
+        fillTableDetalle(id);
+        fillSelect(ESTADOS_API, 'readAll', 'estadoPedido', row.estado_pedido);
+    } else {
+        sweetAlert(4, DATA.error, true);
     }
-};
+}
+
+// Método para llenar la tabla de detalles del pedido.
+const fillTableDetalle = async (idPedido, form = null) => {
+    ROWS_FOUND_DETALLE.textContent = '';
+    TABLE_BODY_DETALLE.innerHTML = '';
+    let action = form ? 'searchRowsDetalle' : 'readDetallePedido';
+    const FORM = new FormData();
+    FORM.append('idPedido', idPedido);
+    const DATA = await fetchData(PEDIDOS_API, action, FORM);
+    if (DATA.status) {
+        DATA.dataset.forEach(row => {
+            TABLE_BODY_DETALLE.innerHTML += `
+                <tr>
+                    <td><img src="${row.img_producto}" class="img-fluid" width="50"></td>
+                    <td>${row.id_talla}</td>
+                    <td>${row.id_color}</td>
+                    <td>${row.cantidad_producto}</td>
+                    <td>${row.precio_producto}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" onclick="openUpdateDetalle(${row.id_detalle})">Editar</button>
+                        <button type="button" class="btn btn-danger" onclick="openDeleteDetalle(${row.id_detalle})">Eliminar</button>
+                    </td>
+                </tr>
+            `;
+        });
+        ROWS_FOUND_DETALLE.textContent = DATA.message;
+    } else {
+        sweetAlert(4, DATA.error, true);
+    }
+}
+
+// Evento para buscar detalles del pedido.
+SEARCH_FORM_DETALLE.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const FORM = new FormData(SEARCH_FORM_DETALLE);
+    fillTableDetalle(FORM);
+});
+
+// Método para actualizar el estado del pedido.
+ESTADO_PEDIDO.addEventListener('change', async () => {
+    const FORM = new FormData();
+    FORM.append('idPedido', ID_PEDIDO.value);
+    FORM.append('estadoPedido', ESTADO_PEDIDO.value);
+    const DATA = await fetchData(PEDIDOS_API, 'updateEstado', FORM);
+    if (DATA.status) {
+        sweetAlert(1, DATA.message, true);
+        fillTable();
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+});
+
+// Método para abrir el formulario de edición de un pedido.
+const openUpdate = async (id) => {
+    const FORM = new FormData();
+    FORM.append('idPedido', id);
+    const DATA = await fetchData(PEDIDOS_API, 'readOne', FORM);
+    if (DATA.status) {
+        const ROW = DATA.dataset;
+        document.getElementById('idPedido').value = ROW.id_pedido;
+        document.getElementById('estadoPedido').value = ROW.estado_pedido;
+        MODAL_DETALLE_PEDIDO.show();
+    } else {
+        sweetAlert(4, DATA.error, true);
+    }
+}
+
+// Método para eliminar un pedido.
+const openDelete = async (id) => {
+    const RESPONSE = await confirmAction('¿Desea eliminar el pedido de forma permanente?');
+    if (RESPONSE) {
+        const FORM = new FormData();
+        FORM.append('idPedido', id);
+        const DATA = await fetchData(PEDIDOS_API, 'deleteRow', FORM);
+        if (DATA.status) {
+            sweetAlert(1, DATA.message, true);
+            fillTable();
+        } else {
+            sweetAlert(2, DATA.error, false);
+        }
+    }
+}
+
+// Método para abrir el formulario de edición de un detalle del pedido.
+const openUpdateDetalle = async (id) => {
+    const FORM = new FormData();
+    FORM.append('idDetalle', id);
+    const DATA = await fetchData(PEDIDOS_API, 'readOneDetalle', FORM);
+    if (DATA.status) {
+        const ROW = DATA.dataset;
+        document.getElementById('idDetalle').value = ROW.id_detalle;
+        document.getElementById('cantidadProducto').value = ROW.cantidad_producto;
+        document.getElementById('precioProducto').value = ROW.precio_producto;
+        MODAL_DETALLE_PEDIDO.show();
+    } else {
+        sweetAlert(4, DATA.error, true);
+    }
+}
+
+// Método para eliminar un detalle del pedido.
+const openDeleteDetalle = async (id) => {
+    const RESPONSE = await confirmAction('¿Desea eliminar el detalle del pedido de forma permanente?');
+    if (RESPONSE) {
+        const FORM = new FormData();
+        FORM.append('idDetalle', id);
+        const DATA = await fetchData(PEDIDOS_API, 'deleteRowDetalle', FORM);
+        if (DATA.status) {
+            sweetAlert(1, DATA.message, true);
+            fillTableDetalle(FORM.get('idPedido'));
+        } else {
+            sweetAlert(2, DATA.error, false);
+        }
+    }
+}
+
+// Llenar la tabla de pedidos al cargar la página.
+document.addEventListener('DOMContentLoaded', () => {
+    fillTable();
+});
