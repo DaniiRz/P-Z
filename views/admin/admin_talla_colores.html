@@ -45,14 +45,11 @@
                             <div class="row">
                                 <div class="col-6">
                                     <input type="search" class="form-control" id="search" name="search"
-                                        placeholder="Numero" required>
+                                        placeholder="Número" required>
                                 </div>
                                 <div class="col-6">
-                                    <button type="submit" class="btn btn-success">
+                                    <button type="submit" class="btn btn-success" onclick="fillTable()">
                                         <i class="fas fa-search"></i>
-                                    </button>
-                                    <button type="reset" class="btn btn-secondary" onclick="fillTable()">
-                                        <i class="fas fa-times-circle"></i>
                                     </button>
                                     <button type="button" class="btn btn-warning" onclick="openCreate()">
                                         <i class="fa-solid fa-plus"></i>
@@ -79,7 +76,7 @@
                                             <td colspan="6" id="rowsFound"></td>
                                         </tr>
                                         <tr>
-                                            <th scope="col">NUMERO DE TALLA</th>
+                                            <th scope="col">NÚMERO DE TALLA</th>
                                             <th scope="col">ACCIONES</th>
                                         </tr>
                                     </thead>
@@ -102,11 +99,8 @@
                                         placeholder="Nombre" required>
                                 </div>
                                 <div class="col-6">
-                                    <button type="submit" class="btn btn-success">
+                                    <button type="submit" class="btn btn-success" onclick="fillTableColores()">
                                         <i class="fas fa-search"></i>
-                                    </button>
-                                    <button type="reset" class="btn btn-secondary" onclick="fillTableColores()">
-                                        <i class="fas fa-times-circle"></i>
                                     </button>
                                     <button type="button" class="btn btn-warning" onclick="openCreateColores()">
                                         <i class="fa-solid fa-plus"></i>
