@@ -27,24 +27,32 @@
 <body>
 
 
-    <main>
-        <!-- Título del contenido principal -->
-        <h4 id="mainTitle" class="mt-5"></h4>
+    <main class="mt-5 pt-5">
+        <!-- Titulos -->
+        <div id="textos" class="container-fluid mt-5 text-center">
+            <div class="row justify-content-center">
+                <h3>Carrito de compras</h3>
+            </div>
+        </div>
+
         <!-- Tabla para mostrar el detalle de los productos agregados al carrito de compras -->
-        <table class="table table-striped">
-            <!-- Cabeza de la tabla para mostrar los títulos de las columnas -->
-            <thead>
-                <tr>
-                    <th>PRODUCTO</th>
-                    <th>PRECIO (US$)</th>
-                    <th>CANTIDAD</th>
-                    <th>SUBTOTAL (US$)</th>
-                    <th>ACCIONES</th>
-                </tr>
-            </thead>
-            <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-            <tbody id="tableBody"></tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped mt-4">
+                <!-- Cabeza de la tabla para mostrar los títulos de las columnas -->
+                <thead>
+                    <tr>
+                        <th>PRODUCTO</th>
+                        <th>PRECIO (US$)</th>
+                        <th>CANTIDAD</th>
+                        <th>SUBTOTAL (US$)</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+
         <!-- Párrafo para mostrar el monto total a pagar -->
         <p class="text-end">TOTAL A PAGAR (US$) <b id="pago"></b></p>
         <!-- Párrafo para mostrar un botón que finaliza el pedido -->

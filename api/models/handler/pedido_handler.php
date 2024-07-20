@@ -54,7 +54,7 @@ class PedidoHandler
         } else {
             //se realiza la insercion del pedido al carrito 
             $sql = 'INSERT INTO tb_pedidos(direccion_pedido, id_cliente)
-                    VALUES((SELECT direccion_cliente FROM tb_clientes WHERE id_cliente = ?), ?)';
+                    VALUES((SELECT id_cliente FROM tb_clientes WHERE id_cliente = ?), ?)';
             $params = array($_SESSION['idCliente'], $_SESSION['idCliente']);
             // Se obtiene el ultimo valor insertado de la llave primaria en la tabla pedido.
             if ($_SESSION['idPedido'] = Database::getLastRow($sql, $params)) {

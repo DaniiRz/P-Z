@@ -17,22 +17,33 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             // Acción para agregar un producto al carrito de compras.
             case 'createDetail':
+                // Validar y limpiar los datos del formulario
                 $_POST = Validator::validateForm($_POST);
+                
+                // Intentar iniciar el pedido
                 if (!$pedido->startOrder()) {
                     $result['error'] = 'Ocurrió un problema al iniciar el pedido';
-                } elseif (
-                    !$pedido->setColor($_POST['colorProducto']) or
-                    !$pedido->setTalla($_POST['tallaProducto']) or
-                    !$pedido->setCantidad($_POST['cantidadProducto'])
-                ) {
-                    $result['error'] = $pedido->getDataError();
-                } elseif ($pedido->createDetail()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Producto agregado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al agregar el producto';
+                    // Configurar color, talla y cantidad del producto
+                    $colorProducto = $_POST['colorProducto'] ?? '';
+                    $tallaProducto = $_POST['tallaProducto'] ?? '';
+                    $cantidadProducto = $_POST['cantidadProducto'] ?? 0;
+            
+                    // Verificar que se configuraron correctamente los datos del producto
+                    if (!$pedido->setColor($colorProducto) || !$pedido->setTalla($tallaProducto) || !$pedido->setCantidad($cantidadProducto)) {
+                        $result['error'] = $pedido->getDataError();
+                    } else {
+                        // Intentar crear el detalle del pedido
+                        if ($pedido->createDetail()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Producto agregado correctamente';
+                        } else {
+                            $result['error'] = 'Ocurrió un problema al agregar el producto';
+                        }
+                    }
                 }
                 break;
+            
             // Acción para obtener los productos agregados en el carrito de compras.
             case 'readDetail':
                 if (!$pedido->getOrder()) {
