@@ -16,6 +16,7 @@ class PedidoHandler
     protected $detalle_producto = null;
     protected $color = null;
     protected $talla = null;
+    protected $direccion_pedido = null;
     protected $cantidad = null;
     protected $estado = null;
 
@@ -76,7 +77,6 @@ class PedidoHandler
         $params = array($this->color, $this->talla, $this->color, $this->talla, $this->cantidad, $_SESSION['idPedido']);
         return Database::executeRow($sql, $params);
     }
-
 
     // Método para obtener los productos que se encuentran en el carrito de compras.
     public function readDetail()

@@ -91,6 +91,17 @@ class PedidoData extends PedidoHandler
         }
     }
 
+    public function setDireccionPedido($value)
+    {
+        if (Validator::validateAlphanumeric($value)) {
+            $this->cantidad = $value;
+            return true;
+        } else {
+            $this->data_error = 'La cantidad del producto debe ser mayor o igual a 1';
+            return false;
+        }
+    }
+
     // Método para obtener el error de los datos.
     public function getDataError()
     {
