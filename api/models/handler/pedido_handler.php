@@ -94,18 +94,21 @@ class PedidoHandler
 public function readDetallePedido()
 {
     $sql = 'SELECT 
-                dp.id_detalle, 
-                ddp.img_producto, 
-                ddp.id_talla, 
-                ddp.id_color, 
-                dp.cantidad_producto, 
-                dp.precio_producto
-            FROM 
-                tb_detalle_pedido dp
-            INNER JOIN 
-                tb_detalle_productos ddp ON dp.id_detalle_producto = ddp.id_detalle_producto
-            WHERE 
-                dp.id_pedido = ?';
+         dp.id_detalle, 
+        ddp.img_producto, 
+        ddp.id_talla, 
+        ddp.id_color, 
+        dp.cantidad_producto, 
+        dp.precio_producto,
+        p.nombre_producto
+    FROM 
+     tb_detalle_pedido dp
+    INNER JOIN 
+        tb_detalle_productos ddp ON dp.id_detalle_producto = ddp.id_detalle_producto
+    INNER JOIN
+        tb_productos p ON ddp.id_producto = p.id_producto
+    WHERE 
+        dp.id_pedido = ?';
     $params = array($_SESSION['idPedido']);
     return Database::getRows($sql, $params);
 }
