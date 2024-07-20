@@ -34,7 +34,7 @@ if (isset($_GET['action'])) {
                 } elseif ($result['dataset'] = $producto->readProductosCategoriaMobile()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'Producto inexistente';
+                    $result['error'] = 'No existen productos para mostrar';
                 }
                 break;
         default:

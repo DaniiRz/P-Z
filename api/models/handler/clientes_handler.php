@@ -112,10 +112,20 @@ class ClienteHandler
     // Método para leer el perfil del cliente actual
     public function readProfile()
     {
-        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente, genero_cliente
                 FROM tb_clientes
                 WHERE id_cliente = ?';
         $params = array($_SESSION['idCliente']);
+        return Database::getRow($sql, $params);
+    }
+
+    // Metodo para leer el perfil del cliente movil
+    public function readOneCorreo($correo)
+    {
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente, genero_cliente
+                FROM tb_clientes
+                WHERE correo_cliente = ?';
+        $params = array($correo);
         return Database::getRow($sql, $params);
     }
 

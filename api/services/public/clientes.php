@@ -19,8 +19,10 @@ if (isset($_GET['action'])) {
                 if (isset($_SESSION['correoCliente'])) {
                     $result['status'] = 1;
                     $result['username'] = $_SESSION['correoCliente'];
+                    $result['name'] = $cliente->readOneCorreo($_SESSION['correoCliente']);
                 } else {
                     $result['error'] = 'Correo de usuario indefinido';
+                    $result['name'] = 'No se pudo obtener el usuario';
                 }
                 break;
             case 'logOut':
@@ -77,14 +79,13 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando el cliente no ha iniciado sesión.
         switch ($_GET['action']) {
             case 'signUp':
-                $_POST = Validator::validateForm($_POST); 
+                $_POST = Validator::validateForm($_POST);
                 if (
                     !$cliente->setNombre($_POST['nombreCliente']) or
                     !$cliente->setApellido($_POST['apellidoCliente']) or
                     !$cliente->setCorreo($_POST['correoCliente']) or
                     !$cliente->setDui($_POST['duiCliente']) or
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
-                    !$cliente->setContraseña($_POST['contraseñaCliente']) or
                     !$cliente->setGenero($_POST['generoCliente']) or
                     !$cliente->setContraseña($_POST['contraseñaCliente']) or
                     !$cliente->setconfirmarContraseña($_POST['confirmarcontraseñaCliente'])
@@ -111,7 +112,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             default:
-            $result['message'] = 'Debes iniciar sesion en una cuenta primero.';
+                $result['message'] = 'Debes iniciar sesion en una cuenta primero.';
         }
     }
     // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
