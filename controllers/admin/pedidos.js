@@ -35,8 +35,12 @@ const fillTable = async (form = null) => {
                     <td>${row.estado_pedido}</td>
                     <td><button type="button" class="btn btn-info" onclick="openDetalle(${row.id_pedido})">Ver detalles</button></td>
                     <td>
-                        <button type="button" class="btn btn-primary" onclick="openUpdate(${row.id_pedido})">Editar</button>
-                        <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_pedido})">Eliminar</button>
+                        <button type="button" class="btn btn-primary" onclick="openUpdate(${row.id_pedido})">
+                        <i class="bi bi-pen-fill"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_pedido})">
+                        <i class="fa-solid fa-trash"></i>
+                        </button>
                     </td>
                 </tr>
             `;

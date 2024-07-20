@@ -139,6 +139,16 @@ async function openDelete(id) {
     }
 }
 
+/*Funcion para abrir un reporte automatico de carrito
+Parametros: ninguno 
+Retorno: ninguno */
+const openReport = () => {
+    //se declara una constante tipo objeto con la ruta especifica del reporte en el servidor 
+    const PATH = new URL(`${SERVER_URL}reports/public/carrito.php`);
+    //se abre el reporte en una nueva pestaña 
+    window.open(PATH.href);
+}
+
 
 
 
