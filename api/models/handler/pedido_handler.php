@@ -71,7 +71,8 @@ class PedidoHandler
     {
         // Se realiza una subconsulta para obtener el precio del producto.
         $sql = 'INSERT INTO tb_detalle_pedido (id_detalle_producto, precio_producto, cantidad_producto, id_pedido)
-            VALUES ((SELECT id_detalle_producto FROM tb_detalle_productos WHERE id_color = ? AND id_talla = ?), (SELECT precio_producto FROM tb_detalle_productos WHERE id_color = ? AND id_talla = ?), ?, ?)'; //se obtiene el precio de la tabla productos
+            VALUES ((SELECT id_detalle_producto FROM tb_detalle_productos WHERE id_color = ? AND id_talla = ?),
+            (SELECT precio_producto FROM tb_detalle_productos WHERE id_color = ? AND id_talla = ?), ?, ?)'; //se obtiene el precio de la tabla productos
         $params = array($this->color, $this->talla, $this->color, $this->talla, $this->cantidad, $_SESSION['idPedido']);
         return Database::executeRow($sql, $params);
     }
@@ -94,7 +95,7 @@ class PedidoHandler
     {
         $this->estado = 'Finalizado';
         $sql = 'UPDATE tb_pedidos
-                SET id_estado_pedido = ?
+                SET estado_pedido = ?
                 WHERE id_pedido = ?';
         $params = array($this->estado, $_SESSION['idPedido']);
         return Database::executeRow($sql, $params);
