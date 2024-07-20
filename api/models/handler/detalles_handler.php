@@ -88,7 +88,7 @@ class DetalleHandler
     public function readOne()
     {
         $sql = 'SELECT P.id_producto, P.nombre_producto, P.id_categoria, G.nombre_categoria, P.desc_producto, D.img_producto,
-                        C.nombre_color, T.numero_talla, E.total_existencias
+                        C.nombre_color, T.numero_talla, E.total_existencias, D.precio_producto
                 FROM tb_detalle_productos AS D
                 INNER JOIN tb_productos AS P ON D.id_producto = P.id_producto
                 INNER JOIN tb_colores AS C ON D.id_color = C.id_color
