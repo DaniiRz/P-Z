@@ -1,7 +1,7 @@
 <?php
 // Se incluye la clase del modelo.
 require_once('../../models/data/pedido_data.php');
-
+require_once('../../helpers/validator.php');
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
@@ -25,6 +25,14 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen productos en el carrito';
                 }
                 break;
+            case 'readAllPending':
+                if ($result['dataset'] = $pedido->readAllPending()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen pedidos registrados';
+                }
+                break;
             // Acción para actualizar la cantidad de un producto en el carrito de compras.
             case 'updateDetail':
                 $_POST = Validator::validateForm($_POST);
@@ -40,6 +48,17 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar la cantidad';
                 }
                 break;
+            // Acción para ver los productos de un pedido
+            case 'readDetallePedido':
+                if (!$pedido->setIdPedido($_POST['idPedido'])) {
+                    $result['error'] = $pedido->getDataError();
+                } elseif ($pedido->readDetallePedido()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Ocurrió un problema al obtener los productos del carrito.';
+                }
+                break;
+
             // Acción para remover un producto del carrito de compras.
             case 'deletePedido':
                 if (!$pedido->setIdDetalle($_POST['idDetalle'])) {

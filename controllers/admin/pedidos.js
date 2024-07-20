@@ -22,7 +22,7 @@ const MODAL_DETALLE_PEDIDO = new bootstrap.Modal('#modalDetallePedido'),
 const fillTable = async (form = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
-    let action = form ? 'searchRows' : 'readAll';
+    let action = form ? 'searchRows' : 'readAllPending';
     const DATA = await fetchData(PEDIDOS_API, action, form);
     if (DATA.status) {
         DATA.dataset.forEach(row => {
@@ -81,7 +81,7 @@ const fillTableDetalle = async (idPedido, form = null) => {
         DATA.dataset.forEach(row => {
             TABLE_BODY_DETALLE.innerHTML += `
                 <tr>
-                    <td><img src="${row.img_producto}" class="img-fluid" width="50"></td>
+                    <td><img src="${SERVER_URL}images/productos/${row.img_producto}" alt="Imagen de ${row.img_producto}" height="50"></td>
                     <td>${row.id_talla}</td>
                     <td>${row.id_color}</td>
                     <td>${row.cantidad_producto}</td>

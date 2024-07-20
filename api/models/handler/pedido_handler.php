@@ -89,6 +89,50 @@ class PedidoHandler
         return Database::getRows($sql, $params);
     }
 
+// Método para obtener los productos que se encuentran en el carrito de compras.
+public function readDetallePedido()
+{
+    $sql = 'SELECT 
+                dp.id_detalle, 
+                ddp.img_producto, 
+                ddp.id_talla, 
+                ddp.id_color, 
+                dp.cantidad_producto, 
+                dp.precio_producto
+            FROM 
+                tb_detalle_pedido dp
+            INNER JOIN 
+                tb_detalle_productos ddp ON dp.id_detalle_producto = ddp.id_detalle_producto
+            WHERE 
+                dp.id_pedido = ?';
+    $params = array($_SESSION['idPedido']);
+    return Database::getRows($sql, $params);
+}
+
+    // Método para leer todos los pedidos
+    public function readAll() {
+        // Consulta SQL para obtener los datos necesarios
+        $sql = 'SELECT cl.nombre_cliente, cl.correo_cliente, p.direccion_pedido, p.fecha_pedido, p.estado_pedido, dp.id_detalle
+                FROM tb_pedidos p
+                JOIN tb_clientes cl ON p.id_cliente = cl.id_cliente
+                JOIN tb_detalle_pedido dp ON p.id_pedido = dp.id_pedido;';
+        // Ejecutar la consulta y devolver los resultados
+        return Database::getRows($sql);
+    }
+
+    // Método para leer todos los pedidos pendientes
+public function readAllPending() {
+    // Consulta SQL para obtener los datos necesarios
+    $sql = 'SELECT cl.nombre_cliente, cl.correo_cliente, p.direccion_pedido, p.fecha_pedido, p.estado_pedido, dp.id_detalle
+            FROM tb_pedidos p
+            JOIN tb_clientes cl ON p.id_cliente = cl.id_cliente
+            JOIN tb_detalle_pedido dp ON p.id_pedido = dp.id_pedido
+            WHERE p.estado_pedido = "Pendiente";';
+    
+    // Ejecutar la consulta y devolver los resultados
+    return Database::getRows($sql);
+}
+
     // Método para finalizar un pedido por parte del cliente.
     public function finishOrder()
     {
