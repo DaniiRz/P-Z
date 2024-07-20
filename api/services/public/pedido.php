@@ -45,10 +45,10 @@ if (isset($_GET['action'])) {
                 break;
             
             // Acción para obtener los productos agregados en el carrito de compras.
-            case 'readDetail':
+            case 'readDetallePedido':
                 if (!$pedido->getOrder()) {
                     $result['error'] = 'No ha agregado productos al carrito';
-                } elseif ($result['dataset'] = $pedido->readDetail()) {
+                } elseif ($result['dataset'] = $pedido->readDetallePedido()) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'No existen productos en el carrito';

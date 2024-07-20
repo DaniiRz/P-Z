@@ -9,7 +9,7 @@ const ITEM_FORM = document.getElementById('itemForm');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
-    readDetail();
+    readDetallePedido();
 });
 
 // Método del evento para cuando se envía el formulario de cambiar cantidad de producto.
@@ -23,7 +23,7 @@ ITEM_FORM.addEventListener('submit', async (event) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se actualiza la tabla para visualizar los cambios.
-        readDetail();
+        readDetallePedido();
         // Se cierra la caja de diálogo del formulario.
         ITEM_MODAL.hide();
         // Se muestra un mensaje de éxito.
@@ -38,9 +38,9 @@ ITEM_FORM.addEventListener('submit', async (event) => {
 *   Parámetros: ninguno.
 *   Retorno: ninguno.
 */
-async function readDetail() {
+async function readDetallePedido() {
     // Petición para obtener los datos del pedido en proceso.
-    const DATA = await fetchData(PEDIDO_API, 'readDetail');
+    const DATA = await fetchData(PEDIDO_API, 'readDetallePedido');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se inicializa el cuerpo de la tabla.
@@ -132,7 +132,7 @@ async function openDelete(id) {
         if (DATA.status) {
             await sweetAlert(1, DATA.message, true);
             // Se carga nuevamente la tabla para visualizar los cambios.
-            readDetail();
+            readDetallePedido();
         } else {
             sweetAlert(2, DATA.error, false);
         }
