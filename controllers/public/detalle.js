@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
+
 // Método del evento para cuando se envía el formulario de agregar un producto al carrito.
 SHOPPING_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
