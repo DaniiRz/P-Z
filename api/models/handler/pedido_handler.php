@@ -161,13 +161,15 @@ public function readDetallesPedidoAdmin()
     }
 
     // Método para leer todos los pedidos pendientes
-public function readAllPending() {
-    // Consulta SQL para obtener los datos necesarios
-    $sql = 'SELECT p.id_pedido, cl.nombre_cliente, cl.correo_cliente, p.direccion_pedido, p.fecha_pedido, p.estado_pedido, dp.id_detalle
-            FROM tb_pedidos p
-            JOIN tb_clientes cl ON p.id_cliente = cl.id_cliente
-            JOIN tb_detalle_pedido dp ON p.id_pedido = dp.id_pedido
-            WHERE p.estado_pedido = "Pendiente";';
+    public function readAllPending() {
+    $sql = 'SELECT p.id_pedido, 
+        cl.nombre_cliente, 
+        cl.correo_cliente, 
+        CURRENT_DATE() AS fecha_actual,  
+        p.estado_pedido
+        FROM tb_pedidos p
+        JOIN tb_clientes cl ON p.id_cliente = cl.id_cliente
+        WHERE  p.estado_pedido = "Pendiente"';
     
     // Ejecutar la consulta y devolver los resultados
     return Database::getRows($sql);
