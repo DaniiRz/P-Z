@@ -90,7 +90,16 @@ class PedidoData extends PedidoHandler
             return false;
         }
     }
-
+    public function setEstadoPedido($value)
+    {
+        if (Validator::validateAlphabetic($value)) {
+            $this->estado = $value;
+            return true;
+        } else {
+            $this->data_error = 'El estado es inexistente o invalido';
+            return false;
+        }
+    }
     public function setDireccionPedido($value)
     {
         if (Validator::validateAlphanumeric($value)) {

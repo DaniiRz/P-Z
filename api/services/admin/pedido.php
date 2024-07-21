@@ -57,6 +57,21 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar la cantidad';
                 }
                 break;
+             // Acción para actualizar el estado pedido de un pedido
+             case 'updateDetail':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$pedido->setEstadoPedido($_POST['estadoPedido']) or
+                    !$pedido->setIdPedido($_POST['idPedido'])
+                ) {
+                    $result['error'] = $pedido->getDataError();
+                } elseif ($pedido->updateEstado()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Cantidad modificada correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar la cantidad';
+                }
+                break;
             // Acción para ver los productos de un pedido
             case 'readDetallePedido':
                 if (!$pedido->setIdPedido($_POST['idPedido'])) {

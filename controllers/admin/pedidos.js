@@ -75,6 +75,7 @@ const fillTableDetalle = async (idPedido, form = null) => {
             TABLE_BODY_DETALLE.innerHTML += `
                 <tr>
                     <td><img src="${SERVER_URL}images/productos/${row.img_producto}" alt="Imagen de ${row.img_producto}" height="50"></td>
+                    <td>${row.nombre_producto}</td>
                     <td>${row.id_talla}</td>
                     <td>${row.id_color}</td>
                     <td>${row.cantidad_producto}</td>

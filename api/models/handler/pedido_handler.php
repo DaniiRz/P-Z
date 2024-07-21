@@ -176,7 +176,13 @@ public function readDetallesPedidoAdmin()
     return Database::getRows($sql);
 }
 
-
+    // Método para actualizar el estado pedido de un pedido
+    public function updateEstado()
+    {
+        $sql = 'UPDATE tb_pedidos SET estado_pedido = ? WHERE id_pedido = ?';
+        $params = array($this->estado, $this->id_pedido);
+        return Database::executeRow($sql, $params);
+    }
 
     // Método para finalizar un pedido por parte del cliente.
     public function finishOrder()
