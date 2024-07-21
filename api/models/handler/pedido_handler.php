@@ -31,41 +31,49 @@ class PedidoHandler
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
     */
-    // Método para verificar si existe un pedido en proceso con el fin de iniciar o continuar una compra.
-    public function getOrder()
-    {
-        $this->estado = 'Pendiente';
-        $sql = 'SELECT id_pedido
-                FROM tb_pedidos
-                WHERE estado_pedido = ? AND id_cliente = ?';
-        $params = array($this->estado, $_SESSION['idCliente']);
-        if ($data = Database::getRow($sql, $params)) {
-            $_SESSION['idPedido'] = $data['id_pedido'];
+// Método para verificar si existe un pedido en proceso con el fin de iniciar o continuar una compra.
+public function getOrder()
+{
+    $this->estado = 'Pendiente';
+    $sql = 'SELECT id_pedido
+            FROM tb_pedidos
+            WHERE estado_pedido = ? AND id_cliente = ?';
+    $params = array($this->estado, $_SESSION['idCliente']);
+    
+    if ($data = Database::getRow($sql, $params)) {
+        $_SESSION['idPedido'] = $data['id_pedido'];
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Método para iniciar un pedido en proceso.
+// Ejemplo del método startOrder
+public function startOrder()
+{
+    if ($this->getOrder()) {
+        return true;
+    } else {
+        // Debug: Verificar valor de direccion_pedido
+        error_log("Direccion Pedido: " . $this->direccion_pedido);
+
+        // Se realiza la inserción del pedido al carrito 
+        $sql = 'INSERT INTO tb_pedidos(direccion_pedido, id_cliente) VALUES(?, ?)';
+        $this->direccion_pedido = 'Pendiente'; // Asegúrate de que este valor sea correcto y no el id del cliente
+        $params = array($this->direccion_pedido, $_SESSION['idCliente']);
+        
+        // Ejecutar la inserción
+        if (Database::executeRow($sql, $params)) {
+            // Obtener el último valor insertado de la llave primaria en la tabla pedido.
+            $_SESSION['idPedido'] = Database::getLastRow($sql, $params);
             return true;
         } else {
             return false;
         }
     }
+}
 
-    // Método para iniciar un pedido en proceso.
-    public function startOrder()
-    {
-        if ($this->getOrder()) {
-            return true;
-        } else {
-            //se realiza la insercion del pedido al carrito 
-            $sql = 'INSERT INTO tb_pedidos(direccion_pedido, id_cliente)
-                    VALUES((SELECT id_cliente FROM tb_clientes WHERE id_cliente = ?), ?)';
-            $params = array($_SESSION['idCliente'], $_SESSION['idCliente']);
-            // Se obtiene el ultimo valor insertado de la llave primaria en la tabla pedido.
-            if ($_SESSION['idPedido'] = Database::getLastRow($sql, $params)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
-    
 
    // Método para agregar un producto al carrito de compras.
     public function createDetail()
@@ -113,6 +121,34 @@ public function readDetallePedido()
     return Database::getRows($sql, $params);
 }
 
+
+// Método para obtener los productos que se encuentran en el pedido.
+// Método para obtener los productos que se encuentran en el pedido.
+public function readDetallesPedidoAdmin()
+{
+    $sql = 'SELECT 
+        dp.id_detalle, 
+        ddp.img_producto, 
+        ddp.id_talla, 
+        ddp.id_color, 
+        dp.cantidad_producto, 
+        dp.precio_producto,
+        p.nombre_producto,
+        pe.estado_pedido
+    FROM 
+        tb_detalle_pedido dp
+    INNER JOIN 
+        tb_detalle_productos ddp ON dp.id_detalle_producto = ddp.id_detalle_producto
+    INNER JOIN
+        tb_productos p ON ddp.id_producto = p.id_producto
+    INNER JOIN
+        tb_pedidos pe ON dp.id_pedido = pe.id_pedido
+    WHERE 
+        dp.id_pedido = ?';
+    $params = array($this->id_pedido);
+    return Database::getRows($sql, $params);
+}
+
     // Método para leer todos los pedidos
     public function readAll() {
         // Consulta SQL para obtener los datos necesarios
@@ -127,7 +163,7 @@ public function readDetallePedido()
     // Método para leer todos los pedidos pendientes
 public function readAllPending() {
     // Consulta SQL para obtener los datos necesarios
-    $sql = 'SELECT cl.nombre_cliente, cl.correo_cliente, p.direccion_pedido, p.fecha_pedido, p.estado_pedido, dp.id_detalle
+    $sql = 'SELECT p.id_pedido, cl.nombre_cliente, cl.correo_cliente, p.direccion_pedido, p.fecha_pedido, p.estado_pedido, dp.id_detalle
             FROM tb_pedidos p
             JOIN tb_clientes cl ON p.id_cliente = cl.id_cliente
             JOIN tb_detalle_pedido dp ON p.id_pedido = dp.id_pedido
@@ -136,6 +172,8 @@ public function readAllPending() {
     // Ejecutar la consulta y devolver los resultados
     return Database::getRows($sql);
 }
+
+
 
     // Método para finalizar un pedido por parte del cliente.
     public function finishOrder()

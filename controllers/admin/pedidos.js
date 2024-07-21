@@ -1,24 +1,37 @@
 const PEDIDOS_API = 'services/admin/pedido.php';
 const DETALLES_PEDIDOS_API = 'services/admin/detallePedido.php';
-const ESTADOS_API = 'services/admin/estados_pedidos.php';
 
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('searchForm');
+const SEARCH_FORM_DETALLE = document.getElementById('searchFormDetallePedido');
+
 // Constantes para establecer los elementos de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
       ROWS_FOUND = document.getElementById('rowsFound');
-
-// Constantes para establecer los elementos de la tabla.
-const  TABLE_BODY_DETALLE = document.getElementById('tableBodyD'),
-ROWS_FOUND_DETALLE = document.getElementById('rowsFoundD');
+const TABLE_BODY_DETALLE = document.getElementById('tableBodyD'),
+      ROWS_FOUND_DETALLE = document.getElementById('rowsFoundD');
 
 // Constantes para establecer los elementos del modal de detalle pedido.
 const MODAL_DETALLE_PEDIDO = new bootstrap.Modal('#modalDetallePedido'),
       MODAL_TITLE_DETALLE_PEDIDO = document.getElementById('modalTitleD'),
-      SEARCH_FORM_DETALLE = document.getElementById('searchFormDetallePedido'),
+      ID_PEDIDO = document.getElementById('idPedido'),
+      ID_DETALLE_PEDIDO = document.getElementById('idPedidoDetalle'),
       ESTADO_PEDIDO = document.getElementById('estadoPedido');
 
-// Método para llenar la tabla de pedidos.
+// Métodos de búsqueda.
+SEARCH_FORM.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const FORM = new FormData(SEARCH_FORM);
+    fillTable(FORM);
+});
+
+SEARCH_FORM_DETALLE.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const FORM = new FormData(SEARCH_FORM_DETALLE);
+    fillTableDetalle(FORM);
+});
+
+// Métodos para llenar las tablas.
 const fillTable = async (form = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
@@ -51,33 +64,10 @@ const fillTable = async (form = null) => {
     }
 }
 
-// Evento para buscar pedidos.
-SEARCH_FORM.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const FORM = new FormData(SEARCH_FORM);
-    fillTable(FORM);
-});
-
-// Método para abrir el modal de detalles del pedido.
-const openDetalle = async (id) => {
-    MODAL_TITLE_DETALLE_PEDIDO.textContent = 'Detalles del pedido';
-    const FORM = new FormData();
-    FORM.append('idPedido', id);
-    const DATA = await fetchData(PEDIDOS_API, 'readOne', FORM);
-    if (DATA.status) {
-        MODAL_DETALLE_PEDIDO.show();
-        fillTableDetalle(id);
-        fillSelect(ESTADOS_API, 'readAll', 'estadoPedido', row.estado_pedido);
-    } else {
-        sweetAlert(4, DATA.error, true);
-    }
-}
-
-// Método para llenar la tabla de detalles del pedido.
 const fillTableDetalle = async (idPedido, form = null) => {
     ROWS_FOUND_DETALLE.textContent = '';
     TABLE_BODY_DETALLE.innerHTML = '';
-    let action = form ? 'searchRowsDetalle' : 'readDetallePedido';
+    let action = form ? 'searchRowsDetalle' : 'readDetallesPedidoAdmin';
     const FORM = new FormData();
     FORM.append('idPedido', idPedido);
     const DATA = await fetchData(PEDIDOS_API, action, FORM);
@@ -103,28 +93,22 @@ const fillTableDetalle = async (idPedido, form = null) => {
     }
 }
 
-// Evento para buscar detalles del pedido.
-SEARCH_FORM_DETALLE.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const FORM = new FormData(SEARCH_FORM_DETALLE);
-    fillTableDetalle(FORM);
-});
-
-// Método para actualizar el estado del pedido.
-ESTADO_PEDIDO.addEventListener('change', async () => {
+// Métodos para abrir los modals.
+const openDetalle = async (id) => {
+    MODAL_TITLE_DETALLE_PEDIDO.textContent = 'Detalles del pedido';
     const FORM = new FormData();
-    FORM.append('idPedido', ID_PEDIDO.value);
-    FORM.append('estadoPedido', ESTADO_PEDIDO.value);
-    const DATA = await fetchData(PEDIDOS_API, 'updateEstado', FORM);
+    FORM.append('idPedido', id);
+    const DATA = await fetchData(PEDIDOS_API, 'readOne', FORM);
     if (DATA.status) {
-        sweetAlert(1, DATA.message, true);
-        fillTable();
+        const row = DATA.dataset;
+        MODAL_DETALLE_PEDIDO.show();
+        fillTableDetalle(id);
+        fillSelectEstados(row.estado_pedido);
     } else {
-        sweetAlert(2, DATA.error, false);
+        sweetAlert(4, DATA.error, true);
     }
-});
+}
 
-// Método para abrir el formulario de edición de un pedido.
 const openUpdate = async (id) => {
     const FORM = new FormData();
     FORM.append('idPedido', id);
@@ -139,27 +123,10 @@ const openUpdate = async (id) => {
     }
 }
 
-// Método para eliminar un pedido.
-const openDelete = async (id) => {
-    const RESPONSE = await confirmAction('¿Desea eliminar el pedido de forma permanente?');
-    if (RESPONSE) {
-        const FORM = new FormData();
-        FORM.append('idPedido', id);
-        const DATA = await fetchData(PEDIDOS_API, 'deleteRow', FORM);
-        if (DATA.status) {
-            sweetAlert(1, DATA.message, true);
-            fillTable();
-        } else {
-            sweetAlert(2, DATA.error, false);
-        }
-    }
-}
-
-// Método para abrir el formulario de edición de un detalle del pedido.
 const openUpdateDetalle = async (id) => {
     const FORM = new FormData();
     FORM.append('idDetalle', id);
-    const DATA = await fetchData(PEDIDOS_API, 'readOneDetalle', FORM);
+    const DATA = await fetchData(DETALLES_PEDIDOS_API, 'readOneDetalle', FORM);
     if (DATA.status) {
         const ROW = DATA.dataset;
         document.getElementById('idDetalle').value = ROW.id_detalle;
@@ -171,13 +138,27 @@ const openUpdateDetalle = async (id) => {
     }
 }
 
-// Método para eliminar un detalle del pedido.
+// Métodos para actualizar datos.
+ESTADO_PEDIDO.addEventListener('change', async () => {
+    const FORM = new FormData();
+    FORM.append('idPedido', document.getElementById('idPedido').value);
+    FORM.append('estadoPedido', ESTADO_PEDIDO.value);
+    const DATA = await fetchData(PEDIDOS_API, 'updateEstado', FORM);
+    if (DATA.status) {
+        sweetAlert(1, DATA.message, true);
+        fillTable();
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+});
+
+// Métodos para eliminar datos.
 const openDeleteDetalle = async (id) => {
     const RESPONSE = await confirmAction('¿Desea eliminar el detalle del pedido de forma permanente?');
     if (RESPONSE) {
         const FORM = new FormData();
         FORM.append('idDetalle', id);
-        const DATA = await fetchData(PEDIDOS_API, 'deleteRowDetalle', FORM);
+        const DATA = await fetchData(DETALLES_PEDIDOS_API, 'deleteRowDetalle', FORM);
         if (DATA.status) {
             sweetAlert(1, DATA.message, true);
             fillTableDetalle(FORM.get('idPedido'));
@@ -191,3 +172,18 @@ const openDeleteDetalle = async (id) => {
 document.addEventListener('DOMContentLoaded', () => {
     fillTable();
 });
+
+// Método para llenar el select de estados de pedido
+const fillSelectEstados = (estadoActual) => {
+    const estados = ['Pendiente', 'Finalizado', 'Entregado', 'Anulado'];
+    ESTADO_PEDIDO.innerHTML = '';
+    estados.forEach(estado => {
+        const option = document.createElement('option');
+        option.value = estado;
+        option.textContent = estado;
+        if (estado === estadoActual) {
+            option.selected = true;
+        }
+        ESTADO_PEDIDO.appendChild(option);
+    });
+}
