@@ -66,7 +66,7 @@ const fillTable = async (form = null) => {
 const fillTableDetalle = async (idPedido, form = null) => {
     ROWS_FOUND_DETALLE.textContent = '';
     TABLE_BODY_DETALLE.innerHTML = '';
-    let action = form ? 'searchRowsDetalle' : 'readDetallesPedidoAdmin';
+    let action = form ? 'searchRowsDetalle' : 'readOne';
     const FORM = new FormData();
     FORM.append('idPedido', idPedido);
     const DATA = await fetchData(PEDIDOS_API, action, FORM);

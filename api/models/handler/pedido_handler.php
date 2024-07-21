@@ -134,7 +134,8 @@ public function readDetallesPedidoAdmin()
         dp.cantidad_producto, 
         dp.precio_producto,
         p.nombre_producto,
-        pe.estado_pedido
+        pe.estado_pedido,
+        pe.id_pedido
     FROM 
         tb_detalle_pedido dp
     INNER JOIN 
