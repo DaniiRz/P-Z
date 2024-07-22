@@ -121,4 +121,14 @@ class ProductoHandler
     return Database::getRows($sql);
 }
 
+public function productosConCategoriaYDescripcion()
+{
+    $sql = 'SELECT P.nombre_producto, C.nombre_categoria, P.desc_producto
+            FROM tb_productos AS P
+            INNER JOIN tb_categorias AS C ON P.id_categoria = C.id_categoria';
+    return Database::getRows($sql);
+}
+
+
+
 }
