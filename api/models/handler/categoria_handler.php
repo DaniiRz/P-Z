@@ -104,4 +104,23 @@ class CategoriaHandler
         $params = array($this->id);
         return Database::getRows($sql, $params);
     }
+    
+    public function readProductosPorCategoria()
+{
+    $sql = 'SELECT 
+                C.nombre_categoria, 
+                COUNT(P.id_producto) AS cantidad_productos
+            FROM 
+                tb_categorias AS C
+            LEFT JOIN 
+                tb_productos AS P 
+            ON 
+                C.id_categoria = P.id_categoria
+            GROUP BY 
+                C.nombre_categoria
+            ORDER BY 
+                cantidad_productos DESC';
+    return Database::getRows($sql);
+}
+
 }

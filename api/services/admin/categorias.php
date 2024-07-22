@@ -108,6 +108,13 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen productos en esta categoria';
                 }
                 break;
+                case 'readProductosPorCategoria':
+                    if ($result['dataset'] = $categoria->readProductosPorCategoria()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'No existen productos para mostrar';
+                    }
+                    break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
