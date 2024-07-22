@@ -19,7 +19,7 @@ if ($dataPedido = $pedido->readDetallePedido()) {
     // Se imprimen las celdas con los encabezados.
     $pdf->cell(60, 10, 'Nombre Producto', 1, 0, 'C', 1);
     $pdf->cell(60, 10, 'Cantidad', 1, 0, 'C', 1);
-    $pdf->cell(60, 10, 'Precio (US$)', 1, 1, 'C', 1);
+    $pdf->cell(60, 10, 'Precio Total (US$)', 1, 1, 'C', 1);
 
     // Se establece la fuente para los datos de los carrito.
     $pdf->setFont('Arial', '', 11);
