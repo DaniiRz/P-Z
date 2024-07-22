@@ -158,20 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fillTable();
 });
 
-// Método para llenar el select de estados de pedido
-const fillSelectEstados = (estadoActual) => {
-    const estados = ['Pendiente', 'Cancelado', 'Entregado', 'Anulado'];
-    ESTADO_PEDIDO.innerHTML = '';
-    estados.forEach(estado => {
-        const option = document.createElement('option');
-        option.value = estado;
-        option.textContent = estado;
-        if (estado === estadoActual) {
-            option.selected = true;
-        }
-        ESTADO_PEDIDO.appendChild(option);
-    });
-}
 
 /*Funcion para abrir un reporte automatico de pedidos 
 Parametros: ninguno 
