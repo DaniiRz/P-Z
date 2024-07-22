@@ -76,15 +76,20 @@ public function startOrder()
 
 
    // Método para agregar un producto al carrito de compras.
-    public function createDetail()
-    {
-        // Se realiza una subconsulta para obtener el precio del producto.
-        $sql = 'INSERT INTO tb_detalle_pedido (id_detalle_producto, precio_producto, cantidad_producto, id_pedido)
-            VALUES ((SELECT id_detalle_producto FROM tb_detalle_productos WHERE id_color = ? AND id_talla = ?),
-            (SELECT precio_producto FROM tb_detalle_productos WHERE id_color = ? AND id_talla = ?), ?, ?)'; //se obtiene el precio de la tabla productos
-        $params = array($this->color, $this->talla, $this->color, $this->talla, $this->cantidad, $_SESSION['idPedido']);
-        return Database::executeRow($sql, $params);
-    }
+public function createDetail()
+{
+       // Consulta SQL para insertar un detalle del pedido
+    $sql = 'INSERT INTO tb_detalle_pedido (id_detalle_producto, precio_producto, cantidad_producto, id_pedido)
+            VALUES (
+                (SELECT id_detalle_producto FROM tb_detalle_productos WHERE id_color = ? AND id_talla = ? LIMIT 1),
+                (SELECT precio_producto FROM tb_detalle_productos WHERE id_color = ? AND id_talla = ? LIMIT 1),
+                ?, ?
+            )';
+       // Parámetros para la consulta
+    $params = array($this->color, $this->talla, $this->color, $this->talla, $this->cantidad, $_SESSION['idPedido']);
+       // Ejecuta la consulta y retorna el resultado
+    return Database::executeRow($sql, $params);
+}
 
     // Método para obtener los productos que se encuentran en el carrito de compras.
     //public function readDetail()
