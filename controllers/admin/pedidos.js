@@ -74,10 +74,6 @@ const fillTableDetalle = async (idPedido, form = null) => {
                     <td>${row.nombre_color}</td>
                     <td>${row.cantidad_producto}</td>
                     <td>${row.precio_producto}</td>
-                    <td>
-                        <button type="button" class="btn btn-primary" onclick="openUpdateDetalle(${row.id_detalle})">Editar</button>
-                        <button type="button" class="btn btn-danger" onclick="openDeleteDetalle(${row.id_detalle})">Eliminar</button>
-                    </td>
                 </tr>
             `;
         });
