@@ -17,7 +17,7 @@ if ($dataPedido = $pedido->readDetallePedido()) {
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Arial', 'B', 11); 
     // Se imprimen las celdas con los encabezados.
-    $pdf->cell(60, 10, $pdf->encodeString('Nombre Producto'), 1, 0, 'C', 1);
+    $pdf->cell(60, 10, 'Nombre Producto', 1, 0, 'C', 1);
     $pdf->cell(60, 10, 'Cantidad', 1, 0, 'C', 1);
     $pdf->cell(60, 10, 'Precio (US$)', 1, 1, 'C', 1);
 
@@ -27,7 +27,7 @@ if ($dataPedido = $pedido->readDetallePedido()) {
     // Se recorren los registros fila por fila.
     foreach ($dataPedido as $rowPedido) {
         // Se imprimen las celdas con los datos del carrito
-        $pdf->cell(60,10, $rowPedido['nombre_producto'], 1, 0); 
+        $pdf->cell(60,10, $pdf->encodeString($rowPedido['nombre_producto']), 1, 0); 
         $pdf->cell(60,10, $rowPedido['cantidad_producto'], 1, 0); 
         $pdf->cell(60,10, $rowPedido['precio_producto'], 1, 1); 
     }
