@@ -33,6 +33,14 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen pedidos registrados';
                 }
             break;
+            case 'readAll':
+                if ($result['dataset'] = $pedido->readAll()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen pedidos registrados';
+                }
+            break;
             case 'readOne':
                 if (!$pedido->setIdPedido($_POST['idPedido'])) {
                         $result['error'] = $pedido->getDataError();

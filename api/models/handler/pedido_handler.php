@@ -156,10 +156,14 @@ public function readDetallesPedidoAdmin()
     // Método para leer todos los pedidos
     public function readAll() {
         // Consulta SQL para obtener los datos necesarios
-        $sql = 'SELECT cl.nombre_cliente, cl.correo_cliente, p.direccion_pedido, p.fecha_pedido, p.estado_pedido, dp.id_detalle
-                FROM tb_pedidos p
-                JOIN tb_clientes cl ON p.id_cliente = cl.id_cliente
-                JOIN tb_detalle_pedido dp ON p.id_pedido = dp.id_pedido;';
+        $sql = 'SELECT p.id_pedido, 
+        cl.nombre_cliente, 
+        cl.correo_cliente,
+        p.direccion_pedido,
+        CURRENT_DATE() AS fecha_actual, 
+        p.estado_pedido
+        FROM tb_pedidos p
+        JOIN tb_clientes cl ON p.id_cliente = cl.id_cliente';
         // Ejecutar la consulta y devolver los resultados
         return Database::getRows($sql);
     }
@@ -180,6 +184,8 @@ public function readDetallesPedidoAdmin()
     return Database::getRows($sql);
 }
 
+
+
     // Método para actualizar el estado pedido de un pedido
     public function updateEstado()
     {
@@ -191,7 +197,7 @@ public function readDetallesPedidoAdmin()
     // Método para finalizar un pedido por parte del cliente.
     public function finishOrder()
     {
-        $this->estado = 'Finalizado';
+        $this->estado = 'Completado';
         $sql = 'UPDATE tb_pedidos
                 SET estado_pedido = ?
                 WHERE id_pedido = ?';

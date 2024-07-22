@@ -36,7 +36,7 @@ SEARCH_FORM_DETALLE.addEventListener('submit', (event) => {
 const fillTable = async (form = null) => {
     ROWS_FOUND.textContent = '';
     TABLE_BODY.innerHTML = '';
-    let action = form ? 'searchRows' : 'readAllPending';
+    let action = form ? 'searchRows' : 'readAll';
     const DATA = await fetchData(PEDIDOS_API, action, form);
     if (DATA.status) {
         DATA.dataset.forEach(row => {
@@ -95,28 +95,33 @@ const openDetalle = async (id) => {
     const DATA = await fetchData(PEDIDOS_API, 'readOne', FORM);
     if (DATA.status) {
         const row = DATA.dataset;
+        ID_PEDIDO.value = id
+        
+        console.log(ID_PEDIDO.value)
         MODAL_DETALLE_PEDIDO.show();
         fillTableDetalle(id);
         fillSelectEstados(row.estado_pedido);
+
+
     } else {
         sweetAlert(4, DATA.error, true);
     }
 }
 
-const openUpdate = async (id) => {
-    const FORM = new FormData();
-    FORM.append('idPedido', id);
-    const DATA = await fetchData(PEDIDOS_API, 'readOne', FORM);
-    if (DATA.status) {
-        const ROW = DATA.dataset;
-        document.getElementById('idPedido').value = ROW.id_pedido;
-        document.getElementById('estadoPedido').value = ROW.estado_pedido;
-        MODAL_DETALLE_PEDIDO.show();
-    } else {
-        sweetAlert(4, DATA.error, true);
-    }
+// Método para llenar el select de estados de pedido
+const fillSelectEstados = (estadoActual) => {
+    const estados = ['Pendiente', 'Cancelado', 'Completado', 'Anulado'];
+    ESTADO_PEDIDO.innerHTML = '';
+    estados.forEach(estado => {
+        const option = document.createElement('option');
+        option.value = estado;
+        option.textContent = estado;
+        if (estado === estadoActual) {
+            option.selected = true;
+        }
+        ESTADO_PEDIDO.appendChild(option);
+    });
 }
-
 
 // Métodos para actualizar datos.
 ESTADO_PEDIDO.addEventListener('change', async () => {
@@ -153,17 +158,3 @@ document.addEventListener('DOMContentLoaded', () => {
     fillTable();
 });
 
-// Método para llenar el select de estados de pedido
-const fillSelectEstados = (estadoActual) => {
-    const estados = ['Pendiente', 'Cancelado', 'Entregado', 'Anulado'];
-    ESTADO_PEDIDO.innerHTML = '';
-    estados.forEach(estado => {
-        const option = document.createElement('option');
-        option.value = estado;
-        option.textContent = estado;
-        if (estado === estadoActual) {
-            option.selected = true;
-        }
-        ESTADO_PEDIDO.appendChild(option);
-    });
-}
