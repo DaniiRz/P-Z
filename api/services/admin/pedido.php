@@ -67,7 +67,7 @@ if (isset($_GET['action'])) {
                 break;
                 
              // Acción para actualizar el estado pedido de un pedido
-             case 'updateEstado':
+            case 'updateEstado':
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$pedido->setEstadoPedido($_POST['estadoPedido']) or

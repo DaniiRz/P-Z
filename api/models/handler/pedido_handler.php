@@ -59,9 +59,10 @@ public function startOrder()
       //  error_log("Direccion Pedido: " . $this->direccion_pedido);
 
         // Se realiza la inserción del pedido al carrito 
-        $sql = 'INSERT INTO tb_pedidos(direccion_pedido, id_cliente) VALUES(?, ?)';
-        $this->direccion_pedido = 'En confirmación...'; // Asegúrate de que este valor sea correcto y no el id del cliente
-        $params = array($this->direccion_pedido, $_SESSION['idCliente']);
+        $sql = 'INSERT INTO tb_pedidos(direccion_pedido, estado_pedido, id_cliente) VALUES(?, ?, ?)';
+        $this->direccion_pedido = 'En confirmación...';
+        $this->estado = 'Pendiente';
+        $params = array($this->direccion_pedido,$this->estado, $_SESSION['idCliente']);
         
         // Ejecutar la inserción
         
