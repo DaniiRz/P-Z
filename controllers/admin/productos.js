@@ -201,3 +201,10 @@ const openDelete = async (id) => {
         }
     }
 }
+
+const openReport = () => {
+    // Se define la ruta del reporte basado en el tipo de reporte.
+    const PATH = new URL(`${SERVER_URL}reports/admin/productos.php`);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
+};
