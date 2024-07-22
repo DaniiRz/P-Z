@@ -40,7 +40,8 @@ CREATE TABLE `tb_categorias` (
   `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_categoria` varchar(255) NOT NULL,
   `imagen_categoria` varchar(25) NOT NULL,
-  PRIMARY KEY (`id_categoria`)
+  PRIMARY KEY (`id_categoria`),
+  UNIQUE KEY `unique_nombre_categoria` (`nombre_categoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -99,7 +100,8 @@ DROP TABLE IF EXISTS `tb_colores`;
 CREATE TABLE `tb_colores` (
   `id_color` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_color` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id_color`)
+  PRIMARY KEY (`id_color`),
+  UNIQUE KEY `unique_nombre_color` (`nombre_color`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -126,6 +128,7 @@ CREATE TABLE `tb_productos` (
   `fecha_registro_produc` datetime DEFAULT NULL,
   `id_categoria` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_producto`),
+  UNIQUE KEY `unique_nombre_producto` (`nombre_producto`),
   KEY `fk_id_producto_id_categoria` (`id_categoria`),
   CONSTRAINT `fk_id_producto_id_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `tb_categorias` (`id_categoria`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -178,7 +181,8 @@ DROP TABLE IF EXISTS `tb_tallas`;
 CREATE TABLE `tb_tallas` (
   `id_talla` int(11) NOT NULL AUTO_INCREMENT,
   `numero_talla` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id_talla`)
+  PRIMARY KEY (`id_talla`),
+  UNIQUE KEY `unique_numero_talla` (`numero_talla`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -353,7 +357,8 @@ VALUES (50, '66560f818bd86.png', 1, 1, 1, 49.99),
 INSERT INTO tb_pedidos (fecha_pedido, estado_pedido, direccion_pedido, id_cliente)
 VALUES ('2024-06-01 10:00:00', 'Pendiente', 'Calle Principal 123', NULL),
        ('2024-06-02 11:00:00', 'Cancelado', 'Avenida Central 456', NULL),
-       ('2024-06-03 12:00:00', 'Entregado', 'Boulevard Norte 789', NULL);
+       ('2024-06-03 12:00:00', 'Entregado', 'Boulevard Norte 789', NULL),
+       ('2024-06-06 12:00:00', 'Anulado', 'Boulevard Norte 769', NULL);
 
 
 
@@ -389,9 +394,6 @@ SELECT * FROM tb_pedidos;
 SELECT * FROM tb_productos;
 SELECT * FROM tb_tallas;
 SELECT * FROM tb_valoracion;
-
-
-
 
 
 
