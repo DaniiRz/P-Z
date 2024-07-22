@@ -7,16 +7,17 @@ const SEARCH_FORM_DETALLE = document.getElementById('searchFormDetallePedido');
 
 // Constantes para establecer los elementos de la tabla.
 const TABLE_BODY = document.getElementById('tableBody'),
-      ROWS_FOUND = document.getElementById('rowsFound');
+    ROWS_FOUND = document.getElementById('rowsFound');
 const TABLE_BODY_DETALLE = document.getElementById('tableBodyD'),
-      ROWS_FOUND_DETALLE = document.getElementById('rowsFoundD');
+    ROWS_FOUND_DETALLE = document.getElementById('rowsFoundD');
 
 // Constantes para establecer los elementos del modal de detalle pedido.
 const MODAL_DETALLE_PEDIDO = new bootstrap.Modal('#modalDetallePedido'),
-      MODAL_TITLE_DETALLE_PEDIDO = document.getElementById('modalTitleD'),
-      ID_PEDIDO = document.getElementById('idPedido'),
-      ID_DETALLE_PEDIDO = document.getElementById('idPedidoDetalle'),
-      ESTADO_PEDIDO = document.getElementById('estadoPedido');
+    MODAL_TITLE_DETALLE_PEDIDO = document.getElementById('modalTitleD');
+
+const SAVE_FORM = document.getElementById('saveForm'),
+    ID_PEDIDO = document.getElementById('idPedido'),
+    ESTADO_PEDIDO = document.getElementById('estadoPedido');
 
 // Métodos de búsqueda.
 SEARCH_FORM.addEventListener('submit', (event) => {
@@ -123,20 +124,6 @@ const openUpdate = async (id) => {
     }
 }
 
-const openUpdateDetalle = async (id) => {
-    const FORM = new FormData();
-    FORM.append('idDetalle', id);
-    const DATA = await fetchData(DETALLES_PEDIDOS_API, 'readOneDetalle', FORM);
-    if (DATA.status) {
-        const ROW = DATA.dataset;
-        document.getElementById('idDetalle').value = ROW.id_detalle;
-        document.getElementById('cantidadProducto').value = ROW.cantidad_producto;
-        document.getElementById('precioProducto').value = ROW.precio_producto;
-        MODAL_DETALLE_PEDIDO.show();
-    } else {
-        sweetAlert(4, DATA.error, true);
-    }
-}
 
 // Métodos para actualizar datos.
 ESTADO_PEDIDO.addEventListener('change', async () => {

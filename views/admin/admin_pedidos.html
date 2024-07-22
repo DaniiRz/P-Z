@@ -42,11 +42,13 @@
             <form id="searchForm">
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <input type="search" class="form-control" id="search" name="search" placeholder="Buscar" required>
+                        <input type="search" class="form-control" id="search" name="search" placeholder="Buscar"
+                            required>
                     </div>
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-success"><i class="fas fa-search"></i></button>
-                        <button type="reset" class="btn btn-secondary" onclick="fillTable()"><i class="fas fa-times-circle"></i></button>
+                        <button type="reset" class="btn btn-secondary" onclick="fillTable()"><i
+                                class="fas fa-times-circle"></i></button>
                     </div>
                 </div>
             </form>
@@ -76,59 +78,72 @@
             </div>
         </div>
 
-        <!-- Modal de tabla de detalle pedido -->
-        <div class="modal fade" id="modalDetallePedido" data-bs-backdrop="static" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-                <div class="modal-content">
-                    <!-- Body del modal -->
-                    <div class="modal-body">
-                        <button type="button" class="btn-close btn-danger" aria-label="Close" data-bs-dismiss="modal"></button>
-                        <h1 class="fs-4 text-center mb-4" id="modalTitleD"></h1>
-                        <form id="searchFormDetallePedido">
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <input type="search" class="form-control" name="searchDetalle" placeholder="Buscar" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <button type="submit" class="btn btn-success"><i class="fas fa-search"></i></button>
-                                    <div class="col-12 mb-3">
-                                        <label for="estadoPedido" class="form-label">Modificar estado del pedido</label>
-                                        <select id="estadoPedido" name="estadoPedido" class="form-select"></select>
-                                    </div>
-                                </div>
-                                <!-- Input oculto para almacenar el idPedido -->
-                                <input type="" id="idPedidoDetalle" name="idPedidoDetalle">
-                                <input type="" id="idPedido" name="idPedido">
-                            </div>
-                        </form>
+<!-- Modal de tabla de detalle pedido -->
+<div class="modal fade" id="modalDetallePedido" data-bs-backdrop="static" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <!-- Body del modal -->
+            <div class="modal-body">
+                <button type="button" class="btn-close btn-danger" aria-label="Close" data-bs-dismiss="modal"></button>
+                <h1 class="fs-4 text-center mb-4" id="modalTitleD"></h1>
 
-                        <!-- Tabla para mostrar el detalle del pedido agregado -->
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <!-- Cabeza de la tabla -->
-                                <thead>
-                                    <tr>
-                                        <td colspan="7" id="rowsFoundD"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Imagen</th>
-                                        <th>Nombre producto</th>
-                                        <th>Talla</th>
-                                        <th>Color</th>
-                                        <th>Cantidad</th>
-                                        <th>Precio</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <!-- Cuerpo de la tabla -->
-                                <tbody id="tableBodyD">
-                                    <!-- Aquí se llenarán dinámicamente las filas de la tabla -->
-                                </tbody>
-                            </table>
+                <!-- Formulario de búsqueda -->
+                <form id="searchFormDetallePedido" class="mb-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="search" class="form-control" name="searchDetalle" placeholder="Buscar" required>
                         </div>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <button type="submit" class="btn btn-success me-2"><i class="fas fa-search"></i></button>
+                            <button type="reset" class="btn btn-secondary" onclick="fillTable()"><i class="fas fa-times-circle"></i></button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Formulario para modificar el estado del pedido -->
+                <form id="saveForm" class="mb-3">
+                    <!-- Input oculto para almacenar el idPedido -->
+                    <input type="hidden" id="idPedido" name="idPedido">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="estadoPedido" class="form-label">Modificar estado del pedido</label>
+                            <select id="estadoPedido" name="estadoPedido" class="form-select">
+                                <!-- Opciones del select se llenarán dinámicamente -->
+                            </select>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Guardar</button>
+                        </div>
+                    </div>
+                </form>
+
+                    <!-- Tabla para mostrar el detalle del pedido agregado -->
+                    <div class="table-responsive mt-3">
+                        <table class="table table-hover">
+                            <!-- Cabeza de la tabla -->
+                            <thead>
+                                <tr>
+                                    <td colspan="7" id="rowsFoundD"></td>
+                                </tr>
+                                <tr>
+                                    <th>Imagen</th>
+                                    <th>Nombre producto</th>
+                                    <th>Talla</th>
+                                    <th>Color</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <!-- Cuerpo de la tabla -->
+                            <tbody id="tableBodyD">
+                                <!-- Aquí se llenarán dinámicamente las filas de la tabla -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
     </main>
