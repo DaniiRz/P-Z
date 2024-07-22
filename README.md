@@ -6,4 +6,4 @@ INTEGRANTES
 
 -Daniela Alexandra Ramirez Chàvez
 
--Jhonny 
+-Jhonny Alejandro Amaya Perez
