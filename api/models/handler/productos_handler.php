@@ -110,4 +110,15 @@ class ProductoHandler
         $params = array($this->idcategoria);
         return Database::getRows($sql, $params);
     }
+
+    public function topProductosConMasExistencias()
+{
+    $sql = 'SELECT P.nombre_producto, DP.existencias, DP.img_producto, DP.precio_producto
+            FROM tb_detalle_productos AS DP
+            INNER JOIN tb_productos AS P ON DP.id_producto = P.id_producto
+            ORDER BY DP.existencias DESC
+            LIMIT 5';
+    return Database::getRows($sql);
+}
+
 }

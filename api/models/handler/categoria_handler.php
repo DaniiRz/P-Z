@@ -123,4 +123,5 @@ class CategoriaHandler
     return Database::getRows($sql);
 }
 
+
 }

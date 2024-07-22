@@ -95,6 +95,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al eliminar el producto';
                 }
                 break;
+                
+case 'topProductosConMasExistencias':
+    if ($result['dataset'] = $producto->topProductosConMasExistencias()) {
+        $result['status'] = 1;
+    } else {
+        $result['error'] = 'No hay productos para mostrar';
+    }
+    break;
+              
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
