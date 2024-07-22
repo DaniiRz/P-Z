@@ -81,14 +81,17 @@ class ProductoHandler
         $params = array($this->idcategoria);
         return Database::getRows($sql, $params);
     }
+    
     public function readProductosCategoriaMobile()
     {
-        $sql = 'SELECT P.id_producto, D.id_producto, D.img_producto, P.nombre_producto, D.precio_producto, D.existencias, P.desc_producto
+        $sql = 'SELECT P.id_producto, D.id_detalle_producto, D.img_producto, P.nombre_producto, D.precio_producto, D.existencias, P.desc_producto, 
+                        R.nombre_color, T.numero_talla, R.id_color, T.id_talla
                 FROM tb_productos AS P
                 INNER JOIN tb_categorias AS C ON P.id_categoria = C.id_categoria
                 INNER JOIN tb_detalle_productos AS D ON P.id_producto = D.id_producto
+                INNER JOIN tb_colores AS R ON D.id_color = R.id_color
+                INNER JOIN tb_tallas AS T ON D.id_talla = T.id_talla
                 WHERE P.id_categoria = ?
-                GROUP BY P.id_producto
                 ORDER BY P.nombre_producto';
         $params = array($this->idcategoria);
         return Database::getRows($sql, $params);

@@ -102,19 +102,18 @@ public function startOrder()
 public function readDetallePedido()
 {
     $sql = 'SELECT 
-         dp.id_detalle, 
-        ddp.img_producto, 
-        ddp.id_talla, 
-        ddp.id_color, 
-        dp.cantidad_producto, 
-        dp.precio_producto,
-        p.nombre_producto
+         dp.id_detalle, ddp.img_producto, ddp.id_talla, ddp.id_color, dp.cantidad_producto, 
+         dp.precio_producto, p.nombre_producto, c.nombre_color, t.numero_talla
     FROM 
      tb_detalle_pedido dp
     INNER JOIN 
         tb_detalle_productos ddp ON dp.id_detalle_producto = ddp.id_detalle_producto
     INNER JOIN
         tb_productos p ON ddp.id_producto = p.id_producto
+    INNER JOIN 
+        tb_colores c ON ddp.id_color = c.id_color
+    INNER JOIN
+        tb_tallas t ON ddp.id_talla = t.id_talla
     WHERE 
         dp.id_pedido = ?';
     $params = array($_SESSION['idPedido']);
