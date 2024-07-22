@@ -70,8 +70,8 @@ const fillTableDetalle = async (idPedido, form = null) => {
                 <tr>
                     <td><img src="${SERVER_URL}images/productos/${row.img_producto}" alt="Imagen de ${row.img_producto}" height="50"></td>
                     <td>${row.nombre_producto}</td>
-                    <td>${row.id_talla}</td>
-                    <td>${row.id_color}</td>
+                    <td>${row.numero_talla}</td>
+                    <td>${row.nombre_color}</td>
                     <td>${row.cantidad_producto}</td>
                     <td>${row.precio_producto}</td>
                     <td>

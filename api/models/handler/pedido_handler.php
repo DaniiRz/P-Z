@@ -130,25 +130,29 @@ public function readDetallePedido()
 public function readDetallesPedidoAdmin()
 {
     $sql = 'SELECT 
-        dp.id_detalle, 
-        ddp.img_producto, 
-        ddp.id_talla, 
-        ddp.id_color, 
-        dp.cantidad_producto, 
-        dp.precio_producto,
-        p.nombre_producto,
-        pe.estado_pedido,
-        pe.id_pedido
-    FROM 
-        tb_detalle_pedido dp
-    INNER JOIN 
-        tb_detalle_productos ddp ON dp.id_detalle_producto = ddp.id_detalle_producto
-    INNER JOIN
-        tb_productos p ON ddp.id_producto = p.id_producto
-    INNER JOIN
-        tb_pedidos pe ON dp.id_pedido = pe.id_pedido
-    WHERE 
-        dp.id_pedido = ?';
+    dp.id_detalle, 
+    ddp.img_producto, 
+    t.numero_talla AS numero_talla, 
+    c.nombre_color AS nombre_color, 
+    dp.cantidad_producto, 
+    dp.precio_producto,
+    p.nombre_producto,
+    pe.estado_pedido,
+    pe.id_pedido
+FROM 
+    tb_detalle_pedido dp
+INNER JOIN 
+    tb_detalle_productos ddp ON dp.id_detalle_producto = ddp.id_detalle_producto
+INNER JOIN
+    tb_productos p ON ddp.id_producto = p.id_producto
+INNER JOIN
+    tb_pedidos pe ON dp.id_pedido = pe.id_pedido
+INNER JOIN
+    tb_tallas t ON ddp.id_talla = t.id_talla
+INNER JOIN
+    tb_colores c ON ddp.id_color = c.id_color
+WHERE 
+    dp.id_pedido = ?';
     $params = array($this->id_pedido);
     return Database::getRows($sql, $params);
 }
