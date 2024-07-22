@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Método para llenar el select de estados de pedido
 const fillSelectEstados = (estadoActual) => {
-    const estados = ['Pendiente', 'Finalizado', 'Entregado', 'Anulado'];
+    const estados = ['Pendiente', 'Cancelado', 'Entregado', 'Anulado'];
     ESTADO_PEDIDO.innerHTML = '';
     estados.forEach(estado => {
         const option = document.createElement('option');

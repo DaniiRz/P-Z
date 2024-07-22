@@ -56,7 +56,7 @@ public function startOrder()
         return true;
     } else {
         // Debug: Verificar valor de direccion_pedido
-        error_log("Direccion Pedido: " . $this->direccion_pedido);
+      //  error_log("Direccion Pedido: " . $this->direccion_pedido);
 
         // Se realiza la inserción del pedido al carrito 
         $sql = 'INSERT INTO tb_pedidos(direccion_pedido, id_cliente) VALUES(?, ?)';
@@ -64,9 +64,8 @@ public function startOrder()
         $params = array($this->direccion_pedido, $_SESSION['idCliente']);
         
         // Ejecutar la inserción
-        if (Database::executeRow($sql, $params)) {
-            // Obtener el último valor insertado de la llave primaria en la tabla pedido.
-            $_SESSION['idPedido'] = Database::getLastRow($sql, $params);
+        
+        if ($_SESSION['idPedido'] = Database::getLastRow($sql, $params)) {
             return true;
         } else {
             return false;
