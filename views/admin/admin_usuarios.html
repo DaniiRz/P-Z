@@ -57,6 +57,9 @@
                             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                 data-bs-target="#modalCliente" onclick="openCreate()"><i class="fas fa-plus"></i>
                             </button>
+                            <button type="button" class="btn btn-info" onclick="openReport()">
+                                <i class="bi bi-filetype-pdf"></i>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -134,13 +137,13 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-6 mt-3">
-                                                        <label class="form-label">Dui del
+                                                        <label class="form-label">DUI del
                                                             cliente</label>
                                                         <input id="duiCliente" name="duiCliente" class="form-control"
                                                             required oninput="formatDui(this)">
                                                     </div>
                                                     <div class="col-6 mt-3">
-                                                        <label for="claveActual mt-3" class="form-label">Telefono del
+                                                        <label for="claveActual mt-3" class="form-label">Teléfono del
                                                             cliente</label>
                                                         <input id="telefonoCliente" name="telefonoCliente"
                                                             class="form-control" required
