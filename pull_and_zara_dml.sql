@@ -22,14 +22,14 @@ INSERT INTO tb_colores (nombre_color) VALUES
 
 INSERT INTO tb_tallas (numero_talla) VALUES
 ('S'),
-('M'),
 ('L'),
 ('XS'),
-('S'),
 ('M'),
 ('28'),
 ('30'),
 ('32'),
+('5'),
+('6'),
 ('7'),
 ('8'),
 ('9'),
@@ -72,7 +72,6 @@ INSERT INTO tb_detalle_productos (existencias, img_producto, id_color, id_talla,
 (30, '6694cfda8a7fc.jpg', 4, 2, 8, 39.99);
 
 -- No se pueden insertar clientes por la constraseña
-
 
 INSERT INTO tb_clientes (nombre_cliente, apellido_cliente, dui_client, telf_cliente, correo_cliente, clave_cliente, genero_cliente, estado_cliente) VALUES
 ('María', 'López', '001234567', '7777-1234', 'maria.lopez@email.com', 'clave123', 'Femenino', 1),
