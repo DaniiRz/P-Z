@@ -6,11 +6,11 @@ const SEARCH_FORM = document.getElementById('searchForm');
 const TABLE_BODY = document.getElementById('tableBody'),
     ROWS_FOUND = document.getElementById('rowsFound');
 // Constantes para establecer los elementos del componente Modal.
-    const SAVE_MODAL = new bootstrap.Modal('#modalCliente'),
+const SAVE_MODAL = new bootstrap.Modal('#modalCliente'),
     MODAL_TITLE = document.getElementById('modalTitle'),
     BUTTON_TITLE = document.getElementById('buttonTitle');
 // Constantes para establecer los elementos del formulario de guardar.
-    const SAVE_FORM = document.getElementById('saveForm'),
+const SAVE_FORM = document.getElementById('saveForm'),
     ID_CLIENTE = document.getElementById('idCliente'),
     NOMBRE_CLIENTE = document.getElementById('nombreCliente'),
     APELLIDO_CLIENTE = document.getElementById('apellidoCliente'),
@@ -87,6 +87,7 @@ const fillTable = async (form = null) => {
                 <td>
                 <button class="btn btn-danger"><i class="fa-solid fa-trash" onclick="openDelete(${row.id_cliente})"></i></button>
                 <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_cliente})"></i></button>
+                <button type="button" class="btn btn-warning" onclick="openReport(${row.id_cliente})"><i class="bi bi-filetype-pdf"></i></button>
             </td>
         </tr>
             `;
@@ -173,4 +174,17 @@ const openDelete = async (id) => {
             sweetAlert(2, DATA.error, false);
         }
     }
+}
+/*
+*   Función para abrir un reporte parametrizado de pedidos por cliente finalizados
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+const openReport = (id) => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/admin/pedidos_cliente.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('idCliente', id);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
 }

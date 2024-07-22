@@ -164,8 +164,9 @@ public function readDetallesPedidoAdmin()
     public function readAllPending() {
     $sql = 'SELECT p.id_pedido, 
         cl.nombre_cliente, 
-        cl.correo_cliente, 
-        CURRENT_DATE() AS fecha_actual,  
+        cl.correo_cliente,
+        p.direccion_pedido,
+        CURRENT_DATE() AS fecha_actual, 
         p.estado_pedido
         FROM tb_pedidos p
         JOIN tb_clientes cl ON p.id_cliente = cl.id_cliente
