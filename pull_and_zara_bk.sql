@@ -344,6 +344,7 @@ VALUES ('S'),
 INSERT INTO tb_productos (nombre_producto, desc_producto, fecha_registro_produc, id_categoria)
 VALUES ('Camisa Casual Azul', 'Camisa de algodón para hombre', NOW(), 1),
        ('Zapatos Deportivos Negros', 'Zapatos para correr con tecnología avanzada', NOW(), 2),
+       ('Zapatos Deportivos Blancos', 'Zapatos para correr con tecnología avanzada', NOW(), 2),
        ('Bolso de Cuero Marrón', 'Bolso elegante para mujer', NOW(), 3);
 
        
