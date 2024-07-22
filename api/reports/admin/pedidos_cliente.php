@@ -26,7 +26,7 @@ if (isset($_GET['idCliente'])) {
                 $pdf->cell(20, 10, 'ID', 1, 0, 'C', 1);
                 $pdf->cell(40, 10, 'Fecha', 1, 0, 'C', 1);
                 $pdf->cell(40, 10, 'Estado', 1, 0, 'C', 1);
-                $pdf->cell(90, 10, 'Dirección', 1, 1, 'C', 1);
+                $pdf->cell(90, 10, 'Destino', 1, 1, 'C', 1);
                 // Se establece la fuente para los datos de los pedidos.
                 $pdf->setFont('Arial', '', 11);
                 // Se recorren los registros fila por fila.

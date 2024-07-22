@@ -150,7 +150,7 @@ DROP TABLE IF EXISTS `tb_pedidos`;
 CREATE TABLE `tb_pedidos` (
   `id_pedido` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_pedido` datetime DEFAULT NULL,
-  `estado_pedido` ENUM ('Pendiente','Finalizado','Entregado','Anulado') NOT NULL,
+  `estado_pedido` ENUM ('Pendiente','Cancelado','Entregado','Anulado') NOT NULL,
   `direccion_pedido` VARCHAR(125) DEFAULT NULL,
   `id_cliente` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_pedido`),
@@ -352,7 +352,7 @@ VALUES (50, '66560f818bd86.png', 1, 1, 1, 49.99),
 -- Inserción en tb_pedidos
 INSERT INTO tb_pedidos (fecha_pedido, estado_pedido, direccion_pedido, id_cliente)
 VALUES ('2024-06-01 10:00:00', 'Pendiente', 'Calle Principal 123', NULL),
-       ('2024-06-02 11:00:00', 'Finalizado', 'Avenida Central 456', NULL),
+       ('2024-06-02 11:00:00', 'Cancelado', 'Avenida Central 456', NULL),
        ('2024-06-03 12:00:00', 'Entregado', 'Boulevard Norte 789', NULL);
 
 
