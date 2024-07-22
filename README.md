@@ -4,6 +4,6 @@ INTEGRANTES
 
 -Carlos Eduardo Quintanilla Escobar
 
--Daniela Ramirez Chavez
+-Daniela Alexandra Ramirez Chàvez
 
 -Jhonny 
