@@ -56,11 +56,11 @@ class Report extends FPDF
     public function header()
     {
         // Establecer color de fondo
-        $this->setFillColor(239, 233, 228); // Color beige frío en RGB
+        $this->setFillColor(250); // Color beige frío en RGB
         $this->rect(0, 0, $this->w, 40, 'F'); // Fondo del encabezado (aumentar altura a 40 mm)
 
         // Se establece el logo.
-        $this->image('../../images/logo.png', 10, 5, 30); // Ajusta la posición y tamaño del logo si es necesario
+        $this->image('../../images/logo.png', 10, 0, 45); // Ajusta la posición y tamaño del logo si es necesario
         // Se ubica el título.
         $this->setY(20); // Ajustar la altura del título para que quede alineado con el logo
         $this->setFont('Arial', 'B', 15);
@@ -72,6 +72,7 @@ class Report extends FPDF
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
         $this->ln(10);
     }
+
 
     /*
     *   Se sobrescribe el método de la librería para establecer la plantilla del pie de los reportes.
