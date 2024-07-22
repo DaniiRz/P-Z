@@ -28,7 +28,7 @@ class Report extends FPDF
             $this->title = $title;
             // Se establece el título del documento (true = utf-8).
             $this->setTitle('Pull&Zara - Reporte', true);
-            // Se establecen los margenes del documento (izquierdo, superior y derecho).
+            // Se establecen los márgenes del documento (izquierdo, superior y derecho).
             $this->setMargins(15, 15, 15);
             // Se añade una nueva página al documento con orientación vertical y formato carta, llamando implícitamente al método header()
             $this->addPage('p', 'letter');
@@ -55,16 +55,20 @@ class Report extends FPDF
     */
     public function header()
     {
+        // Establecer color de fondo
+        $this->setFillColor(239, 233, 228); // Color beige frío en RGB
+        $this->rect(0, 0, $this->w, 40, 'F'); // Fondo del encabezado (aumentar altura a 40 mm)
+
         // Se establece el logo.
-        $this->image('../../images/logo.png', 10, 2, 50);
+        $this->image('../../images/logo.png', 10, 5, 30); // Ajusta la posición y tamaño del logo si es necesario
         // Se ubica el título.
-        $this->cell(20);
+        $this->setY(20); // Ajustar la altura del título para que quede alineado con el logo
         $this->setFont('Arial', 'B', 15);
-        $this->cell(166, 10, $this->encodeString($this->title), 0, 1, 'C');
+        $this->setTextColor(0, 0, 0); // Color del texto (negro para contraste)
+        $this->cell(0, 10, $this->encodeString($this->title), 0, 1, 'C');
         // Se ubica la fecha y hora del servidor.
-        $this->cell(20);
         $this->setFont('Arial', '', 10);
-        $this->cell(166, 10, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 0, 1, 'C');
+        $this->cell(0, 10, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 0, 1, 'C');
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
         $this->ln(10);
     }
