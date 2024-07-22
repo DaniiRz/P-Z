@@ -13,7 +13,7 @@ $pedido = new PedidoData;
 // Se verifica si existen registros de pedidos realizados por clientes para mostrar, de lo contrario se imprime un mensaje.
 if ($dataPedido = $pedido->readAll()) {
     // Se establece un color de relleno para los encabezados.
-    $pdf->setFillColor(150);
+    $pdf->setFillColor(239, 233, 228);
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Arial', 'B', 11); 
     // Se imprimen las celdas con los encabezados.

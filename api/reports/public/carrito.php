@@ -13,13 +13,13 @@ $pedido = new PedidoData;
 // Se verifica si existen registros em carrito para mostrar, de lo contrario se imprime un mensaje.
 if ($dataPedido = $pedido->readDetallePedido()) {
     // Se establece un color de relleno para los encabezados.
-    $pdf->setFillColor(150);
+    $pdf->setFillColor(239, 233, 228);
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Arial', 'B', 11); 
     // Se imprimen las celdas con los encabezados.
     $pdf->cell(60, 10, 'Nombre Producto', 1, 0, 'C', 1);
     $pdf->cell(60, 10, 'Cantidad', 1, 0, 'C', 1);
-    $pdf->cell(60, 10, 'Precio Total (US$)', 1, 1, 'C', 1);
+    $pdf->cell(60, 10, 'Precio Unitario (US$)', 1, 1, 'C', 1);
 
     // Se establece la fuente para los datos de los carrito.
     $pdf->setFont('Arial', '', 11);
