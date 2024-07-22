@@ -194,4 +194,20 @@ class ClienteHandler
                 GROUP BY genero_cliente ORDER BY porcentaje DESC';
         return Database::getRows($sql);
     }
+
+    
+    /*
+    *   Métodos para generar reportes.
+    */
+    public function pedidosCliente()
+    {
+        $sql = 'SELECT p.id_pedido,p.fecha_pedido,p.estado_pedido,p.direccion_pedido,c.nombre_cliente,c.apellido_cliente,c.telf_cliente,c.correo_cliente
+        FROM tb_pedidos p
+        JOIN 
+        tb_clientes c ON p.id_cliente = c.id_cliente
+        WHERE 
+        c.id_cliente = ?; ';
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
+    }
 }
