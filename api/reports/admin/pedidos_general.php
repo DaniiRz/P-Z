@@ -27,10 +27,9 @@ if (isset($_GET['estadoPedidoGeneral'])) {
         $pdf->setFillColor(225);
         $pdf->setFont('Arial', 'B', 11);
         $pdf->cell(40, 10, 'Nombre Cliente', 1, 0, 'C', 1);
-        $pdf->cell(45, 10, 'Correo Cliente', 1, 0, 'C', 1);
+        $pdf->cell(60, 10, 'Correo Cliente', 1, 0, 'C', 1);
         $pdf->cell(45, 10, $pdf->encodeString ('Dirección'), 1, 0, 'C', 1);
-        $pdf->cell(45, 10, 'Fecha Pedido', 1, 0, 'C', 1);
-        $pdf->cell(25, 10, 'Estado', 1, 1, 'C', 1);
+        $pdf->cell(45, 10, 'Fecha Pedido', 1, 1, 'C', 1);
 
         $pdf->setFont('Arial', '', 11);
         foreach ($dataPedidos as $pedido) {
@@ -55,10 +54,10 @@ if (isset($_GET['estadoPedidoGeneral'])) {
         
             // Agrega los datos del pedido al reporte PDF
             $pdf->cell(40, 10, $pdf->encodeString($pedido['nombre_cliente']), 1, 0);
-            $pdf->cell(45, 10, $pdf->encodeString($pedido['correo_cliente']), 1, 0);
+            $pdf->cell(60, 10, $pdf->encodeString($pedido['correo_cliente']), 1, 0);
             $pdf->cell(45, 10, $pdf->encodeString($pedido['direccion_pedido']), 1, 0);
-            $pdf->cell(45, 10, $pedido['fecha_pedido'], 1, 0);
-            $pdf->cell(25, 10, $estado, 1, 1);
+            $pdf->cell(45, 10, $pedido['fecha_pedido'], 1, 1);
+
         }
     } else {
         // Si no hay datos, muestra un mensaje en el PDF
