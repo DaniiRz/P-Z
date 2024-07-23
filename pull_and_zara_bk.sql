@@ -265,34 +265,6 @@ LOCK TABLES `tb_detalle_pedido` WRITE;
 UNLOCK TABLES;
 
 
-
---
--- Table structure for table `tb_estado_valo`
---
-
-DROP TABLE IF EXISTS `tb_estado_valo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_estado_valo` (
-  `id_estado_valo` int(11) NOT NULL AUTO_INCREMENT,
-  `estado_valo` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_estado_valo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tb_estado_valo`
---
-
-LOCK TABLES `tb_estado_valo` WRITE;
-/*!40000 ALTER TABLE `tb_estado_valo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_estado_valo` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-
-
-
 -- Table structure for table `tb_valoracion`
 --
 
@@ -303,13 +275,11 @@ CREATE TABLE `tb_valoracion` (
   `id_valoracion` int(11) NOT NULL AUTO_INCREMENT,
   `comentario_cliente` varchar(255) NOT NULL,
   `fecha_valoracion` datetime DEFAULT NULL,
-  `id_detalle_p` int(11) DEFAULT NULL,
-  `id_estado_valo` int(11) DEFAULT NULL,
+  `id_producto` int(11) DEFAULT NULL,
+  `estado_valoracion` ENUM ('Activa','Inactiva') NOT NULL,
   PRIMARY KEY (`id_valoracion`),
-  KEY `fk_id_detalle_p_id_valo` (`id_detalle_p`),
-  KEY `fk_id_estado_valo_id_valoracion` (`id_estado_valo`),
-  CONSTRAINT `fk_id_detalle_p_id_valo` FOREIGN KEY (`id_detalle_p`) REFERENCES `tb_detalle_pedido` (`id_detalle`),
-  CONSTRAINT `fk_id_estado_valo_id_valoracion` FOREIGN KEY (`id_estado_valo`) REFERENCES `tb_estado_valo` (`id_estado_valo`)
+  KEY `fk_id_producto_id_valo` (`id_producto`),
+  CONSTRAINT `fk_id_producto_id_valo` FOREIGN KEY (`id_producto`) REFERENCES `tb_productos` (`id_producto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -327,7 +297,6 @@ SELECT * FROM tb_clientes;
 SELECT * FROM tb_colores;
 SELECT * FROM tb_detalle_pedido;
 SELECT * FROM tb_detalle_productos;
-SELECT * FROM tb_estado_valo;
 SELECT * FROM tb_pedidos;
 SELECT * FROM tb_productos;
 SELECT * FROM tb_tallas;

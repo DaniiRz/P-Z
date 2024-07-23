@@ -43,7 +43,6 @@ const fillTable = async (form = null) => {
                     <td>${row.id_producto}</td>
                     <td>${row.comentario_cliente}</td>
                     <td>${row.fecha_valoracion}</td>
-                    <td><i class="${icon}"></i></td>
                     <td>
                         <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_valoracion})">
                             <i class="bi bi-pen-fill"></i>
