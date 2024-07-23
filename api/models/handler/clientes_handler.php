@@ -205,8 +205,8 @@ class ClienteHandler
             FROM tb_pedidos p
             JOIN tb_clientes c ON p.id_cliente = c.id_cliente
             WHERE c.id_cliente = ?
-            AND p.estado_pedido IN ("Entregado", "Cancelado", "Anulado")
-            ORDER BY p.fecha_pedido;';
+            AND p.estado_pedido IN ("Completado", "Cancelado", "Anulado")
+            ORDER BY p.fecha_pedido';
     $params = array($this->id);
     return Database::getRows($sql, $params);
 }
