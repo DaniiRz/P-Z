@@ -56,21 +56,21 @@ class Report extends FPDF
     public function header()
     {
         // Establecer color de fondo
-        $this->setFillColor(250); // Color beige frío en RGB
+        $this->setFillColor(255); // Color beige frío en RGB
         $this->rect(0, 0, $this->w, 40, 'F'); // Fondo del encabezado (aumentar altura a 40 mm)
     
         // Se establece el logo.
-        $this->image('../../images/logo.png', 10, -3, 55); // Ajusta la posición y tamaño del logo si es necesario
+        $this->image('../../images/logo.png', 10, -5, 60); // Ajusta la posición y tamaño del logo si es necesario
     
         // Alineación a la izquierda para el título y la hora
         $this->setY(20); // Ajustar la altura del título para que quede alineado con el logo
-        $this->setFont('Arial', 'B', 15);
+        $this->setFont('Arial', 'B', 16);
         $this->setTextColor(0, 0, 0); // Color del texto (negro para contraste)
         $this->cell(0, 4, $this->encodeString($this->title), 0, 0, 'R'); // Alineado a la izquierda
     
         // Fecha y hora del servidor
-        $this->setFont('Arial', '', 10);
-        $this->cell(0, 24, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 0, 1, 'R'); // Alineado a la derecha
+        $this->setFont('times', 'I', 11);
+        $this->cell(0, 20, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 0, 1, 'R'); // Alineado a la derecha
     }
     
 
