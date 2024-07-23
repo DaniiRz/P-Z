@@ -16,7 +16,7 @@ if (isset($_GET['idCategoria'])) {
 $nombreArchivoReporte = preg_replace('/[^a-zA-Z0-9_]/', '_', $nombreCategoria);
 
 // Ruta del directorio para guardar el archivo de número de reporte
-$directorioReportes = '../admin/Registro de reportes';
+$directorioReportes = '../admin/Registro de categorias';
 
 // Crear el directorio si no existe
 if (!is_dir($directorioReportes)) {
@@ -32,7 +32,7 @@ if (file_exists($reporteNumeroArchivo) && filesize($reporteNumeroArchivo) > 0) {
     $ultimaLinea = end($lineas);
     // Obtener el último número de reporte de la última línea
     if (preg_match('/Número de Reporte: (\d+)/', $ultimaLinea, $coincidencias)) {
-        $reporteNumero = (int)$coincidencias[1];
+        $reporteNumero = (int) $coincidencias[1];
     } else {
         $reporteNumero = 0; // Inicializar a 0 si el formato no es el esperado
     }
@@ -82,10 +82,17 @@ if (isset($_GET['idCategoria'])) {
                 // Se establece la fuente para los encabezados.
                 $pdf->setFont('Arial', 'B', 11);
 
-                // Se imprimen las celdas con los encabezados, con bordes arriba y abajo y sin color de fondo.
-                $pdf->cell(62, 10, $pdf->encodeString('DESCRIPCIÓN'), 'TB', 0, 'C');
-                $pdf->cell(62, 10, 'NOMBRE', 'TB', 0, 'C');
-                $pdf->cell(62, 10, 'FECHA DE REGISTRO', 'TB', 1, 'C');
+                // Establecer color de fondo y color de texto para los encabezados
+                $pdf->setFillColor(174, 186, 199); // Color de fondo (azul claro)
+                $pdf->setTextColor(0, 0, 0); // Color del texto (negro)
+
+                // Establecer la fuente para los encabezados
+                $pdf->setFont('Arial', 'B', 11);
+
+                // Imprimir celdas con los encabezados y aplicar el color de fondo
+                $pdf->cell(62, 10, $pdf->encodeString('DESCRIPCIÓN'), 'TB', 0, 'C', true);
+                $pdf->cell(62, 10, 'NOMBRE', 'TB', 0, 'C', true);
+                $pdf->cell(62, 10, 'FECHA DE REGISTRO', 'TB', 1, 'C', true);
 
                 // Se establece la fuente para los datos de los productos.
                 $pdf->setFont('Arial', '', 11);
