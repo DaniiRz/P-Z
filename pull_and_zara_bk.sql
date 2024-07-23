@@ -320,3 +320,15 @@ CREATE TABLE `tb_valoracion` (
 LOCK TABLES `tb_valoracion` WRITE;
 
 UNLOCK TABLES;
+
+SELECT * FROM tb_admins;
+SELECT * FROM tb_categorias;
+SELECT * FROM tb_clientes;
+SELECT * FROM tb_colores;
+SELECT * FROM tb_detalle_pedido;
+SELECT * FROM tb_detalle_productos;
+SELECT * FROM tb_estado_valo;
+SELECT * FROM tb_pedidos;
+SELECT * FROM tb_productos;
+SELECT * FROM tb_tallas;
+SELECT * FROM tb_valoracion;
