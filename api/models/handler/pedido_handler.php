@@ -192,13 +192,14 @@ WHERE
     public function readAll() {
         // Consulta SQL para obtener los datos necesarios
         $sql = 'SELECT p.id_pedido, 
-        CONCAT(cl.nombre_cliente, " ", cl.apellido_cliente) AS nombre_cliente, 
-        cl.correo_cliente,
-        p.direccion_pedido,
-        p.fecha_pedido AS fecha_pedido, 
-        p.estado_pedido
-        FROM tb_pedidos p
-        JOIN tb_clientes cl ON p.id_cliente = cl.id_cliente';
+                CONCAT(cl.nombre_cliente, " ", cl.apellido_cliente) AS nombre_cliente, 
+                cl.correo_cliente,
+                p.direccion_pedido,
+                p.fecha_pedido AS fecha_pedido, 
+                p.estado_pedido
+                FROM tb_pedidos p
+                JOIN tb_clientes cl ON p.id_cliente = cl.id_cliente
+                ORDER BY p.fecha_pedido DESC';  // Ordenar por fecha_pedido de manera descendente
         // Ejecutar la consulta y devolver los resultados
         return Database::getRows($sql);
     }
