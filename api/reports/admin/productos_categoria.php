@@ -94,6 +94,9 @@ if (isset($_GET['idCategoria'])) {
                 $pdf->cell(62, 10, 'NOMBRE', 'TB', 0, 'C', true);
                 $pdf->cell(62, 10, 'FECHA DE REGISTRO', 'TB', 1, 'C', true);
 
+                // Añadir un espacio después de la primea fila
+                $pdf->Ln(2); 
+
                 // Se establece la fuente para los datos de los productos.
                 $pdf->setFont('Arial', '', 11);
 
