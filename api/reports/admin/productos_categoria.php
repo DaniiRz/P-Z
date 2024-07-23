@@ -18,46 +18,37 @@ if (isset($_GET['idCategoria'])) {
         // Se verifica si la categoría existe, de lo contrario se muestra un mensaje.
         if ($rowCategoria = $categoria->readOne()) {
             // Se inicia el reporte con el encabezado del documento.
-            $pdf->startReport('Numero de categoria: ' . $rowCategoria['nombre_categoria']);
+            $pdf->startReport('Reporte de categoría: ' . $rowCategoria['nombre_categoria']);
+
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
             if ($dataProductos = $producto->productosCategoria()) {
-                // Se establece un color de relleno para los encabezados.
-                $pdf->setFillColor(239, 233, 228);
                 // Se establece la fuente para los encabezados.
                 $pdf->setFont('Arial', 'B', 11);
-                // Se imprimen las celdas con los encabezados.
-                $pdf->cell(62, 10, $pdf->encodeString('Descripción'), 1, 0, 'C', 1);
-                $pdf->cell(62, 10, 'Nombre', 1, 0, 'C', 1);
-                $pdf->cell(62, 10, 'Fecha de registro', 1, 1, 'C', 1);
+
+                // Se imprimen las celdas con los encabezados, con bordes arriba y abajo y sin color de fondo.
+                $pdf->cell(62, 10, $pdf->encodeString('Descripción'), 'TB', 0, 'C');
+                $pdf->cell(62, 10, 'Nombre', 'TB', 0, 'C');
+                $pdf->cell(62, 10, 'Fecha de registro', 'TB', 1, 'C');
 
                 // Se establece la fuente para los datos de los productos.
                 $pdf->setFont('Arial', '', 11);
 
                 // Se recorren los registros fila por fila.
                 foreach ($dataProductos as $rowProducto) {
-                    $pdf->setFont('Arial', '', 11);
+                    // Se imprime la descripción con multilínea ajustada
+                    $pdf->multiCell(62, 7.5, $pdf->encodeString($rowProducto['desc_producto']), 'B', 'J');
 
-                    // Guardar posición actual X y Y
-                    $xPos = $pdf->GetX();
-                    $yPos = $pdf->GetY();
+                    // Se guarda la posición actual
+                    $xPos = $pdf->getX();
+                    $yPos = $pdf->getY();
 
-                    // Guardar posición X y Y para la Descripción
-                    $xPosComment = $xPos;
-                    $yPosComment = $yPos;
+                    // Se imprime el nombre del producto ajustado
+                    $pdf->setXY($xPos + 62, $yPos); // Ajuste de posición
+                    $pdf->cell(62, 7.5, $pdf->encodeString($rowProducto['nombre_producto']), 'B', 0, 'C');
 
-                    // Ajustar posición X y Y para la Descripción
-                    $pdf->multiCell(62, 7.5, $pdf->encodeString($rowProducto['desc_producto']), 1, 'C'); // Reducir altura de celda y espacio entre líneas
-
-                    // Guardar posición Y actual después de Descripción
-                    $yPosCommentEnd = $pdf->GetY();
-
-                    // Ajustar posición X y Y para la calificación
-                    $pdf->setXY($xPos, $yPos);
-                    $pdf->cell(0, $yPosCommentEnd - $yPosComment, $pdf->encodeString($rowProducto['nombre_producto']), 1, 0, 'C');
-
-                    // Ajustar posición X y Y para la Fecha de registro
-                    $pdf->setXY($xPos + 124, $yPos);
-                    $pdf->cell(0, $yPosCommentEnd - $yPosComment, $pdf->encodeString($rowProducto['fecha_registro_produc']), 1, 1, 'C');
+                    // Se imprime la fecha de registro ajustada
+                    $pdf->setXY($xPos + 124, $yPos); // Ajuste de posición
+                    $pdf->cell(62, 7.5, $pdf->encodeString($rowProducto['fecha_registro_produc']), 'B', 1, 'C');
 
                     // Verificar si se necesita agregar una nueva página antes de continuar con las filas siguientes
                     if ($pdf->getY() > 250) { // 250 es un valor aproximado, ajusta según tus necesidades
@@ -65,9 +56,9 @@ if (isset($_GET['idCategoria'])) {
 
                         // Agregar encabezados nuevamente después de añadir una nueva página
                         $pdf->setFont('Arial', 'B', 11);
-                        $pdf->cell(62, 10, $pdf->encodeString('Descripción'), 1, 0, 'C', true);
-                        $pdf->cell(62, 10, 'Nombre', 1, 0, 'C', true);
-                        $pdf->cell(62, 10, 'Fecha de registro', 1, 0, 'C', true);
+                        $pdf->cell(62, 10, $pdf->encodeString('Descripción'), 'TB', 0, 'C');
+                        $pdf->cell(62, 10, 'Nombre', 'TB', 0, 'C');
+                        $pdf->cell(62, 10, 'Fecha de registro', 'TB', 1, 'C');
                     }
                 }
             } else {
