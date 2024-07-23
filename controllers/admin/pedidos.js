@@ -187,7 +187,7 @@ Parametros: ninguno
 Retorno: ninguno */
 const openReport = () => {
     const estadoSeleccionado = ESTADO_PEDIDO_GENERAL.value; // Obtener el estado seleccionado del combo box
-
+    fillSelectEstadosReporte();
     // Construir la URL del reporte con el estado seleccionado
     const url = `${SERVER_URL}reports/admin/pedidos_general.php?estadoPedido=${encodeURIComponent(estadoSeleccionado)}`;
 
