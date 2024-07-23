@@ -15,6 +15,8 @@ const TABLE_BODY_DETALLE = document.getElementById('tableBodyD'),
 const MODAL_DETALLE_PEDIDO = new bootstrap.Modal('#modalDetallePedido'),
     MODAL_TITLE_DETALLE_PEDIDO = document.getElementById('modalTitleD');
 
+const ESTADO_PEDIDO_GENERAL = document.getElementById('estadoPedidoGeneral');
+
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_PEDIDO = document.getElementById('idPedido'),
     ESTADO_PEDIDO = document.getElementById('estadoPedido');
@@ -22,6 +24,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
 // Llenar la tabla de pedidos al cargar la página.
 document.addEventListener('DOMContentLoaded', () => {
     fillTable();
+    fillSelectEstadosReporte();
 });
 
 // Métodos de búsqueda.
@@ -121,6 +124,31 @@ const fillSelectEstados = (estadoActual) => {
         ESTADO_PEDIDO.appendChild(option);
     });
 }
+
+// Método para llenar el select de estados de pedido
+const fillSelectEstadosReporte = () => {
+    const estados = ['Pendiente', 'Cancelado', 'Completado', 'Anulado'];
+
+    // Limpiamos el select antes de llenarlo
+    ESTADO_PEDIDO_GENERAL.innerHTML = '';
+
+    // Agregamos el option inicial
+    const optionInicial = document.createElement('option');
+    optionInicial.value = '';
+    optionInicial.disabled = true;
+    optionInicial.selected = true;
+    optionInicial.textContent = 'Selecciona un estado para generar un reporte';
+    ESTADO_PEDIDO_GENERAL.appendChild(optionInicial);
+
+    // Llenamos el select con los estados disponibles
+    estados.forEach(estado => {
+        const option = document.createElement('option');
+        option.value = estado;
+        option.textContent = estado;
+        ESTADO_PEDIDO_GENERAL.appendChild(option); // Agregamos cada opción al select
+    });
+}
+
 
 // Métodos para actualizar datos.
 ESTADO_PEDIDO.addEventListener('change', async () => {
