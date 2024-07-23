@@ -42,38 +42,22 @@
             <form id="searchForm">
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <input type="search" class="form-control" id="search" name="search" placeholder="Buscar"
-                            required>
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-                        <select id="estadoPedidoGeneral" name="estadoPedidoGeneral" class="form-select">
-                        </select>
+                        <input type="search" class="form-control" id="search" name="search" placeholder="Buscar" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <button type="button" class="btn btn-info" onclick="openReport()">
-                            <i class="fa-regular fa-file-pdf"></i>
-                        </button>
+                        <select id="estadoPedidoGeneral" name="estadoPedidoGeneral" class="form-select"></select>
                     </div>
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-2 mb-3">
                         <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <button type="submit" class="btn btn-success btn-block">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <button type="reset" class="btn btn-secondary btn-block" onclick="fillTable()">
-                                    <i class="fas fa-times-circle"></i>
+                            <div class="col-md-3 mb-3">
+                                <button type="button" class="btn btn-info" onclick="openReport()">
+                                    <i class="fa-regular fa-file-pdf"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
-
-
-
 
             <!-- Tabla de pedidos con opciones -->
             <div class="table-responsive mt-3">
