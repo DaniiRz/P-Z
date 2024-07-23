@@ -15,6 +15,16 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
+            case 'searchRows':
+                if (!Validator::validateSearch($_POST['search'])) {
+                    $result['error'] = Validator::getSearchError();
+                } elseif ($result['dataset'] = $pedido->searchRows()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' coincidencias';
+                } else {
+                    $result['error'] = 'No hay coincidencias';
+                }
+                break;
             // Acción para obtener los productos agregados en el carrito de compras.
             case 'readDetallePedido':
                 if (!$pedido->getOrder()) {

@@ -74,6 +74,36 @@ public function startOrder()
     }
 }
 
+public function searchRows()
+{
+    $value = '%' . Validator::getSearchValue() . '%';
+    $sql = 'SELECT 
+                pe.id_pedido AS id_pedido,
+                CONCAT(cl.nombre_cliente, " ", cl.apellido_cliente) AS nombre_cliente,
+                cl.correo_cliente AS correo,
+                pe.fecha_pedido AS fecha_pedido,
+                pe.direccion_pedido AS direccion_pedido,
+                pe.estado_pedido AS estado_pedido,
+                dp.id_detalle AS id_detalle_pedido
+            FROM 
+                tb_pedidos pe
+            INNER JOIN 
+                tb_clientes cl ON pe.id_cliente = cl.id_cliente
+            INNER JOIN 
+                tb_detalle_pedido dp ON pe.id_pedido = dp.id_pedido
+            WHERE 
+                pe.id_pedido LIKE ? OR
+                CONCAT(cl.nombre_cliente, " ", cl.apellido_cliente) LIKE ? OR
+                cl.correo_cliente LIKE ? OR
+                pe.fecha_pedido LIKE ? OR
+                pe.direccion_pedido LIKE ? OR
+                pe.estado_pedido LIKE ?
+            ORDER BY 
+                pe.id_pedido';
+    
+    $params = array($value, $value, $value, $value, $value, $value);
+    return Database::getRows($sql, $params);
+}
 
    // Método para agregar un producto al carrito de compras.
 public function createDetail()
@@ -162,7 +192,7 @@ WHERE
     public function readAll() {
         // Consulta SQL para obtener los datos necesarios
         $sql = 'SELECT p.id_pedido, 
-        cl.nombre_cliente, 
+        CONCAT(cl.nombre_cliente, " ", cl.apellido_cliente) AS nombre_cliente, 
         cl.correo_cliente,
         p.direccion_pedido,
         CURRENT_DATE() AS fecha_actual, 
