@@ -1,7 +1,7 @@
 <?php
 
 // Se incluye la clase
-require_once('../../helpers/database.php');
+require_once ('../../helpers/database.php');
 
 class ProductoHandler
 {
@@ -83,7 +83,7 @@ class ProductoHandler
         $params = array($this->idcategoria);
         return Database::getRows($sql, $params);
     }
-    
+
     public function readProductosCategoriaMobile()
     {
         $sql = 'SELECT P.id_producto, D.id_detalle_producto, D.img_producto, P.nombre_producto, D.precio_producto, D.existencias, P.desc_producto, 
@@ -100,8 +100,8 @@ class ProductoHandler
     }
 
     /*
-    *   Métodos para generar reportes.
-    */
+     *   Métodos para generar reportes.
+     */
     public function productosCategoria()
     {
         $sql = 'SELECT P.nombre_producto, P.desc_producto, P.fecha_registro_produc, C.nombre_categoria
@@ -114,23 +114,21 @@ class ProductoHandler
     }
 
     public function topProductosConMasExistencias()
-{
-    $sql = 'SELECT P.nombre_producto, DP.existencias, DP.img_producto, DP.precio_producto
+    {
+        $sql = 'SELECT P.nombre_producto, DP.existencias, DP.img_producto, DP.precio_producto
             FROM tb_detalle_productos AS DP
             INNER JOIN tb_productos AS P ON DP.id_producto = P.id_producto
             ORDER BY DP.existencias DESC
             LIMIT 5';
-    return Database::getRows($sql);
-}
+        return Database::getRows($sql);
+    }
 
-public function productosConCategoriaYDescripcion()
-{
-    $sql = 'SELECT P.nombre_producto, C.nombre_categoria, P.desc_producto
-            FROM tb_productos AS P
-            INNER JOIN tb_categorias AS C ON P.id_categoria = C.id_categoria';
-    return Database::getRows($sql);
-}
-
-
-
+    public function productosConCategoriaYDescripcion()
+    {
+        $sql = 'SELECT P.nombre_producto, C.nombre_categoria, P.desc_producto
+                FROM tb_productos AS P
+                INNER JOIN tb_categorias AS C ON P.id_categoria = C.id_categoria
+                ORDER BY C.nombre_categoria';
+        return Database::getRows($sql);
+    }
 }

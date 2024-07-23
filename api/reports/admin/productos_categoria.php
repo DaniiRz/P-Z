@@ -16,7 +16,7 @@ if (isset($_GET['idCategoria'])) {
 $nombreArchivoReporte = preg_replace('/[^a-zA-Z0-9_]/', '_', $nombreCategoria);
 
 // Ruta del directorio para guardar el archivo de número de reporte
-$directorioReportes = '../admin/Registro de categorias';
+$directorioReportes = '../admin/Registro de reportes/Registro de categorias';
 
 // Crear el directorio si no existe
 if (!is_dir($directorioReportes)) {
