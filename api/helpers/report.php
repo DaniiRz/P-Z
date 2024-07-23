@@ -58,20 +58,21 @@ class Report extends FPDF
         // Establecer color de fondo
         $this->setFillColor(250); // Color beige frío en RGB
         $this->rect(0, 0, $this->w, 40, 'F'); // Fondo del encabezado (aumentar altura a 40 mm)
-
+    
         // Se establece el logo.
-        $this->image('../../images/logo.png', 10, 0, 45); // Ajusta la posición y tamaño del logo si es necesario
-        // Se ubica el título.
+        $this->image('../../images/logo.png', 10, -3, 55); // Ajusta la posición y tamaño del logo si es necesario
+    
+        // Alineación a la izquierda para el título y la hora
         $this->setY(20); // Ajustar la altura del título para que quede alineado con el logo
         $this->setFont('Arial', 'B', 15);
         $this->setTextColor(0, 0, 0); // Color del texto (negro para contraste)
-        $this->cell(0, 10, $this->encodeString($this->title), 0, 1, 'C');
-        // Se ubica la fecha y hora del servidor.
+        $this->cell(0, 4, $this->encodeString($this->title), 0, 0, 'R'); // Alineado a la izquierda
+    
+        // Fecha y hora del servidor
         $this->setFont('Arial', '', 10);
-        $this->cell(0, 10, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 0, 1, 'C');
-        // Se agrega un salto de línea para mostrar el contenido principal del documento.
-        $this->ln(10);
+        $this->cell(0, 24, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 0, 1, 'R'); // Alineado a la derecha
     }
+    
 
 
     /*
