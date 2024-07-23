@@ -157,7 +157,6 @@ public function readDetallePedido()
 
 
 // Método para obtener los productos que se encuentran en el pedido.
-// Método para obtener los productos que se encuentran en el pedido.
 public function readDetallesPedidoAdmin()
 {
     $sql = 'SELECT 
@@ -203,6 +202,22 @@ WHERE
         // Ejecutar la consulta y devolver los resultados
         return Database::getRows($sql);
     }
+
+        // Método para generar reporte todos los pedidos
+        public function obtenerPedidosPorEstado() {
+            // Consulta SQL para obtener los datos necesarios
+            $sql = 'SELECT p.id_pedido, 
+                    CONCAT(cl.nombre_cliente, " ", cl.apellido_cliente) AS nombre_cliente, 
+                    cl.correo_cliente,
+                    p.direccion_pedido,
+                    p.fecha_pedido AS fecha_pedido, 
+                    p.estado_pedido
+                    FROM tb_pedidos p
+                    JOIN tb_clientes cl ON p.id_cliente = cl.id_cliente
+                    WHERE p.estado_pedido = ?';
+            $params = array($this->estado);
+            return Database::getRows($sql, $params);
+        }
 
     // Método para leer todos los pedidos pendientes
     public function readAllPending() {
