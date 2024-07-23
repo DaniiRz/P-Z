@@ -52,7 +52,7 @@ const fillTable = async (form = null) => {
                 <tr>
                     <td>${row.nombre_cliente}</td>
                     <td>${row.correo_cliente}</td>
-                    <td>${row.fecha_actual}</td>
+                    <td>${row.fecha_pedido}</td>
                     <td>${row.direccion_pedido}</td>
                     <td>${row.estado_pedido}</td>
                     <td><button type="button" class="btn btn-warning" onclick="openDetalle(${row.id_pedido})">Ver detalles</button></td>

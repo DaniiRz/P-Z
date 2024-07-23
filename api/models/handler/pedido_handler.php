@@ -80,7 +80,7 @@ public function searchRows()
     $sql = 'SELECT 
                 pe.id_pedido AS id_pedido,
                 CONCAT(cl.nombre_cliente, " ", cl.apellido_cliente) AS nombre_cliente,
-                cl.correo_cliente AS correo,
+                cl.correo_cliente AS correo_cliente,
                 pe.fecha_pedido AS fecha_pedido,
                 pe.direccion_pedido AS direccion_pedido,
                 pe.estado_pedido AS estado_pedido,
@@ -195,7 +195,7 @@ WHERE
         CONCAT(cl.nombre_cliente, " ", cl.apellido_cliente) AS nombre_cliente, 
         cl.correo_cliente,
         p.direccion_pedido,
-        CURRENT_DATE() AS fecha_actual, 
+        p.fecha_pedido AS fecha_pedido, 
         p.estado_pedido
         FROM tb_pedidos p
         JOIN tb_clientes cl ON p.id_cliente = cl.id_cliente';
