@@ -100,7 +100,7 @@ const openDetalle = async (id) => {
     if (DATA.status) {
         const row = DATA.dataset;
         ID_PEDIDO.value = id
-        
+
         console.log(ID_PEDIDO.value)
         MODAL_DETALLE_PEDIDO.show();
         fillTableDetalle(id);
@@ -186,8 +186,11 @@ const openDeleteDetalle = async (id) => {
 Parametros: ninguno 
 Retorno: ninguno */
 const openReport = () => {
-    //se declara una constante tipo objeto con la ruta especifica del reporte en el servidor 
-    const PATH = new URL(`${SERVER_URL}reports/admin/pedidos_general.php`);
-    //se abre el reporte en una nueva pestaña 
-    window.open(PATH.href);
+    const estadoSeleccionado = ESTADO_PEDIDO_GENERAL.value; // Obtener el estado seleccionado del combo box
+
+    // Construir la URL del reporte con el estado seleccionado
+    const url = `${SERVER_URL}reports/admin/pedidos_general.php?estadoPedido=${encodeURIComponent(estadoSeleccionado)}`;
+
+    // Abrir el reporte en una nueva pestaña
+    window.open(url);
 }
