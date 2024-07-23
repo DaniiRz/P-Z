@@ -78,13 +78,36 @@ class Report extends FPDF
     *   Se sobrescribe el método de la librería para establecer la plantilla del pie de los reportes.
     *   Se llama automáticamente en el método output()
     */
-    public function footer()
+    function Footer()
     {
         // Se establece la posición para el número de página (a 15 milímetros del final).
-        $this->setY(-15);
+        $this->SetY(-15);
         // Se establece la fuente para el número de página.
-        $this->setFont('Arial', 'I', 8);
+        $this->SetFont('Arial', 'I', 8);
+        
+        // Altura y anchura de la página en puntos (medida estándar en FPDF)
+        $pageHeight = $this->GetPageHeight();
+        $pageWidth = $this->GetPageWidth();
+        
+        // Posición Y para las imágenes (ajustada para estar más arriba del final de la página)
+        $imageY = $pageHeight - 40 ; 
+        
+        // Posición X para la imagen de la izquierda
+        $imageLeftX = 0; 
+        
+        // Ancho de la imagen de la derecha
+        $imageWidth = 50;
+        
+        // Posición X para la imagen de la derecha (pegada al borde)
+        $imageRightX = 190; 
+        
+        // Agregar la imagen en el pie de página (izquierda)
+        $this->Image('../../images/reportes (1).png', $imageLeftX, $imageY, 45);
+        
+        // Agregar la imagen en el pie de página (derecha)
+        $this->Image('../../images/reportes (1).png', $imageRightX, $imageY, 45);
+        
         // Se imprime una celda con el número de página.
-        $this->cell(0, 10, $this->encodeString('Página ') . $this->pageNo() . '/{nb}', 0, 0, 'C');
+        $this->Cell(0, 10, $this->encodeString('Página ' ). $this->PageNo() . '/{nb}', 0, 0, 'C');
     }
 }
