@@ -40,15 +40,15 @@ const fillTable = async (form = null) => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
                 <tr>
+                    <td>${row.id_producto}</td>
                     <td>${row.comentario_cliente}</td>
                     <td>${row.fecha_valoracion}</td>
-                    <td>${row.id_detalle_pedido}</td>
                     <td><i class="${icon}"></i></td>
                     <td>
-                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_producto})">
+                        <button type="button" class="btn btn-info" onclick="openUpdate(${row.id_valoracion})">
                             <i class="bi bi-pen-fill"></i>
                         </button>
-                        <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_producto})">
+                        <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_valoracion})">
                             <i class="bi bi-trash-fill"></i>
                         </button>
                     </td>

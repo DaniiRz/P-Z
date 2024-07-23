@@ -27,11 +27,10 @@ class ReseñasHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto, nombre_categoria, estado_producto
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                WHERE nombre_producto LIKE ? OR descripcion_producto LIKE ?
-                ORDER BY nombre_producto';
+        $sql = 'SELECT id_producto, comentario_cliente, fecha_valoracion
+                FROM tb_valoracion
+                WHERE comentario_cliente LIKE ? OR fecha_valoracion LIKE ?
+                ORDER BY id_producto';
         $params = array($value, $value);
         return Database::getRows($sql, $params);
     }
@@ -46,10 +45,9 @@ class ReseñasHandler
 
     public function readAll()
     {
-        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto, nombre_categoria, estado_producto
-                FROM producto
-                INNER JOIN categoria USING(id_categoria)
-                ORDER BY nombre_producto';
+        $sql = 'SELECT v.id_producto, v.comentario_cliente, v.fecha_valoracion
+            FROM tb_valoracion v
+            INNER JOIN tb_productos p ON p.id_producto = v.id_producto';
         return Database::getRows($sql);
     }
 
