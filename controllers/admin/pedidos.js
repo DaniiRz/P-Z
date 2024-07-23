@@ -19,6 +19,11 @@ const SAVE_FORM = document.getElementById('saveForm'),
     ID_PEDIDO = document.getElementById('idPedido'),
     ESTADO_PEDIDO = document.getElementById('estadoPedido');
 
+// Llenar la tabla de pedidos al cargar la página.
+document.addEventListener('DOMContentLoaded', () => {
+    fillTable();
+});
+
 // Métodos de búsqueda.
 SEARCH_FORM.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -97,8 +102,6 @@ const openDetalle = async (id) => {
         MODAL_DETALLE_PEDIDO.show();
         fillTableDetalle(id);
         fillSelectEstados(row.estado_pedido);
-
-
     } else {
         sweetAlert(4, DATA.error, true);
     }
@@ -149,10 +152,6 @@ const openDeleteDetalle = async (id) => {
     }
 }
 
-// Llenar la tabla de pedidos al cargar la página.
-document.addEventListener('DOMContentLoaded', () => {
-    fillTable();
-});
 
 
 /*Funcion para abrir un reporte automatico de pedidos 
