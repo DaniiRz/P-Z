@@ -276,11 +276,15 @@ CREATE TABLE `tb_valoracion` (
   `comentario_cliente` varchar(255) NOT NULL,
   `fecha_valoracion` datetime DEFAULT NULL,
   `id_producto` int(11) DEFAULT NULL,
+  `id_cliente` int(11) DEFAULT NULL,
   `estado_valoracion` ENUM ('Activa','Inactiva') NOT NULL,
   PRIMARY KEY (`id_valoracion`),
   KEY `fk_id_producto_id_valo` (`id_producto`),
-  CONSTRAINT `fk_id_producto_id_valo` FOREIGN KEY (`id_producto`) REFERENCES `tb_productos` (`id_producto`)
+  KEY `fk_id_cliente_id_valo` (`id_cliente`),
+  CONSTRAINT `fk_id_producto_id_valo` FOREIGN KEY (`id_producto`) REFERENCES `tb_productos` (`id_producto`),
+  CONSTRAINT `fk_id_cliente_id_valo` FOREIGN KEY (`id_cliente`) REFERENCES `tb_clientes` (`id_cliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

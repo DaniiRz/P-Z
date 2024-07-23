@@ -27,7 +27,6 @@ if (isset($_GET['action'])) {
                 ) {
                     // Asignar valores al objeto $valoracion
                     $valoracion->setId($_POST['idvaloracionProducto']);
-                    $valoracion->setValoracion($_POST['valoracion']);
                     $valoracion->setComentario($_POST['comentario']);
                     $valoracion->setIdCliente($_POST['idCliente']);
                     $valoracion->setFechaValoracion($_POST['fechaValoracion']);
@@ -52,7 +51,6 @@ if (isset($_GET['action'])) {
                     isset($_POST['comentario'])
                 ) {
                     $valoracion->setId($_POST['idValoracion']);
-                    $valoracion->setValoracion($_POST['valoracion']);
                     $valoracion->setComentario($_POST['comentario']);
 
                     if ($valoracion->updateValoracion()) {
@@ -76,19 +74,6 @@ if (isset($_GET['action'])) {
                     }
                 } else {
                     $result['error'] = 'Falta el ID de la valoración a eliminar';
-                }
-                break;
-            case 'getValoracionesByvaloracion':
-                if (isset($_POST['idvaloracionProducto'])) {
-                    $valoracion->setId($_POST['idvaloracionProducto']);
-                    if ($result['dataset'] = $valoracion->getValoracionesByvaloracion()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Valoraciones encontradas';
-                    } else {
-                        $result['error'] = 'No hay valoraciones para este valoracion de producto';
-                    }
-                } else {
-                    $result['error'] = 'Falta el ID del valoracion de producto';
                 }
                 break;
             default:

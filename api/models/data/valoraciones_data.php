@@ -48,13 +48,23 @@ class ValoracionesData extends ValoracionesHandler
         return true;
     }
 
-    public function setIdDetalleP($value)
+    public function setIdProducto($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->idDetalleP = $value;
+            $this->idProducto = $value;
             return true;
         } else {
-            $this->data_error = 'El identificador de detalle de pedido es incorrecto';
+            $this->data_error = 'El identificador del producto en la valoración es incorrecto';
+            return false;
+        }
+    }
+    public function setIdCliente($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->idCliente = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador del cliente en la valoración es incorrecto';
             return false;
         }
     }
