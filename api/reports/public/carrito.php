@@ -8,7 +8,7 @@ require_once('../../models/data/pedido_data.php');
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
 $pdf->startReport('Reporte de compra Pull&Zara');
-// Se instancia el modelo Administrador para obtener los datos.
+// Se instancia el modelo pedido para obtener los datos.
 $pedido = new PedidoData;
 // Se verifica si existen registros em carrito para mostrar, de lo contrario se imprime un mensaje.
 if ($dataPedido = $pedido->readDetallePedido()) {
