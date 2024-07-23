@@ -1,7 +1,7 @@
 <?php
 // Se incluye la clase del modelo.
-require_once('../../models/data/pedido_data.php');
-require_once('../../helpers/validator.php');
+require_once ('../../models/data/pedido_data.php');
+require_once ('../../helpers/validator.php');
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
@@ -37,29 +37,29 @@ if (isset($_GET['action'])) {
                 break;
             case 'readAllPending':
                 if ($result['dataset'] = $pedido->readAllPending()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
                     $result['error'] = 'No existen pedidos registrados';
                 }
-            break;
+                break;
             case 'readAll':
                 if ($result['dataset'] = $pedido->readAll()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
                     $result['error'] = 'No existen pedidos registrados';
                 }
-            break;
+                break;
             case 'readOne':
                 if (!$pedido->setIdPedido($_POST['idPedido'])) {
-                        $result['error'] = $pedido->getDataError();
+                    $result['error'] = $pedido->getDataError();
                 } elseif ($result['dataset'] = $pedido->readDetallesPedidoAdmin()) {
-                        $result['status'] = 1;
+                    $result['status'] = 1;
                 } else {
-                        $result['error'] = 'Pedido inexistente';
+                    $result['error'] = 'Pedido inexistente';
                 }
-            break;
+                break;
             // Acción para actualizar la cantidad de un producto en el carrito de compras.
             case 'updateDetail':
                 $_POST = Validator::validateForm($_POST);
@@ -75,8 +75,8 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar la cantidad';
                 }
                 break;
-                
-             // Acción para actualizar el estado pedido de un pedido
+
+            // Acción para actualizar el estado pedido de un pedido
             case 'updateEstado':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -100,6 +100,13 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'Ocurrió un problema al obtener los productos del carrito.';
+                }
+                break;
+            case 'prediccionGanancia':
+                if ($result['dataset'] = $pedido->prediccionGanancia()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No hay datos disponibles';
                 }
                 break;
 
@@ -132,7 +139,7 @@ if (isset($_GET['action'])) {
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
     header('Content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print(json_encode($result));
+    print (json_encode($result));
 } else {
-    print(json_encode('Recurso no disponible'));
+    print (json_encode('Recurso no disponible'));
 }

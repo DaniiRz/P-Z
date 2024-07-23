@@ -1,14 +1,14 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once('../../helpers/database.php');
+require_once ('../../helpers/database.php');
 /*
-*	Clase para manejar el comportamiento de los datos de las tablas PEDIDO y DETALLE_PEDIDO.
-*/
+ *	Clase para manejar el comportamiento de los datos de las tablas PEDIDO y DETALLE_PEDIDO.
+ */
 class PedidoHandler
 {
     /*
-    *   Declaración de atributos para el manejo de datos.
-    */
+     *   Declaración de atributos para el manejo de datos.
+     */
     protected $id_pedido = null;
     protected $id_detalle = null;
     protected $cliente = null;
@@ -21,63 +21,63 @@ class PedidoHandler
     protected $estado = null;
 
     /*
-    *   ESTADOS DEL PEDIDO
-    *   Pendiente (valor por defecto en la base de datos). Pedido en proceso y se puede modificar el detalle.
-    *   Finalizado. Pedido terminado por el cliente y ya no es posible modificar el detalle.
-    *   Entregado. Pedido enviado al cliente.
-    *   Anulado. Pedido cancelado por el cliente después de ser finalizado.
-    */
+     *   ESTADOS DEL PEDIDO
+     *   Pendiente (valor por defecto en la base de datos). Pedido en proceso y se puede modificar el detalle.
+     *   Finalizado. Pedido terminado por el cliente y ya no es posible modificar el detalle.
+     *   Entregado. Pedido enviado al cliente.
+     *   Anulado. Pedido cancelado por el cliente después de ser finalizado.
+     */
 
     /*
-    *   Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
-    */
-// Método para verificar si existe un pedido en proceso con el fin de iniciar o continuar una compra.
-public function getOrder()
-{
-    $this->estado = 'Pendiente';
-    $sql = 'SELECT id_pedido
+     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
+     */
+    // Método para verificar si existe un pedido en proceso con el fin de iniciar o continuar una compra.
+    public function getOrder()
+    {
+        $this->estado = 'Pendiente';
+        $sql = 'SELECT id_pedido
             FROM tb_pedidos
             WHERE estado_pedido = ? AND id_cliente = ?';
-    $params = array($this->estado, $_SESSION['idCliente']);
-    
-    if ($data = Database::getRow($sql, $params)) {
-        $_SESSION['idPedido'] = $data['id_pedido'];
-        return true;
-    } else {
-        return false;
-    }
-}
+        $params = array($this->estado, $_SESSION['idCliente']);
 
-// Método para iniciar un pedido en proceso.
-// Ejemplo del método startOrder
-public function startOrder()
-{
-    if ($this->getOrder()) {
-        return true;
-    } else {
-        // Debug: Verificar valor de direccion_pedido
-      //  error_log("Direccion Pedido: " . $this->direccion_pedido);
-
-        // Se realiza la inserción del pedido al carrito 
-        $sql = 'INSERT INTO tb_pedidos(direccion_pedido, estado_pedido, id_cliente, fecha_pedido) VALUES (?, ?, ?, NOW())';
-        $this->direccion_pedido = 'En confirmación...';
-        $this->estado = 'Pendiente';
-        $params = array($this->direccion_pedido,$this->estado, $_SESSION['idCliente']);
-        
-        // Ejecutar la inserción
-        
-        if ($_SESSION['idPedido'] = Database::getLastRow($sql, $params)) {
+        if ($data = Database::getRow($sql, $params)) {
+            $_SESSION['idPedido'] = $data['id_pedido'];
             return true;
         } else {
             return false;
         }
     }
-}
 
-public function searchRows()
-{
-    $value = '%' . Validator::getSearchValue() . '%';
-    $sql = 'SELECT 
+    // Método para iniciar un pedido en proceso.
+// Ejemplo del método startOrder
+    public function startOrder()
+    {
+        if ($this->getOrder()) {
+            return true;
+        } else {
+            // Debug: Verificar valor de direccion_pedido
+            //  error_log("Direccion Pedido: " . $this->direccion_pedido);
+
+            // Se realiza la inserción del pedido al carrito 
+            $sql = 'INSERT INTO tb_pedidos(direccion_pedido, estado_pedido, id_cliente, fecha_pedido) VALUES (?, ?, ?, NOW())';
+            $this->direccion_pedido = 'En confirmación...';
+            $this->estado = 'Pendiente';
+            $params = array($this->direccion_pedido, $this->estado, $_SESSION['idCliente']);
+
+            // Ejecutar la inserción
+
+            if ($_SESSION['idPedido'] = Database::getLastRow($sql, $params)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public function searchRows()
+    {
+        $value = '%' . Validator::getSearchValue() . '%';
+        $sql = 'SELECT 
                 pe.id_pedido AS id_pedido,
                 CONCAT(cl.nombre_cliente, " ", cl.apellido_cliente) AS nombre_cliente,
                 cl.correo_cliente AS correo_cliente,
@@ -100,43 +100,43 @@ public function searchRows()
                 pe.estado_pedido LIKE ?
             ORDER BY 
                 pe.id_pedido';
-    
-    $params = array($value, $value, $value, $value, $value, $value);
-    return Database::getRows($sql, $params);
-}
 
-   // Método para agregar un producto al carrito de compras.
-public function createDetail()
-{
-       // Consulta SQL para insertar un detalle del pedido
-    $sql = 'INSERT INTO tb_detalle_pedido (id_detalle_producto, precio_producto, cantidad_producto, id_pedido)
+        $params = array($value, $value, $value, $value, $value, $value);
+        return Database::getRows($sql, $params);
+    }
+
+    // Método para agregar un producto al carrito de compras.
+    public function createDetail()
+    {
+        // Consulta SQL para insertar un detalle del pedido
+        $sql = 'INSERT INTO tb_detalle_pedido (id_detalle_producto, precio_producto, cantidad_producto, id_pedido)
             VALUES (
                 (SELECT id_detalle_producto FROM tb_detalle_productos WHERE id_color = ? AND id_talla = ? LIMIT 1),
                 (SELECT precio_producto FROM tb_detalle_productos WHERE id_color = ? AND id_talla = ? LIMIT 1),
                 ?, ?
             )';
-       // Parámetros para la consulta
-    $params = array($this->color, $this->talla, $this->color, $this->talla, $this->cantidad, $_SESSION['idPedido']);
-       // Ejecuta la consulta y retorna el resultado
-    return Database::executeRow($sql, $params);
-}
+        // Parámetros para la consulta
+        $params = array($this->color, $this->talla, $this->color, $this->talla, $this->cantidad, $_SESSION['idPedido']);
+        // Ejecuta la consulta y retorna el resultado
+        return Database::executeRow($sql, $params);
+    }
 
     // Método para obtener los productos que se encuentran en el carrito de compras.
     //public function readDetail()
     //{
-       // $sql = 'SELECT id_detalle, nombre_producto, detalle_pedido.precio_producto, detalle_pedido.cantidad_producto
-                //FROM tb_detalle_pedido
-               // INNER JOIN tb_pedidos USING(id_pedido)
-                //INNER JOIN tb_productos USING(id_producto)
-               // WHERE id_pedido = ?';
-       // $params = array($_SESSION['idPedido']);
-       // return Database::getRows($sql, $params);
-   // }
+    // $sql = 'SELECT id_detalle, nombre_producto, detalle_pedido.precio_producto, detalle_pedido.cantidad_producto
+    //FROM tb_detalle_pedido
+    // INNER JOIN tb_pedidos USING(id_pedido)
+    //INNER JOIN tb_productos USING(id_producto)
+    // WHERE id_pedido = ?';
+    // $params = array($_SESSION['idPedido']);
+    // return Database::getRows($sql, $params);
+    // }
 
-// Método para obtener los productos que se encuentran en el carrito de compras.
-public function readDetallePedido()
-{
-    $sql = 'SELECT 
+    // Método para obtener los productos que se encuentran en el carrito de compras.
+    public function readDetallePedido()
+    {
+        $sql = 'SELECT 
          dp.id_detalle, ddp.img_producto, ddp.id_talla, ddp.id_color, dp.cantidad_producto, 
          dp.precio_producto, p.nombre_producto, c.nombre_color, t.numero_talla
     FROM 
@@ -151,15 +151,15 @@ public function readDetallePedido()
         tb_tallas t ON ddp.id_talla = t.id_talla
     WHERE 
         dp.id_pedido = ?';
-    $params = array($_SESSION['idPedido']);
-    return Database::getRows($sql, $params);
-}
+        $params = array($_SESSION['idPedido']);
+        return Database::getRows($sql, $params);
+    }
 
 
-// Método para obtener los productos que se encuentran en el pedido.
-public function readDetallesPedidoAdmin()
-{
-    $sql = 'SELECT 
+    // Método para obtener los productos que se encuentran en el pedido.
+    public function readDetallesPedidoAdmin()
+    {
+        $sql = 'SELECT 
     dp.id_detalle, 
     ddp.img_producto, 
     t.numero_talla AS numero_talla, 
@@ -183,12 +183,13 @@ INNER JOIN
     tb_colores c ON ddp.id_color = c.id_color
 WHERE 
     dp.id_pedido = ?';
-    $params = array($this->id_pedido);
-    return Database::getRows($sql, $params);
-}
+        $params = array($this->id_pedido);
+        return Database::getRows($sql, $params);
+    }
 
     // Método para leer todos los pedidos
-    public function readAll() {
+    public function readAll()
+    {
         // Consulta SQL para obtener los datos necesarios
         $sql = 'SELECT p.id_pedido, 
                 CONCAT(cl.nombre_cliente, " ", cl.apellido_cliente) AS nombre_cliente, 
@@ -203,10 +204,11 @@ WHERE
         return Database::getRows($sql);
     }
 
-        // Método para generar reporte todos los pedidos
-        public function obtenerPedidosPorEstado() {
-            // Consulta SQL para obtener los datos necesarios
-            $sql = 'SELECT p.id_pedido, 
+    // Método para generar reporte todos los pedidos
+    public function obtenerPedidosPorEstado()
+    {
+        // Consulta SQL para obtener los datos necesarios
+        $sql = 'SELECT p.id_pedido, 
                     CONCAT(cl.nombre_cliente, " ", cl.apellido_cliente) AS nombre_cliente, 
                     cl.correo_cliente,
                     p.direccion_pedido,
@@ -215,13 +217,14 @@ WHERE
                     FROM tb_pedidos p
                     JOIN tb_clientes cl ON p.id_cliente = cl.id_cliente
                     WHERE p.estado_pedido = ?';
-            $params = array($this->estado);
-            return Database::getRows($sql, $params);
-        }
+        $params = array($this->estado);
+        return Database::getRows($sql, $params);
+    }
 
     // Método para leer todos los pedidos pendientes
-    public function readAllPending() {
-    $sql = 'SELECT p.id_pedido, 
+    public function readAllPending()
+    {
+        $sql = 'SELECT p.id_pedido, 
         cl.nombre_cliente, 
         cl.correo_cliente,
         p.direccion_pedido,
@@ -230,10 +233,10 @@ WHERE
         FROM tb_pedidos p
         JOIN tb_clientes cl ON p.id_cliente = cl.id_cliente
         WHERE  p.estado_pedido = "Pendiente"';
-    
-    // Ejecutar la consulta y devolver los resultados
-    return Database::getRows($sql);
-}
+
+        // Ejecutar la consulta y devolver los resultados
+        return Database::getRows($sql);
+    }
 
 
 
@@ -275,4 +278,82 @@ WHERE
         return Database::executeRow($sql, $params);
     }
 
+    // Método para predecir las ganancias futuras basado en ventas mensuales.
+
+    public function prediccionGanancia()
+    {
+        // Realizar una predicción de ganancias futuras basada en ventas mensuales
+        $sql = "WITH ventas AS (
+                    SELECT 
+                        DATE_FORMAT(p.fecha_pedido, '%Y-%m') AS mes, 
+                        ROUND(SUM(dp.cantidad_producto * dp.precio_producto), 2) AS ventas_mensuales,
+                        CASE
+                            WHEN DATE_FORMAT(p.fecha_pedido, '%m') = '01' THEN 'Enero'
+                            WHEN DATE_FORMAT(p.fecha_pedido, '%m') = '02' THEN 'Febrero'
+                            WHEN DATE_FORMAT(p.fecha_pedido, '%m') = '03' THEN 'Marzo'
+                            WHEN DATE_FORMAT(p.fecha_pedido, '%m') = '04' THEN 'Abril'
+                            WHEN DATE_FORMAT(p.fecha_pedido, '%m') = '05' THEN 'Mayo'
+                            WHEN DATE_FORMAT(p.fecha_pedido, '%m') = '06' THEN 'Junio'
+                            WHEN DATE_FORMAT(p.fecha_pedido, '%m') = '07' THEN 'Julio'
+                            WHEN DATE_FORMAT(p.fecha_pedido, '%m') = '08' THEN 'Agosto'
+                            WHEN DATE_FORMAT(p.fecha_pedido, '%m') = '09' THEN 'Septiembre'
+                            WHEN DATE_FORMAT(p.fecha_pedido, '%m') = '10' THEN 'Octubre'
+                            WHEN DATE_FORMAT(p.fecha_pedido, '%m') = '11' THEN 'Noviembre'
+                            WHEN DATE_FORMAT(p.fecha_pedido, '%m') = '12' THEN 'Diciembre'
+                        END AS nombre_mes,
+                        ROW_NUMBER() OVER (ORDER BY DATE_FORMAT(p.fecha_pedido, '%Y-%m')) AS mes_indice
+                    FROM tb_pedidos p
+                    JOIN tb_detalle_pedido dp ON p.id_pedido = dp.id_pedido
+                    WHERE p.estado_pedido = 'Completado'
+                    GROUP BY DATE_FORMAT(p.fecha_pedido, '%Y-%m')
+                    ORDER BY DATE_FORMAT(p.fecha_pedido, '%Y-%m') DESC
+                    LIMIT 6
+                ),
+                coeficientes AS (
+                    SELECT 
+                        COUNT(*) AS n,
+                        SUM(mes_indice) AS sum_x,
+                        SUM(ventas_mensuales) AS sum_y,
+                        SUM(mes_indice * ventas_mensuales) AS sum_xy,
+                        SUM(mes_indice * mes_indice) AS sum_xx
+                    FROM ventas
+                ),
+                calculos AS (
+                    SELECT 
+                        (n * sum_xy - sum_x * sum_y) / (n * sum_xx - sum_x * sum_x) AS slope,
+                        (sum_y - ((n * sum_xy - sum_x * sum_y) / (n * sum_xx - sum_x * sum_x)) * sum_x) / n AS intercept
+                    FROM coeficientes
+                ),
+                prediccion AS (
+                    SELECT 
+                        ROUND(c.slope * (MAX(v.mes_indice) + 1) + c.intercept, 2) AS prediccion_siguiente_mes,
+                        CASE
+                            WHEN DATE_FORMAT(ADDDATE(MAX(p.fecha_pedido), INTERVAL 1 MONTH), '%m') = '01' THEN 'Enero'
+                            WHEN DATE_FORMAT(ADDDATE(MAX(p.fecha_pedido), INTERVAL 1 MONTH), '%m') = '02' THEN 'Febrero'
+                            WHEN DATE_FORMAT(ADDDATE(MAX(p.fecha_pedido), INTERVAL 1 MONTH), '%m') = '03' THEN 'Marzo'
+                            WHEN DATE_FORMAT(ADDDATE(MAX(p.fecha_pedido), INTERVAL 1 MONTH), '%m') = '04' THEN 'Abril'
+                            WHEN DATE_FORMAT(ADDDATE(MAX(p.fecha_pedido), INTERVAL 1 MONTH), '%m') = '05' THEN 'Mayo'
+                            WHEN DATE_FORMAT(ADDDATE(MAX(p.fecha_pedido), INTERVAL 1 MONTH), '%m') = '06' THEN 'Junio'
+                            WHEN DATE_FORMAT(ADDDATE(MAX(p.fecha_pedido), INTERVAL 1 MONTH), '%m') = '07' THEN 'Julio'
+                            WHEN DATE_FORMAT(ADDDATE(MAX(p.fecha_pedido), INTERVAL 1 MONTH), '%m') = '08' THEN 'Agosto'
+                            WHEN DATE_FORMAT(ADDDATE(MAX(p.fecha_pedido), INTERVAL 1 MONTH), '%m') = '09' THEN 'Septiembre'
+                            WHEN DATE_FORMAT(ADDDATE(MAX(p.fecha_pedido), INTERVAL 1 MONTH), '%m') = '10' THEN 'Octubre'
+                            WHEN DATE_FORMAT(ADDDATE(MAX(p.fecha_pedido), INTERVAL 1 MONTH), '%m') = '11' THEN 'Noviembre'
+                            WHEN DATE_FORMAT(ADDDATE(MAX(p.fecha_pedido), INTERVAL 1 MONTH), '%m') = '12' THEN 'Diciembre'
+                        END AS nombre_siguiente_mes
+                    FROM ventas v
+                    JOIN tb_pedidos p ON DATE_FORMAT(p.fecha_pedido, '%Y-%m') = v.mes
+                    CROSS JOIN calculos c
+                )
+                SELECT 
+                    v.mes, 
+                    v.ventas_mensuales,
+                    v.nombre_mes,
+                    p.prediccion_siguiente_mes,
+                    p.nombre_siguiente_mes
+                FROM ventas v
+                CROSS JOIN prediccion p
+                ORDER BY v.mes ASC";
+        return Database::getRows($sql);
+    }
 }

@@ -2,6 +2,7 @@
 const CLIENTE_API = 'services/admin/clientes.php';
 const CATEGORIA_API = 'services/admin/categorias.php';
 const PRODUCTO_API = 'services/admin/producto.php';
+const PEDIDO_API = 'services/admin/pedido.php';
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     graficoPastelUsuarios();
     graficoPastelCategorias();
     graficoBarrasProductos();
+    graficaGanancias();
 });
 
 
@@ -174,4 +176,71 @@ const barGraph1 = (canvas, xAxis, yAxis, legend, title) => {
             }
         }
     });
+}
+
+// Función para generar un gráfico de barras.
+const LineGraph = (canvas, xAxis, yAxis, legend, title) => {
+    // Se declara un arreglo para guardar los colores aleatorios.
+    let colors = xAxis.map(() => getRandomColor());
+    
+    // Se crea una instancia para generar el gráfico con los datos recibidos.
+    new Chart(document.getElementById(canvas), {
+        type: 'line',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: legend,
+                data: yAxis,
+                backgroundColor: colors, // Aplicar los colores aleatorios
+                borderColor: colors.map(color => color), // Usar los mismos colores para el borde
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: title
+                },
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        autoSkip: false
+                    }
+                }
+            }
+        }
+    });
+}
+/*
+*   Función asíncrona para mostrar un gráfico de pastel con el porcentaje de productos por categoría.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const graficaGanancias = async () => {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await fetchData(PEDIDO_API, 'prediccionGanancia', null);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let mes = [];
+        let ganancia = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            mes.push(row.nombre_siguiente_mes);
+            ganancia.push(row.prediccion_siguiente_mes);
+        });
+        mes.push(DATA.dataset[0].nombre_siguiente_mes);
+        ganancia.push(DATA.dataset[0].prediccion_siguiente_mes);
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        LineGraph('chart5', mes, ganancia, 'Ganancias $', 'Año');
+    } else {
+        document.getElementById('chart5').remove();
+        console.log(DATA.error);
+    }
 }
