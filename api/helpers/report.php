@@ -87,7 +87,6 @@ class Report extends FPDF
         
         // Altura y anchura de la página en puntos (medida estándar en FPDF)
         $pageHeight = $this->GetPageHeight();
-        $pageWidth = $this->GetPageWidth();
         
         // Posición Y para las imágenes (ajustada para estar más arriba del final de la página)
         $imageY = $pageHeight - 40 ; 
@@ -95,8 +94,6 @@ class Report extends FPDF
         // Posición X para la imagen de la izquierda
         $imageLeftX = 0; 
         
-        // Ancho de la imagen de la derecha
-        $imageWidth = 50;
         
         // Posición X para la imagen de la derecha (pegada al borde)
         $imageRightX = 190; 
