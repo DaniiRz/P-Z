@@ -28,6 +28,11 @@ function generarMenuPublic() {
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link text-white" href="../public/historial_compras.html">
+                                    <i class="fa-solid fa-bag-shopping fa-xl" style="color: #000000;"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-white" href="../public/index.html">
                                     <img class="navbar-image" src="../../resources/img/casa 1.png" alt="" width="25" height="25">
                                 </a>
