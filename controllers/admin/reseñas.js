@@ -18,8 +18,7 @@ const SAVE_FORM = document.getElementById('saveForm'),
     ID_VALORACION = document.getElementById('idValoracion'),
     NOMBRE_PRODUCTO = document.getElementById('nombreProducto'),
     VALORACION = document.getElementById('comentario'),
-    ESTADO_VALORACION = document.getElementById('estadoValoracion'),
-    BTN_ENVIAR_VALO = document.getElementById('submitButton');
+    ESTADO_VALORACION = document.getElementById('estadoValoracion');
 
 document.addEventListener('DOMContentLoaded', () => {
     fillTable();
