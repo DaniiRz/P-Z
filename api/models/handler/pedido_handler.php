@@ -187,6 +187,21 @@ WHERE
         return Database::getRows($sql, $params);
     }
 
+    public function readDetalle()
+    {
+        $sql = 'SELECT 
+        pe.id_pedido, 
+        pe.estado_pedido
+    FROM 
+        tb_detalle_pedido dp
+    INNER JOIN 
+        tb_pedidos pe ON dp.id_pedido = pe.id_pedido
+    WHERE 
+        dp.id_pedido = ?';
+        $params = array($this->id_pedido);
+        return Database::getRow($sql, $params);
+    }
+
     // Método para leer todos los pedidos
     public function readAll()
     {

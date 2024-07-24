@@ -54,12 +54,21 @@ if (isset($_GET['action'])) {
             case 'readOne':
                 if (!$pedido->setIdPedido($_POST['idPedido'])) {
                     $result['error'] = $pedido->getDataError();
-                } elseif ($result['dataset'] = $pedido->readDetallesPedidoAdmin()) {
+                } elseif ($result['dataset'] = $pedido->readDetalle()) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'Pedido inexistente';
                 }
                 break;
+                case 'readDetalles':
+                    if (!$pedido->setIdPedido($_POST['idPedido'])) {
+                        $result['error'] = $pedido->getDataError();
+                    } elseif ($result['dataset'] = $pedido->readDetallesPedidoAdmin()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'Pedido inexistente';
+                    }
+                    break;
             // Acción para actualizar la cantidad de un producto en el carrito de compras.
             case 'updateDetail':
                 $_POST = Validator::validateForm($_POST);

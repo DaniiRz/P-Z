@@ -93,6 +93,7 @@ const verValoracion = async (id) => {
         sweetAlert(4, DATA.error, true);
     }
 };
+
 ESTADO_VALORACION.addEventListener('change', async () => {
     const FORM = new FormData();
     FORM.append('idValoracion', ID_VALORACION.value);
