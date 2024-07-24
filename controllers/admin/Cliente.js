@@ -90,7 +90,7 @@ const fillTable = async (form = null) => {
                     <button type="button" class="btn btn-warning" onclick="openReport(${row.id_cliente})"><i class="bi bi-filetype-pdf"></i></button>
                 </td>
                 <td class="text-center">
-                    <button type="button" class="btn btn-warning" onclick="openReportReseña(${row.id_cliente})"><i class="bi bi-filetype-pdf"></i></button>
+                    <button type="button" class="btn btn-info" onclick="openReportReseña(${row.id_cliente})"><i class="bi bi-filetype-pdf"></i></button>
                 </td>
         </tr>
             `;
