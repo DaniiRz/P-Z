@@ -19,7 +19,7 @@ class ValoracionesHandler
     /*
     *   Métodos para realizar las operaciones CRUD (create, read, update, delete).
     */
-    public function searchRows()
+public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
         $sql = 'SELECT v.id_valoracion, CONCAT(c.nombre_cliente, " ", c.apellido_cliente) AS nombre_cliente, p.nombre_producto, v.comentario_cliente, v.fecha_valoracion, v.estado_valoracion
@@ -43,7 +43,7 @@ class ValoracionesHandler
         return Database::executeRow($sql, $params);
     }
 
-    public function readAll()
+public function readAll()
     {
         $sql = 'SELECT 
                 v.id_valoracion, 
@@ -61,7 +61,7 @@ class ValoracionesHandler
         return Database::getRows($sql);
     }
 
-    public function readOne()
+public function readOne()
     {
         $sql = 'SELECT 
                 v.id_valoracion, 
@@ -80,7 +80,7 @@ class ValoracionesHandler
         return Database::getRow($sql, $params);
     }
 
-    public function updateValoracion()
+public function updateValoracion()
     {
         $sql = 'UPDATE tb_valoracion
                 SET comentario_cliente = ?, fecha_valoracion = ?, id_producto = ?, estado_valoracion = ?
@@ -89,7 +89,7 @@ class ValoracionesHandler
         return Database::executeRow($sql, $params);
     }
 
-    public function updateEstadoValoracion()
+public function updateEstadoValoracion()
     {
         $sql = 'UPDATE tb_valoracion
                 SET estado_valoracion = ?
@@ -98,12 +98,25 @@ class ValoracionesHandler
         return Database::executeRow($sql, $params);
     }
 
-    public function deleteValoracion()
+public function deleteValoracion()
     {
         $sql = 'DELETE FROM tb_valoracion
                 WHERE id_valoracion = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+
+public function productosMasValorados()
+{
+    // Consulta SQL para obtener los datos necesarios
+    $sql = 'SELECT p.id_producto, p.nombre_producto, COUNT(v.id_valoracion) AS cantidad_valoraciones
+                FROM tb_productos p
+                LEFT JOIN tb_valoracion v ON p.id_producto = v.id_producto
+                GROUP BY p.id_producto, p.nombre_producto
+                ORDER BY cantidad_valoraciones DESC
+                LIMIT 5;'; 
+    // Ejecutar la consulta y devolver los resultados
+    return Database::getRows($sql);
 }
-?>
+}

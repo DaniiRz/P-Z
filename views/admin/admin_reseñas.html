@@ -49,6 +49,9 @@
                             <button type="reset" class="btn btn-secondary" onclick="fillTable()">
                                 <i class="fas fa-times-circle"></i>
                             </button>
+                            <button type="button" class="btn btn-info" required onclick="openChart()"> 
+                                <i class="fa-solid fa-square-poll-vertical"></i>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -113,21 +116,41 @@
         </div>
     </div>
 
+    <!-- Componente Modal para mostrar un gráfico -->
+    <div class="modal fade" id="chartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="chartTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="chartTitle">Cantidad de valoraciones por producto</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <!-- Contenedor para mostrar el gráfico -->
+            <div class="modal-body" id="chartContainer"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!-- Footer -->
     <footer id="footerIndex" class="pt-3"></footer>
 
     <!-- Librerías -->
     <!-- Bootstrap -->
-    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/bootstrap.bundle.min.js"> </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 
     <!-- Js -->
-    <script src="../../resources/js/sweetalert.min.js"></script>
+    <script src="../../resources/js/sweetalert.min.js"></script>   
+    <script src="../../controllers/utils/components.js"></script>
     <script src="../../controllers/utils/admin.js"></script>
     <script src="../../controllers/utils/cargar_menu.js"></script>
     <script src="../../controllers/utils/Validaciones.js"></script>
-    <script src="../../controllers/utils/components.js"></script>
     <script src="../../controllers/admin/reseñas.js"></script>
+    <script src="../../resources/js/chart.umd.min.js"></script>
 </body>
 
 </html>

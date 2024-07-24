@@ -62,6 +62,14 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen valoraciones registradas';
                 }
                 break;
+            case 'productosMasValorados':
+                if ($result['dataset'] = $valoracion->productosMasValorados()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen pedidos registrados';
+                }
+                break;
             case 'readOne':
                 if (!$valoracion->setId($_POST['idValoracion'])) {
                     $result['error'] = $valoracion->getDataError();

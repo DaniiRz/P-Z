@@ -11,6 +11,9 @@ const TABLE_BODY = document.getElementById('tableBody'),
 const MODAL_VALORACION = new bootstrap.Modal('#modalValoracion'),
     MODAL_TITLE_VALORACION = document.getElementById('modalTitle');
 
+// Constantes para establecer los elementos del componente Modal.
+const CHART_MODAL = new bootstrap.Modal('#chartModal'),
+    MODAL_TITLE = document.getElementById('chartTitle'); 
 // Formulario de guardado
 const SAVE_FORM = document.getElementById('saveForm'),
     ID_VALORACION = document.getElementById('idValoracion'),
@@ -107,4 +110,40 @@ ESTADO_VALORACION.addEventListener('change', async () => {
         sweetAlert(2, DATA.error, false);
     }
 });
+
+/*Funcion asincrona para mostrar grafico parametrizado de cuantos productos poseen cierta talla 
+Parametros: ID 
+Retorno: ninguno */
+const openChart = async () => {
+    try {
+        // Obtener los datos de los productos más valorados desde el servidor
+        const DATA = await fetchData(VALORACIONES_API, 'productosMasValorados');
+        
+        // Verificar si la respuesta es satisfactoria
+        if (DATA.status) {
+            // Mostrar el modal del gráfico
+            CHART_MODAL.show();
+
+            // Extraer nombres de productos y cantidad de valoraciones de los datos recibidos
+            const productos = DATA.dataset.map(row => row.nombre_producto);
+            const valoraciones = DATA.dataset.map(row => row.cantidad_valoraciones);
+
+            // Agregar un elemento canvas al contenedor del modal
+            document.getElementById('chartContainer').innerHTML = '<canvas id="chart"></canvas>';
+
+            // Llamar a la función para generar y mostrar el gráfico radar
+            radarGraph('chart', productos, valoraciones, 'Cantidad de valoraciones por producto');
+        } else {
+            // Mostrar mensaje de error si la petición no fue satisfactoria
+            sweetAlert(4, DATA.error, true);
+        }
+    } catch (error) {
+        // Manejar errores de forma adecuada, por ejemplo, mostrando un mensaje en consola
+        console.error('Error al obtener los datos:', error);
+    }
+};
+
+
+
+
 

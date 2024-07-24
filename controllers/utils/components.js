@@ -74,18 +74,18 @@ const sweetAlert = async (type, text, timer, url = null) => {
 *   Función asíncrona para cargar las opciones en un select de formulario.
 *   Parámetros: filename (nombre del archivo), action (acción a realizar), select (identificador del select en el formulario) y filter (dato opcional para seleccionar una opción o filtrar los datos).
 *   Retorno: ninguno.
-*/ 
+*/
 const fillSelect = async (filename, action, select, filter = undefined) => {
     // Se verifica si el filtro contiene un objeto para enviar a la API.
     const FORM = (typeof filter === 'object') ? filter : null;
     // Petición para obtener los datos.
     const DATA = await fetchData(filename, action, FORM);
     let content = '';
-    
+
     // Se comprueba si DATA no es undefined y si el elemento select existe en el DOM.
-    if (DATA && DATA.status && document.getElementById(select)) { 
+    if (DATA && DATA.status && document.getElementById(select)) {
         content += '';
-        
+
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             // Se obtiene el dato del primer campo de la sentencia SQL.
@@ -94,7 +94,7 @@ const fillSelect = async (filename, action, select, filter = undefined) => {
             const text = Object.values(row)[1];
             // Se verifica el valor del filtro para enlistar las opciones.
             const SELECTED = (typeof filter === 'number') ? filter : null;
-            
+
             if (value != SELECTED) {
                 content += `<option value="${value}">${text}</option>`;
             } else {
@@ -183,6 +183,43 @@ const pieGraph = (canvas, legends, values, title) => {
         }
     });
 }
+
+const radarGraph = (canvas, legends, values, title) => {
+    let colors = values.map(() => '#' + (Math.random().toString(16)).substring(2, 8));
+
+    // Configurar los datos del gráfico
+    new Chart(document.getElementById(canvas), {
+        type: 'radar',
+        data: {
+            labels: legends,
+            datasets: [{
+                label: title,
+                data: values,
+                backgroundColor: colors,
+                borderColor: colors,
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                r: {
+                    suggestedMin: 0 // Establecer el mínimo del eje radial a 0
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: title
+                },
+                legend: {
+                    display: false // Ocultar la leyenda porque ya tenemos etiquetas en el radar
+                }
+            }
+        }
+    });
+};
+
+
 
 /*
 *   Función asíncrona para cerrar la sesión del usuario.
