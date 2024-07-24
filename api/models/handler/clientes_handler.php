@@ -199,7 +199,7 @@ class ClienteHandler
     /*
     *   Métodos para generar reportes.
     */
-    public function pedidosCliente()
+public function pedidosCliente()
 {
     $sql = 'SELECT p.id_pedido, p.fecha_pedido, p.estado_pedido, p.direccion_pedido, c.nombre_cliente, c.apellido_cliente, c.telf_cliente, c.correo_cliente
             FROM tb_pedidos p
@@ -211,4 +211,25 @@ class ClienteHandler
     return Database::getRows($sql, $params);
 }
 
+// Esta función nos da las reseñas del cliente con toda la información relevante en función del ID del cliente que pasemos como parámetro.
+public function obtenerReseñasCliente()
+{
+    $sql = 'SELECT 
+                c.nombre_cliente,
+                c.apellido_cliente,
+                p.nombre_producto,
+                v.comentario_cliente,
+                v.fecha_valoracion,
+                v.estado_valoracion
+            FROM 
+                tb_valoracion v
+            JOIN 
+                tb_clientes c ON v.id_cliente = c.id_cliente
+            JOIN 
+                tb_productos p ON v.id_producto = p.id_producto
+            WHERE 
+                c.id_cliente = ?';
+    $params = array($this->id); //$this->id contiene el ID del cliente
+    return Database::getRows($sql, $params);
+}
 }

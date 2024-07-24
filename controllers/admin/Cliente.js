@@ -79,16 +79,19 @@ const fillTable = async (form = null) => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
             <tr>
-                <td>${row.nombre_cliente} ${row.apellido_cliente}</td>
-                <td>${row.dui_client}</td>
-                <td>${row.telf_cliente}</td>
-                <td>${row.correo_cliente}</td>
-                <td>${row.genero_cliente}</td>
-                <td>
-                <button class="btn btn-danger"><i class="fa-solid fa-trash" onclick="openDelete(${row.id_cliente})"></i></button>
-                <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_cliente})"></i></button>
-                <button type="button" class="btn btn-warning" onclick="openReport(${row.id_cliente})"><i class="bi bi-filetype-pdf"></i></button>
-            </td>
+                <td class="text-center">${row.nombre_cliente} ${row.apellido_cliente}</td>
+                <td class="text-center">${row.dui_client}</td>
+                <td class="text-center">${row.telf_cliente}</td>
+                <td class="text-center" >${row.correo_cliente}</td>
+                <td class="text-center">${row.genero_cliente}</td>
+                <td class="text-center">
+                    <button class="btn btn-danger"><i class="fa-solid fa-trash" onclick="openDelete(${row.id_cliente})"></i></button>
+                    <button class="btn btn-primary"><i class="bi bi-pen-fill" onclick="openUpdate(${row.id_cliente})"></i></button>
+                    <button type="button" class="btn btn-warning" onclick="openReport(${row.id_cliente})"><i class="bi bi-filetype-pdf"></i></button>
+                </td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-warning" onclick="openReportReseña(${row.id_cliente})"><i class="bi bi-filetype-pdf"></i></button>
+                </td>
         </tr>
             `;
         });
@@ -183,6 +186,15 @@ const openDelete = async (id) => {
 const openReport = (id) => {
     // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
     const PATH = new URL(`${SERVER_URL}reports/admin/pedidos_cliente.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('idCliente', id);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
+}
+
+const openReportReseña = (id) => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/admin/reseñas_cliente.php`);
     // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
     PATH.searchParams.append('idCliente', id);
     // Se abre el reporte en una nueva pestaña.
