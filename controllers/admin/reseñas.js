@@ -73,7 +73,6 @@ const fillSelectEstadosValo = (estadoActual) => {
 };
 
 const verValoracion = async (id) => {
-    NOMBRE_PRODUCTO.setAttribute('disable',false);
     MODAL_TITLE_VALORACION.textContent = 'Valoración';
     const FORM = new FormData();
     FORM.append('idValoracion', id);
@@ -84,6 +83,11 @@ const verValoracion = async (id) => {
         NOMBRE_PRODUCTO.value = row.nombre_producto;
         VALORACION.value = row.comentario_cliente;
         fillSelectEstadosValo(row.estado_valoracion);
+
+        // Inhabilitar los campos
+        NOMBRE_PRODUCTO.disabled = true;
+        VALORACION.disabled = true;
+
         MODAL_VALORACION.show();
     } else {
         sweetAlert(4, DATA.error, true);
