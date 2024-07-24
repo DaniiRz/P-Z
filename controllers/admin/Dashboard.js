@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     graficaGanancias();
 });
 
-
-
 /*
 *   Función asíncrona para mostrar un gráfico de pastel con el porcentaje de productos por categoría.
 *   Parámetros: ninguno.
@@ -57,47 +55,11 @@ const graficoPastelCategorias = async () => {
             cantidades.push(row.cantidad_productos);
         });
         // Llamada a la función para generar y mostrar un gráfico de pastel.
-        pieGraph1('chart2', categorias, cantidades, 'Cantidad', 'Cantidad de productos por categoría');
+        pieGraph('chart2', categorias, cantidades, 'Cantidad', 'Cantidad de productos por categoría');
     } else {
         document.getElementById('chart2').remove();
         console.log(DATA.error);
     }
-}
-
-const pieGraph1 = (canvas, legends, values, label, title) => {
-    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
-    let colors = [];
-    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
-    values.forEach(() => {
-        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
-    });
-    // Se crea una instancia para generar el gráfico con los datos recibidos.
-    new Chart(document.getElementById(canvas), {
-        type: 'pie',
-        data: {
-            labels: legends,
-            datasets: [{
-                data: values,
-                backgroundColor: colors
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: title
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            let value = tooltipItem.raw;
-                            return `${value} productos`;
-                        }
-                    }
-                }
-            }
-        }
-    });
 }
 
 /*
@@ -121,101 +83,13 @@ const graficoBarrasProductos = async () => {
             existencias.push(row.existencias);
         });
         // Llamada a la función para generar y mostrar un gráfico de barras.
-        barGraph1('chartProductos', productos, existencias, 'Cantidad en Existencias', 'Top 5 Productos con Más Existencias');
+        barGraph('chartProductos', productos, existencias, 'Cantidad en Existencias', 'Productos');
     } else {
         document.getElementById('chartProductos').remove();
         console.log(DATA.error);
     }
 }
 
-// Función para generar un color hexadecimal aleatorio
-const getRandomColor = () => {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
-
-
-// Función para generar un gráfico de barras.
-const barGraph1 = (canvas, xAxis, yAxis, legend, title) => {
-    // Se declara un arreglo para guardar los colores aleatorios.
-    let colors = xAxis.map(() => getRandomColor());
-    
-    // Se crea una instancia para generar el gráfico con los datos recibidos.
-    new Chart(document.getElementById(canvas), {
-        type: 'bar',
-        data: {
-            labels: xAxis,
-            datasets: [{
-                label: legend,
-                data: yAxis,
-                backgroundColor: colors, // Aplicar los colores aleatorios
-                borderColor: colors.map(color => color), // Usar los mismos colores para el borde
-                borderWidth: 1
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: title
-                },
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        autoSkip: false
-                    }
-                }
-            }
-        }
-    });
-}
-
-// Función para generar un gráfico de barras.
-const LineGraph = (canvas, xAxis, yAxis, legend, title) => {
-    // Se declara un arreglo para guardar los colores aleatorios.
-    let colors = xAxis.map(() => getRandomColor());
-    
-    // Se crea una instancia para generar el gráfico con los datos recibidos.
-    new Chart(document.getElementById(canvas), {
-        type: 'line',
-        data: {
-            labels: xAxis,
-            datasets: [{
-                label: legend,
-                data: yAxis,
-                backgroundColor: colors, // Aplicar los colores aleatorios
-                borderColor: colors.map(color => color), // Usar los mismos colores para el borde
-                borderWidth: 1
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: title
-                },
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        autoSkip: false
-                    }
-                }
-            }
-        }
-    });
-}
 /*
 *   Función asíncrona para mostrar un gráfico de pastel con el porcentaje de productos por categoría.
 *   Parámetros: ninguno.

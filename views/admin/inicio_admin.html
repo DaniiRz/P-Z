@@ -35,8 +35,8 @@
         <!-- Titulos -->
         <div id="textos" class="container-fluid text-center py-5 mt-5" style="z-index: 999;">
             <div class="textT">
-                <h2 class="py-3">¡Bienvenido ---! </h2>
-                <h5>¿Qué deseas hacer hoy?</h5>
+                <p class="fs-1 font-monospace pt-3">¡ Bienvenido ! </p>
+                <p class="fs-5 fst-italic text-body-secondary">¿Qué deseas hacer hoy?</p>
             </div>
         </div>
 
@@ -53,12 +53,14 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-sm-12 col-md-12 col-lg-8 text-center mb-4">
+                <div class="col-sm-12 col-md-12 col-lg-6 text-center mb-4">
                     <!-- Se muestra un gráfico con el top 5 productos con más existencias -->
+                    <h4 class="mt-4">Productos con mas existencias</h4>
                     <canvas id="chartProductos"></canvas>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-8 text-center mb-4">
+                <div class="col-sm-12 col-md-12 col-lg-6 text-center mb-4">
                     <div class="dashboard-item">
+                        <!-- Se muestra un gráfico con las ganancias anuales -->
                         <h4 class="mt-4">Ganancias anuales</h4>
                         <canvas id="chart5"></canvas>
                     </div>

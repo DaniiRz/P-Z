@@ -115,18 +115,35 @@ const fillSelect = async (filename, action, select, filter = undefined) => {
 }
 
 /*
+*   Función para generar una paleta de oclores
+*   Parámetros: ninguno.
+*   Retorno: xAsis.
+*/
+const generateColorPalette = (numColors) => {
+    const palette = [];
+    const baseColors = [[49, 49, 49], [73, 120, 144], [3, 99, 148], [185, 185, 185]]; // Colores base RGB
+
+    for (let i = 0; i < numColors; i++) {
+        const baseColor = baseColors[i % baseColors.length]; // Rotar entre los colores base
+        const variation = (i / numColors) * 0.5; // Variación de brillo entre 0 y 0.5
+        const r = Math.round(baseColor[0] * (1 - variation));
+        const g = Math.round(baseColor[1] * (1 - variation));
+        const b = Math.round(baseColor[2] * (1 - variation));
+        const color = `rgba(${r}, ${g}, ${b}, 1)`; // Opacidad de 1
+        palette.push(color);
+    }
+
+    return palette;
+}
+
+/*
 *   Función para generar un gráfico de barras verticales. Requiere la librería chart.js para funcionar.
 *   Parámetros: canvas (identificador de la etiqueta canvas), xAxis (datos para el eje X), yAxis (datos para el eje Y), legend (etiqueta para los datos) y title (título del gráfico).
 *   Retorno: ninguno.
 */
 const barGraph = (canvas, xAxis, yAxis, legend, title) => {
-    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
-    let colors = [];
-    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
-    xAxis.forEach(() => {
-        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
-    });
-    // Se crea una instancia para generar el gráfico con los datos recibidos.
+    const colors = generateColorPalette(xAxis.length); // Generar paleta de colores
+
     new Chart(document.getElementById(canvas), {
         type: 'bar',
         data: {
@@ -151,26 +168,23 @@ const barGraph = (canvas, xAxis, yAxis, legend, title) => {
     });
 }
 
+
 /*
 *   Función para generar un gráfico de pastel. Requiere la librería chart.js para funcionar.
 *   Parámetros: canvas (identificador de la etiqueta canvas), legends (valores para las etiquetas), values (valores de los datos) y title (título del gráfico).
 *   Retorno: ninguno.
 */
 const pieGraph = (canvas, legends, values, title) => {
-    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
-    let colors = [];
-    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
-    values.forEach(() => {
-        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
-    });
-    // Se crea una instancia para generar el gráfico con los datos recibidos.
+    const numColors = values.length; // Número de colores necesarios
+    const colors = generateColorPalette(numColors); // Generar paleta de colores
+
     new Chart(document.getElementById(canvas), {
         type: 'pie',
         data: {
             labels: legends,
             datasets: [{
                 data: values,
-                backgroundColor: colors
+                backgroundColor: colors // Usar la paleta de colores generada
             }]
         },
         options: {
@@ -184,41 +198,46 @@ const pieGraph = (canvas, legends, values, title) => {
     });
 }
 
-const radarGraph = (canvas, legends, values, title) => {
-    let colors = values.map(() => '#' + (Math.random().toString(16)).substring(2, 8));
+/*
+*   Función para generar un gráfico lineal. Requiere la librería chart.js para funcionar.
+*   Parámetros: canvas (identificador de la etiqueta canvas), legends (valores para las etiquetas), values (valores de los datos) y title (título del gráfico).
+*   Retorno: ninguno.
+*/
+const LineGraph = (canvas, xAxis, yAxis, legend, title) => {
+    const colors = generateColorPalette(xAxis.length); // Generar paleta de colores
 
-    // Configurar los datos del gráfico
     new Chart(document.getElementById(canvas), {
-        type: 'radar',
+        type: 'line',
         data: {
-            labels: legends,
+            labels: xAxis,
             datasets: [{
-                label: title,
-                data: values,
-                backgroundColor: colors,
-                borderColor: colors,
-                borderWidth: 2
+                label: legend,
+                data: yAxis,
+                backgroundColor: colors, // Aplicar la paleta de colores
+                borderColor: colors, // Usar los mismos colores para el borde
+                borderWidth: 1
             }]
         },
         options: {
-            scales: {
-                r: {
-                    suggestedMin: 0 // Establecer el mínimo del eje radial a 0
-                }
-            },
             plugins: {
                 title: {
                     display: true,
                     text: title
                 },
                 legend: {
-                    display: false // Ocultar la leyenda porque ya tenemos etiquetas en el radar
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        autoSkip: false
+                    }
                 }
             }
         }
     });
-};
-
+}
 
 
 /*
@@ -292,3 +311,38 @@ const fetchData = async (filename, action, form = null) => {
         console.log(error);
     }
 }
+
+const radarGraph = (canvas, legends, values, title) => {
+    let colors = values.map(() => '#' + (Math.random().toString(16)).substring(2, 8));
+
+    // Configurar los datos del gráfico
+    new Chart(document.getElementById(canvas), {
+        type: 'radar',
+        data: {
+            labels: legends,
+            datasets: [{
+                label: title,
+                data: values,
+                backgroundColor: colors,
+                borderColor: colors,
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                r: {
+                    suggestedMin: 0 // Establecer el mínimo del eje radial a 0
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: title
+                },
+                legend: {
+                    display: false // Ocultar la leyenda porque ya tenemos etiquetas en el radar
+                }
+            }
+        }
+    });
+};
