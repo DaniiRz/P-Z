@@ -83,6 +83,15 @@ class ValoracionesHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function updateEstadoValoracion()
+    {
+        $sql = 'UPDATE tb_valoracion
+                SET estado_valoracion = ?
+                WHERE id_valoracion = ?';
+        $params = array( $this->estadoValo, $this->id);
+        return Database::executeRow($sql, $params);
+    }
+
     public function deleteValoracion()
     {
         $sql = 'DELETE FROM tb_valoracion

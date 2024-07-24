@@ -77,11 +77,24 @@ if (isset($_GET['action'])) {
                 if (
                     !$valoracion->setId($_POST['idValoracion']) or
                     !$valoracion->setComentario($_POST['comentario']) or
-                    !$valoracion->setFechaValoracion($_POST['fechaValoracion']) or
                     !$valoracion->setEstadoValoracion($_POST['estadoValoracion'])
                 ) {
                     $result['error'] = $valoracion->getDataError();
                 } elseif ($valoracion->updateValoracion()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Valoración actualizada correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al actualizar la valoración';
+                }
+                break;
+            case 'updateEstadoValoracion':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$valoracion->setId($_POST['idValoracion']) or
+                    !$valoracion->setEstadoValoracion($_POST['estadoValoracion'])
+                ) {
+                    $result['error'] = $valoracion->getDataError();
+                } elseif ($valoracion->updateEstadoValoracion()) {
                     $result['status'] = 1;
                     $result['message'] = 'Valoración actualizada correctamente';
                 } else {

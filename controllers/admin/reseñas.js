@@ -13,10 +13,10 @@ const MODAL_VALORACION = new bootstrap.Modal('#modalValoracion'),
 
 // Formulario de guardado
 const SAVE_FORM = document.getElementById('saveForm'),
-ID_VALORACION=document.getElementById('idValoracion'),
-NOMBRE_PRODUCTO=document.getElementById('nombreProducto'),
-VALORACION=document.getElementById('comentario'),
-ESTADO_VALORACION=document.getElementById('estadoValoracion');
+    ID_VALORACION = document.getElementById('idValoracion'),
+    NOMBRE_PRODUCTO = document.getElementById('nombreProducto'),
+    VALORACION = document.getElementById('comentario'),
+    ESTADO_VALORACION = document.getElementById('estadoValoracion');
 
 // Llenar la tabla de valoraciones al cargar la página.
 document.addEventListener('DOMContentLoaded', () => {
@@ -47,10 +47,7 @@ const fillTable = async (form = null) => {
                     <td>${row.estado_valoracion}</td>
                     <td>
                         <button type="button" class="btn btn-warning" onclick="openUpdate(${row.id_valoracion})">
-                            Editar
-                        </button>
-                        <button type="button" class="btn btn-danger" onclick="openDelete(${row.id_valoracion})">
-                            Eliminar
+                            Ver reseña
                         </button>
                     </td>
                 </tr>
@@ -79,7 +76,7 @@ const openUpdate = async (id) => {
         document.getElementById('idValoracion').value = id;
         document.getElementById('nombreProducto').value = row.nombre_producto;
         document.getElementById('comentario').value = row.comentario_cliente;
-        document.getElementById('estadoValoracion').value = row.estado_valoracion;
+        fillSelectEstadosValo(row.estado_valoracion);
         MODAL_VALORACION.show();
     } else {
         sweetAlert(4, DATA.error, true);
@@ -100,6 +97,35 @@ SAVE_FORM.addEventListener('submit', async (event) => {
         sweetAlert(2, DATA.error, false);
     }
 });
+
+ESTADO_VALORACION.addEventListener('change', async () => {
+    const FORM = new FormData();
+    FORM.append('idValoracion', document.getElementById('idValoracion').value);
+    FORM.append('estadoValoracion', ESTADO_VALORACION.value);
+    const DATA = await fetchData(VALORACIONES_API, 'updateEstadoValoracion', FORM);
+    if (DATA.status) {
+        sweetAlert(1, DATA.message, true);
+        MODAL_VALORACION.hide();
+        fillTable();
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+});
+
+// Método para llenar el select de estados de valoración
+const fillSelectEstadosValo = (estadoActual) => {
+    const estados = ['Activa', 'Inactiva'];
+    ESTADO_VALORACION.innerHTML = '';
+    estados.forEach(estado => {
+        const option = document.createElement('option');
+        option.value = estado;
+        option.textContent = estado;
+        if (estado === estadoActual) {
+            option.selected = true;
+        }
+        ESTADO_VALORACION.appendChild(option);
+    });
+}
 
 // Métodos para eliminar datos.
 const openDelete = async (id) => {
