@@ -60,6 +60,7 @@ class ValoracionesHandler
     {
         $sql = 'SELECT 
                 v.id_valoracion, 
+                CONCAT(c.nombre_cliente, " ", c.apellido_cliente) AS nombre_cliente,
                 p.nombre_producto,
                 v.comentario_cliente, 
                 v.estado_valoracion

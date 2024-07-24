@@ -1,6 +1,4 @@
 const VALORACIONES_API = 'services/admin/valoraciones.php';
-const CATEGORIAS_API = 'services/admin/categorias.php';
-const PRODUCTOS_API = 'services/admin/producto.php';
 
 // Formulario de búsqueda
 const SEARCH_FORM = document.getElementById('searchForm');
@@ -73,7 +71,6 @@ const fillSelectEstadosValo = (estadoActual) => {
 };
 
 const verValoracion = async (id) => {
-    MODAL_TITLE_VALORACION.textContent = 'Valoración';
     const FORM = new FormData();
     FORM.append('idValoracion', id);
     const DATA = await fetchData(VALORACIONES_API, 'readOne', FORM);
@@ -88,12 +85,14 @@ const verValoracion = async (id) => {
         NOMBRE_PRODUCTO.disabled = true;
         VALORACION.disabled = true;
 
+        // Concatenar el nombre del cliente al título del modal
+        MODAL_TITLE_VALORACION.textContent = `Valoración de ${row.nombre_cliente}`;
+
         MODAL_VALORACION.show();
     } else {
         sweetAlert(4, DATA.error, true);
     }
 };
-
 ESTADO_VALORACION.addEventListener('change', async () => {
     const FORM = new FormData();
     FORM.append('idValoracion', ID_VALORACION.value);
