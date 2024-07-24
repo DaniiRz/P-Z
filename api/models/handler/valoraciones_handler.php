@@ -33,8 +33,8 @@ class ValoracionesHandler
     public function createValoracion()
     {
         $sql = 'INSERT INTO tb_valoracion(comentario_cliente, fecha_valoracion, id_producto, estado_valoracion)
-                VALUES(?, ?, ?, ?)';
-        $params = array($this->comentario, $this->fecha, $this->idProducto, $this->estadoValo);
+                VALUES(?, ?, NOW(), ?)';
+        $params = array($this->comentario, $this->idProducto, $this->estadoValo);
         return Database::executeRow($sql, $params);
     }
 
