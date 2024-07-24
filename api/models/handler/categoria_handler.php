@@ -67,6 +67,14 @@ class CategoriaHandler
         return Database::getRow($sql, $params);
     }
 
+    public function readCategorias()
+    {
+        $sql = 'SELECT id_categoria, nombre_categoria
+                FROM tb_categorias';
+        return Database::getRows($sql);
+    }
+
+
     public function readFilename()
     {
         $sql = 'SELECT imagen_categoria

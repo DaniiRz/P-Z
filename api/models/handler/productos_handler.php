@@ -73,7 +73,7 @@ class ProductoHandler
     {
         $sql = 'SELECT id_producto, nombre_producto FROM tb_productos WHERE id_categoria=?';
         $params = array($this->idcategoria);
-        return Database::getRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
 
 

@@ -49,9 +49,6 @@
                             <button type="reset" class="btn btn-secondary" onclick="fillTable()">
                                 <i class="fas fa-times-circle"></i>
                             </button>
-                            <button type="button" class="btn btn-warning" onclick="openCreate()">
-                                <i class="fas fa-plus"></i>
-                            </button>
                         </div>
                     </div>
                 </form>
@@ -99,15 +96,7 @@
                     <div class="modal-body">
                         <input type="hidden" id="idValoracion" name="idValoracion">
                         <div class="mb-3">
-                            <label for="categoriaProducto" style="display:block;" class="form-label">Categorías</label>
-                            <select class="form-select" id="categoriaProducto" name="categoriaProducto" required></select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="productoValorar" style="display:block;" class="form-label">Productos</label>
-                            <select class="form-select" id="productoValorar" name="productoValorar" required></select>
-                        </div>
-                        <div class="mb-3" style="display:block;">
-                            <label for="nombreProducto" style="display:block;" class="form-label">Producto</label>
+                            <label for="nombreProducto" class="form-label">Producto</label>
                             <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" required>
                         </div>
                         <div class="mb-3">

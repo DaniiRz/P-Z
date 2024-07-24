@@ -29,15 +29,14 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 // Verifica que todas las claves necesarias existen en $_POST
                 if (
-                    isset($_POST['idProducto']) &&
+                    isset($_POST['productoValorar']) &&
                     isset($_POST['valoracion']) &&
                     isset($_POST['comentario']) &&
                     isset($_POST['idCliente']) &&
-                    isset($_POST['fechaValoracion']) &&
                     isset($_POST['estadoValoracion'])
                 ) {
                     if (
-                        !$valoracion->setIdProducto($_POST['idProducto']) or
+                        !$valoracion->setIdProducto($_POST['productoValorar']) or
                         !$valoracion->setComentario($_POST['comentario']) or
                         !$valoracion->setIdCliente($_POST['idCliente']) or
                         !$valoracion->setFechaValoracion($_POST['fechaValoracion']) or
