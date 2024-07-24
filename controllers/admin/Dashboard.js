@@ -232,13 +232,13 @@ const graficaGanancias = async () => {
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             // Se agregan los datos a los arreglos.
-            mes.push(row.nombre_siguiente_mes);
-            ganancia.push(row.prediccion_siguiente_mes);
+            mes.push(row.nombre_mes);
+            ganancia.push(row.ventas_mensuales);
         });
-        mes.push(DATA.dataset[0].nombre_siguiente_mes);
-        ganancia.push(DATA.dataset[0].prediccion_siguiente_mes);
+        mes.push(DATA.dataset[0].nombre_mes);
+        ganancia.push(DATA.dataset[0].ventas_mensuales);
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        LineGraph('chart5', mes, ganancia, 'Ganancias $', 'Año');
+        LineGraph('chart5', mes, ganancia, 'Ganancias $', 'Año actual');
     } else {
         document.getElementById('chart5').remove();
         console.log(DATA.error);

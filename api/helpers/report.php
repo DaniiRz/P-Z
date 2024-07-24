@@ -95,7 +95,6 @@ class Report extends FPDF
         // Posición X para la imagen de la izquierda
         $imageLeftX = 0; 
         
-        
         // Posición X para la imagen de la derecha (pegada al borde)
         $imageRightX = 190; 
         

@@ -24,7 +24,7 @@ if (!is_dir($directorioReportes)) {
 }
 
 // Ruta del archivo que almacena el número de reporte
-$reporteNumeroArchivo = $directorioReportes . '/reporte_numero_' . $nombreArchivoReporte . '.txt';
+$reporteNumeroArchivo = $directorioReportes . '/reporte_' . $nombreArchivoReporte . '.txt';
 
 // Leer el contenido del archivo y determinar el último número de reporte
 if (file_exists($reporteNumeroArchivo) && filesize($reporteNumeroArchivo) > 0) {

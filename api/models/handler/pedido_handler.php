@@ -322,7 +322,7 @@ WHERE
                     WHERE p.estado_pedido = 'Completado'
                     GROUP BY DATE_FORMAT(p.fecha_pedido, '%Y-%m')
                     ORDER BY DATE_FORMAT(p.fecha_pedido, '%Y-%m') DESC
-                    LIMIT 6
+                    LIMIT 12
                 ),
                 coeficientes AS (
                     SELECT 
