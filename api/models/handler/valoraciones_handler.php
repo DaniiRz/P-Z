@@ -22,14 +22,19 @@ class ValoracionesHandler
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
-        $sql = 'SELECT id_valoracion, comentario_cliente, fecha_valoracion, id_producto, estado_valoracion
-                FROM tb_valoracion
-                WHERE comentario_cliente LIKE ? OR fecha_valoracion LIKE ?
-                ORDER BY id_valoracion';
-        $params = array($value, $value);
+        $sql = 'SELECT v.id_valoracion, CONCAT(c.nombre_cliente, " ", c.apellido_cliente) AS nombre_cliente, p.nombre_producto, v.comentario_cliente, v.fecha_valoracion, v.estado_valoracion
+                FROM tb_valoracion v
+                JOIN tb_clientes c ON v.id_cliente = c.id_cliente
+                JOIN tb_productos p ON v.id_producto = p.id_producto
+                WHERE CONCAT(c.nombre_cliente, " ", c.apellido_cliente) LIKE ? 
+                OR p.nombre_producto LIKE ? 
+                OR v.comentario_cliente LIKE ? 
+                OR DATE(v.fecha_valoracion) LIKE ? 
+                OR v.estado_valoracion LIKE ?
+                ORDER BY v.id_valoracion';
+        $params = array($value, $value, $value, $value, $value);
         return Database::getRows($sql, $params);
     }
-
     public function createValoracion()
     {
         $sql = 'INSERT INTO tb_valoracion(comentario_cliente, fecha_valoracion, id_producto, estado_valoracion)
