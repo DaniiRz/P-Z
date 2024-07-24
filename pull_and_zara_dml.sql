@@ -139,3 +139,21 @@ INSERT INTO tb_detalle_pedido (id_detalle, cantidad_producto, precio_producto, i
 (22, 1, 75.00, 22, 22),
 (23, 4, 50.00, 23, 23),
 (24, 2, 85.00, 24, 24);
+
+
+INSERT INTO tb_valoracion (comentario_cliente, fecha_valoracion, id_producto, id_cliente, estado_valoracion) VALUES
+('Excelente calidad y buen precio.', '2024-07-23 12:00:00', 1, 1, 'Activa'),
+('Muy cómodo y fresco, perfecto para el verano.', '2024-07-23 12:30:00', 2, 2, 'Activa'),
+('El producto no cumplió con mis expectativas.', '2024-07-23 13:00:00', 3, 3, 'Inactiva'),
+('Me encantan estos zapatos, muy cómodos para correr.', '2024-07-23 13:30:00', 4, 4, 'Activa'),
+('La blusa es muy bonita y de buena calidad.', '2024-07-23 14:00:00', 5, 5, 'Activa'),
+('Shorts ideales para la playa, muy ligeros.', '2024-07-23 14:30:00', 6, 6, 'Activa'),
+('Buena gorra, ajustable y cómoda.', '2024-07-23 15:00:00', 7, 7, 'Activa'),
+('El bolso es perfecto para el día a día.', '2024-07-23 15:30:00', 8, 8, 'Activa'),
+('No me gustó el color del producto.', '2024-07-23 16:00:00', 1, 9, 'Inactiva'),
+('El vestido es muy bonito, a mi esposa le encantó.', '2024-07-23 16:30:00', 2, 10, 'Activa'),
+('Pantalones cómodos y de buena calidad.', '2024-07-23 17:00:00', 3, 11, 'Activa'),
+('Los zapatos son bonitos pero no muy cómodos.', '2024-07-23 17:30:00', 4, 12, 'Inactiva'),
+('La blusa es preciosa, me encantó.', '2024-07-23 18:00:00', 5, 13, 'Activa'),
+('Shorts de buena calidad, pero un poco caros.', '2024-07-23 18:30:00', 6, 14, 'Inactiva'),
+('Gorra de excelente calidad, la recomiendo.', '2024-07-23 19:00:00', 7, 15, 'Activa');

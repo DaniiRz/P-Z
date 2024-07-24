@@ -40,16 +40,36 @@ class ValoracionesHandler
 
     public function readAll()
     {
-        $sql = 'SELECT id_valoracion, comentario_cliente, fecha_valoracion, id_producto, estado_valoracion
-                FROM tb_valoracion';
+        $sql = 'SELECT 
+                v.id_valoracion, 
+                CONCAT(c.nombre_cliente, " ", c.apellido_cliente) AS nombre_cliente,
+                p.nombre_producto,
+                v.comentario_cliente, 
+                v.fecha_valoracion, 
+                v.estado_valoracion
+            FROM 
+                tb_valoracion v
+            INNER JOIN 
+                tb_clientes c ON v.id_cliente = c.id_cliente
+            INNER JOIN 
+                tb_productos p ON v.id_producto = p.id_producto';
         return Database::getRows($sql);
     }
 
     public function readOne()
     {
-        $sql = 'SELECT id_valoracion, comentario_cliente, fecha_valoracion, id_producto, estado_valoracion
-                FROM tb_valoracion
-                WHERE id_valoracion = ?';
+        $sql = 'SELECT 
+                v.id_valoracion, 
+                p.nombre_producto,
+                v.comentario_cliente, 
+                v.estado_valoracion
+            FROM 
+                tb_valoracion v
+            INNER JOIN 
+                tb_clientes c ON v.id_cliente = c.id_cliente
+            INNER JOIN 
+                tb_productos p ON v.id_producto = p.id_producto
+				WHERE id_valoracion = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }

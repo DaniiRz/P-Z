@@ -3,6 +3,7 @@
 require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
 require_once('../../models/handler/valoraciones_handler.php');
+
 /*
  *  Clase para manejar el encapsulamiento de los datos de la tabla VALORACION.
  */
@@ -43,7 +44,6 @@ class ValoracionesData extends ValoracionesHandler
 
     public function setFechaValoracion($value)
     {
-        // Aquí podrías implementar validaciones adicionales para la fecha si fuera necesario
         $this->fecha = $value;
         return true;
     }
@@ -58,6 +58,7 @@ class ValoracionesData extends ValoracionesHandler
             return false;
         }
     }
+
     public function setIdCliente($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -92,4 +93,4 @@ class ValoracionesData extends ValoracionesHandler
         return $this->data_error;
     }
 }
-?>
+
