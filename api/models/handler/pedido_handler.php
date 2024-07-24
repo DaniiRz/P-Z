@@ -320,7 +320,7 @@ WHERE
                     FROM tb_pedidos p
                     JOIN tb_detalle_pedido dp ON p.id_pedido = dp.id_pedido
                     WHERE p.estado_pedido = 'Completado'
-                    GROUP BY DATE_FORMAT(p.fecha_pedido, '%Y-%m')
+                    GROUP BY mes
                     ORDER BY DATE_FORMAT(p.fecha_pedido, '%Y-%m') DESC
                     LIMIT 12
                 ),

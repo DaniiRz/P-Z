@@ -24,7 +24,8 @@ Usar snake_case para nombres de variables.
 
 Usar snake_case para nombres de variables.
 Usar camelCase para nombres de funciones y métodos.
-
+Uso de ; para todas las lineas que lo requieran.
+Las constantes siempre se deben escribir en mayusculas
 ---HTML---
 
 Usar snake_case para los nombres de los archivos HTML.
