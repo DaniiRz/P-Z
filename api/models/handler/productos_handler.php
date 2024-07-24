@@ -69,6 +69,14 @@ class ProductoHandler
         return Database::getRow($sql, $params);
     }
 
+    public function readByCategory()
+    {
+        $sql = 'SELECT id_producto, nombre_producto FROM tb_productos WHERE id_categoria=?';
+        $params = array($this->idcategoria);
+        return Database::getRow($sql, $params);
+    }
+
+
     public function readProductosCategoria()
     {
         $sql = 'SELECT P.id_producto, D.id_detalle_producto, D.img_producto, P.nombre_producto, D.precio_producto, D.existencias, P.desc_producto, 
