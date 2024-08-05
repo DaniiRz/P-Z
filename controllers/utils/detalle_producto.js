@@ -36,42 +36,6 @@ function detalleProducto() {
     </div>
 </div>
 
-<section class="comments-section mt-4">
-    <div class="container">
-        <h2 class="section-title d-flex justify-content-center align-items-center">Comentarios de clientes</h2>
-        <div class="row">
-            <div class="col-md-6 offset-md-3 mt-5">
-                <form>
-                    <div class="form-group">
-                        <label for="comment">Agrega un comentario:</label>
-                        <textarea class="form-control mt-2" id="comment" rows="4"
-                            placeholder="Escribe tu comentario aquí"></textarea>
-                    </div>
-                    <button class="button mt-3">
-                        Enviar
-                    </button>
-                </form>
-            </div>
-        </div>
-
-        <div class="row mt-4">
-            <div class="col-md-6 offset-md-3">
-                <div class="comment">
-                    <div class="comment-user">
-                        <img src="../../resources/img/user.png" alt="User Avatar" class="avatar">
-                        <span class="username"> Karla Quintanilla</span>
-                    </div>
-                    <p class="comment-text mt-2">El producto cumplió con todas mis expectativas. Muy satisfecha con
-                        mi compra.</p>
-                </div>
-
-                <!-- Agrega más comentarios aquí -->
-
-            </div>
-        </div>
-    </div>
-</section>
-
         `;
     return detallesProducto;
 }
