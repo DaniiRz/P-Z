@@ -274,7 +274,7 @@ DROP TABLE IF EXISTS `tb_valoracion`;
 CREATE TABLE `tb_valoracion` (
   `id_valoracion` int(11) NOT NULL AUTO_INCREMENT,
   `comentario_cliente` varchar(255) NOT NULL,
-  `fecha_valoracion` datetime DEFAULT NULL,
+ `fecha_valoracion` datetime DEFAULT CURRENT_TIMESTAMP,
   `id_producto` int(11) DEFAULT NULL,
   `id_cliente` int(11) DEFAULT NULL,
   `estado_valoracion` ENUM ('Activa','Inactiva') NOT NULL,

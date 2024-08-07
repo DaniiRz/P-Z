@@ -1,9 +1,15 @@
 // Constantes para completar la ruta de la API.
 const DETALLE_API = 'services/public/detalle.php';
+const VALORACION_API = 'services/public/valoraciones.php';
 // Constante tipo objeto para obtener los parámetros disponibles en la URL.
 const PARAMS = new URLSearchParams(location.search);
 // Constante para establecer el formulario de agregar un producto al carrito de compras.
 const SHOPPING_FORM = document.getElementById('shoppingForm');
+
+// Constante para establecer el formulario de agregar un producto al carrito de compras.
+const REVIEW_FORM = document.getElementById('commentForm'),
+ID_PRODUCTO_VALORADO=document.getElementById('productoValorar'),
+ID_CLIENTE=document.getElementById('idCliente');
 
 //contsnate para establecer la ruta de la API de detalle 
 const PEDIDO_API = 'services/public/pedido.php'; 
@@ -21,6 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (DATA.status) {
         // Se colocan los datos en la página web de acuerdo con el producto seleccionado previamente.
         document.getElementById('idProducto').value = DATA.dataset.id_producto;
+        document.getElementById('productoValorar').value = DATA.dataset.id_producto;
         document.getElementById('imagenProducto').src = SERVER_URL.concat('images/productos/', DATA.dataset.img_producto);
         document.getElementById('precioProducto').textContent = DATA.dataset.precio_producto; 
         document.getElementById('categoriaProducto').textContent = (DATA.dataset.nombre_categoria);
@@ -37,8 +44,34 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Se limpia el contenido cuando no hay datos para mostrar.
         document.getElementById('detalle').innerHTML = '';
     }
-});
 
+    // Petición para solicitar los datos del producto seleccionado.
+    const DATA_VALORACION = await fetchData(VALORACION_API, 'readComentariosProducto', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA_VALORACION.status) {
+    // Obtener la sección donde se mostrarán los comentarios
+    const commentsSection = document.getElementById('commentsSection');
+
+    // Crear un nuevo div para el comentario
+    const commentDiv = document.createElement('div');
+    commentDiv.className = 'comment mt-3';
+    commentDiv.innerHTML = `
+        <div class="comment-header">
+            <strong>${DATA_VALORACION.dataset.correo_cliente}</strong> <em>${DATA_VALORACION.dataset.fecha_valoracion}</em>
+        </div>
+        <div class="comment-body">
+            <p>${DATA_VALORACION.dataset.comentario_cliente}</p>
+        </div>
+        <hr>
+    `;
+
+    // Agregar el nuevo comentario al final de la sección de comentarios
+    commentsSection.appendChild(commentDiv);
+    }
+    else{
+        commentsSection.textContent=DATA_VALORACION.error
+    }
+})
 
 // Método del evento para cuando se envía el formulario de agregar un producto al carrito.
 SHOPPING_FORM.addEventListener('submit', async (event) => {
@@ -55,5 +88,24 @@ SHOPPING_FORM.addEventListener('submit', async (event) => {
         sweetAlert(2, DATA.error, false);
     } else {
         sweetAlert(3, DATA.error, true, 'registro_user.html'); //iniciar sesion 
+    }
+});
+
+// Método del evento para cuando se envía el formulario de agregar un producto al carrito.
+REVIEW_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(REVIEW_FORM);
+    // Petición para guardar los datos del formulario.
+    const DATA = await fetchData(VALORACION_API, 'createValoracion', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra un mensaje de éxito.
+        sweetAlert(1, DATA.message, true);
+        // Se carga nuevamente la tabla para visualizar los cambios.
+        fillTable();
+    } else {
+        sweetAlert(2, DATA.error, false);
     }
 });

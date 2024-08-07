@@ -119,14 +119,10 @@
         <div class="container mt-5">
             <h2>Sección de Comentarios</h2>
             <form id="commentForm">
-                <div class="form-group">
-                    <label for="correoUsuario">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="correoUsuario"
-                        placeholder="Ingresa tu correo electrónico" required>
-                </div>
+                <input type="number" class="d-none" id="productoValorar" name="productoValorar">
                 <div class="form-group mt-2">
                     <label for="comentarioUsuario">Comentario:</label>
-                    <textarea class="form-control" id="comentarioUsuario" rows="4"
+                    <textarea class="form-control" id="comentarioUsuario" name="comentarioUsuario" rows="4"
                         placeholder="Escribe tu comentario aquí" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-outline-success mt-2">Agregar Comentario</button>

@@ -1,3 +1,4 @@
+
 document.getElementById('commentForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir el envío del formulario
 

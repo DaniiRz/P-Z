@@ -37,9 +37,10 @@ public function searchRows()
     }
     public function createValoracion()
     {
-        $sql = 'INSERT INTO tb_valoracion(comentario_cliente, fecha_valoracion, id_producto, estado_valoracion)
-                VALUES(?, ?, NOW(), ?)';
-        $params = array($this->comentario, $this->idProducto, $this->estadoValo);
+        $this->estadoValo = 'Activa';
+        $sql = 'INSERT INTO tb_valoracion(comentario_cliente, id_cliente, id_producto, estado_valoracion)
+                VALUES(?, ?, ?, ?)';
+        $params = array($this->comentario, $_SESSION['idCliente'], $this->idProducto, $this->estadoValo);
         return Database::executeRow($sql, $params);
     }
 
@@ -61,6 +62,8 @@ public function readAll()
         return Database::getRows($sql);
     }
 
+    
+
 public function readOne()
     {
         $sql = 'SELECT 
@@ -77,6 +80,17 @@ public function readOne()
                 tb_productos p ON v.id_producto = p.id_producto
 				WHERE id_valoracion = ?';
         $params = array($this->id);
+        return Database::getRow($sql, $params);
+    }
+
+    public function readComentariosProducto()
+    {
+        $sql = 'SELECT c.correo_cliente,v.comentario_cliente,v.fecha_valoracion 
+        FROM tb_valoracion v
+        JOIN tb_clientes c ON v.id_cliente = c.id_cliente
+        WHERE v.estado_valoracion = "Activa"
+        AND v.id_producto = ?';
+        $params = array($this->idProducto);
         return Database::getRow($sql, $params);
     }
 
