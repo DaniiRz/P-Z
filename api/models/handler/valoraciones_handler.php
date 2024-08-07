@@ -37,7 +37,7 @@ public function searchRows()
     }
     public function createValoracion()
     {
-        $this->estadoValo = 'Activa';
+        $this->estadoValo = 'Inactiva';
         $sql = 'INSERT INTO tb_valoracion(comentario_cliente, id_cliente, id_producto, estado_valoracion)
                 VALUES(?, ?, ?, ?)';
         $params = array($this->comentario, $_SESSION['idCliente'], $this->idProducto, $this->estadoValo);
@@ -85,13 +85,13 @@ public function readOne()
 
     public function readComentariosProducto()
     {
-        $sql = 'SELECT c.correo_cliente,v.comentario_cliente,v.fecha_valoracion 
-        FROM tb_valoracion v
-        JOIN tb_clientes c ON v.id_cliente = c.id_cliente
-        WHERE v.estado_valoracion = "Activa"
-        AND v.id_producto = ?';
+        $sql = 'SELECT c.correo_cliente, v.comentario_cliente, v.fecha_valoracion 
+            FROM tb_valoracion v
+            JOIN tb_clientes c ON v.id_cliente = c.id_cliente
+            WHERE v.estado_valoracion = "Activa"
+            AND v.id_producto = ?';
         $params = array($this->idProducto);
-        return Database::getRow($sql, $params);
+        return Database::getRows($sql, $params); // Debería devolver un array de filas
     }
 
 public function updateValoracion()

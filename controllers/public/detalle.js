@@ -47,29 +47,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Petición para solicitar los datos del producto seleccionado.
     const DATA_VALORACION = await fetchData(VALORACION_API, 'readComentariosProducto', FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+
+    // Verifica si la respuesta es satisfactoria
     if (DATA_VALORACION.status) {
-    // Obtener la sección donde se mostrarán los comentarios
-    const commentsSection = document.getElementById('commentsSection');
+        const commentsSection = document.getElementById('commentsSection');
+        commentsSection.innerHTML = ''; // Limpia la sección antes de agregar comentarios
 
-    // Crear un nuevo div para el comentario
-    const commentDiv = document.createElement('div');
-    commentDiv.className = 'comment mt-3';
-    commentDiv.innerHTML = `
-        <div class="comment-header">
-            <strong>${DATA_VALORACION.dataset.correo_cliente}</strong> <em>${DATA_VALORACION.dataset.fecha_valoracion}</em>
-        </div>
-        <div class="comment-body">
-            <p>${DATA_VALORACION.dataset.comentario_cliente}</p>
-        </div>
-        <hr>
-    `;
+        // Itera sobre cada comentario y agrégalo al DOM
+        DATA_VALORACION.dataset.forEach(comment => {
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment mt-3';
+            commentDiv.innerHTML = `
+                <div class="comment-header">
+                    <strong>${comment.correo_cliente}</strong> <em>${comment.fecha_valoracion}</em>
+                </div>
+                <div class="comment-body">
+                    <p>${comment.comentario_cliente}</p>
+                </div>
+                <hr>
+            `;
 
-    // Agregar el nuevo comentario al final de la sección de comentarios
-    commentsSection.appendChild(commentDiv);
-    }
-    else{
-        commentsSection.textContent=DATA_VALORACION.error
+            commentsSection.appendChild(commentDiv);
+        });
+    } else {
+        document.getElementById('commentsSection').textContent = DATA_VALORACION.error;
     }
 })
 
@@ -103,8 +104,6 @@ REVIEW_FORM.addEventListener('submit', async (event) => {
     if (DATA.status) {
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
-        // Se carga nuevamente la tabla para visualizar los cambios.
-        fillTable();
     } else {
         sweetAlert(2, DATA.error, false);
     }

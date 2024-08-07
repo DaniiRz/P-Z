@@ -65,15 +65,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Valoración inexistente';
                 }
                 break;
-            case 'readComentariosProducto':
-                if (!$valoracion->setIdProducto($_POST['idProducto'])) {
-                    $result['error'] = $valoracion->getDataError();
-                } elseif ($result['dataset'] = $valoracion->readComentariosProducto()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['error'] = 'Valoración inexistente';
-                }
-                break;
+                case 'readComentariosProducto':
+                    if (!$valoracion->setIdProducto($_POST['idProducto'])) {
+                        $result['error'] = $valoracion->getDataError();
+                    } elseif ($result['dataset'] = $valoracion->readComentariosProducto()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'No se encontraron comentarios para este producto';
+                    }
+                    break;
             case 'updateValoracion':
                 $_POST = Validator::validateForm($_POST);
                 if (
