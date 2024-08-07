@@ -8,11 +8,11 @@ const SHOPPING_FORM = document.getElementById('shoppingForm');
 
 // Constante para establecer el formulario de agregar un producto al carrito de compras.
 const REVIEW_FORM = document.getElementById('commentForm'),
-ID_PRODUCTO_VALORADO=document.getElementById('productoValorar'),
-ID_CLIENTE=document.getElementById('idCliente');
+    ID_PRODUCTO_VALORADO = document.getElementById('productoValorar'),
+    ID_CLIENTE = document.getElementById('idCliente');
 
 //contsnate para establecer la ruta de la API de detalle 
-const PEDIDO_API = 'services/public/pedido.php'; 
+const PEDIDO_API = 'services/public/pedido.php';
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('idProducto').value = DATA.dataset.id_producto;
         document.getElementById('productoValorar').value = DATA.dataset.id_producto;
         document.getElementById('imagenProducto').src = SERVER_URL.concat('images/productos/', DATA.dataset.img_producto);
-        document.getElementById('precioProducto').textContent = DATA.dataset.precio_producto; 
+        document.getElementById('precioProducto').textContent = DATA.dataset.precio_producto;
         document.getElementById('categoriaProducto').textContent = (DATA.dataset.nombre_categoria);
         document.getElementById('nombreProducto').textContent = DATA.dataset.nombre_producto;
         document.getElementById('descripcionProducto').textContent = DATA.dataset.desc_producto;
@@ -104,6 +104,9 @@ REVIEW_FORM.addEventListener('submit', async (event) => {
     if (DATA.status) {
         // Se muestra un mensaje de éxito.
         sweetAlert(1, DATA.message, true);
+        // Limpiar el formulario
+        REVIEW_FORM.reset();
+
     } else {
         sweetAlert(2, DATA.error, false);
     }
