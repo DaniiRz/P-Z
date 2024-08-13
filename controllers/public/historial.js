@@ -1,6 +1,8 @@
 // Constante para completar la ruta de la API.
 const HISTORIAL_API = 'services/public/historial.php';
 
+const CARD = document.getElementById('cardBody')
+
 // Método manejador de eventos para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -28,10 +30,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         } else {
             // Se presenta un mensaje de error cuando no existen datos para mostrar.
-            CARD.innerHTML = `<p>${DATA.error}</p>`;
+            CARD.innerHTML = DATA.error;
         }
     } catch (error) {
         // Manejo de errores en la solicitud fetch
-        CARD.innerHTML = `<p>Hubo un error al cargar los datos: ${error.message}</p>`;
+        CARD.innerHTML = DATA.error;
     }
 });
