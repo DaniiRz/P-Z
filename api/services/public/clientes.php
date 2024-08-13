@@ -47,7 +47,6 @@ if (isset($_GET['action'])) {
                     !$cliente->setApellido($_POST['apellidoClientePerfil']) or
                     !$cliente->setCorreo($_POST['correoClientePerfil']) or
                     !$cliente->setDui($_POST['duiClientePerfil']) or
-                    !$cliente->setGenero($_POST['generoClientePerfil']) or
                     !$cliente->setTelefono($_POST['telefonoClientePerfil'])
                 ) {
                     $result['error'] = $cliente->getDataError();
