@@ -1,0 +1,28 @@
+.card-custom {
+    border: 1px solid #dee2e6;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+.card-custom:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+.card-header-custom {
+    background-color: #dd8b2e;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.75rem 0.75rem 0 0;
+}
+.card-body-custom {
+    padding: 1.5rem;
+}
+.card-footer-custom {
+    background-color: #e9ecef;
+    padding: 1rem;
+    border-radius: 0 0 0.75rem 0.75rem;
+}
+.text-muted-custom {
+    color: #6c757d !important;
+}
