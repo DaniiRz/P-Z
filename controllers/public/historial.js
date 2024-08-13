@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <h5 class="card-title">Pedido #${row.id_pedido}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Fecha: ${row.fecha_pedido}</h6>
                             <p class="card-text">Producto: ${row.nombre_producto}</p>
-                            <p class="card-text">Descripción: ${row.desc_producto}</p>
                             <p class="card-text">Cantidad: ${row.cantidad_producto}</p>
                             <p class="card-text">Precio Unitario: $${row.precio_producto}</p>
                             <p class="card-text">Total: $${(row.cantidad_producto * row.precio_producto).toFixed(2)}</p>

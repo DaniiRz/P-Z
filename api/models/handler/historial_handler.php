@@ -11,11 +11,21 @@ class PedidoHandler
     // Método para leer todos los pedidos finalizados del cliente en sesion 
     public function readHistorial()
 {
-    $sql = 'SELECT id_pedido, fecha_pedido, nombre_producto, desc_producto, cantidad_producto, precio_producto, (cantidad_producto * precio_producto) as total
-            FROM pedidos
-            INNER JOIN productos ON pedidos.id_producto = productos.id_producto
-            WHERE estado_pedido = "Completado" AND id_cliente = ?
-            ORDER BY fecha_pedido DESC';
+    $sql = 'SELECT
+        p.id_pedido,
+        p.fecha_pedido,
+        d.id_detalle,
+        pr.nombre_producto,
+        dp.precio_producto,
+        d.cantidad_producto,
+        (dp.precio_producto * d.cantidad_producto)
+    FROM tb_pedidos p
+    JOIN tb_detalle_pedido d ON p.id_pedido = d.id_pedido
+    JOIN tb_detalle_productos dp ON d.id_detalle_producto = dp.id_detalle_producto
+    JOIN tb_productos pr ON dp.id_producto = pr.id_producto
+    WHERE  p.id_cliente = ?
+    AND p.estado_pedido = "Completado"
+    ORDER BY p.fecha_pedido DESC, p.id_pedido, d.id_detalle';
     
     // Ejecuta la consulta con el parámetro del ID del cliente
     return Database::getRows($sql, array($_SESSION['idCliente']));
