@@ -2,6 +2,7 @@
 const CATEGORIA_API = 'services/public/categorias.php';
 // Constante para establecer el contenedor de categorías.
 const CATEGORIAS = document.getElementById('Categoria');
+const SEARCH = document.getElementById('search');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -34,4 +35,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Se asigna al título del contenido de la excepción cuando no existen datos para mostrar.
         document.getElementById('mainTitle').textContent = DATA.error;
     }
+});
+
+// Método del evento para cuando se envía el formulario de buscar.
+SEARCH.addEventListener('submit', (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(SEARCH);
+    // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
+    fillTable(FORM);
 });
