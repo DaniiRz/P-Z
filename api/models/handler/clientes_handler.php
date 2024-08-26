@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once ('../../helpers/database.php');
+require_once('../../helpers/database.php');
 
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla clientes.
@@ -173,7 +173,7 @@ class ClienteHandler
         $sql = 'UPDATE tb_clientes
                 SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_client = ?, telf_cliente = ?, genero_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->genero, $this->id, );
+        $params = array($this->nombre, $this->apellido, $this->correo, $this->dui, $this->telefono, $this->genero, $this->id,);
         return Database::executeRow($sql, $params);
     }
 
@@ -195,26 +195,26 @@ class ClienteHandler
         return Database::getRows($sql);
     }
 
-    
+
     /*
     *   Métodos para generar reportes.
     */
-public function pedidosCliente()
-{
-    $sql = 'SELECT p.id_pedido, p.fecha_pedido, p.estado_pedido, p.direccion_pedido, c.nombre_cliente, c.apellido_cliente, c.telf_cliente, c.correo_cliente
+    public function pedidosCliente()
+    {
+        $sql = 'SELECT p.id_pedido, p.fecha_pedido, p.estado_pedido, p.direccion_pedido, c.nombre_cliente, c.apellido_cliente, c.telf_cliente, c.correo_cliente
             FROM tb_pedidos p
             JOIN tb_clientes c ON p.id_cliente = c.id_cliente
             WHERE c.id_cliente = ?
             AND p.estado_pedido IN ("Completado", "Cancelado", "Anulado")
             ORDER BY p.fecha_pedido';
-    $params = array($this->id);
-    return Database::getRows($sql, $params);
-}
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
+    }
 
-// Esta función nos da las reseñas del cliente con toda la información relevante en función del ID del cliente que pasemos como parámetro.
-public function obtenerReseñasCliente()
-{
-    $sql = 'SELECT 
+    // Esta función nos da las reseñas del cliente con toda la información relevante en función del ID del cliente que pasemos como parámetro.
+    public function obtenerReseñasCliente()
+    {
+        $sql = 'SELECT 
                 c.nombre_cliente,
                 c.apellido_cliente,
                 p.nombre_producto,
@@ -229,7 +229,38 @@ public function obtenerReseñasCliente()
                 tb_productos p ON v.id_producto = p.id_producto
             WHERE 
                 c.id_cliente = ?';
-    $params = array($this->id); //$this->id contiene el ID del cliente
-    return Database::getRows($sql, $params);
-}
+        $params = array($this->id); //$this->id contiene el ID del cliente
+        return Database::getRows($sql, $params);
+    }
+
+    //Metodo para recuperacion contraseña
+    public function verifUs()
+    {
+        $sql = 'SELECT * FROM tb_clientes 
+                WHERE correo_cliente = ?';
+        $params = array($this->correo);
+        return Database::getRow($sql, $params);
+    }
+
+    // Verificar el PIN en la base de datos
+    public function verificarCodigoRecuperacion($codigo)
+    {
+        $sql = 'SELECT id_cliente 
+            FROM tb_clientes 
+            WHERE id_cliente = ? 
+            AND codigo_recuperacion = ?';
+        $params = array($_SESSION['correoCliente'], $codigo);
+
+        // Agregar logs para depurar
+        error_log("SQL: " . $sql);
+        error_log("Params: " . print_r($params, true));
+
+        $result = Database::getRow($sql, $params);
+
+        // Log del resultado
+        error_log("Resultado: " . print_r($result, true));
+
+        return $result !== false;
+    }
+
 }

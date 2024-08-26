@@ -3,10 +3,10 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require_once('../helpers/database.php');
-require_once('./PHPMailer/src/Exception.php');
-require_once('./PHPMailer/src/PHPMailer.php');
-require_once('./PHPMailer/src/SMTP.php');
+require_once('../../helpers/database.php');
+require_once('../phpmailer651/src/Exception.php');
+require_once('../phpmailer651/src/PHPMailer.php');
+require_once('../phpmailer651/src/SMTP.php');
 
 header('Content-type: application/json; charset=UTF-8');
 header('Access-Control-Allow-Origin: *');
@@ -36,7 +36,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 try {
     // Guardar el código de recuperación en la base de datos
-    $query = "UPDATE clientes SET codigo_recuperacion = ? WHERE correo_cliente = ?";
+    $query = "UPDATE tb_clientes SET codigo_recuperacion = ? WHERE correo_cliente = ?";
     $values = [$pin, $email];
     $result = Database::executeRow($query, $values);
 
@@ -51,13 +51,13 @@ try {
     $mail->SMTPDebug = 0;
     $mail->Debugoutput = 'html';
 
-    $mail->setFrom("soportepullzara@gmail.com");
+    $mail->setFrom("daniramirezch76@gmail.com");
     $mail->SMTPAuth = true;
     $mail->SMTPSecure = 'ssl';
     $mail->Host = "smtp.gmail.com";
     $mail->Port = 465;
-    $mail->Username = "soportepullzara@gmail.com";
-    $mail->Password = "Pull&Zara123";
+    $mail->Username = "daniramirezch76@gmail.com";
+    $mail->Password = "vqgvjpfwitiqrzdn";
 
     $mail->addAddress($email);
     $mail->Subject = 'Recuperación de contraseña';

@@ -111,6 +111,46 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'La cuenta ha sido desactivada';
                 }
                 break;
+            case 'verifUs':
+                // Verifica que el campo correoCliente esté definido en $_POST
+                if (!isset($_POST['correoCliente']) || empty(trim($_POST['correoCliente']))) {
+                    $result['error'] = 'El correo electrónico no está definido o está vacío.';
+                } elseif (!$cliente->setCorreo($_POST['correoCliente'], 6, 25, false)) {
+                    // Verifica el error en setCorreo()
+                    $result['error'] = $cliente->getDataError();
+                } elseif ($dataset = $cliente->verifUs()) {
+                    // Asigna el resultado de verifUs() a dataset
+                    $result['dataset'] = $dataset;
+                    $result['status'] = 1;
+                    $_SESSION['correoCliente'] = $dataset['id_cliente'];
+                } else {
+                    $result['error'] = 'Correo inexistente';
+                }
+                break;
+            case 'verifPin':
+                header('Content-Type: application/json');
+                // Obtiene el código de recuperación del POST
+                $pin = $_POST['codigo_recuperacion'] ?? '';
+
+                $result = [];
+
+                // Verifica si el código de recuperación está presente
+                if ($pin) {
+                    // Asegúrate de que el método para verificar el código esté implementado en el objeto $cliente
+                    // Este método debería validar el código de recuperación en la base de datos
+                    if ($cliente->verificarCodigoRecuperacion($pin)) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Código de recuperación verificado correctamente';
+                    } else {
+                        $result['error'] = 'Código de recuperación incorrecto';
+                    }
+                } else {
+                    $result['error'] = 'Código de recuperación no proporcionado';
+                }
+
+                // Envia la respuesta en formato JSON
+                echo json_encode($result);
+                break;
             default:
                 $result['message'] = 'Debes iniciar sesion en una cuenta primero.';
         }
