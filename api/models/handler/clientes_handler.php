@@ -42,14 +42,15 @@ class ClienteHandler
     }
 
     // Método para cambiar la contraseña del cliente
-    public function changePassword()
+    public function changePassword($correoCliente)
     {
         $sql = 'UPDATE tb_clientes
                 SET clave_cliente = ?
-                WHERE id_cliente = ?';
-        $params = array($this->clave, $_SESSION['idCliente']);
+                WHERE correo_cliente = ?';
+        $params = array($this->clave, $correoCliente);
         return Database::executeRow($sql, $params);
     }
+    
 
     // Método para verificar las credenciales del cliente al iniciar sesión
     public function checkUser($email, $contraseña)

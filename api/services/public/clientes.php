@@ -65,13 +65,14 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Confirmación de contraseña diferente';
                 } elseif (!$cliente->setContraseña($_POST['claveNueva'])) {
                     $result['error'] = $cliente->getDataError();
-                } elseif ($cliente->changePassword()) {
+                } elseif ($cliente->changePassword($correoCliente)) {
                     $result['status'] = 1;
                     $result['message'] = 'Contraseña cambiada correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
                 }
                 break;
+
             default:
                 $result['error'] = 'Ya existe una sesion iniciada.';
         }
@@ -115,7 +116,7 @@ if (isset($_GET['action'])) {
                 // Verifica que el campo correoCliente esté definido en $_POST
                 if (!isset($_POST['correoCliente']) || empty(trim($_POST['correoCliente']))) {
                     $result['error'] = 'El correo electrónico no está definido o está vacío.';
-                } elseif (!$cliente->setCorreo($_POST['correoCliente'], 6, 25, false)) {
+                } elseif (!$cliente->setCorreo($_POST['correoCliente'], false)) {
                     // Verifica el error en setCorreo()
                     $result['error'] = $cliente->getDataError();
                 } elseif ($dataset = $cliente->verifUs()) {
@@ -127,13 +128,39 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Correo inexistente';
                 }
                 break;
+            case 'changePasswordMovil':
+                // Validar que las contraseñas coincidan
+                if ($_POST['claveNueva'] != $_POST['confirmarClave']) {
+                    $result['error'] = 'Confirmación de contraseña diferente';
+                    break;
+                }
+
+                // Verificar si el correo electrónico está presente en la solicitud
+                if (!isset($_POST['correoCliente']) || empty($_POST['correoCliente'])) {
+                    $result['error'] = 'Correo electrónico no proporcionado';
+                    break;
+                }
+
+                // Establecer la nueva contraseña
+                if (!$cliente->setContraseña($_POST['claveNueva'])) {
+                    $result['error'] = $cliente->getDataError();
+                    break;
+                }
+
+                // Intentar cambiar la contraseña, usando el correo electrónico para identificar al cliente
+                $changeResult = $cliente->changePassword($_POST['correoCliente']);
+                if ($changeResult) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Contraseña cambiada correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
+                }
+                break;
             case 'verifPin':
                 header('Content-Type: application/json');
                 // Obtiene el código de recuperación del POST
                 $pin = $_POST['codigo_recuperacion'] ?? '';
-
                 $result = [];
-
                 // Verifica si el código de recuperación está presente
                 if ($pin) {
                     // Asegúrate de que el método para verificar el código esté implementado en el objeto $cliente
@@ -147,9 +174,6 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Código de recuperación no proporcionado';
                 }
-
-                // Envia la respuesta en formato JSON
-                echo json_encode($result);
                 break;
             default:
                 $result['message'] = 'Debes iniciar sesion en una cuenta primero.';
